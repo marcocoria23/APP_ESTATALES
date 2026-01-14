@@ -16,7 +16,7 @@ public class V3QDesgloses {
     // ------------------------------------------------------------
     // Método genérico: evita repetir el mismo código 20 veces
     // ------------------------------------------------------------
-    private ArrayList<String[]> desglose(String columnaControl, String tablaDetalle, String aliasColumna) {
+    private ArrayList<String[]> desglose(String columnaControl, String tablaDetalle, String aliasColumna, Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         // Importante: uso COALESCE para que si el control viene NULL no te regrese NULL
@@ -34,7 +34,7 @@ public class V3QDesgloses {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -58,48 +58,48 @@ public class V3QDesgloses {
     // ============================================================
 
     // Diferencia entre el total de expedientes ordinario vs desglose en ordinario
-    public ArrayList<String[]> Desglose_OrdinarioNE() {
-        return desglose("Ordinario", "V3_TR_ordinariojl", "Ordinario");
+    public ArrayList<String[]> Desglose_OrdinarioNE(Connection con) {
+        return desglose("Ordinario", "V3_TR_ordinariojl", "Ordinario", con);
     }
 
     // Diferencia entre el total de expedientes individual vs desglose en individual
-    public ArrayList<String[]> Desglose_IndividualNE() {
-        return desglose("ESPECIAL_INDIVI", "V3_TR_individualjl", "ESPECIAL_INDIVI");
+    public ArrayList<String[]> Desglose_IndividualNE(Connection con) {
+        return desglose("ESPECIAL_INDIVI", "V3_TR_individualjl", "ESPECIAL_INDIVI", con);
     }
 
     // Diferencia entre el total de expedientes colectivo vs desglose en colectivo
-    public ArrayList<String[]> Desglose_ColectivoNE() {
-        return desglose("ESPECIAL_COLECT", "V3_TR_colectivojl", "ESPECIAL_COLECT");
+    public ArrayList<String[]> Desglose_ColectivoNE(Connection con) {
+        return desglose("ESPECIAL_COLECT", "V3_TR_colectivojl", "ESPECIAL_COLECT", con);
     }
 
     // Diferencia entre el total de expedientes huelga vs desglose en huelga
-    public ArrayList<String[]> Desglose_HuelgaNE() {
-        return desglose("HUELGA", "V3_TR_huelgajl", "HUELGA");
+    public ArrayList<String[]> Desglose_HuelgaNE(Connection con) {
+        return desglose("HUELGA", "V3_TR_huelgajl", "HUELGA", con);
     }
 
     // Diferencia entre el total de expedientes colectivo naturaleza económica vs desglose
-    public ArrayList<String[]> Desglose_Colec_EconomNE() {
-        return desglose("COL_NATU_ECONOMICA", "V3_TR_colect_economjl", "COL_NATU_ECONOMICA");
+    public ArrayList<String[]> Desglose_Colec_EconomNE(Connection con) {
+        return desglose("COL_NATU_ECONOMICA", "V3_TR_colect_economjl", "COL_NATU_ECONOMICA", con);
     }
 
     // Diferencia entre el total de expedientes paraprocesal vs desglose
-    public ArrayList<String[]> Desglose_ParaprocesalNE() {
-        return desglose("PARAP_VOLUNTARIO", "V3_TR_paraprocesaljl", "PARAP_VOLUNTARIO");
+    public ArrayList<String[]> Desglose_ParaprocesalNE(Connection con) {
+        return desglose("PARAP_VOLUNTARIO", "V3_TR_paraprocesaljl", "PARAP_VOLUNTARIO", con);
     }
 
     // Diferencia entre el total de expedientes tercerías vs desglose
-    public ArrayList<String[]> Desglose_TerceriasNE() {
-        return desglose("TERCERIAS", "V3_TR_terceriasjl", "TERCERIAS");
+    public ArrayList<String[]> Desglose_TerceriasNE(Connection con) {
+        return desglose("TERCERIAS", "V3_TR_terceriasjl", "TERCERIAS", con);
     }
 
     // Diferencia entre el total de expedientes preferencia crédito vs desglose
-    public ArrayList<String[]> Desglose_Pref_CreditoNE() {
-        return desglose("PREF_CREDITO", "V3_TR_pref_creditojl", "PREF_CREDITO");
+    public ArrayList<String[]> Desglose_Pref_CreditoNE(Connection con) {
+        return desglose("PREF_CREDITO", "V3_TR_pref_creditojl", "PREF_CREDITO", con);
     }
 
     // Diferencia entre el total de expedientes ejecución vs desglose
-    public ArrayList<String[]> Desglose_EjecucionNE() {
-        return desglose("EJECUCION", "V3_TR_ejecucionjl", "EJECUCION");
+    public ArrayList<String[]> Desglose_EjecucionNE(Connection con) {
+        return desglose("EJECUCION", "V3_TR_ejecucionjl", "EJECUCION", con);
     }
 
     // ============================================================
@@ -109,39 +109,39 @@ public class V3QDesgloses {
     // y te lo dejo parametrizado.
     // ============================================================
 
-    public ArrayList<String[]> Desglose_OrdinarioNEAnt() {
-        return desglose("Ordinario", "V3_TR_ordinariojl", "Ordinario");
+    public ArrayList<String[]> Desglose_OrdinarioNEAnt(Connection con) {
+        return desglose("Ordinario", "V3_TR_ordinariojl", "Ordinario", con);
     }
 
-    public ArrayList<String[]> Desglose_IndividualNEAnt() {
-        return desglose("ESPECIAL_INDIVI", "V3_TR_individualjl", "ESPECIAL_INDIVI");
+    public ArrayList<String[]> Desglose_IndividualNEAnt(Connection con) {
+        return desglose("ESPECIAL_INDIVI", "V3_TR_individualjl", "ESPECIAL_INDIVI", con);
     }
 
-    public ArrayList<String[]> Desglose_ColectivoNEAnt() {
-        return desglose("ESPECIAL_COLECT", "V3_TR_colectivojl", "ESPECIAL_COLECT");
+    public ArrayList<String[]> Desglose_ColectivoNEAnt(Connection con) {
+        return desglose("ESPECIAL_COLECT", "V3_TR_colectivojl", "ESPECIAL_COLECT", con);
     }
 
-    public ArrayList<String[]> Desglose_HuelgaNEAnt() {
-        return desglose("HUELGA", "V3_TR_huelgajl", "HUELGA");
+    public ArrayList<String[]> Desglose_HuelgaNEAnt(Connection con) {
+        return desglose("HUELGA", "V3_TR_huelgajl", "HUELGA", con);
     }
 
-    public ArrayList<String[]> Desglose_Colec_EconomNEAnt() {
-        return desglose("COL_NATU_ECONOMICA", "V3_TR_colect_economjl", "COL_NATU_ECONOMICA");
+    public ArrayList<String[]> Desglose_Colec_EconomNEAnt(Connection con) {
+        return desglose("COL_NATU_ECONOMICA", "V3_TR_colect_economjl", "COL_NATU_ECONOMICA", con);
     }
 
-    public ArrayList<String[]> Desglose_ParaprocesalNEAnt() {
-        return desglose("PARAP_VOLUNTARIO", "V3_TR_paraprocesaljl", "PARAP_VOLUNTARIO");
+    public ArrayList<String[]> Desglose_ParaprocesalNEAnt(Connection con) {
+        return desglose("PARAP_VOLUNTARIO", "V3_TR_paraprocesaljl", "PARAP_VOLUNTARIO", con);
     }
 
-    public ArrayList<String[]> Desglose_TerceriasNEAnt() {
-        return desglose("TERCERIAS", "V3_TR_terceriasjl", "TERCERIAS");
+    public ArrayList<String[]> Desglose_TerceriasNEAnt(Connection con) {
+        return desglose("TERCERIAS", "V3_TR_terceriasjl", "TERCERIAS", con);
     }
 
-    public ArrayList<String[]> Desglose_Pref_CreditoNEAnt() {
-        return desglose("PREF_CREDITO", "V3_TR_pref_creditojl", "PREF_CREDITO");
+    public ArrayList<String[]> Desglose_Pref_CreditoNEAnt(Connection con) {
+        return desglose("PREF_CREDITO", "V3_TR_pref_creditojl", "PREF_CREDITO", con);
     }
 
-    public ArrayList<String[]> Desglose_EjecucionNEAnt() {
-        return desglose("EJECUCION", "V3_TR_ejecucionjl", "EJECUCION");
+    public ArrayList<String[]> Desglose_EjecucionNEAnt(Connection con) {
+        return desglose("EJECUCION", "V3_TR_ejecucionjl", "EJECUCION", con);
     }
 }

@@ -17,7 +17,7 @@ public class V3QPart_dem_individual {
     ArrayList<String[]> Array;
 
     // Query: Demandados NO desglosados (cuando debería)
-    public ArrayList<String[]> ExpeNDesglose() {
+    public ArrayList<String[]> ExpeNDesglose(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class V3QPart_dem_individual {
             "   SELECT EXPEDIENTE_CLAVE FROM V3_TR_PART_DEM_INDIVIDUALJL " +
             ")";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -60,7 +60,7 @@ public class V3QPart_dem_individual {
     }
 
     // Query: Incompetencia = Sí pero existe desglose de demandados
-    public ArrayList<String[]> IncompetenciaNE() {
+    public ArrayList<String[]> IncompetenciaNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -86,7 +86,7 @@ public class V3QPart_dem_individual {
             ") y " +
             "WHERE y.INCOMPETENCIA = 'Sí'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -106,7 +106,7 @@ public class V3QPart_dem_individual {
     }
 
     // Query: Estatus demanda en {Desechada, Archivo, No se dio trámite...} pero existe desglose
-    public ArrayList<String[]> Estatus_demandaNE() {
+    public ArrayList<String[]> Estatus_demandaNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -134,7 +134,7 @@ public class V3QPart_dem_individual {
             ") y " +
             "WHERE y.ESTATUS_DEMANDA IN ('Desechada','Archivo','No se dio trámite al escrito de demanda')";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -154,7 +154,7 @@ public class V3QPart_dem_individual {
     }
 
     // Query: Cantidad demandados != desglose demandados (solo cuando incompetencia != 1 y estatus no está en 2,3,4)
-    public ArrayList<String[]> Dif_demandadosNE() {
+    public ArrayList<String[]> Dif_demandadosNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -181,7 +181,7 @@ public class V3QPart_dem_individual {
             "  AND x.ESTATUS_DEMANDA NOT IN ('2','3','4') " +
             "  AND x.CANTIDAD_DEMANDADOS <> x.DESGLOSE_DEMANDADO";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

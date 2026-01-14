@@ -51,9 +51,6 @@ public class ControlExpediente  extends Bean implements SQLData {
     private String TERCERIAS;
     private String PREF_CREDITO;
     private String EJECUCION;
-    private String PERIODO;
-    private String ESTATUS;
-    private String VERSIONES;
   
     
     public ControlExpediente(){   
@@ -329,32 +326,6 @@ public class ControlExpediente  extends Bean implements SQLData {
          this.EJECUCION=EJECUCION;
     }      
       
-      
-   public String GetPERIODO() {
-        return PERIODO;
-    }
-     
-      public void SetPERIODO(String PERIODO) {
-         this.PERIODO=PERIODO;
-    }   
-      
-    public String GetESTATUS() {
-        return ESTATUS;
-    }
-     
-      public void SetESTATUS(String ESTATUS) {
-         this.ESTATUS=ESTATUS;
-    }   
-      
-   public String GetVERSIONES() {
-        return VERSIONES;
-    }
-     
-      public void SetVERSIONES(String VERSIONES) {
-         this.VERSIONES=VERSIONES;
-    }      
-      
-      
     @Override
     public String getSQLTypeName() throws SQLException {
        return SQLTypeName;
@@ -411,10 +382,7 @@ public class ControlExpediente  extends Bean implements SQLData {
             GetPARAP_VOLUNTARIO(),
             GetTERCERIAS(),
             GetPREF_CREDITO(),
-            GetEJECUCION(),
-            GetPERIODO(),
-            GetESTATUS(),
-            GetVERSIONES()
+            GetEJECUCION()
      };
      return array;
     }

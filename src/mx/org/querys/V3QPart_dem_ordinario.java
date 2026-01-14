@@ -17,7 +17,7 @@ public class V3QPart_dem_ordinario {
     ArrayList<String[]> Array;
 
     // Query: Demandados NO desglosados (cuando debería)
-    public ArrayList ExpeNDesglose() {
+    public ArrayList ExpeNDesglose(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -38,7 +38,7 @@ public class V3QPart_dem_ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -61,7 +61,7 @@ public class V3QPart_dem_ordinario {
     }
 
     // Query: Incompetencia = Sí pero existe desglose de demandados
-    public ArrayList IncompetenciaNE() {
+    public ArrayList IncompetenciaNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -87,7 +87,7 @@ public class V3QPart_dem_ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -107,7 +107,7 @@ public class V3QPart_dem_ordinario {
     }
 
     // Query: Estatus demanda inválido (Desechada/Archivo/No trámite) pero hay desglose
-    public ArrayList Estatus_demandaNE() {
+    public ArrayList Estatus_demandaNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -135,7 +135,7 @@ public class V3QPart_dem_ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -155,7 +155,7 @@ public class V3QPart_dem_ordinario {
     }
 
     // Query: Cantidad demandados != Desglose demandados (sin filtros)
-    public ArrayList Dif_demandadosNE() {
+    public ArrayList Dif_demandadosNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -183,7 +183,7 @@ public class V3QPart_dem_ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

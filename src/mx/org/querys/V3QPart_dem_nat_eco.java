@@ -17,7 +17,7 @@ public class V3QPart_dem_nat_eco {
     ArrayList<String[]> Array;
 
     // Query: Demandados NO desglosados (cuando debería)
-    public ArrayList<String[]> ExpeNDesglose() {
+    public ArrayList<String[]> ExpeNDesglose(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class V3QPart_dem_nat_eco {
             "   SELECT EXPEDIENTE_CLAVE FROM V3_TR_PART_DEM_COLECT_ECONOMJL " +
             ")";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -60,7 +60,7 @@ public class V3QPart_dem_nat_eco {
     }
 
     // Query: Incompetencia = Sí pero existe desglose de demandados
-    public ArrayList<String[]> IncompetenciaNE() {
+    public ArrayList<String[]> IncompetenciaNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -86,7 +86,7 @@ public class V3QPart_dem_nat_eco {
             ") y " +
             "WHERE y.INCOMPETENCIA = 'Sí'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -106,7 +106,7 @@ public class V3QPart_dem_nat_eco {
     }
 
     // Query: Cantidad demandados != desglose demandados (solo cuando incompetencia <> 1)
-    public ArrayList<String[]> Dif_demandadosNE() {
+    public ArrayList<String[]> Dif_demandadosNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -131,7 +131,7 @@ public class V3QPart_dem_nat_eco {
             "WHERE x.INCOMPETENCIA <> '1' " +
             "  AND x.CANTIDAD_DEMANDADOS <> x.DESGLOSE_DEMANDADO";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

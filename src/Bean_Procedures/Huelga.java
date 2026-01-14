@@ -71,7 +71,6 @@ public class Huelga  extends Bean implements SQLData {
     private String MONTO_ESTIPULADO;
     private String SALARIOS_CAIDOS;
     private String COMENTARIOS;
-    private String PERIODO;
 
 
     
@@ -450,15 +449,6 @@ public String GetCOMENTARIOS() {
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
     }
-public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
-
-
       
     @Override
     public String getSQLTypeName() throws SQLException {
@@ -536,10 +526,7 @@ public String GetPERIODO() {
          GetDIAS_HUELGA(),
          GetMONTO_ESTIPULADO(),
          GetSALARIOS_CAIDOS(),
-         GetCOMENTARIOS(),
-         GetPERIODO()
-
-
+         GetCOMENTARIOS()
      };
      return array;
     }

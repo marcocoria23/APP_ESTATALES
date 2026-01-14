@@ -31,14 +31,7 @@ public class Pref_Credito  extends Bean implements SQLData {
     private String ESTATUS_EXPE;
     private String FECHA_RESOLUCION;
     private String COMENTARIOS;
-    private String PERIODO;
-
-
-
-
-
-    
-    
+  
     public Pref_Credito(){   
     }
     
@@ -133,17 +126,6 @@ public String GetCOMENTARIOS() {
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
     }
-public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
-
-
-
-
       
     @Override
     public String getSQLTypeName() throws SQLException {
@@ -181,9 +163,7 @@ public String GetPERIODO() {
             GetESPECIFIQUE(),
             GetESTATUS_EXPE(),
             GetFECHA_RESOLUCION(),
-            GetCOMENTARIOS(),
-            GetPERIODO()
-
+            GetCOMENTARIOS()
      };
      return array;
     }

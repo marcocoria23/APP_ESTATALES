@@ -112,11 +112,7 @@ private String FECHA_RESOLUCIONAJ;
 private String TIPO_SENTENCIAAJ;
 private String MONTO_SOLUCIONAJ;
 private String COMENTARIOS;
-private String PERIODO;
-
-    
-  
-    
+       
     public Ordinario(){   
     }
     
@@ -872,18 +868,6 @@ private String PERIODO;
         this.COMENTARIOS = COMENTARIOS;
     }
 
-    public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
-  
-      
-      
-   
-      
     @Override
     public String getSQLTypeName() throws SQLException {
        return SQLTypeName;
@@ -1001,8 +985,7 @@ private String PERIODO;
             GetFECHA_RESOLUCIONAJ(),
             GetTIPO_SENTENCIAAJ(),
             GetMONTO_SOLUCIONAJ(),
-            GetCOMENTARIOS(),
-            GetPERIODO()
+            GetCOMENTARIOS()
      };
      return array;
     }

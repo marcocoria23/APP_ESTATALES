@@ -28,7 +28,6 @@ public class Ejecucion  extends Bean implements SQLData {
     private String FECHA_CONCLUSION;
     private String FASE_CONCLUSION;
     private String COMENTARIOS;
-    private String PERIODO;
 
 
 
@@ -109,14 +108,6 @@ public String GetCOMENTARIOS() {
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
     }
-public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
-
 
 
 
@@ -154,8 +145,7 @@ public String GetPERIODO() {
             GetESTATUS_EXPE(),
             GetFECHA_CONCLUSION(),
             GetFASE_CONCLUSION(),
-            GetCOMENTARIOS(),
-            GetPERIODO()
+            GetCOMENTARIOS()
      };
      return array;
     }

@@ -12,20 +12,14 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import oracle.sql.ARRAY;
-import oracle.sql.ArrayDescriptor;
-import oracle.sql.STRUCT;
-import oracle.sql.StructDescriptor;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import Bean_Procedures.Audiencias;
-import Conexion.ConexionH2;
 import ConverCat.Convers;
 import Screen_laborales.cargando;
 import java.io.BufferedInputStream;
@@ -40,17 +34,16 @@ import java.sql.PreparedStatement;
  */
 public class ReadCSV_Audiencias {
 
-    public static String impErro = "", RutaT = "",CampoNotConver="";
+    public static String impErro = "", RutaT = "", CampoNotConver = "";
     public static int TotalRegistros = 0;
     public static boolean borra_ruta = false;
     ArrayList Array;
     public static String rutaCarpetaArchivos = "";
     Convertir_utf8 conUTF8 = new Convertir_utf8();
 
-    public void Read_Audiencias() throws FileNotFoundException, IOException {
+    public void Read_Audiencias(Connection con, Connection conErr) throws FileNotFoundException, IOException {
         InsertaTR Insert = new InsertaTR();
         //FileInputStream f = new FileInputStream(Insert.rutaT);  
-
         try {
             System.out.println("1.....");
             if (Insert.CarpetaArchivos == true) {
@@ -71,11 +64,11 @@ public class ReadCSV_Audiencias {
                     if (bytesRead >= 3 && bytes[0] == (byte) 0xEF && bytes[1] == (byte) 0xBB && bytes[2] == (byte) 0xBF) {
                         System.out.println("Archivo en UTF-8");
                         System.out.println("5.....");
-                        IN_AUDIENCIAS(rutaCarpetaArchivos);
+                        IN_AUDIENCIAS(rutaCarpetaArchivos, con, conErr);
                     } else {
                         System.out.println("6.....");
                         conUTF8.Convertir_utf8_EBaseDatos(rutaCarpetaArchivos);
-                        IN_AUDIENCIAS(conUTF8.rutaNuevoArchivo);
+                        IN_AUDIENCIAS(conUTF8.rutaNuevoArchivo, con, conErr);
                         rutaCarpetaArchivos = conUTF8.rutaNuevoArchivo;
 
                     }
@@ -91,11 +84,11 @@ public class ReadCSV_Audiencias {
                     if (bytesRead >= 3 && bytes[0] == (byte) 0xEF && bytes[1] == (byte) 0xBB && bytes[2] == (byte) 0xBF) {
                         System.out.println("8.....");
                         System.out.println("Archivo en UTF-8");
-                        IN_AUDIENCIAS(rutaCarpetaArchivos);
+                        IN_AUDIENCIAS(rutaCarpetaArchivos, con, conErr);
                     } else {
                         System.out.println("9.....");
                         conUTF8.Convertir_utf8(rutaCarpetaArchivos);
-                        IN_AUDIENCIAS(conUTF8.rutaNuevoArchivo);
+                        IN_AUDIENCIAS(conUTF8.rutaNuevoArchivo, con, conErr);
                         rutaCarpetaArchivos = conUTF8.rutaNuevoArchivo;
                     }
                 } catch (IOException e) {
@@ -108,20 +101,13 @@ public class ReadCSV_Audiencias {
 
     }
 
-    public void IN_AUDIENCIAS(String Ruta) throws Exception {
-
+    public void IN_AUDIENCIAS(String Ruta, Connection con, Connection conErr) throws Exception {
         String rutaArchivoCSV = Ruta;
-        ArrayList<String[]> Array;
         Array = new ArrayList();
-        ARRAY array_to_pass;
-        CallableStatement st;
-        Connection con = null;
-        STRUCT[] structs;
-        StructDescriptor sd;
-        ArrayDescriptor descriptor;
         TotalRegistros = 0;
         boolean Inserta = true;
         Convers conver = new Convers();
+        java.sql.PreparedStatement ps = null;
 
         try ( BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(Ruta))) {
             byte[] bytes = new byte[3];
@@ -137,94 +123,33 @@ public class ReadCSV_Audiencias {
                     if (numeroColumnas == 16) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
-
                         ArrayList<Audiencias> ad = new ArrayList<>();
                         for (CSVRecord record : csvParser) {
-                           // System.out.println("llenado de csv");
+                            // System.out.println("llenado de csv");
                             TotalRegistros++;
                             Audiencias c = new Audiencias();
                             c.SetNOMBRE_ORGANO_JURIS(record.get(0).toUpperCase());
                             c.SetCLAVE_ORGANO(record.get(1).toUpperCase());
                             c.SetEXPEDIENTE_CLAVE(record.get(2).toUpperCase().replace("\\n", "").trim());
-                            c.SetTIPO_PROCED(conver.CON_V3_TC_AUD_TIPO_PROCEJL(record.get(3).toUpperCase()));
+                            c.SetTIPO_PROCED(conver.CON_V3_TC_AUD_TIPO_PROCEJL(con, record.get(3).toUpperCase()));
                             c.SetID_AUDIENCIA(record.get(4).toUpperCase());
-                            c.SetORDINARIO_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(5).toUpperCase()));
-                            c.SetESPECIAL_INDIVI_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(6).toUpperCase()));
-                            c.SetESPECIAL_COLECT_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(7).toUpperCase()));
-                            c.SetHUELGA_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(8).toUpperCase()));
-                            c.SetCOL_NATU_ECONOMICA_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(9).toUpperCase()));
+                            c.SetORDINARIO_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(con, record.get(5).toUpperCase()));
+                            c.SetESPECIAL_INDIVI_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(con, record.get(6).toUpperCase()));
+                            c.SetESPECIAL_COLECT_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(con, record.get(7).toUpperCase()));
+                            c.SetHUELGA_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(con, record.get(8).toUpperCase()));
+                            c.SetCOL_NATU_ECONOMICA_TA(conver.CON_V3_TC_AUD_TIPO_AUDIENJL(con, record.get(9).toUpperCase()));
                             c.SetESP_OTRO_AUDIENCIA(record.get(10).toUpperCase());
-                            c.SetFECHA_AUDIEN_CELEBRADA(conver.toH2Date(record.get(11).toUpperCase(),"FECHA_AUDIEN"));
+                            c.SetFECHA_AUDIEN_CELEBRADA(conver.toH2Date(record.get(11).toUpperCase(), "FECHA_AUDIEN"));
                             c.SetINICIO(record.get(12).toUpperCase());
                             c.SetCONCLU(record.get(13).toUpperCase());
                             c.SetCOMENTARIOS(record.get(14).toUpperCase());
-                            //System.out.println(record.get(0) + ":" + record.get(1) + ":" + record.get(2) + ":" + record.get(3) + ":" + record.get(4) + ":" + record.get(5) + ":" + record.get(6) + ":" + record.get(7) + ":" + record.get(8) + ":" + record.get(9) + ":" + record.get(10) + ":" + record.get(11) + ":" + record.get(12) + ":" + record.get(13) + ":" + record.get(14) + ":" + Periodo);
                             ad.add(c);
-
-                           /* System.out.println("NOMBRE_ORGANO_JURIS: " + record.get(0).toUpperCase());
-                            System.out.println("CLAVE_ORGANO: " + record.get(1).toUpperCase());
-                            System.out.println("EXPEDIENTE_CLAVE: " + record.get(2).toUpperCase().replace("\\n", "").trim());
-                            System.out.println("TIPO_PROCED: " + conver.CON_V3_TC_AUD_TIPO_PROCEJL(record.get(3).toUpperCase()));
-                            System.out.println("ID_AUDIENCIA: " + record.get(4).toUpperCase());
-                            System.out.println("ORDINARIO_TA: " + conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(5).toUpperCase()));
-                            System.out.println("ESPECIAL_INDIVI_TA: " + conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(6).toUpperCase()));
-                            System.out.println("ESPECIAL_COLECT_TA: " + conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(7).toUpperCase()));
-                            System.out.println("HUELGA_TA: " + conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(8).toUpperCase()));
-                            System.out.println("COL_NATU_ECONOMICA_TA: " + conver.CON_V3_TC_AUD_TIPO_AUDIENJL(record.get(9).toUpperCase()));
-                            System.out.println("ESP_OTRO_AUDIENCIA: " + record.get(10).toUpperCase());
-                            System.out.println("FECHA_AUDIEN_CELEBRADA: " + conver.toH2Date(record.get(11).toUpperCase()));
-                            System.out.println("INICIO: " + record.get(12).toUpperCase());
-                            System.out.println("CONCLU: " + record.get(13).toUpperCase());
-                            System.out.println("COMENTARIOS: " + record.get(14).toUpperCase());
-                            System.out.println("PERIODO: " + Periodo);
-                            System.out.println("--------------------------------------------------");*/
-
-                            if (record.get(3).equals("1") && !(record.get(5).equals("") || record.get(5).equals("1") || record.get(5).equals("2") || record.get(5).equals("6") || record.get(5).equals("9"))) {
-
-                                if (record.get(3).equals("1") && (record.get(5).equals("3"))) {
-                                    c.SetORDINARIO_TA("6");
-                                    c.SetESP_OTRO_AUDIENCIA("Audiencia de conciliación");
-                                }
-                                if (record.get(3).equals("1") && (record.get(5).equals("4"))) {
-                                    c.SetORDINARIO_TA("6");
-                                    c.SetESP_OTRO_AUDIENCIA("Audiencia conforme al artículo 937 (LFT)");
-                                }
-                                if (record.get(3).equals("1") && (record.get(5).equals("5"))) {
-                                    c.SetORDINARIO_TA("6");
-                                    c.SetESP_OTRO_AUDIENCIA("Audiencia dentro del procedimiento colectivo de naturaleza económica");
-                                }
-
-                                JOptionPane.showMessageDialog(null, "Error en el campo ORDINARIO_TA fuera de catalogo  Clave_organo:" + record.get(1) + " Expediente:" + record.get(2) + " Id_audiencia:" + record.get(4) + " nota: campo ORDINARIO_TA solo puede tener opcion 1,2,6 Y 9");
-
-                                Inserta = false;
-                            }
-                            if (record.get(3).equals("2") && !(record.get(6).equals("") || record.get(6).equals("1") || record.get(6).equals("2") || record.get(6).equals("6") || record.get(6).equals("9"))) {
-                                JOptionPane.showMessageDialog(null, "Error en el campo ESPECIAL_INDIVI_TA fuera de catalogo  Clave_organo:" + record.get(1) + " Expediente:" + record.get(2) + " Id_audiencia:" + record.get(4) + " nota: campo ESPECIAL_INDIVI_TA solo puede tener opcion 1,2,6 Y 9");
-                                Inserta = false;
-                            }
-                            if (record.get(3).equals("3") && !(record.get(7).equals("") || record.get(7).equals("2") || record.get(7).equals("6") || record.get(7).equals("9"))) {
-                                JOptionPane.showMessageDialog(null, "Error en el campo ESPECIAL_COLECT_TA fuera de catalogo  Clave_organo:" + record.get(1) + " Expediente:" + record.get(2) + " Id_audiencia:" + record.get(4) + " nota: campo ESPECIAL_COLECT_TA solo puede tener opcion 2,6 Y 9");
-                                Inserta = false;
-                            }
-                            if (record.get(3).equals("4") && !(record.get(8).equals("") || record.get(8).equals("3") || record.get(8).equals("4") || record.get(8).equals("6") || record.get(8).equals("9"))) {
-                                JOptionPane.showMessageDialog(null, "Error en el campo HUELGA_TA fuera de catalogo  Clave_organo:" + record.get(1) + " Expediente:" + record.get(2) + " Id_audiencia:" + record.get(4) + " nota: campo HUELGA_TA solo puede tener opcion 3,4,6 Y 9");
-                                Inserta = false;
-                            }
-                            if (record.get(3).equals("5") && !(record.get(9).equals("") || record.get(9).equals("5") || record.get(9).equals("6") || record.get(9).equals("9"))) {
-                                JOptionPane.showMessageDialog(null, "Error en el campo COL_NATU_ECONOMICA_TA fuera de catalogo  Clave_organo:" + record.get(1) + " Expediente:" + record.get(2) + " Id_audiencia:" + record.get(4) + " nota: campo COL_NATU_ECONOMICA_TA solo puede tener opcion 5,6 Y 9");
-                                Inserta = false;
-                            }
                         }
-
                         System.out.println("entro 1");
-
                         if (TotalRegistros > 0) {
-
                             if (Inserta == true) {
                                 System.out.println("entro 2");
                                 cargar.setVisible(true);
-                                java.sql.PreparedStatement ps = null;
-
                                 // OJO: AJUSTA los nombres reales de columnas en tu tabla H2
                                 final String sql
                                         = "INSERT INTO V3_TR_AUDIENCIASJL ("
@@ -232,42 +157,27 @@ public class ReadCSV_Audiencias {
                                         + " ORDINARIO_TA, ESPECIAL_INDIVI_TA, ESPECIAL_COLECT_TA, HUELGA_TA, COL_NATU_ECONOMICA_TA, "
                                         + " ESP_OTRO_AUDIENCIA, FECHA_AUDIEN_CELEBRADA, INICIO, CONCLU, COMENTARIOS"
                                         + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
-                                Connection conErr = null;
-
                                 try {
                                     System.out.println("A) antes getConnection");
-                                    con = ConexionH2.getConnection();
                                     System.out.println("B) despues getConnection");
-
                                     // ✅ Conexión separada para guardar ERRORES_INSERT (NO se revierte con rollback)
-                                    conErr = ConexionH2.getConnection();
                                     conErr.setAutoCommit(true);
-
                                     con.setAutoCommit(false);
-
                                     System.out.println("C) antes prepareStatement");
                                     ps = con.prepareStatement(sql);
                                     System.out.println("D) despues prepareStatement");
-
                                     int batch = 0;
                                     int blockStart = 0; // índice inicial del bloque actual dentro de "ad"
-
                                     System.out.println("tamaño del array=" + ad.size());
-
                                     for (int i = 0; i < ad.size(); i++) {
                                         Audiencias a = ad.get(i);
-
                                         // ✅ usa tu helper para setear params (mismo orden de tu INSERT)
                                         setParamsAudiencias(ps, a);
-
                                         ps.addBatch();
                                         batch++;
-
                                         // Ejecutamos cada 1000
                                         if (batch % 1000 == 0) {
                                             int blockEnd = i + 1; // fin exclusivo
-
                                             try {
                                                 ps.executeBatch();
                                                 con.commit();
@@ -287,7 +197,6 @@ public class ReadCSV_Audiencias {
                                             }
                                         }
                                     }
-
                                     // ✅ Último bloque (si no fue múltiplo de 1000)
                                     if (blockStart < ad.size()) {
                                         try {
@@ -298,27 +207,21 @@ public class ReadCSV_Audiencias {
                                             System.err.println("❌ Último batch falló (bloque " + blockStart + " - " + ad.size() + ")");
                                             System.err.println("Mensaje: " + bue.getMessage());
                                             con.rollback();
-
                                             insertarBloqueUnoAUno(con, conErr, ps, ad, blockStart, ad.size(), "V3_TR_AUDIENCIASJL");
                                             con.commit();
                                         }
                                     }
-
                                     System.out.println("✅ Inserción terminada. Errores guardados en ERRORES_INSERT (si hubo).");
-
                                 } catch (SQLException e) {
                                     System.out.println("error" + e);
-
                                     if (con != null) {
                                         con.rollback();
                                     }
-
                                     System.err.println("❌ SQLException");
                                     System.err.println("Mensaje: " + e.getMessage());
                                     System.err.println("SQLState: " + e.getSQLState());
                                     System.err.println("ErrorCode: " + e.getErrorCode());
                                     e.printStackTrace();
-
                                 } catch (Exception e) {
                                     if (con != null) try {
                                         con.rollback();
@@ -326,26 +229,12 @@ public class ReadCSV_Audiencias {
                                     }
                                     System.err.println("❌ ERROR JAVA");
                                     e.printStackTrace();
-
                                 } finally {
                                     if (ps != null) try {
                                         ps.close();
                                         System.out.println("parametros cerrados");
                                     } catch (SQLException ex) {
                                     }
-
-                                    if (con != null) try {
-                                        con.close();
-                                        System.out.println("Conexion cerrada");
-                                    } catch (SQLException ex) {
-                                    }
-
-                                    if (conErr != null) try {
-                                        conErr.close();
-                                        System.out.println("Conexion errores cerrada");
-                                    } catch (SQLException ex) {
-                                    }
-
                                     cargar.setVisible(false);
                                 }
                             } else {
@@ -361,6 +250,7 @@ public class ReadCSV_Audiencias {
             } else {
                 JOptionPane.showMessageDialog(null, "Gormato de archivo incorrecto");
             }
+
         }
     }
 
@@ -379,10 +269,10 @@ public class ReadCSV_Audiencias {
             pe.setString(4, a.GetID_AUDIENCIA());
             pe.setString(5, e.getSQLState());
             pe.setInt(6, e.getErrorCode());
-            String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria","Registro Duplicado");
+            String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado");
             pe.setString(7, msg != null && msg.length() > 500 ? msg.substring(0, 250) : msg);
             pe.setString(8, raw);
-           pe.executeUpdate();
+            pe.executeUpdate();
         } catch (SQLException ex) {
             // Si hasta la tabla de errores falla, al menos lo imprimimos
             System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
@@ -425,7 +315,6 @@ public class ReadCSV_Audiencias {
                         + "|EXPEDIENTE_CLAVE=" + a.GetEXPEDIENTE_CLAVE()
                         + "|ID_AUDIENCIA=" + a.GetID_AUDIENCIA()
                         + "|FECHA=" + a.GetFECHA_AUDIEN_CELEBRADA();
-
                 guardarError(conErr, tablaDestino, a, e, raw);
             }
         }

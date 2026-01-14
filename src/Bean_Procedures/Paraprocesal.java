@@ -37,7 +37,6 @@ public class Paraprocesal  extends Bean implements SQLData {
     private String ESTATUS_EXPEDIENTE;
     private String FECHA_CONCLUSION_EXPE;
     private String COMENTARIOS;
-    private String PERIODO;
 
 
 
@@ -179,13 +178,6 @@ public String GetCOMENTARIOS() {
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
     }
-public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
 
 
       
@@ -231,8 +223,7 @@ public String GetPERIODO() {
          GetESPECIFIQUE_PROMOVENTE(),
          GetESTATUS_EXPEDIENTE(),
          GetFECHA_CONCLUSION_EXPE(),
-         GetCOMENTARIOS(),
-         GetPERIODO()
+         GetCOMENTARIOS()
      };
      return array;
     }

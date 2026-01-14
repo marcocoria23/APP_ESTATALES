@@ -50,8 +50,6 @@ public class Part_Act_Colect_Econom  extends Bean implements SQLData {
     private String LATITUD_EMPR1;
     private String LONGITUD_EMPR1;
     private String COMENTARIOS;
-    private String PERIODO;
-
 
     
     
@@ -282,16 +280,6 @@ public String GetCOMENTARIOS() {
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
     }
-public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
-
-
-
       
     @Override
     public String getSQLTypeName() throws SQLException {
@@ -348,8 +336,7 @@ public String GetPERIODO() {
             GetMUNICIPIO_CLAVE_EMPR(),
             GetLATITUD_EMPR1(),
             GetLONGITUD_EMPR1(),
-            GetCOMENTARIOS(),
-            GetPERIODO()
+            GetCOMENTARIOS()
      };
      return array;
     }

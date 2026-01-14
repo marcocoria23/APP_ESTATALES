@@ -16,7 +16,7 @@ public class V3QColectivo {
     // ------------------------------------------------------------
     // Año_JudicialCampeche (H2 + sin filtros)
     // ------------------------------------------------------------
-    public ArrayList<String[]> Año_JudicialCampeche() {
+    public ArrayList<String[]> Año_JudicialCampeche(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -37,7 +37,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -60,7 +60,7 @@ public class V3QColectivo {
     // Año_DIF_Campeche (H2 + sin filtros)
     // OJO: antes usabas PValidacion.AñoJuridico. Sin eso, dejo ejemplo fijo.
     // ------------------------------------------------------------
-    public ArrayList<String[]> Año_DIF_Campeche() {
+    public ArrayList<String[]> Año_DIF_Campeche(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         // Ajusta según tu lógica original
@@ -80,7 +80,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -102,7 +102,7 @@ public class V3QColectivo {
     // ------------------------------------------------------------
     // Año_Expe_ColectivoNE (H2 + sin filtros)
     // ------------------------------------------------------------
-    public ArrayList<String[]> Año_Expe_ColectivoNE() {
+    public ArrayList<String[]> Año_Expe_ColectivoNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -119,7 +119,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -141,7 +141,7 @@ public class V3QColectivo {
     // ------------------------------------------------------------
     // FECHAS FUTURAS (H2 + sin filtros)
     // ------------------------------------------------------------
-    public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT() {
+    public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -153,7 +153,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -172,7 +172,7 @@ public class V3QColectivo {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_PRES_DEMANDA_FUT() {
+    public ArrayList<String[]> FECHA_PRES_DEMANDA_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -184,7 +184,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -203,7 +203,7 @@ public class V3QColectivo {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_ADMI_DEMANDA_FUT() {
+    public ArrayList<String[]> FECHA_ADMI_DEMANDA_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -215,7 +215,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -234,7 +234,7 @@ public class V3QColectivo {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_DEPURACION_FUT() {
+    public ArrayList<String[]> FECHA_DEPURACION_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -246,7 +246,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -265,7 +265,7 @@ public class V3QColectivo {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_AUDIENCIA_JUICIO_FUT() {
+    public ArrayList<String[]> FECHA_AUDIENCIA_JUICIO_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -277,7 +277,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -296,7 +296,7 @@ public class V3QColectivo {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_DICTO_RESOLUCION_AD_FUT() {
+    public ArrayList<String[]> FECHA_DICTO_RESOLUCION_AD_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -308,7 +308,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -327,7 +327,7 @@ public class V3QColectivo {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_RESOLUCION_AJ_FUT() {
+    public ArrayList<String[]> FECHA_RESOLUCION_AJ_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -339,7 +339,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -361,7 +361,7 @@ public class V3QColectivo {
     // ------------------------------------------------------------
     // Duplicidad_expediente (H2 + sin filtros)
     // ------------------------------------------------------------
-    public ArrayList<String[]> Duplicidad_expediente() {
+    public ArrayList<String[]> Duplicidad_expediente(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -379,7 +379,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -402,7 +402,7 @@ public class V3QColectivo {
     // Fecha_PresentacionNE (H2 + sin filtros)
     // Apertura < Presentación
     // ------------------------------------------------------------
-    public ArrayList<String[]> Fecha_PresentacionNE() {
+    public ArrayList<String[]> Fecha_PresentacionNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -415,7 +415,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -440,7 +440,7 @@ public class V3QColectivo {
     // Fecha_PresentacionAdmiNE (H2 + sin filtros)
     // Admisión < Presentación
     // ------------------------------------------------------------
-    public ArrayList<String[]> Fecha_PresentacionAdmiNE() {
+    public ArrayList<String[]> Fecha_PresentacionAdmiNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -454,7 +454,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -479,7 +479,7 @@ public class V3QColectivo {
     // Fecha_Admi_DemandaNE (H2 + sin filtros)
     // Admisión < Apertura
     // ------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Admi_DemandaNE() {
+    public ArrayList<String[]> Fecha_Admi_DemandaNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -492,7 +492,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -517,7 +517,7 @@ public class V3QColectivo {
     // Fecha_Audiencia_JuicioNE (H2 + sin filtros)
     // Audiencia <= Apertura
     // ------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Audiencia_JuicioNE() {
+    public ArrayList<String[]> Fecha_Audiencia_JuicioNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -530,7 +530,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -555,7 +555,7 @@ public class V3QColectivo {
     // Fecha_DepuracionNE (H2 + sin filtros)
     // Depuración <= Apertura
     // ------------------------------------------------------------
-    public ArrayList<String[]> Fecha_DepuracionNE() {
+    public ArrayList<String[]> Fecha_DepuracionNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -568,7 +568,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -593,7 +593,7 @@ public class V3QColectivo {
     // Fecha_Acto_ProcesalNE (H2 + sin filtros)
     // Acto procesal < Apertura
     // ------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Acto_ProcesalNE() {
+    public ArrayList<String[]> Fecha_Acto_ProcesalNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -606,7 +606,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -631,7 +631,7 @@ public class V3QColectivo {
     // Fecha_Resolucion_AjNE (H2 + sin filtros)
     // Resolución AJ < Apertura
     // ------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Resolucion_AjNE() {
+    public ArrayList<String[]> Fecha_Resolucion_AjNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -644,7 +644,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -669,7 +669,7 @@ public class V3QColectivo {
     // Fecha_Dicto_Resolucion_ADNE (H2 + sin filtros)
     // Dictó Resolución AD < Apertura
     // ------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Dicto_Resolucion_ADNE() {
+    public ArrayList<String[]> Fecha_Dicto_Resolucion_ADNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -682,7 +682,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -707,7 +707,7 @@ public class V3QColectivo {
     // Fecha_Aud_Presentacion (JOIN con Audiencias) (H2 + sin filtros)
     // OJO: aquí tu Oracle decía P.TIPO_PROCED=3 (colectivo)
     // ------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Aud_Presentacion() {
+    public ArrayList<String[]> Fecha_Aud_Presentacion(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -727,7 +727,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -749,7 +749,7 @@ public class V3QColectivo {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Aud_Apertura() {
+    public ArrayList<String[]> Fecha_Aud_Apertura(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -769,7 +769,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -791,7 +791,7 @@ public class V3QColectivo {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Aud_Admision() {
+    public ArrayList<String[]> Fecha_Aud_Admision(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -811,7 +811,7 @@ public class V3QColectivo {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

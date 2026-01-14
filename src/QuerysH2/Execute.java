@@ -20,19 +20,13 @@ String[] Tabla = {
     "ERRORES_INSERT"
 };
 
-public void LimpiaTablas() {
-    try (Connection con = ConexionH2.getConnection();
-         Statement stmt = con.createStatement()) {
-
+public void LimpiaTablas(Connection con) throws SQLException {
+    try (Statement stmt = con.createStatement()) {
         for (String tabla : Tabla) {
-            sql = "TRUNCATE TABLE " + tabla;
+            String sql = "TRUNCATE TABLE " + tabla;
             stmt.executeUpdate(sql);
             System.out.println("✅ Tabla " + tabla + " limpiada correctamente");
         }
-
-    } catch (SQLException e) {
-        System.err.println("❌ Error limpiando tablas");
-        e.printStackTrace();
     }
 }
 

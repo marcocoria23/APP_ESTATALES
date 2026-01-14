@@ -39,7 +39,6 @@ public class Part_Dem_Huelga  extends Bean implements SQLData {
     private String LATITUD1_EMPR;
     private String LONGITUD1_EMPR;
     private String COMENTARIOS;
-    private String PERIODO;
 
 
     public Part_Dem_Huelga(){   
@@ -192,14 +191,6 @@ public String GetCOMENTARIOS() {
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
     }
-public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
-
     @Override
     public String getSQLTypeName() throws SQLException {
        return SQLTypeName;
@@ -244,9 +235,7 @@ public String GetPERIODO() {
             GetMUNICIPIO_CLAVE_EMPR(),
             GetLATITUD1_EMPR(),
             GetLONGITUD1_EMPR(),
-            GetCOMENTARIOS(),
-            GetPERIODO()
-
+            GetCOMENTARIOS()
         };
      return array;
     }

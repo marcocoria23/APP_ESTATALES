@@ -27,7 +27,7 @@ public class V3QAudiencias {
     // ----------------------------------------------------------
     // FECHA_AUDIEN_CELEBRADA_FUT (sin filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> FECHA_AUDIEN_CELEBRADA_FUT() {
+    public ArrayList<String[]> FECHA_AUDIEN_CELEBRADA_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -39,8 +39,7 @@ public class V3QAudiencias {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
-             PreparedStatement ps = con.prepareStatement(sql);
+        try (PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
@@ -62,7 +61,7 @@ public class V3QAudiencias {
     // ----------------------------------------------------------
     // FORMATO_INICIO (sin filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> FORMATO_INICIO() {
+    public ArrayList<String[]> FORMATO_INICIO(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -80,7 +79,7 @@ public class V3QAudiencias {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -104,7 +103,7 @@ public class V3QAudiencias {
     // ----------------------------------------------------------
     // FORMATO_CONCLU (sin filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> FORMATO_CONCLU() {
+    public ArrayList<String[]> FORMATO_CONCLU(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -122,7 +121,7 @@ public class V3QAudiencias {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -146,7 +145,7 @@ public class V3QAudiencias {
     // ----------------------------------------------------------
     // SEGUNDOS_INICIO (sin filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> SEGUNDOS_INICIO() {
+    public ArrayList<String[]> SEGUNDOS_INICIO(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -157,7 +156,7 @@ public class V3QAudiencias {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -181,7 +180,7 @@ public class V3QAudiencias {
     // ----------------------------------------------------------
     // SEGUNDOS_CONCLU (sin filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> SEGUNDOS_CONCLU() {
+    public ArrayList<String[]> SEGUNDOS_CONCLU(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -192,7 +191,7 @@ public class V3QAudiencias {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -216,7 +215,7 @@ public class V3QAudiencias {
     // ----------------------------------------------------------
     // CONCLU_MENOR (sin filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> CONCLU_MENOR() {
+    public ArrayList<String[]> CONCLU_MENOR(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -233,7 +232,7 @@ public class V3QAudiencias {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

@@ -1,6 +1,7 @@
 package Exportar_Valida;
 
 
+import Conexion.ConexionH2;
 import QuerysNuevosVal.QNuevos;
 //import Screen_laborales.PValidacion;
 //import static Screen_laborales.PValidacion.periodoAnt;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
@@ -363,11 +365,11 @@ public class V3validaciones {
         hoja17.setColumnWidth((short) 3, (short) 6000);
         hoja17.setColumnWidth((short) 4, (short) 30000);
 
-        ResumenNE(libro, hojaresumenval, estiloCelda0, estiloCeldabordes0, encabezado, estiloCelda1);
+        /*ResumenNE(libro, hojaresumenval, estiloCelda0, estiloCeldabordes0, encabezado, estiloCelda1);
         Desglose(libro, hoja0, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo, progressBar);
-        Despliega_Control_Expediente(libro, hojaControl_expe, estiloCelda0, estiloCelda1, estiloCeldabordes0,progressBar);
+        Despliega_Control_Expediente(libro, hojaControl_expe, estiloCelda0, estiloCelda1, estiloCeldabordes0,progressBar);*/
         Despliega_Audiencias(libro, hojaAudiencias, estiloCelda0, estiloCelda1, estiloCeldabordes0,progressBar);
-        Despliega_OrdinarioNE(libro, hoja1, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
+       /* Despliega_OrdinarioNE(libro, hoja1, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
         Despliega_Part_Act_Ordinario(libro, hoja2, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
         Despliega_Part_Dem_Ordinario(libro, hoja3, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
         Despliega_IndividualNE(libro, hoja4, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
@@ -383,7 +385,7 @@ public class V3validaciones {
         Despliega_Part_Act_Nat_econo(libro, hoja14, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
         Despliega_Part_Dem_Nat_econo(libro, hoja15, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
         Despliega_ParaprocesalNE(libro, hoja16, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
-        Despliega_Ejecucion(libro, hoja17, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
+        Despliega_Ejecucion(libro, hoja17, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);*/
         SaveFileTo(libro,progressBar,f);
     }
 
@@ -1908,7 +1910,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
          progressBar.setValue(10);
     }
 
-    public void Despliega_Audiencias(HSSFWorkbook libro, HSSFSheet hojaAudiencias, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0,JProgressBar progressBar) {
+    public void Despliega_Audiencias(HSSFWorkbook libro, HSSFSheet hojaAudiencias, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0,JProgressBar progressBar) throws SQLException {
         V3_Audiencias NNV3_Audiencias = new V3_Audiencias();
         V3QAudiencias Audiencias = new V3QAudiencias();
 
@@ -1928,8 +1930,9 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         
         
         
-        
-        ArrayResult = Audiencias.FORMATO_INICIO();
+     try (Connection con = ConexionH2.getConnection();){
+         
+        ArrayResult = Audiencias.FORMATO_INICIO(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -2090,7 +2093,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         }
         
         
-         ArrayResult = Audiencias.FORMATO_CONCLU();
+         ArrayResult = Audiencias.FORMATO_CONCLU(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -2251,7 +2254,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         }
         
         
-        ArrayResult = Audiencias.SEGUNDOS_INICIO();
+        ArrayResult = Audiencias.SEGUNDOS_INICIO(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -2412,7 +2415,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         }
         
         
-                ArrayResult = Audiencias.SEGUNDOS_CONCLU();
+                ArrayResult = Audiencias.SEGUNDOS_CONCLU(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -2572,7 +2575,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
   
-             ArrayResult = Audiencias.CONCLU_MENOR();
+             ArrayResult = Audiencias.CONCLU_MENOR(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -2758,7 +2761,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
         
-        ArrayResult = NNV3_Audiencias.Aud_NE_ORDINARIO();
+        ArrayResult = NNV3_Audiencias.Aud_NE_ORDINARIO(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -2840,7 +2843,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
         
-        ArrayResult = NNV3_Audiencias.Aud_NE_INDIVIDUAL();
+        ArrayResult = NNV3_Audiencias.Aud_NE_INDIVIDUAL(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -2923,7 +2926,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         }
         
         
-        ArrayResult = NNV3_Audiencias.Aud_NE_COLECTIVO();
+        ArrayResult = NNV3_Audiencias.Aud_NE_COLECTIVO(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -3005,7 +3008,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNV3_Audiencias.Aud_NE_HUELGA();
+        ArrayResult = NNV3_Audiencias.Aud_NE_HUELGA(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -3087,7 +3090,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
         
-        ArrayResult = NNV3_Audiencias.Aud_NE_COLECT_ECONOM();
+        ArrayResult = NNV3_Audiencias.Aud_NE_COLECT_ECONOM(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -3169,7 +3172,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
       
-        ArrayResult = Audiencias.FECHA_AUDIEN_CELEBRADA_FUT();
+        ArrayResult = Audiencias.FECHA_AUDIEN_CELEBRADA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -3277,7 +3280,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNV3_Audiencias.Aud_Ordinario();
+        ArrayResult = NNV3_Audiencias.Aud_Ordinario(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -3385,7 +3388,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNV3_Audiencias.Aud_Individual();
+        ArrayResult = NNV3_Audiencias.Aud_Individual(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -3493,7 +3496,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNV3_Audiencias.Aud_Colectivo();
+        ArrayResult = NNV3_Audiencias.Aud_Colectivo(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -3601,7 +3604,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNV3_Audiencias.Aud_Huelga();
+        ArrayResult = NNV3_Audiencias.Aud_Huelga(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -3709,7 +3712,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNV3_Audiencias.Aud_Colect_econom();
+        ArrayResult = NNV3_Audiencias.Aud_Colect_econom(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -3817,6 +3820,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
      progressBar.setValue(15);
+     }
     }
 
     public void Despliega_OrdinarioNE(HSSFWorkbook libro, HSSFSheet hoja1, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar) {

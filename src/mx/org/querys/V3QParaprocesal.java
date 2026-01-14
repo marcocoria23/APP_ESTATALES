@@ -19,7 +19,7 @@ public class V3QParaprocesal {
     // =========================================================
     // 1) Año judicial Campeche (sin filtros)
     // =========================================================
-    public ArrayList<String[]> Año_JudicialCampeche() {
+    public ArrayList<String[]> Año_JudicialCampeche(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -38,7 +38,7 @@ public class V3QParaprocesal {
             "    PARSEDATETIME('01/09/' || x.FECHA_APERTURA_ANIO, 'dd/MM/yyyy') " +
             "    AND PARSEDATETIME('01/08/' || x.FECHA_APERTURA_ANIO_SIG, 'dd/MM/yyyy')";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -60,7 +60,7 @@ public class V3QParaprocesal {
     // =========================================================
     // 2) Año diferente Campeche (sin filtros)
     // =========================================================
-    public ArrayList<String[]> Año_DIF_Campeche() {
+    public ArrayList<String[]> Año_DIF_Campeche(Connection con) {
         Array = new ArrayList<>();
 
         // En Oracle usabas: EXPE_AÑO NOT IN PValidacion.AñoJuridico
@@ -77,7 +77,7 @@ public class V3QParaprocesal {
             ") x " +
             "WHERE x.FECHA_APERTURA_ANIO <> x.EXPE_ANIO";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -99,7 +99,7 @@ public class V3QParaprocesal {
     // =========================================================
     // 3) Año apertura vs año expediente (sin filtros)
     // =========================================================
-    public ArrayList<String[]> Año_Expe_ParaprocesalNE() {
+    public ArrayList<String[]> Año_Expe_ParaprocesalNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -115,7 +115,7 @@ public class V3QParaprocesal {
             "WHERE x.FECHA_APERTURA_ANIO <> x.EXPE_ANIO " +
             "AND x.EXPE_ANIO NOT IN ('2020','2021','2022','2023','2024','2025')";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -137,23 +137,23 @@ public class V3QParaprocesal {
     // =========================================================
     // 4) Fechas futuras (varias) - sin filtros
     // =========================================================
-    public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT() {
-        return fechaFuturaParaprocesal("FECHA_APERTURA_EXPEDIENTE", "FECHA_APERTURA_EXPEDIENTE");
+    public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
+        return fechaFuturaParaprocesal("FECHA_APERTURA_EXPEDIENTE", "FECHA_APERTURA_EXPEDIENTE", con);
     }
 
-    public ArrayList<String[]> FECHA_PRESENTA_SOLI_FUT() {
-        return fechaFuturaParaprocesal("FECHA_PRESENTA_SOLI", "FECHA_PRESENTA_SOLI");
+    public ArrayList<String[]> FECHA_PRESENTA_SOLI_FUT(Connection con) {
+        return fechaFuturaParaprocesal("FECHA_PRESENTA_SOLI", "FECHA_PRESENTA_SOLI", con);
     }
 
-    public ArrayList<String[]> FECHA_ADMISION_SOLI_FUT() {
-        return fechaFuturaParaprocesal("FECHA_ADMISION_SOLI", "FECHA_ADMISION_SOLI");
+    public ArrayList<String[]> FECHA_ADMISION_SOLI_FUT(Connection con) {
+        return fechaFuturaParaprocesal("FECHA_ADMISION_SOLI", "FECHA_ADMISION_SOLI", con);
     }
 
-    public ArrayList<String[]> FECHA_CONCLUSION_EXPE_FUT() {
-        return fechaFuturaParaprocesal("FECHA_CONCLUSION_EXPE", "FECHA_CONCLUSION_EXPE");
+    public ArrayList<String[]> FECHA_CONCLUSION_EXPE_FUT(Connection con) {
+        return fechaFuturaParaprocesal("FECHA_CONCLUSION_EXPE", "FECHA_CONCLUSION_EXPE", con);
     }
 
-    private ArrayList<String[]> fechaFuturaParaprocesal(String campoFecha, String alias) {
+    private ArrayList<String[]> fechaFuturaParaprocesal(String campoFecha, String alias, Connection con) {
         ArrayList<String[]> out = new ArrayList<>();
 
         sql =
@@ -163,7 +163,7 @@ public class V3QParaprocesal {
             "WHERE " + campoFecha + " > CURRENT_DATE " +
             "  AND " + campoFecha + " <> DATE '1899-09-09'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -186,7 +186,7 @@ public class V3QParaprocesal {
     // =========================================================
     // 5) Duplicidad expediente (sin filtros)
     // =========================================================
-    public ArrayList<String[]> Duplicidad_expediente() {
+    public ArrayList<String[]> Duplicidad_expediente(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -202,7 +202,7 @@ public class V3QParaprocesal {
             ") " +
             "ORDER BY CLAVE_ORGANO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '')";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -224,7 +224,7 @@ public class V3QParaprocesal {
     // =========================================================
     // 6) Apertura < Presenta Solicitud (NE) (sin filtros)
     // =========================================================
-    public ArrayList<String[]> Fecha_PresentacionNE() {
+    public ArrayList<String[]> Fecha_PresentacionNE(Connection con) {
         Array = new ArrayList<>();
 
         // En tu Oracle tenías: FECHA_APERTURA < FECHA_PRESENTA_SOLI
@@ -238,7 +238,7 @@ public class V3QParaprocesal {
             "WHERE FECHA_APERTURA_EXPEDIENTE < FECHA_PRESENTA_SOLI " +
             "  AND FECHA_PRESENTA_SOLI <> DATE '1899-09-09'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -262,7 +262,7 @@ public class V3QParaprocesal {
     // =========================================================
     // 7) Admisión < Presenta Solicitud (NE) (sin filtros)
     // =========================================================
-    public ArrayList<String[]> Fecha_PresentacionAdmiNE() {
+    public ArrayList<String[]> Fecha_PresentacionAdmiNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -275,7 +275,7 @@ public class V3QParaprocesal {
             "  AND FECHA_PRESENTA_SOLI <> DATE '1899-09-09' " +
             "  AND FECHA_ADMISION_SOLI <> DATE '1899-09-09'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -299,7 +299,7 @@ public class V3QParaprocesal {
     // =========================================================
     // 8) Admisión < Apertura (NE) (sin filtros)
     // =========================================================
-    public ArrayList<String[]> Fecha_Admision_SoliNE() {
+    public ArrayList<String[]> Fecha_Admision_SoliNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -311,7 +311,7 @@ public class V3QParaprocesal {
             "WHERE FECHA_ADMISION_SOLI <> DATE '1899-09-09' " +
             "  AND FECHA_ADMISION_SOLI < FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -335,7 +335,7 @@ public class V3QParaprocesal {
     // =========================================================
     // 9) Conclusión < Apertura (NE) (sin filtros)
     // =========================================================
-    public ArrayList<String[]> Fecha_Conclusion_ExpeNE() {
+    public ArrayList<String[]> Fecha_Conclusion_ExpeNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -347,7 +347,7 @@ public class V3QParaprocesal {
             "WHERE FECHA_CONCLUSION_EXPE <> DATE '1899-09-09' " +
             "  AND FECHA_CONCLUSION_EXPE < FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

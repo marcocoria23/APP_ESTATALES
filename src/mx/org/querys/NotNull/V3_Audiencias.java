@@ -17,7 +17,7 @@ public class V3_Audiencias {
     ArrayList<String[]> Array;
 
     /// Cuando Tipo de procedimiento = Ordinario no debe capturar Especial individual, Especial colectivo, Huelga, Colectivo de naturaleza económica
-    public ArrayList Aud_Ordinario() {
+    public ArrayList Aud_Ordinario(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -33,7 +33,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -54,7 +54,7 @@ public class V3_Audiencias {
     }
 
     /// Cuando Tipo de procedimiento = Individual no debe capturar Ordinario, Especial colectivo, Huelga, Colectivo de naturaleza económica
-    public ArrayList Aud_Individual() {
+    public ArrayList Aud_Individual(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -70,7 +70,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -91,7 +91,7 @@ public class V3_Audiencias {
     }
 
     /// Cuando Tipo de procedimiento = Colectivo no debe capturar Ordinario, Especial Individual, Huelga, Colectivo de naturaleza económica
-    public ArrayList Aud_Colectivo() {
+    public ArrayList Aud_Colectivo(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -107,7 +107,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -128,7 +128,7 @@ public class V3_Audiencias {
     }
 
     /// Cuando Tipo de procedimiento = Huelga no debe capturar Ordinario, Especial Individual, Colectivo, Colectivo de naturaleza económica
-    public ArrayList Aud_Huelga() {
+    public ArrayList Aud_Huelga(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -144,7 +144,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -165,7 +165,7 @@ public class V3_Audiencias {
     }
 
     /// Cuando Tipo de procedimiento = Colectivo Económico no debe capturar Ordinario, Especial Individual, Colectivo, Huelga
-    public ArrayList Aud_Colect_econom() {
+    public ArrayList Aud_Colect_econom(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -181,7 +181,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -205,7 +205,7 @@ public class V3_Audiencias {
     //  VALIDACIONES "NO EXISTE"
     // =========================
 
-    public ArrayList Aud_NE_ORDINARIO() {
+    public ArrayList Aud_NE_ORDINARIO(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT DISTINCT S.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE, S.CLAVE_ORGANO AS CLAVE_ORGANO " +
@@ -219,7 +219,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -237,7 +237,7 @@ public class V3_Audiencias {
         return Array;
     }
 
-    public ArrayList Aud_NE_INDIVIDUAL() {
+    public ArrayList Aud_NE_INDIVIDUAL(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT DISTINCT S.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE, S.CLAVE_ORGANO AS CLAVE_ORGANO " +
@@ -251,7 +251,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -269,7 +269,7 @@ public class V3_Audiencias {
         return Array;
     }
 
-    public ArrayList Aud_NE_COLECTIVO() {
+    public ArrayList Aud_NE_COLECTIVO(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT DISTINCT S.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE, S.CLAVE_ORGANO AS CLAVE_ORGANO " +
@@ -283,7 +283,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -301,7 +301,7 @@ public class V3_Audiencias {
         return Array;
     }
 
-    public ArrayList Aud_NE_HUELGA() {
+    public ArrayList Aud_NE_HUELGA(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT DISTINCT S.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE, S.CLAVE_ORGANO AS CLAVE_ORGANO " +
@@ -315,7 +315,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -333,7 +333,7 @@ public class V3_Audiencias {
         return Array;
     }
 
-    public ArrayList Aud_NE_COLECT_ECONOM() {
+    public ArrayList Aud_NE_COLECT_ECONOM(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT DISTINCT S.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE, S.CLAVE_ORGANO AS CLAVE_ORGANO " +
@@ -347,7 +347,7 @@ public class V3_Audiencias {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

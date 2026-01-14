@@ -19,7 +19,7 @@ public class V3QIndividual {
     // =========================
     // 1) Año judicial Campeche
     // =========================
-    public ArrayList<String[]> Año_JudicialCampeche() {
+    public ArrayList<String[]> Año_JudicialCampeche(Connection con) {
         Array = new ArrayList<>();
 
         // NOTA: Aquí conservo tu lógica, pero en H2:
@@ -41,7 +41,7 @@ public class V3QIndividual {
             "    PARSEDATETIME('01/09/' || x.FECHA_APERTURA_ANIO, 'dd/MM/yyyy') " +
             "    AND PARSEDATETIME('01/08/' || x.FECHA_APERTURA_ANIO_SIG, 'dd/MM/yyyy')";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -63,7 +63,7 @@ public class V3QIndividual {
     // ==========================================
     // 2) Año diferente Campeche (2020-2022 etc)
     // ==========================================
-    public ArrayList<String[]> Año_DIF_Campeche() {
+    public ArrayList<String[]> Año_DIF_Campeche(Connection con) {
         Array = new ArrayList<>();
 
         // Aquí quité el filtro PValidacion.AñoJuridico.
@@ -79,7 +79,7 @@ public class V3QIndividual {
             ") x " +
             "WHERE x.FECHA_APERTURA_ANIO <> x.EXPE_ANIO";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -101,7 +101,7 @@ public class V3QIndividual {
     // ======================================
     // 3) Año apertura vs año en expediente NE
     // ======================================
-    public ArrayList<String[]> Año_Expe_IndividualNE() {
+    public ArrayList<String[]> Año_Expe_IndividualNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -118,7 +118,7 @@ public class V3QIndividual {
             "WHERE x.FECHA_APERTURA_ANIO <> x.EXPE_ANIO " +
             "AND x.EXPE_ANIO NOT IN ('2020','2021','2022','2023','2024','2025')";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -141,51 +141,51 @@ public class V3QIndividual {
     // ==========================
     // 4) Fechas futuras (varias)
     // ==========================
-    public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT() {
-        return fechaFutura("FECHA_APERTURA_EXPEDIENTE", "FECHA_APERTURA_EXPEDIENTE");
+public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
+        return fechaFutura("FECHA_APERTURA_EXPEDIENTE", "FECHA_APERTURA_EXPEDIENTE", con);
     }
 
-    public ArrayList<String[]> FECHA_PRES_DEMANDA_FUT() {
-        return fechaFutura("FECHA_PRES_DEMANDA", "FECHA_PRES_DEMANDA");
+    public ArrayList<String[]> FECHA_PRES_DEMANDA_FUT(Connection con) {
+        return fechaFutura("FECHA_PRES_DEMANDA", "FECHA_PRES_DEMANDA", con);
     }
 
-    public ArrayList<String[]> FECHA_ADMI_DEMANDA_FUT() {
-        return fechaFutura("FECHA_ADMI_DEMANDA", "FECHA_ADMI_DEMANDA");
+    public ArrayList<String[]> FECHA_ADMI_DEMANDA_FUT(Connection con) {
+        return fechaFutura("FECHA_ADMI_DEMANDA", "FECHA_ADMI_DEMANDA", con);
     }
 
-    public ArrayList<String[]> FECHA_DEPURACION_FUT() {
-        return fechaFutura("FECHA_DEPURACION", "FECHA_DEPURACION");
+    public ArrayList<String[]> FECHA_DEPURACION_FUT(Connection con) {
+        return fechaFutura("FECHA_DEPURACION", "FECHA_DEPURACION", con);
     }
 
-    public ArrayList<String[]> FECHA_AUDIENCIA_PRELIM_FUT() {
-        return fechaFutura("FECHA_AUDIENCIA_PRELIM", "FECHA_AUDIENCIA_PRELIM");
+    public ArrayList<String[]> FECHA_AUDIENCIA_PRELIM_FUT(Connection con) {
+        return fechaFutura("FECHA_AUDIENCIA_PRELIM", "FECHA_AUDIENCIA_PRELIM", con);
     }
 
-    public ArrayList<String[]> FECHA_AUDIENCIA_JUICIO_FUT() {
-        return fechaFutura("FECHA_AUDIENCIA_JUICIO", "FECHA_AUDIENCIA_JUICIO");
+    public ArrayList<String[]> FECHA_AUDIENCIA_JUICIO_FUT(Connection con) {
+        return fechaFutura("FECHA_AUDIENCIA_JUICIO", "FECHA_AUDIENCIA_JUICIO", con);
     }
 
-    public ArrayList<String[]> FECHA_ACTO_PROCESAL_FUT() {
-        return fechaFutura("FECHA_ACTO_PROCESAL", "FECHA_ACTO_PROCESAL");
+    public ArrayList<String[]> FECHA_ACTO_PROCESAL_FUT(Connection con) {
+        return fechaFutura("FECHA_ACTO_PROCESAL", "FECHA_ACTO_PROCESAL", con);
     }
 
-    public ArrayList<String[]> FECHA_DICTO_RESOLUCION_AD_FUT() {
-        return fechaFutura("FECHA_DICTO_RESOLUCION_AD", "FECHA_DICTO_RESOLUCION_AD");
+    public ArrayList<String[]> FECHA_DICTO_RESOLUCION_AD_FUT(Connection con) {
+        return fechaFutura("FECHA_DICTO_RESOLUCION_AD", "FECHA_DICTO_RESOLUCION_AD", con);
     }
 
-    public ArrayList<String[]> FECHA_RESOLUCION_TA_FUT() {
-        return fechaFutura("FECHA_RESOLUCION_TA", "FECHA_RESOLUCION_TA");
+    public ArrayList<String[]> FECHA_RESOLUCION_TA_FUT(Connection con) {
+        return fechaFutura("FECHA_RESOLUCION_TA", "FECHA_RESOLUCION_TA", con);
     }
 
-    public ArrayList<String[]> FECHA_DICTO_RESOLUCION_AP_FUT() {
-        return fechaFutura("FECHA_DICTO_RESOLUCION_AP", "FECHA_DICTO_RESOLUCION_AP");
+    public ArrayList<String[]> FECHA_DICTO_RESOLUCION_AP_FUT(Connection con) {
+        return fechaFutura("FECHA_DICTO_RESOLUCION_AP", "FECHA_DICTO_RESOLUCION_AP", con);
     }
 
-    public ArrayList<String[]> FECHA_DICTO_RESOLUCION_AJ_FUT() {
-        return fechaFutura("FECHA_DICTO_RESOLUCION_AJ", "FECHA_DICTO_RESOLUCION_AJ");
+    public ArrayList<String[]> FECHA_DICTO_RESOLUCION_AJ_FUT(Connection con) {
+        return fechaFutura("FECHA_DICTO_RESOLUCION_AJ", "FECHA_DICTO_RESOLUCION_AJ",con);
     }
 
-    private ArrayList<String[]> fechaFutura(String campoFecha, String alias) {
+    private ArrayList<String[]> fechaFutura(String campoFecha, String alias,Connection con) {
         ArrayList<String[]> out = new ArrayList<>();
 
         // Si el campo es DATE/TIMESTAMP:
@@ -198,7 +198,7 @@ public class V3QIndividual {
             "WHERE " + campoFecha + " > CURRENT_DATE " +
             "  AND " + campoFecha + " <> DATE '1899-09-09'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -221,7 +221,7 @@ public class V3QIndividual {
     // ==========================
     // 5) Duplicidad de expediente
     // ==========================
-    public ArrayList<String[]> Duplicidad_expediente() {
+    public ArrayList<String[]> Duplicidad_expediente(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -237,7 +237,7 @@ public class V3QIndividual {
             ") " +
             "ORDER BY CLAVE_ORGANO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '')";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -259,7 +259,7 @@ public class V3QIndividual {
     // ==================================
     // 6) Presentación vs apertura (NE)
     // ==================================
-    public ArrayList<String[]> Fecha_PresentacionNE() {
+    public ArrayList<String[]> Fecha_PresentacionNE(Connection con) {
         Array = new ArrayList<>();
 
         // Si FECHA_APERTURA_EXPEDIENTE y FECHA_PRES_DEMANDA son DATE:
@@ -272,7 +272,7 @@ public class V3QIndividual {
             "WHERE FECHA_APERTURA_EXPEDIENTE < FECHA_PRES_DEMANDA " +
             "  AND FECHA_PRES_DEMANDA <> DATE '1899-09-09'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -296,7 +296,7 @@ public class V3QIndividual {
     // ======================================================
     // 7) Admisión < Presentación (NE)  (sin filtros)
     // ======================================================
-    public ArrayList<String[]> Fecha_PresentacionAdmiNE() {
+    public ArrayList<String[]> Fecha_PresentacionAdmiNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -307,7 +307,7 @@ public class V3QIndividual {
             "WHERE FECHA_ADMI_DEMANDA < FECHA_PRES_DEMANDA " +
             "  AND FECHA_PRES_DEMANDA <> DATE '1899-09-09'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -331,7 +331,7 @@ public class V3QIndividual {
     // ==========================================
     // 8) Admisión < Apertura (NE) (sin filtros)
     // ==========================================
-    public ArrayList<String[]> Fecha_Admi_demandaNE() {
+    public ArrayList<String[]> Fecha_Admi_demandaNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -343,7 +343,7 @@ public class V3QIndividual {
             "WHERE FECHA_ADMI_DEMANDA <> DATE '1899-09-09' " +
             "  AND FECHA_ADMI_DEMANDA < FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -368,7 +368,7 @@ public class V3QIndividual {
     // ==========================================
     // 9) Depuración <= Apertura (NE) (sin filtros)
     // ==========================================
-    public ArrayList<String[]> Fecha_DepuracionNE() {
+    public ArrayList<String[]> Fecha_DepuracionNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -379,7 +379,7 @@ public class V3QIndividual {
             "WHERE FECHA_DEPURACION <> DATE '1899-09-09' " +
             "  AND FECHA_DEPURACION <= FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -403,7 +403,7 @@ public class V3QIndividual {
     // ==========================================
     // 10) Aud prelim <= Apertura (NE) (sin filtros)
     // ==========================================
-    public ArrayList<String[]> Fecha_Audiencia_PrelimNE() {
+    public ArrayList<String[]> Fecha_Audiencia_PrelimNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -414,7 +414,7 @@ public class V3QIndividual {
             "WHERE FECHA_AUDIENCIA_PRELIM <> DATE '1899-09-09' " +
             "  AND FECHA_AUDIENCIA_PRELIM <= FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -438,7 +438,7 @@ public class V3QIndividual {
     // ==========================================
     // 11) Aud juicio <= Apertura (NE) (sin filtros)
     // ==========================================
-    public ArrayList<String[]> Fecha_Audiencia_JuicioNE() {
+    public ArrayList<String[]> Fecha_Audiencia_JuicioNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -449,7 +449,7 @@ public class V3QIndividual {
             "WHERE FECHA_AUDIENCIA_JUICIO <> DATE '1899-09-09' " +
             "  AND FECHA_AUDIENCIA_JUICIO <= FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -473,7 +473,7 @@ public class V3QIndividual {
     // ==========================================
     // 12) Acto procesal < Apertura (NE) (sin filtros)
     // ==========================================
-    public ArrayList<String[]> Fecha_Acto_procesalNE() {
+    public ArrayList<String[]> Fecha_Acto_procesalNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -484,7 +484,7 @@ public class V3QIndividual {
             "WHERE FECHA_ACTO_PROCESAL <> DATE '1899-09-09' " +
             "  AND FECHA_ACTO_PROCESAL < FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -508,7 +508,7 @@ public class V3QIndividual {
     // ==========================================
     // 13) Dicto resolución AD < Apertura (NE)
     // ==========================================
-    public ArrayList<String[]> Fecha_Dicto_Resolucion_AdNE() {
+    public ArrayList<String[]> Fecha_Dicto_Resolucion_AdNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -519,7 +519,7 @@ public class V3QIndividual {
             "WHERE FECHA_DICTO_RESOLUCION_AD <> DATE '1899-09-09' " +
             "  AND FECHA_DICTO_RESOLUCION_AD < FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -543,7 +543,7 @@ public class V3QIndividual {
     // ==========================================
     // 14) Resolución TA < Apertura (NE)
     // ==========================================
-    public ArrayList<String[]> Fecha_Resolucion_TaNE() {
+    public ArrayList<String[]> Fecha_Resolucion_TaNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -554,7 +554,7 @@ public class V3QIndividual {
             "WHERE FECHA_RESOLUCION_TA <> DATE '1899-09-09' " +
             "  AND FECHA_RESOLUCION_TA < FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -578,7 +578,7 @@ public class V3QIndividual {
     // ==========================================
     // 15) Resolución AP < Apertura (NE)
     // ==========================================
-    public ArrayList<String[]> Fecha_Resolucion_ApNE() {
+    public ArrayList<String[]> Fecha_Resolucion_ApNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -589,7 +589,7 @@ public class V3QIndividual {
             "WHERE FECHA_DICTO_RESOLUCION_AP <> DATE '1899-09-09' " +
             "  AND FECHA_DICTO_RESOLUCION_AP < FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -613,7 +613,7 @@ public class V3QIndividual {
     // ==========================================
     // 16) Resolución AJ < Apertura (NE)
     // ==========================================
-    public ArrayList<String[]> Fecha_Resolucion_AjNE() {
+    public ArrayList<String[]> Fecha_Resolucion_AjNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -624,7 +624,7 @@ public class V3QIndividual {
             "WHERE FECHA_DICTO_RESOLUCION_AJ <> DATE '1899-09-09' " +
             "  AND FECHA_DICTO_RESOLUCION_AJ < FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -648,7 +648,7 @@ public class V3QIndividual {
     // =========================================================
     // 17) Cruces con Audiencias (sin filtros, tipo_proced = 2)
     // =========================================================
-    public ArrayList<String[]> Fecha_Aud_Presentacion() {
+    public ArrayList<String[]> Fecha_Aud_Presentacion(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -666,7 +666,7 @@ public class V3QIndividual {
             "  AND S.FECHA_PRES_DEMANDA <> DATE '1899-09-09' " +
             "  AND P.FECHA_AUDIEN_CELEBRADA < S.FECHA_PRES_DEMANDA";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -688,7 +688,7 @@ public class V3QIndividual {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Aud_Apertura() {
+    public ArrayList<String[]> Fecha_Aud_Apertura(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -706,7 +706,7 @@ public class V3QIndividual {
             "  AND S.FECHA_APERTURA_EXPEDIENTE <> DATE '1899-09-09' " +
             "  AND P.FECHA_AUDIEN_CELEBRADA < S.FECHA_APERTURA_EXPEDIENTE";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -728,7 +728,7 @@ public class V3QIndividual {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Aud_Admision() {
+    public ArrayList<String[]> Fecha_Aud_Admision(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -746,7 +746,7 @@ public class V3QIndividual {
             "  AND S.FECHA_ADMI_DEMANDA <> DATE '1899-09-09' " +
             "  AND P.FECHA_AUDIEN_CELEBRADA < S.FECHA_ADMI_DEMANDA";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

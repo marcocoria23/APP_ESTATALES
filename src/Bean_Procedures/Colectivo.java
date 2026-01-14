@@ -86,7 +86,6 @@ public class Colectivo extends Bean implements SQLData {
     private String TIPO_SENTENCIA_AJ;
     private String MONTO_SOLUCION_AJ;
     private String COMENTARIOS;
-    private String PERIODO;
 
     
     
@@ -569,13 +568,6 @@ public String GetCOMENTARIOS() {
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
     }
-public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
 
       
     @Override
@@ -669,8 +661,7 @@ public String GetPERIODO() {
          GetFECHA_RESOLUCION_AJ(),
          GetTIPO_SENTENCIA_AJ(),
          GetMONTO_SOLUCION_AJ(),
-         GetCOMENTARIOS(),
-         GetPERIODO()
+         GetCOMENTARIOS()
 
      };
      return array;

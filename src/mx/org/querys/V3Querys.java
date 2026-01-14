@@ -18,7 +18,7 @@ public class V3Querys {
 
 
     //se usa
-    public ArrayList TErroresInserTRInicio() {
+    public ArrayList TErroresInserTRInicio(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT TABLA, CLAVE_ORGANO, CLAVE_EXPEDIENTE, ID, REPLACE(EXCEPCION,',','') AS EXCEPCION, " +
@@ -27,7 +27,7 @@ public class V3Querys {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql)) {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -52,7 +52,7 @@ public class V3Querys {
     }
     
     
-     public ArrayList Total_Reg_insertadosTR() {
+     public ArrayList Total_Reg_insertadosTR(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT TABLA_DESTINO, CLAVE_ORGANO, CLAVE_EXPEDIENTE, ID, MENSAJE, " +
@@ -61,7 +61,7 @@ public class V3Querys {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql)) {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {

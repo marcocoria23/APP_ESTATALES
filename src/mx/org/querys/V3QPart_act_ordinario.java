@@ -19,7 +19,7 @@ public class V3QPart_act_ordinario {
     // =========================================================
     // 1) Expediente NO desglosado (actor/demandado) - ORDINARIO
     // =========================================================
-    public ArrayList<String[]> ExpeNDesglose() {
+    public ArrayList<String[]> ExpeNDesglose(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -36,7 +36,7 @@ public class V3QPart_act_ordinario {
             "      SELECT EXPEDIENTE_CLAVE FROM V3_TR_PART_ACT_ORDINARIOJL " +
             "  )";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -61,7 +61,7 @@ public class V3QPart_act_ordinario {
     // =========================================================
     // 2) Incompetencia = 'Sí' pero existe desglose - ORDINARIO
     // =========================================================
-    public ArrayList<String[]> IncompetenciaNE() {
+    public ArrayList<String[]> IncompetenciaNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -87,7 +87,7 @@ public class V3QPart_act_ordinario {
             ") x " +
             "WHERE x.INCOMPETENCIA = 'Sí'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -109,7 +109,7 @@ public class V3QPart_act_ordinario {
     // =========================================================
     // 3) Estatus demanda NO permitido pero existe desglose - ORDINARIO
     // =========================================================
-    public ArrayList<String[]> Estatus_demandaNE() {
+    public ArrayList<String[]> Estatus_demandaNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -137,7 +137,7 @@ public class V3QPart_act_ordinario {
             ") x " +
             "WHERE x.ESTATUS_DEMANDA IN ('Desechada','Archivo','No se dio trámite al escrito de demanda')";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -159,7 +159,7 @@ public class V3QPart_act_ordinario {
     // =========================================================
     // 4) Cantidad actores != desglose actores - ORDINARIO
     // =========================================================
-    public ArrayList<String[]> Dif_ActoresNE() {
+    public ArrayList<String[]> Dif_ActoresNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -186,7 +186,7 @@ public class V3QPart_act_ordinario {
             "  AND x.ESTATUS_DEMANDA NOT IN ('2','3','4') " +
             "  AND x.CANTIDAD_ACTORES <> x.DESGLOSE_ACTORES";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

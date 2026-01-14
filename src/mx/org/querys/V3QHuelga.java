@@ -16,7 +16,7 @@ public class V3QHuelga {
     // ----------------------------------------------------------
     // 1) Año_JudicialCampeche  (SIN filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> Año_JudicialCampeche() {
+    public ArrayList<String[]> Año_JudicialCampeche(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -40,7 +40,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -63,7 +63,7 @@ public class V3QHuelga {
     // 2) Año_DIF_Campeche (SIN filtros)
     //    Nota: quitamos PValidacion.AñoJuridico
     // ----------------------------------------------------------
-    public ArrayList<String[]> Año_DIF_Campeche() {
+    public ArrayList<String[]> Año_DIF_Campeche(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -82,7 +82,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -104,7 +104,7 @@ public class V3QHuelga {
     // ----------------------------------------------------------
     // 3) Año_Expe_HuelgaNE (SIN filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> Año_Expe_HuelgaNE() {
+    public ArrayList<String[]> Año_Expe_HuelgaNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -123,7 +123,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -145,7 +145,7 @@ public class V3QHuelga {
     // ----------------------------------------------------------
     // 4) FECHAS FUTURAS (SIN filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT() {
+    public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -157,7 +157,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -177,7 +177,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_PRESENTA_PETIC_FUT() {
+    public ArrayList<String[]> FECHA_PRESENTA_PETIC_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -189,7 +189,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -209,7 +209,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_EMPLAZAMIENTO_FUT() {
+    public ArrayList<String[]> FECHA_EMPLAZAMIENTO_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -221,7 +221,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -241,7 +241,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_AUDIENCIA_FUT() {
+    public ArrayList<String[]> FECHA_AUDIENCIA_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -253,7 +253,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -273,7 +273,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_ACTO_PROCESAL_FUT() {
+    public ArrayList<String[]> FECHA_ACTO_PROCESAL_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -285,7 +285,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -305,7 +305,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_RESOLU_EMPLAZ_FUT() {
+    public ArrayList<String[]> FECHA_RESOLU_EMPLAZ_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -317,7 +317,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -337,7 +337,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_RESOLU_HUELGA_FUT() {
+    public ArrayList<String[]> FECHA_RESOLU_HUELGA_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -349,7 +349,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -369,7 +369,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_ESTALLAM_HUELGA_FUT() {
+    public ArrayList<String[]> FECHA_ESTALLAM_HUELGA_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -381,7 +381,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -401,7 +401,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_LEVANT_HUELGA_FUT() {
+    public ArrayList<String[]> FECHA_LEVANT_HUELGA_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -413,7 +413,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -436,7 +436,7 @@ public class V3QHuelga {
     // ----------------------------------------------------------
     // 5) Duplicidad_expediente (SIN filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> Duplicidad_expediente() {
+    public ArrayList<String[]> Duplicidad_expediente(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -461,7 +461,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -483,7 +483,7 @@ public class V3QHuelga {
     // ----------------------------------------------------------
     // 6) Fecha_PresentacionNE (apertura < presenta_petic) SIN filtros
     // ----------------------------------------------------------
-    public ArrayList<String[]> Fecha_PresentacionNE() {
+    public ArrayList<String[]> Fecha_PresentacionNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -496,7 +496,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -520,7 +520,7 @@ public class V3QHuelga {
     // ----------------------------------------------------------
     // 7) Validaciones de fechas (SIN filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> Fecha_EmplazamientoNE() {
+    public ArrayList<String[]> Fecha_EmplazamientoNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -531,7 +531,7 @@ public class V3QHuelga {
             "WHERE FECHA_EMPLAZAMIENTO <> DATE '1899-09-09' " +
             "  AND CAST(FECHA_EMPLAZAMIENTO AS DATE) < CAST(FECHA_APERTURA_EXPEDIENTE AS DATE)";
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -552,7 +552,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_AudienciaNE() {
+    public ArrayList<String[]> Fecha_AudienciaNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -563,7 +563,7 @@ public class V3QHuelga {
             "WHERE FECHA_AUDIENCIA <> DATE '1899-09-09' " +
             "  AND CAST(FECHA_AUDIENCIA AS DATE) <= CAST(FECHA_APERTURA_EXPEDIENTE AS DATE)";
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -584,7 +584,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Acto_ProcesalNE() {
+    public ArrayList<String[]> Fecha_Acto_ProcesalNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -595,7 +595,7 @@ public class V3QHuelga {
             "WHERE FECHA_ACTO_PROCESAL <> DATE '1899-09-09' " +
             "  AND CAST(FECHA_ACTO_PROCESAL AS DATE) < CAST(FECHA_APERTURA_EXPEDIENTE AS DATE)";
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -616,7 +616,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Resolu_EmplazNE() {
+    public ArrayList<String[]> Fecha_Resolu_EmplazNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -627,7 +627,7 @@ public class V3QHuelga {
             "WHERE FECHA_RESOLU_EMPLAZ <> DATE '1899-09-09' " +
             "  AND CAST(FECHA_RESOLU_EMPLAZ AS DATE) < CAST(FECHA_APERTURA_EXPEDIENTE AS DATE)";
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -648,7 +648,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Resolu_HuelgaNE() {
+    public ArrayList<String[]> Fecha_Resolu_HuelgaNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -659,7 +659,7 @@ public class V3QHuelga {
             "WHERE FECHA_RESOLU_HUELGA <> DATE '1899-09-09' " +
             "  AND CAST(FECHA_RESOLU_HUELGA AS DATE) < CAST(FECHA_APERTURA_EXPEDIENTE AS DATE)";
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -680,7 +680,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Estallam_HuelgaNE() {
+    public ArrayList<String[]> Fecha_Estallam_HuelgaNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -691,7 +691,7 @@ public class V3QHuelga {
             "WHERE FECHA_ESTALLAM_HUELGA <> DATE '1899-09-09' " +
             "  AND CAST(FECHA_ESTALLAM_HUELGA AS DATE) <= CAST(FECHA_APERTURA_EXPEDIENTE AS DATE)";
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -712,7 +712,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Levant_HuelgaNE() {
+    public ArrayList<String[]> Fecha_Levant_HuelgaNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -723,7 +723,7 @@ public class V3QHuelga {
             "WHERE FECHA_LEVANT_HUELGA <> DATE '1899-09-09' " +
             "  AND CAST(FECHA_LEVANT_HUELGA AS DATE) <= CAST(FECHA_APERTURA_EXPEDIENTE AS DATE)";
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -747,7 +747,7 @@ public class V3QHuelga {
     // ----------------------------------------------------------
     // 8) Audiencias vs Huelga (SIN filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> Fecha_Aud_Presentacion() {
+    public ArrayList<String[]> Fecha_Aud_Presentacion(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -767,7 +767,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -789,7 +789,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> Fecha_Aud_Apertura() {
+    public ArrayList<String[]> Fecha_Aud_Apertura(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -809,7 +809,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -834,7 +834,7 @@ public class V3QHuelga {
     // ----------------------------------------------------------
     // 9) Reglas de consistencia por fase (Huelga / Emplaz / Prehuelga) SIN filtros
     // ----------------------------------------------------------
-    public ArrayList<String[]> Huelga() {
+    public ArrayList<String[]> Huelga(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -861,7 +861,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -889,7 +889,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> EMPLAZAMIENTO_HUELGA() {
+    public ArrayList<String[]> EMPLAZAMIENTO_HUELGA(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -908,7 +908,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -934,7 +934,7 @@ public class V3QHuelga {
         return Array;
     }
 
-    public ArrayList<String[]> PREHUELGA() {
+    public ArrayList<String[]> PREHUELGA(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -953,7 +953,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -982,7 +982,7 @@ public class V3QHuelga {
     // ----------------------------------------------------------
     // 10) SinMotivo_Conflicto (SIN filtros)
     // ----------------------------------------------------------
-    public ArrayList<String[]> SinMotivo_Conflicto() {
+    public ArrayList<String[]> SinMotivo_Conflicto(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -1000,7 +1000,7 @@ public class V3QHuelga {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

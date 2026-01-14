@@ -8,6 +8,7 @@ package Screen_laborales;
 
 
 import Conexion.ConexionH2;
+import Exportar_Valida.V3validaciones;
 import QuerysH2.Execute;
 import java.awt.Color;
 import java.awt.FileDialog;
@@ -16,6 +17,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import mx.org.BD.ReadCSV_Audiencias;
+import mx.org.querys.V3QAudiencias;
 import triggers.CreaTriggers;
 
 /**
@@ -404,160 +407,33 @@ public class InsertaTR extends javax.swing.JFrame {
 
         new Thread(() -> {
             Valores();
-            try {
-              
                 ReadCSV_Audiencias readAud=new ReadCSV_Audiencias();
-              /*  ReadCSV_Control_Expediente readControl=new ReadCSV_Control_Expediente();
-                ReadCSV_Ordinario readOrd=new ReadCSV_Ordinario();
-                ReadCSV_Part_Act_Ordinario readPartActOrd=new ReadCSV_Part_Act_Ordinario();
-                ReadCSV_Part_Dem_Ordinario readPartDemOrd=new ReadCSV_Part_Dem_Ordinario();
-                ReadCSV_Individual readInd=new ReadCSV_Individual();
-                ReadCSV_Part_Act_Individual readPartActInd=new ReadCSV_Part_Act_Individual();
-                ReadCSV_Part_Dem_Individual readPartDemInd=new ReadCSV_Part_Dem_Individual();
-                ReadCSV_Colectivo readCol=new ReadCSV_Colectivo();
-                ReadCSV_Part_Act_Colectivo readActCol=new ReadCSV_Part_Act_Colectivo();
-                ReadCSV_Part_Dem_Colectivo readDemCol=new ReadCSV_Part_Dem_Colectivo();
-                ReadCSV_Huelga readHuel=new ReadCSV_Huelga();
-                ReadCSV_Part_Act_Huelga readActHuel=new ReadCSV_Part_Act_Huelga();
-                ReadCSV_Part_Dem_Huelga readDemHuel=new ReadCSV_Part_Dem_Huelga();
-                ReadCSV_Colect_Econom readColect=new ReadCSV_Colect_Econom();
-                ReadCSV_Part_Act_Colect_Econom readActColect=new ReadCSV_Part_Act_Colect_Econom();
-                ReadCSV_Part_Dem_Colect_Econom readDemColect=new ReadCSV_Part_Dem_Colect_Econom();
-                ReadCSV_Tercerias readTer=new ReadCSV_Tercerias();
-                ReadCSV_Pref_Credito readPref=new ReadCSV_Pref_Credito();
-                ReadCSV_Paraprocesal readPar=new ReadCSV_Paraprocesal();
-                ReadCSV_Ejecucion readEjec=new ReadCSV_Ejecucion();*/
-                
         if(jRadioButton2.isSelected()){        
            int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Insertar todos los archivos RALAB?", "Alerta!", JOptionPane.YES_NO_OPTION);   
            if (resp == JOptionPane.YES_OPTION) {
-              /* Insertar.setEnabled(false);
-               CTablas1.setSelectedIndex(0);   
-                ReadCtrl.Read_Control_Expediente();
-                jTextField1.setText(readControl.rutaCarpetaArchivos); */  
-               Execute Q =new Execute();
-                Q.LimpiaTablas();
+              Execute Q =new Execute();
+         try (Connection con = ConexionH2.getConnection();
+              Connection conerr = ConexionH2.getConnection();) {     
+                  try {
+                      Q.LimpiaTablas(con);
+                  } catch (SQLException ex) {
+                      Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
+                  }
               CTablas1.setSelectedIndex(1);   
-                ReadAud.Read_Audiencias();
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
-                
-             /*   CTablas1.setSelectedIndex(2);
-                CTablas.setSelectedIndex(0);   
-                readOrd.Read_Ordinario();
-                jTextField1.setText(readOrd.rutaCarpetaArchivos);
-               
-                 CTablas1.setSelectedIndex(2);
-                CTablas.setSelectedIndex(1);   
-                readPartActOrd.Read_Part_Act_Ordinario();
-                jTextField1.setText(readPartActOrd.rutaCarpetaArchivos);
-              
-                CTablas1.setSelectedIndex(2);
-                CTablas.setSelectedIndex(2);   
-                readPartDemOrd.Read_Part_Dem_Ordinario();
-                jTextField1.setText(readPartDemOrd.rutaCarpetaArchivos);
-              
-             
-                 CTablas1.setSelectedIndex(3);
-                CTablas.setSelectedIndex(0);   
-                readInd.Read_Individual();
-                jTextField1.setText(readInd.rutaCarpetaArchivos);
-              
-                
-                CTablas1.setSelectedIndex(3);
-                CTablas.setSelectedIndex(1);     
-                readPartActInd.Read_Part_Act_Individual();
-                jTextField1.setText(readPartActInd.rutaCarpetaArchivos);
-               
-               
-                CTablas1.setSelectedIndex(3);
-                CTablas.setSelectedIndex(2);    
-                readPartDemInd.Read_Part_Dem_Individual();
-                jTextField1.setText(readPartDemInd.rutaCarpetaArchivos);
-              
-               
-                CTablas1.setSelectedIndex(4);
-                CTablas.setSelectedIndex(0);    
-                readCol.Read_Colectivo();
-                jTextField1.setText(readCol.rutaCarpetaArchivos);
-           
-                
-                     CTablas1.setSelectedIndex(4);
-                CTablas.setSelectedIndex(1);
-                 readActCol.Read_Part_Act_Colectivo();
-                jTextField1.setText(readActCol.rutaCarpetaArchivos);
-              
-                  CTablas1.setSelectedIndex(4);
-                CTablas.setSelectedIndex(2);   
-                 readDemCol.Read_Part_Dem_colectivo();
-                jTextField1.setText(readDemCol.rutaCarpetaArchivos);
-       
-                CTablas1.setSelectedIndex(5);
-                CTablas.setSelectedIndex(0);     
-                readHuel.Read_Huelga();
-                jTextField1.setText(readHuel.rutaCarpetaArchivos);
-               
-                 CTablas1.setSelectedIndex(5);
-                CTablas.setSelectedIndex(1);    
-                 readActHuel.Read_Part_Act_Huelga();
-                jTextField1.setText(readActHuel.rutaCarpetaArchivos);
-                
-                  CTablas1.setSelectedIndex(5);
-                CTablas.setSelectedIndex(2);   
-                 readDemHuel.Read_Part_Dem_Huelga();
-                jTextField1.setText(readDemHuel.rutaCarpetaArchivos);
-              
-                 CTablas1.setSelectedIndex(6);
-                CTablas.setSelectedIndex(0);      
-                readColect.Read_Colect_Econom();
-                jTextField1.setText(readColect.rutaCarpetaArchivos);
-               
-                CTablas1.setSelectedIndex(6);
-                CTablas.setSelectedIndex(1);     
-                 readActColect.Read_Part_Act_Colect_Econom();
-                jTextField1.setText(readActColect.rutaCarpetaArchivos);
-              
-                 CTablas1.setSelectedIndex(6);
-                CTablas.setSelectedIndex(2);        
-                 readDemColect.Read_Part_Dem_Colect_Econom();
-                jTextField1.setText(readDemColect.rutaCarpetaArchivos);
-              
-                CTablas1.setSelectedIndex(7);
-                 readTer.Read_Tercerias();
-                jTextField1.setText(readTer.rutaCarpetaArchivos);
-              
-                 CTablas1.setSelectedIndex(8);   
-                 readPref.Read_Pref_Credito();
-                jTextField1.setText(readPref.rutaCarpetaArchivos);
-               
-               
-                  CTablas1.setSelectedIndex(9);    
-                 readPar.Read_Paraprocesal();
-                jTextField1.setText(readPar.rutaCarpetaArchivos);
-               
-                 
-                 CTablas1.setSelectedIndex(10);     
-                 readEjec.Read_Ejecucion();
-                jTextField1.setText(readEjec.rutaCarpetaArchivos);*/
-                
+               ReadAud.Read_Audiencias(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);          
                 JOptionPane.showMessageDialog(null, "Registros Insertados, Favor de revisar ventana -*Errores de insert*-");
                 Insertar.setEnabled(true);
-                
-                // jRadioButton2.setSelected(false);
-                // CarpetaArchivos=false; 
-                
-           }else{
-              // jRadioButton2.setSelected(false);
-               // CarpetaArchivos=false;   
-               }
-                     
-        }
-                
             } catch (IOException ex) {
                 Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }  catch (SQLException ex) {
+                   Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
+         }
          jRadioButton2.setSelected(false);
          jRadioButton1.setSelected(false);
          jTextField1.setText("");
+           }
+        }
         }).start();
          
     }//GEN-LAST:event_InsertarActionPerformed
@@ -688,40 +564,18 @@ public class InsertaTR extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        try {
-        // 1) Probar conexión
-        try (Connection conn = ConexionH2.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM ROLES")) {
-
-            rs.next();
-            int total = rs.getInt(1);
-
-            JOptionPane.showMessageDialog(this,
-                "Conexión OK. ROLES=" + total,
-                "Éxito",
-                JOptionPane.INFORMATION_MESSAGE);
-        }
-
-        // 2) Crear/Actualizar trigger
-        CreaTriggers crea = new CreaTriggers();
-      /*  crea.crearTriggerAudiencias();*/
-        
-
-        JOptionPane.showMessageDialog(this,
-            "Trigger creado/actualizado correctamente",
-            "Éxito",
-            JOptionPane.INFORMATION_MESSAGE);
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this,
-            "Error: " + e.getMessage(),
-            "Error",
-            JOptionPane.ERROR_MESSAGE);
-    }
- 
+      
+         V3validaciones ValAud=new V3validaciones();
+           try {
+               ValAud.Valida_LaboralesNE();
+           } catch (SQLException ex) {
+               Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (IOException ex) {
+               Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (ParseException ex) {
+               Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
+           }
+         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     

@@ -8,8 +8,6 @@ import org.h2.api.Trigger;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

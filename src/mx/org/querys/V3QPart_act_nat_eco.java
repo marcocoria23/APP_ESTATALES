@@ -19,7 +19,7 @@ public class V3QPart_act_nat_eco {
     // =========================================================
     // 1) Expediente NO desglosado (actor/demandado) - NAT ECO
     // =========================================================
-    public ArrayList<String[]> ExpeNDesglose() {
+    public ArrayList<String[]> ExpeNDesglose(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -36,7 +36,7 @@ public class V3QPart_act_nat_eco {
             "      SELECT EXPEDIENTE_CLAVE FROM V3_TR_PART_ACT_COLECT_ECONOMJL " +
             "  )";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -61,7 +61,7 @@ public class V3QPart_act_nat_eco {
     // =========================================================
     // 2) Incompetencia = 'Sí' pero existe desglose - NAT ECO
     // =========================================================
-    public ArrayList<String[]> IncompetenciaNE() {
+    public ArrayList<String[]> IncompetenciaNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -87,7 +87,7 @@ public class V3QPart_act_nat_eco {
             ") x " +
             "WHERE x.INCOMPETENCIA = 'Sí'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -109,7 +109,7 @@ public class V3QPart_act_nat_eco {
     // =========================================================
     // 3) Cantidad de actores != desglose de actores - NAT ECO
     // =========================================================
-    public ArrayList<String[]> Dif_ActoresNE() {
+    public ArrayList<String[]> Dif_ActoresNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -134,7 +134,7 @@ public class V3QPart_act_nat_eco {
             "WHERE x.INCOMPETENCIA <> '1' " +
             "  AND x.CANTIDAD_ACTORES <> x.DESGLOSE_ACTORES";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

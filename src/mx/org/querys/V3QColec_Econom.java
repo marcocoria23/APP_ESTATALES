@@ -9,14 +9,12 @@ import java.util.ArrayList;
 
 public class V3QColec_Econom {
 
-    private Connection getCon() throws SQLException {
-        return ConexionH2.getConnection();
-    }
+
 
     // ----------------------------------------------------------------
     // Año_JudicialCampeche (H2 + sin filtros)
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Año_JudicialCampeche() {
+    public ArrayList<String[]> Año_JudicialCampeche(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -35,7 +33,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -59,7 +57,7 @@ public class V3QColec_Econom {
     // OJO: aquí antes usabas PValidacion.AñoJuridico (lista). Sin eso,
     // dejo un ejemplo fijo (ajústalo si quieres).
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Año_DIF_Campeche() {
+    public ArrayList<String[]> Año_DIF_Campeche(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         // Ajusta la lista según lo que usabas en PValidacion.AñoJuridico
@@ -79,7 +77,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -101,7 +99,7 @@ public class V3QColec_Econom {
     // ----------------------------------------------------------------
     // Año_Expe_ColecEconomNE (H2 + sin filtros)
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Año_Expe_ColecEconomNE() {
+    public ArrayList<String[]> Año_Expe_ColecEconomNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -118,7 +116,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -140,7 +138,7 @@ public class V3QColec_Econom {
     // ----------------------------------------------------------------
     // FECHAS FUTURAS (H2 + sin filtros)
     // ----------------------------------------------------------------
-    public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT() {
+    public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -152,7 +150,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -172,7 +170,7 @@ public class V3QColec_Econom {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_PRES_DEMANDA_FUT() {
+    public ArrayList<String[]> FECHA_PRES_DEMANDA_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -184,7 +182,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -204,7 +202,7 @@ public class V3QColec_Econom {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_ADMISION_DEMANDA_FUT() {
+    public ArrayList<String[]> FECHA_ADMISION_DEMANDA_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -216,7 +214,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -236,7 +234,7 @@ public class V3QColec_Econom {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_AUDIENCIA_ECONOM_FUT() {
+    public ArrayList<String[]> FECHA_AUDIENCIA_ECONOM_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -248,7 +246,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -268,7 +266,7 @@ public class V3QColec_Econom {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_ACTO_PROCESAL_FUT() {
+    public ArrayList<String[]> FECHA_ACTO_PROCESAL_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -280,7 +278,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -300,7 +298,7 @@ public class V3QColec_Econom {
         return Array;
     }
 
-    public ArrayList<String[]> FECHA_RESOLUCION_FUT() {
+    public ArrayList<String[]> FECHA_RESOLUCION_FUT(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -312,7 +310,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -335,7 +333,7 @@ public class V3QColec_Econom {
     // ----------------------------------------------------------------
     // Duplicidad_expediente (H2 + sin filtros)
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Duplicidad_expediente() {
+    public ArrayList<String[]> Duplicidad_expediente(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -353,7 +351,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -376,7 +374,7 @@ public class V3QColec_Econom {
     // Fecha_PresentacionNE (H2 + sin filtros)
     // Apertura < Presentación (y presentación != 1899-09-09)
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Fecha_PresentacionNE() {
+    public ArrayList<String[]> Fecha_PresentacionNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -389,7 +387,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -414,7 +412,7 @@ public class V3QColec_Econom {
     // Fecha_PresentacionAdmiNE (H2 + sin filtros)
     // Admisión < Presentación
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Fecha_PresentacionAdmiNE() {
+    public ArrayList<String[]> Fecha_PresentacionAdmiNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -428,7 +426,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -453,7 +451,7 @@ public class V3QColec_Econom {
     // Fecha_Admision_DemandaNE (H2 + sin filtros)
     // Admisión < Apertura
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Admision_DemandaNE() {
+    public ArrayList<String[]> Fecha_Admision_DemandaNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -466,7 +464,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -491,7 +489,7 @@ public class V3QColec_Econom {
     // Fecha_audiencia_EconomNE (H2 + sin filtros)
     // Audiencia <= Apertura
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Fecha_audiencia_EconomNE() {
+    public ArrayList<String[]> Fecha_audiencia_EconomNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -504,7 +502,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -529,7 +527,7 @@ public class V3QColec_Econom {
     // Fecha_acto_procesalNE (H2 + sin filtros)
     // Acto procesal < Apertura
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Fecha_acto_procesalNE() {
+    public ArrayList<String[]> Fecha_acto_procesalNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -542,7 +540,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -567,7 +565,7 @@ public class V3QColec_Econom {
     // Fecha_resolucionNE (H2 + sin filtros)
     // Resolución < Apertura
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Fecha_resolucionNE() {
+    public ArrayList<String[]> Fecha_resolucionNE(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -580,7 +578,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -605,7 +603,7 @@ public class V3QColec_Econom {
     // Fecha_Aud_Presentacion (JOIN Audiencias vs Colectiva) (H2 + sin filtros)
     // FECHA_AUDIEN_CELEBRADA < FECHA_PRES_DEMANDA
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Aud_Presentacion() {
+    public ArrayList<String[]> Fecha_Aud_Presentacion(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -625,7 +623,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -651,7 +649,7 @@ public class V3QColec_Econom {
     // Fecha_Aud_Apertura (H2 + sin filtros)
     // FECHA_AUDIEN_CELEBRADA < FECHA_APERTURA_EXPEDIENTE
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Aud_Apertura() {
+    public ArrayList<String[]> Fecha_Aud_Apertura(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -671,7 +669,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -697,7 +695,7 @@ public class V3QColec_Econom {
     // Fecha_Aud_Admision (H2 + sin filtros)
     // FECHA_AUDIEN_CELEBRADA < FECHA_ADMISION_DEMANDA
     // ----------------------------------------------------------------
-    public ArrayList<String[]> Fecha_Aud_Admision() {
+    public ArrayList<String[]> Fecha_Aud_Admision(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -717,7 +715,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -742,7 +740,7 @@ public class V3QColec_Econom {
     // ----------------------------------------------------------------
     // SinMotivo_Conflicto (H2 + sin filtros)
     // ----------------------------------------------------------------
-    public ArrayList<String[]> SinMotivo_Conflicto() {
+    public ArrayList<String[]> SinMotivo_Conflicto(Connection con) {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
@@ -757,7 +755,7 @@ public class V3QColec_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = getCon();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

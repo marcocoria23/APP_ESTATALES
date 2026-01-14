@@ -23,7 +23,7 @@ public class V3QPart_act_huelga {
     //    - NO existe en V3_TR_PART_ACT_HUELGAJL
     //    - FASE_SOLI_EXPEDIENTE <> 5
     // =========================================================
-    public ArrayList<String[]> ExpeNDesglose() {
+    public ArrayList<String[]> ExpeNDesglose(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -39,7 +39,7 @@ public class V3QPart_act_huelga {
             "      FROM V3_TR_PART_ACT_HUELGAJL p" +
             "  )";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -63,7 +63,7 @@ public class V3QPart_act_huelga {
     // =========================================================
     // 2) Incompetencia = 'Sí' pero existe desglose (sin filtros)
     // =========================================================
-    public ArrayList<String[]> IncompetenciaNE() {
+    public ArrayList<String[]> IncompetenciaNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -88,7 +88,7 @@ public class V3QPart_act_huelga {
             ") x " +
             "WHERE x.INCOMPETENCIA = 'Sí'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -112,7 +112,7 @@ public class V3QPart_act_huelga {
     //    - INCOMPETENCIA <> 1
     //    - FASE_SOLI_EXPEDIENTE <> 5
     // =========================================================
-    public ArrayList<String[]> Dif_ActoresNE() {
+    public ArrayList<String[]> Dif_ActoresNE(Connection con) {
         Array = new ArrayList<>();
 
         sql =
@@ -138,7 +138,7 @@ public class V3QPart_act_huelga {
             "  AND x.FASE_SOLI_EXPEDIENTE <> '5' " +
             "  AND x.CANTIDAD_ACTORES <> x.DESGLOSE_ACTORES";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

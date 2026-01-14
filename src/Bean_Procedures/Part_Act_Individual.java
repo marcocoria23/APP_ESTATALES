@@ -32,10 +32,6 @@ private String	CURP;
 private String	RFC_TRABAJADOR;
 private String	JORNADA;
 private String	COMENTARIOS;
-private String	PERIODO;
-
-
-
     
   
     
@@ -153,20 +149,6 @@ private String	PERIODO;
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
     }
-
-    public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
-
-
-  
-      
-      
-   
       
     @Override
     public String getSQLTypeName() throws SQLException {
@@ -205,8 +187,7 @@ private String	PERIODO;
             GetCURP(),
             GetRFC_TRABAJADOR(),
             GetJORNADA(),
-            GetCOMENTARIOS(),
-            GetPERIODO()
+            GetCOMENTARIOS()
      };
      return array;
     }

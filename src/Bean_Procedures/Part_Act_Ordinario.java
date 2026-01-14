@@ -43,11 +43,6 @@ public class Part_Act_Ordinario extends Bean implements SQLData {
     private String MUJERES;
     private String NO_IDENTIFICADO;
     private String COMENTARIOS;
-    private String PERIODO;
-
-
-    
-  
     
     public Part_Act_Ordinario() {
     }
@@ -252,17 +247,6 @@ public class Part_Act_Ordinario extends Bean implements SQLData {
         this.COMENTARIOS = COMENTARIOS;
     }
 
-    public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
-
-  
-      
-      
    
       
     @Override
@@ -313,8 +297,7 @@ public class Part_Act_Ordinario extends Bean implements SQLData {
             GetHOMBRES(),
             GetMUJERES(),
             GetNO_IDENTIFICADO(),
-            GetCOMENTARIOS(),
-            GetPERIODO()
+            GetCOMENTARIOS()
                 
      };
      return array;

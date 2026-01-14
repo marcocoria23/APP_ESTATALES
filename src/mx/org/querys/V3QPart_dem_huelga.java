@@ -17,7 +17,7 @@ public class V3QPart_dem_huelga {
     ArrayList<String[]> Array;
 
     // Query: Demandados NO desglosados (cuando debería) y fase != 5
-    public ArrayList<String[]> ExpeNDesglose() {
+    public ArrayList<String[]> ExpeNDesglose(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class V3QPart_dem_huelga {
             ") x " +
             "WHERE x.FASE_SOLI_EXPEDIENTE <> 5";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -57,7 +57,7 @@ public class V3QPart_dem_huelga {
     }
 
     // Query: Incompetencia = Sí pero existe desglose de demandados
-    public ArrayList<String[]> IncompetenciaNE() {
+    public ArrayList<String[]> IncompetenciaNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -83,7 +83,7 @@ public class V3QPart_dem_huelga {
             ") x " +
             "WHERE x.INCOMPETENCIA = 'Sí'";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -103,7 +103,7 @@ public class V3QPart_dem_huelga {
     }
 
     // Query: Cantidad demandados != desglose demandados (solo cuando incompetencia != 1 y fase != 5)
-    public ArrayList<String[]> Dif_demandadosNE() {
+    public ArrayList<String[]> Dif_demandadosNE(Connection con) {
 
         Array = new ArrayList<>();
 
@@ -130,7 +130,7 @@ public class V3QPart_dem_huelga {
             "  AND x.FASE_SOLI_EXPEDIENTE <> '5' " +
             "  AND x.CANTIDAD_DEMANDADOS <> x.DESGLOSE_DEMANDADO";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

@@ -96,8 +96,6 @@ private String	FECHA_DICTO_RESOLUCION_AJ;
 private String	TIPO_SENTENCIA_AJ;
 private String	MONTO_SOLUCIÓN_AJ;
 private String	COMENTARIOS;
-private String	PERIODO;
-
 
     
   
@@ -728,19 +726,7 @@ private String	PERIODO;
 
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
-    }
-
-    public String GetPERIODO() {
-        return PERIODO;
-    }
-
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
-
-
-      
-      
+    }    
    
       
     @Override
@@ -844,8 +830,7 @@ private String	PERIODO;
             GetFECHA_DICTO_RESOLUCION_AJ(),
             GetTIPO_SENTENCIA_AJ(),
             GetMONTO_SOLUCIÓN_AJ(),
-            GetCOMENTARIOS(),
-            GetPERIODO()
+            GetCOMENTARIOS()
      };
      return array;
     }

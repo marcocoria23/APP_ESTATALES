@@ -73,7 +73,6 @@ public class Colect_Econom extends Bean implements SQLData {
     private String OTRO_TIPO;
     private String ESPECIFIQUE_TIPO;
     private String COMENTARIOS;
-    private String PERIODO;
 
     
     
@@ -465,13 +464,7 @@ public String GetCOMENTARIOS() {
     public void SetCOMENTARIOS(String COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
     }
-public String GetPERIODO() {
-        return PERIODO;
-    }
 
-    public void SetPERIODO(String PERIODO) {
-        this.PERIODO = PERIODO;
-    }
 
 
       
@@ -553,8 +546,7 @@ public String GetPERIODO() {
          GetDISMINUCION_SALARIOS(),
          GetOTRO_TIPO(),
          GetESPECIFIQUE_TIPO(),
-         GetCOMENTARIOS(),
-         GetPERIODO()
+         GetCOMENTARIOS()
 
 
      };

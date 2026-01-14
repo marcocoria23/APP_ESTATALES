@@ -17,7 +17,7 @@ public class V3Part_Act_individual {
     ArrayList<String[]> Array;
 
     /// Actor no debe ser No identificado
-    public ArrayList ActorNI() {
+    public ArrayList ActorNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -28,7 +28,7 @@ public class V3Part_Act_individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -49,7 +49,7 @@ public class V3Part_Act_individual {
     }
 
     /// CUANDO ACTOR = Beneficiario u Otro no debe capturar desde Sexo hasta Jornada
-    public ArrayList Actor_otro() {
+    public ArrayList Actor_otro(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -67,7 +67,7 @@ public class V3Part_Act_individual {
 
         //System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

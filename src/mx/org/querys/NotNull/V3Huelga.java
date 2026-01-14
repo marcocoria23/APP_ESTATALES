@@ -26,7 +26,7 @@ public class V3Huelga {
     ArrayList<String[]> Array;
 
     // Tipo de asunto no debe ser 9 (No_identificado) o Null. (sin filtros)
-    public ArrayList Tipo_Asunto() {
+    public ArrayList Tipo_Asunto(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -37,7 +37,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -58,7 +58,7 @@ public class V3Huelga {
     }
 
     // Emplazamiento a huelga = No/No identificado -> no debe capturar FECHA_EMPLAZAMIENTO (sin filtros)
-    public ArrayList Emplaz_huelga() {
+    public ArrayList Emplaz_huelga(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -72,7 +72,7 @@ public class V3Huelga {
             + "WHERE EMPLAZAMIENTO_HUELGA IN (2,9) "
             + "  AND FECHA_EMPLAZAMIENTO IS NOT NULL";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -92,7 +92,7 @@ public class V3Huelga {
     }
 
     // Prehuelga = No/No identificado -> no debe capturar AUDIENCIA_CONCILIACION ni FECHA_AUDIENCIA (sin filtros)
-    public ArrayList Preghuelga() {
+    public ArrayList Preghuelga(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -106,7 +106,7 @@ public class V3Huelga {
             + "WHERE PREHUELGA IN (2,9) "
             + "  AND (AUDIENCIA_CONCILIACION IS NOT NULL OR FECHA_AUDIENCIA IS NOT NULL)";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -126,7 +126,7 @@ public class V3Huelga {
     }
 
     // Audiencia conciliación = No/No identificado y PREHUELGA=1 -> no debe capturar FECHA_AUDIENCIA (sin filtros)
-    public ArrayList Aud_conciliacion() {
+    public ArrayList Aud_conciliacion(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -141,7 +141,7 @@ public class V3Huelga {
             + "  AND AUDIENCIA_CONCILIACION IN (2,9) "
             + "  AND FECHA_AUDIENCIA IS NOT NULL";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -161,7 +161,7 @@ public class V3Huelga {
     }
 
     // Estallamiento huelga = No/No identificado -> no debe capturar DECLARA_LICITUD_HUELGA / DECLARA_EXISTEN_HUELGA (sin filtros)
-    public ArrayList Estallamiento_huelga() {
+    public ArrayList Estallamiento_huelga(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -175,7 +175,7 @@ public class V3Huelga {
             + "WHERE ESTALLAMIENTO_HUELGA IN (2,9) "
             + "  AND (DECLARA_LICITUD_HUELGA IS NOT NULL OR DECLARA_EXISTEN_HUELGA IS NOT NULL)";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -195,7 +195,7 @@ public class V3Huelga {
     }
 
     // Estatus expediente no debe ser 9 (sin filtros)
-    public ArrayList Estatus_ExpedienteNI() {
+    public ArrayList Estatus_ExpedienteNI(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -207,7 +207,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -229,7 +229,7 @@ public class V3Huelga {
     }
 
     // Incompetencia no debe ser 9 (sin filtros)
-    public ArrayList IncompetenciaNI() {
+    public ArrayList IncompetenciaNI(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, "
@@ -240,7 +240,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -262,7 +262,7 @@ public class V3Huelga {
     }
 
     // Incompetencia=2 (No) y TIPO_INCOMPETENCIA no debe venir (sin filtros)
-    public ArrayList Tipo_IncompetenciaNI() {
+    public ArrayList Tipo_IncompetenciaNI(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -275,7 +275,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -296,7 +296,7 @@ public class V3Huelga {
     }
 
     // Incompetencia=1 y hay datos contestados después (sin filtros)
-    public ArrayList PivIncompetencia() {
+    public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO "
@@ -316,7 +316,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -337,7 +337,7 @@ public class V3Huelga {
     }
 
     // Incompetencia=9 y hay datos contestados (sin filtros)
-    public ArrayList PivIncompetencia_Noidentificado() {
+    public ArrayList PivIncompetencia_Noidentificado(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO "
@@ -357,7 +357,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -378,7 +378,7 @@ public class V3Huelga {
     }
 
     // Estatus expediente=2 pero hay datos de solución contestados (sin filtros)
-    public ArrayList Estatus_Expediente() {
+    public ArrayList Estatus_Expediente(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE "
@@ -394,7 +394,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -414,7 +414,7 @@ public class V3Huelga {
     }
 
     // Estatus expediente=1 y FECHA_ACTO_PROCESAL no debe venir (sin filtros)
-    public ArrayList Fecha_acto_procesal() {
+    public ArrayList Fecha_acto_procesal(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL "
@@ -424,7 +424,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -446,7 +446,7 @@ public class V3Huelga {
 
     // FASE_SOLI_EXPEDIENTE "no existe" (según tu regla original). Sin filtros.
     // Nota: tu SQL original hace JOIN con coma y luego "NOT IN", aquí lo dejo igual pero sin el filtro por entidad/periodo.
-    public ArrayList Fase_Sol_expNoExiste() {
+    public ArrayList Fase_Sol_expNoExiste(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT P.CLAVE_ORGANO, P.EXPEDIENTE_CLAVE, S.DESCRIPCION AS FASE_SOLI_EXPEDIENTE "
@@ -456,7 +456,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -476,7 +476,7 @@ public class V3Huelga {
     }
 
     // FASE_SOLI_EXPEDIENTE = 99 y hay datos contestados de solución (sin filtros)
-    public ArrayList Fase_Sol_expNI() {
+    public ArrayList Fase_Sol_expNI(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -494,7 +494,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -514,7 +514,7 @@ public class V3Huelga {
     }
 
     // FASE_SOLI_EXPEDIENTE en (5,6) pero hay datos de "Solución (Huelga)" (sin filtros)
-    public ArrayList Fase_Sol_exp_EMPH() {
+    public ArrayList Fase_Sol_exp_EMPH(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE "
@@ -528,7 +528,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -548,7 +548,7 @@ public class V3Huelga {
     }
 
     // FASE_SOLI_EXPEDIENTE = 7 pero hay datos de "Solución (Emplazamiento/Prehuelga)" (sin filtros)
-    public ArrayList Fase_Sol_exp_Huelga() {
+    public ArrayList Fase_Sol_exp_Huelga(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE "
@@ -561,7 +561,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -581,7 +581,7 @@ public class V3Huelga {
     }
 
     // Sin motivo de conflicto (sin filtros). OJO: en Oracle usabas TO_CHAR, aquí uso FORMATDATETIME para H2.
-    public ArrayList SinMotivo_Conflicto() {
+    public ArrayList SinMotivo_Conflicto(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -598,7 +598,7 @@ public class V3Huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -627,7 +627,7 @@ public class V3Huelga {
     
     //---Cuando el expediente No se admitio a tramite la fase de solicitud debe ser emplazamiento a huelga o prehuelga.
 // (convertido a H2, sin filtros, sin DECODE, usando DISTINCT)
-public ArrayList Fase_Sol_Desechamiento() {
+public ArrayList Fase_Sol_Desechamiento(Connection con) {
     Array = new ArrayList();
 
     sql =
@@ -703,7 +703,7 @@ public ArrayList Fase_Sol_Desechamiento() {
 
     System.out.println(sql);
 
-    try (java.sql.Connection con = ConexionH2.getConnection();
+    try (
          java.sql.PreparedStatement ps = con.prepareStatement(sql);
          java.sql.ResultSet rs = ps.executeQuery()) {
 

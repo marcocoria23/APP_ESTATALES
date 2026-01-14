@@ -17,7 +17,7 @@ public class V3Paraprocesal {
     ArrayList<String[]> Array;
 
     // Estatus del expediente no debe ser 9 = No_identificado
-    public ArrayList Estatus_expedienteNi() {
+    public ArrayList Estatus_expedienteNi(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -30,7 +30,7 @@ public class V3Paraprocesal {
 
         //System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -51,7 +51,7 @@ public class V3Paraprocesal {
     }
 
     // INCOMPETENCIA no debe ser 9
-    public ArrayList IncompetenciaNI() {
+    public ArrayList IncompetenciaNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, " +
@@ -62,7 +62,7 @@ public class V3Paraprocesal {
 
         //System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -83,7 +83,7 @@ public class V3Paraprocesal {
     }
 
     // INCOMPETENCIA = 1 y ya tiene datos posteriores (no debería)
-    public ArrayList PivIncompetencia() {
+    public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO " +
@@ -95,7 +95,7 @@ public class V3Paraprocesal {
 
         //System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -115,7 +115,7 @@ public class V3Paraprocesal {
     }
 
     // ESTATUS_EXPEDIENTE = 2 (En proceso de Resolución) y ya tiene FECHA_CONCLUSION_EXPE (no debería)
-    public ArrayList Estatus_Expediente() {
+    public ArrayList Estatus_Expediente(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -127,7 +127,7 @@ public class V3Paraprocesal {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

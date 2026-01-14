@@ -26,7 +26,7 @@ public class V3Control_expediente {
     ArrayList<String[]> Array;
 
     // Horario debe estar completo ejemplo: 08:30 a 16:30
-    public ArrayList Horario() {
+    public ArrayList Horario(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT REPLACE(NOMBRE_ORGANO_JURIS, ',', '') AS NOMBRE_ORGANO_JURIS, "
@@ -36,7 +36,7 @@ public class V3Control_expediente {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -55,7 +55,7 @@ public class V3Control_expediente {
         return Array;
     }
 
-    public ArrayList SubJuecesHom() {
+    public ArrayList SubJuecesHom(Connection con) {
         Array = new ArrayList();
 
         // TO_NUMBER(TRIM(x)) -> CAST(TRIM(x) AS INT)
@@ -76,7 +76,7 @@ public class V3Control_expediente {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -94,7 +94,7 @@ public class V3Control_expediente {
         return Array;
     }
 
-    public ArrayList SubJuecesMuj() {
+    public ArrayList SubJuecesMuj(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, "
@@ -114,7 +114,7 @@ public class V3Control_expediente {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -132,7 +132,7 @@ public class V3Control_expediente {
         return Array;
     }
 
-    public ArrayList TotalJueces() {
+    public ArrayList TotalJueces(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, "
@@ -151,7 +151,7 @@ public class V3Control_expediente {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

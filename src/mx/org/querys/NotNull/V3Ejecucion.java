@@ -26,7 +26,7 @@ public class V3Ejecucion {
     ArrayList<String[]> Array;
 
     // Estatus del expediente no debe de ser 9 = No_identificado (sin filtros)
-    public ArrayList Estatus_expedienteNi() {
+    public ArrayList Estatus_expedienteNi(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -38,7 +38,7 @@ public class V3Ejecucion {
 
         //System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -59,7 +59,7 @@ public class V3Ejecucion {
     }
 
     // Si ESTATUS_EXPE = 2, no debe traer FECHA_CONCLUSION o FASE_CONCLUSION (sin filtros)
-    public ArrayList FaseConclucion() {
+    public ArrayList FaseConclucion(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPE "
@@ -69,7 +69,7 @@ public class V3Ejecucion {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

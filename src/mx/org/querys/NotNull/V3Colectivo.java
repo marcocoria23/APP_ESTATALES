@@ -26,7 +26,7 @@ public class V3Colectivo {
     ArrayList<String[]> Array;
 
     // Tipo de asunto no debe de ser =9 No_identificado
-    public ArrayList Tipo_Asunto() {
+    public ArrayList Tipo_Asunto(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -37,7 +37,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -57,7 +57,7 @@ public class V3Colectivo {
     }
 
     // Cuando constancia expedida = NO o NI y además INCOMPETENCIA=1, no debe existir CONSTANCIA_CLAVE
-    public ArrayList Cons_Expedida() {
+    public ArrayList Cons_Expedida(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -74,7 +74,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -94,7 +94,7 @@ public class V3Colectivo {
     }
 
     // Suspensión temporal = No o NI, no debe capturar campos relacionados (solo si TIPO_ASUNTO=2)
-    public ArrayList Suspencion_temporal() {
+    public ArrayList Suspencion_temporal(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -114,7 +114,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -134,7 +134,7 @@ public class V3Colectivo {
     }
 
     // Terminación colectiva = No o NI, no debe capturar causas (solo si TIPO_ASUNTO=2)
-    public ArrayList Terminacion_Colectiva() {
+    public ArrayList Terminacion_Colectiva(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -154,7 +154,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -174,7 +174,7 @@ public class V3Colectivo {
     }
 
     // Violación derechos = No (según tu query original usa =2) y no debe capturar campos relacionados (si TIPO_ASUNTO=2)
-    public ArrayList Viola_Derechos() {
+    public ArrayList Viola_Derechos(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -195,7 +195,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -215,7 +215,7 @@ public class V3Colectivo {
     }
 
     // Estatus demanda no debe ser 9
-    public ArrayList Estatus_Demanda() {
+    public ArrayList Estatus_Demanda(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -227,7 +227,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -248,7 +248,7 @@ public class V3Colectivo {
     }
 
     // Estatus demanda = 5 y fecha_apertura_expediente excede 2 meses
-    public ArrayList Estatus_Demanda_PrevenProceso() {
+    public ArrayList Estatus_Demanda_PrevenProceso(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, "
@@ -261,7 +261,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -280,7 +280,7 @@ public class V3Colectivo {
     }
 
     // Estatus expediente no debe ser 9
-    public ArrayList Estatus_ExpedienteNI() {
+    public ArrayList Estatus_ExpedienteNI(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -292,7 +292,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -313,7 +313,7 @@ public class V3Colectivo {
     }
 
     // Incompetencia no debe ser 9
-    public ArrayList IncompetenciaNI() {
+    public ArrayList IncompetenciaNI(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, "
@@ -324,7 +324,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -345,7 +345,7 @@ public class V3Colectivo {
     }
 
     // Si INCOMPETENCIA=2 (No) entonces TIPO_INCOMPETENCIA no debe venir capturado
-    public ArrayList Tipo_IncompetenciaNI() {
+    public ArrayList Tipo_IncompetenciaNI(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -358,7 +358,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -378,7 +378,7 @@ public class V3Colectivo {
     }
 
     // INCOMPETENCIA=1 pero trae campos capturados (pivote)
-    public ArrayList PivIncompetencia() {
+    public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO "
@@ -414,7 +414,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -434,7 +434,7 @@ public class V3Colectivo {
     }
 
     // PREVE_DEMANDA = No o NI y DESAHOGO_PREV_DEMANDA viene capturado
-    public ArrayList Preve_demanda() {
+    public ArrayList Preve_demanda(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -451,7 +451,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -471,7 +471,7 @@ public class V3Colectivo {
     }
 
     // ESTATUS_DEMANDA = 2,3,4 pero trae campos posteriores capturados
-    public ArrayList Estatus_Demanda_Desechada() {
+    public ArrayList Estatus_Demanda_Desechada(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA "
@@ -500,7 +500,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -519,7 +519,7 @@ public class V3Colectivo {
     }
 
     // AUTO_DEPURACION = No o NI y trae FECHA_DEPURACION
-    public ArrayList Tram_depuracion() {
+    public ArrayList Tram_depuracion(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -536,7 +536,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -555,7 +555,7 @@ public class V3Colectivo {
     }
 
     // AUDIENCIA_JUICIO = No o NI y trae FECHA_AUDIENCIA_JUICIO
-    public ArrayList Audiencia_juicio() {
+    public ArrayList Audiencia_juicio(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -572,7 +572,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -591,7 +591,7 @@ public class V3Colectivo {
     }
 
     // Estatus expediente = 2 pero trae datos de resolución
-    public ArrayList Estatus_Expediente() {
+    public ArrayList Estatus_Expediente(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE "
@@ -611,7 +611,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -630,7 +630,7 @@ public class V3Colectivo {
     }
 
     // Estatus expediente = 1 (solucionado) pero trae FECHA_ACTO_PROCESAL
-    public ArrayList Fecha_acto_procesal() {
+    public ArrayList Fecha_acto_procesal(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL "
@@ -640,7 +640,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -659,7 +659,7 @@ public class V3Colectivo {
         return Array;
     }
 
-    public ArrayList Fase_Sol_expNoExiste() {
+    public ArrayList Fase_Sol_expNoExiste(Connection con) {
         Array = new ArrayList();
 
         // Mantengo tu join estilo Oracle (coma) pero en H2 también funciona.
@@ -670,7 +670,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -689,7 +689,7 @@ public class V3Colectivo {
     }
 
     // FASE_SOLI_EXPEDIENTE = 99 y trae datos de solución
-    public ArrayList Fase_Sol_expNI() {
+    public ArrayList Fase_Sol_expNI(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
@@ -704,7 +704,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -723,7 +723,7 @@ public class V3Colectivo {
     }
 
     // FASE_SOLI_EXPEDIENTE = 3 (Tramitación por auto depuración) pero trae solución AJ
-    public ArrayList Fase_Sol_exp_TAP() {
+    public ArrayList Fase_Sol_exp_TAP(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE "
@@ -734,7 +734,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -753,7 +753,7 @@ public class V3Colectivo {
     }
 
     // FASE_SOLI_EXPEDIENTE = 2 (Audiencia juicio) pero trae solución AD
-    public ArrayList Fase_Sol_exp_AJ() {
+    public ArrayList Fase_Sol_exp_AJ(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE "
@@ -764,7 +764,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -783,7 +783,7 @@ public class V3Colectivo {
     }
 
     // Sin motivo de conflicto (todo = 2)
-    public ArrayList SinMotivo_Conflicto() {
+    public ArrayList SinMotivo_Conflicto(Connection con) {
         Array = new ArrayList();
 
         // Tu query traía TO_CHAR(fecha,'dd/mm/yyyy'), en H2 mejor FORMATDATETIME
@@ -803,7 +803,7 @@ public class V3Colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

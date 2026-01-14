@@ -17,7 +17,7 @@ public class V3Ordinario {
     ArrayList<String[]> Array;
 
     /// Tipo de asunto no debe de ser =9 No_identificado
-    public ArrayList Tipo_asuntoNI() {
+    public ArrayList Tipo_asuntoNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -28,7 +28,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -47,7 +47,7 @@ public class V3Ordinario {
     }
 
     /// Cuando Tipo de asunto = Colectivo no debe capturar CONTRATO_ESCRITO ni TIPO_CONTRATO
-    public ArrayList Tipo_asunto_ColectNI() {
+    public ArrayList Tipo_asunto_ColectNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -59,7 +59,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -78,7 +78,7 @@ public class V3Ordinario {
     }
 
     /// Cuando CONTRATO_ESCRITO = No o No identificado, no debe capturar TIPO_CONTRATO
-    public ArrayList Contrato_escritoNI() {
+    public ArrayList Contrato_escritoNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -93,7 +93,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -112,7 +112,7 @@ public class V3Ordinario {
     }
 
     /// Cuando Tipo_asunto=Colectivo no debe capturarse desde SUBCONTRATACION... hasta OTRO_ESP_PRESTAC
-    public ArrayList Ta_Colectivo() {
+    public ArrayList Ta_Colectivo(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -136,7 +136,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -155,7 +155,7 @@ public class V3Ordinario {
     }
 
     /// Cuando CIRCUNS_MOTIVO_CONFL = No/NI, no debe capturar discriminación/trata/hostigamiento...
-    public ArrayList Mot_conflicto() {
+    public ArrayList Mot_conflicto(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -174,7 +174,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -193,7 +193,7 @@ public class V3Ordinario {
     }
 
     /// Cuando PAGO_PRESTACIONES = No/NI, no debe capturar AGUINALDO..OTRO_ESP_PRESTAC
-    public ArrayList Pago_prestaciones() {
+    public ArrayList Pago_prestaciones(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -209,7 +209,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -228,7 +228,7 @@ public class V3Ordinario {
     }
 
     /// CONSTANCIA_CONS_EXPEDIDA = No/NI e INCOMPETENCIA=2, no debe capturar CONSTANCIA_CLAVE
-    public ArrayList Cons_expedida() {
+    public ArrayList Cons_expedida(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -243,7 +243,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -262,7 +262,7 @@ public class V3Ordinario {
     }
 
     /// PREVE_DEMANDA = No/NI e INCOMPETENCIA=2, no debe capturar DESAHOGO_PREV_DEMANDA
-    public ArrayList Preve_demanda() {
+    public ArrayList Preve_demanda(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -277,7 +277,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -296,7 +296,7 @@ public class V3Ordinario {
     }
 
     /// ESTATUS_DEMANDA no debe ser 9
-    public ArrayList Estatus_demaNi() {
+    public ArrayList Estatus_demaNi(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -308,7 +308,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -327,7 +327,7 @@ public class V3Ordinario {
     }
 
     /// Estatus_demanda=Admitida o NI, INCOMPETENCIA=2, no debe capturar CAU_IMP_ADM_DEMANDA
-    public ArrayList Impiden_admision_demanda() {
+    public ArrayList Impiden_admision_demanda(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -342,7 +342,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -361,7 +361,7 @@ public class V3Ordinario {
     }
 
     /// AUDIENCIA_PRELIM = No/NI e INCOMPETENCIA=2, no debe capturar FECHA_AUDIENCIA_PRELIM
-    public ArrayList audiencia_preliminar() {
+    public ArrayList audiencia_preliminar(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -376,7 +376,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -395,7 +395,7 @@ public class V3Ordinario {
     }
 
     /// AUDIENCIA_JUICIO = No/NI e INCOMPETENCIA=2, no debe capturar FECHA_AUDIENCIA_JUICIO
-    public ArrayList audiencia_juicio() {
+    public ArrayList audiencia_juicio(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -410,7 +410,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -429,7 +429,7 @@ public class V3Ordinario {
     }
 
     /// ESTATUS_EXPEDIENTE no debe ser 9
-    public ArrayList Estatus_ExpedienteNI() {
+    public ArrayList Estatus_ExpedienteNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -441,7 +441,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -461,7 +461,7 @@ public class V3Ordinario {
     }
 
     /// INCOMPETENCIA no debe ser 9
-    public ArrayList IncompetenciaNI() {
+    public ArrayList IncompetenciaNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, " +
@@ -471,7 +471,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -491,7 +491,7 @@ public class V3Ordinario {
     }
 
     /// INCOMPETENCIA=2 (No) no debe traer TIPO_INCOMPETENCIA
-    public ArrayList Tipo_IncompetenciaNI() {
+    public ArrayList Tipo_IncompetenciaNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -503,7 +503,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -523,7 +523,7 @@ public class V3Ordinario {
     }
 
     /// INCOMPETENCIA=1 y ya trae datos posteriores (pivote)
-    public ArrayList PivIncompetencia() {
+    public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO " +
@@ -542,7 +542,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -561,7 +561,7 @@ public class V3Ordinario {
     }
 
     /// INCOMPETENCIA=9 y ya trae datos posteriores
-    public ArrayList PivIncompetencia_Noidentificado() {
+    public ArrayList PivIncompetencia_Noidentificado(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, PERIODO " +
@@ -581,7 +581,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -600,7 +600,7 @@ public class V3Ordinario {
     }
 
     /// ESTATUS_DEMANDA IN (2,3,4) y ya trae datos posteriores
-    public ArrayList Estatus_Demanda_Desechada() {
+    public ArrayList Estatus_Demanda_Desechada(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA, PERIODO " +
@@ -616,7 +616,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -635,7 +635,7 @@ public class V3Ordinario {
     }
 
     /// ESTATUS_DEMANDA=9 y ya trae datos posteriores
-    public ArrayList Estatus_Demanda_NoIdentificada() {
+    public ArrayList Estatus_Demanda_NoIdentificada(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA, PERIODO " +
@@ -651,7 +651,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -671,7 +671,7 @@ public class V3Ordinario {
 
     /* EN PROCESO O PREVENCION */
     /// FECHA_APERTURA_EXPEDIENTE excede 2 meses cuando ESTATUS_DEMANDA=5
-    public ArrayList Estatus_Demanda_EnPrevenProceso() {
+    public ArrayList Estatus_Demanda_EnPrevenProceso(Connection con) {
         Array = new ArrayList<>();
 
         // En H2 reemplazamos: ADD_MONTHS(SYSDATE, -2) por DATEADD('MONTH', -2, CURRENT_DATE)
@@ -684,7 +684,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -703,7 +703,7 @@ public class V3Ordinario {
     }
 
     /// ESTATUS_EXPEDIENTE=2 y ya trae info posterior (no debería)
-    public ArrayList Estatus_Expediente() {
+    public ArrayList Estatus_Expediente(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, PERIODO " +
@@ -717,7 +717,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -735,7 +735,7 @@ public class V3Ordinario {
     }
 
     /// ESTATUS_EXPEDIENTE=9 y ya trae info posterior (no debería)
-    public ArrayList Estatus_Expediente_Noidentificado() {
+    public ArrayList Estatus_Expediente_Noidentificado(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, PERIODO " +
@@ -749,7 +749,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -767,7 +767,7 @@ public class V3Ordinario {
     }
 
     /// ESTATUS_EXPEDIENTE=1 y FECHA_ACTO_PROCESAL no nula
-    public ArrayList Fecha_acto_procesal() {
+    public ArrayList Fecha_acto_procesal(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL, PERIODO " +
@@ -776,7 +776,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -794,7 +794,7 @@ public class V3Ordinario {
         return Array;
     }
 
-    public ArrayList Fase_Sol_expNoExiste() {
+    public ArrayList Fase_Sol_expNoExiste(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT P.CLAVE_ORGANO, P.EXPEDIENTE_CLAVE, S.DESCRIPCION AS FASE_SOLI_EXPEDIENTE " +
@@ -804,7 +804,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -821,7 +821,7 @@ public class V3Ordinario {
         return Array;
     }
 
-    public ArrayList Fase_Sol_expNI() {
+    public ArrayList Fase_Sol_expNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -835,7 +835,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -852,7 +852,7 @@ public class V3Ordinario {
         return Array;
     }
 
-    public ArrayList Fase_Sol_exp_FE() {
+    public ArrayList Fase_Sol_exp_FE(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE, PERIODO " +
@@ -863,7 +863,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -880,7 +880,7 @@ public class V3Ordinario {
         return Array;
     }
 
-    public ArrayList Fase_Sol_exp_AP() {
+    public ArrayList Fase_Sol_exp_AP(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE, PERIODO " +
@@ -891,7 +891,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -908,7 +908,7 @@ public class V3Ordinario {
         return Array;
     }
 
-    public ArrayList Fase_Sol_exp_AJ() {
+    public ArrayList Fase_Sol_exp_AJ(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE, PERIODO " +
@@ -919,7 +919,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -936,7 +936,7 @@ public class V3Ordinario {
         return Array;
     }
 
-    public ArrayList SinMotivo_Conflicto() {
+    public ArrayList SinMotivo_Conflicto(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -948,7 +948,7 @@ public class V3Ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

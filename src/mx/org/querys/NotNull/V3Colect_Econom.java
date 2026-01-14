@@ -17,7 +17,7 @@ public class V3Colect_Econom {
     ArrayList<String[]> Array;
 
     ///--Tipo de asunto no debe de ser =9 No_identificado o Null.
-    public ArrayList Tipo_Asunto() {
+    public ArrayList Tipo_Asunto(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -25,7 +25,7 @@ public class V3Colect_Econom {
               "FROM V3_TR_COLECT_ECONOMJL " +
               "WHERE TIPO_ASUNTO = 9";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -45,7 +45,7 @@ public class V3Colect_Econom {
     }
 
     ///----cuando Suspensión temporal = No, no debe capturarse Exceso/Incosteabilidad/Falta fondos
-    public ArrayList Suspencion_Temporal() {
+    public ArrayList Suspencion_Temporal(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -54,7 +54,7 @@ public class V3Colect_Econom {
               "WHERE SUSPENSION_TEMPORAL = 2 " +
               "  AND (EXCESO_PRODUCCION IS NOT NULL OR INCOSTEABILIDAD IS NOT NULL OR FALTA_FONDOS IS NOT NULL)";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -74,7 +74,7 @@ public class V3Colect_Econom {
     }
 
     //Estatus de la demanda no debe de ser 9=No_identificado.
-    public ArrayList Estatus_demandaNI() {
+    public ArrayList Estatus_demandaNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -83,7 +83,7 @@ public class V3Colect_Econom {
               "FROM V3_TR_COLECT_ECONOMJL " +
               "WHERE ESTATUS_DEMANDA = 9";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -104,7 +104,7 @@ public class V3Colect_Econom {
     }
 
     //EN PROCESO O EN PREVENCION: estatus 5 y fecha apertura > 2 meses
-    public ArrayList Estatus_Demanda_PrevenProceso() {
+    public ArrayList Estatus_Demanda_PrevenProceso(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -113,7 +113,7 @@ public class V3Colect_Econom {
               "WHERE ESTATUS_DEMANDA = 5 " +
               "  AND FECHA_APERTURA_EXPEDIENTE < DATEADD('MONTH', -2, CURRENT_DATE)";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -133,7 +133,7 @@ public class V3Colect_Econom {
     }
 
     //Estatus del expediente no debe de ser 9=No_identificado.
-    public ArrayList Estatus_expedienteNI() {
+    public ArrayList Estatus_expedienteNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -142,7 +142,7 @@ public class V3Colect_Econom {
               "FROM V3_TR_COLECT_ECONOMJL " +
               "WHERE ESTATUS_EXPEDIENTE = 9";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -163,7 +163,7 @@ public class V3Colect_Econom {
     }
 
     ///INCOMPETENCIA NO DEBE SER = 9
-    public ArrayList IncompetenciaNI() {
+    public ArrayList IncompetenciaNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, " +
@@ -171,7 +171,7 @@ public class V3Colect_Econom {
               "FROM V3_TR_COLECT_ECONOMJL " +
               "WHERE INCOMPETENCIA = 9";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -192,7 +192,7 @@ public class V3Colect_Econom {
     }
 
     /// INCOMPETENCIA = 2 ('No') y TIPO_INCOMPETENCIA NO debería estar capturado (IS NOT NULL)
-    public ArrayList Tipo_IncompetenciaNI() {
+    public ArrayList Tipo_IncompetenciaNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -203,7 +203,7 @@ public class V3Colect_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -223,7 +223,7 @@ public class V3Colect_Econom {
     }
 
     //INCOMPETENCIA = SI (1) pero existen campos posteriores capturados (no debería)
-    public ArrayList PivIncompetencia() {
+    public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA " +
@@ -238,7 +238,7 @@ public class V3Colect_Econom {
               "       DISMINUCION_JORNADALAB IS NOT NULL OR AUMENTO_SEMANA IS NOT NULL OR DISMINUCION_SEMANA IS NOT NULL OR AUMENTO_SALARIOS IS NOT NULL OR " +
               "       DISMINUCION_SALARIOS IS NOT NULL OR OTRO_TIPO IS NOT NULL OR ESPECIFIQUE_TIPO IS NOT NULL OR COMENTARIOS IS NOT NULL)";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -258,7 +258,7 @@ public class V3Colect_Econom {
     }
 
     //ESTATUS DEMANDA in (2,3,4) pero hay campos posteriores capturados
-    public ArrayList Estatus_Demanda_Desechada() {
+    public ArrayList Estatus_Demanda_Desechada(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA " +
@@ -272,7 +272,7 @@ public class V3Colect_Econom {
               "       DISMINUCION_JORNADALAB IS NOT NULL OR AUMENTO_SEMANA IS NOT NULL OR DISMINUCION_SEMANA IS NOT NULL OR " +
               "       AUMENTO_SALARIOS IS NOT NULL OR DISMINUCION_SALARIOS IS NOT NULL OR OTRO_TIPO IS NOT NULL OR ESPECIFIQUE_TIPO IS NOT NULL)";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -292,7 +292,7 @@ public class V3Colect_Econom {
     }
 
     //ESTATUS EXPEDIENTE = 2 (en proceso de resolución) pero hay campos posteriores capturados
-    public ArrayList Estatus_Expediente() {
+    public ArrayList Estatus_Expediente(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE " +
@@ -304,7 +304,7 @@ public class V3Colect_Econom {
               "       AUMENTO_SEMANA IS NOT NULL OR DISMINUCION_SEMANA IS NOT NULL OR AUMENTO_SALARIOS IS NOT NULL OR " +
               "       DISMINUCION_SALARIOS IS NOT NULL OR OTRO_TIPO IS NOT NULL OR ESPECIFIQUE_TIPO IS NOT NULL)";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -324,7 +324,7 @@ public class V3Colect_Econom {
     }
 
     //cuando estatus expediente = 1 (solucionado) no debe haber fecha del último acto procesal
-    public ArrayList Fecha_acto_procesal() {
+    public ArrayList Fecha_acto_procesal(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL " +
@@ -332,7 +332,7 @@ public class V3Colect_Econom {
               "WHERE ESTATUS_EXPEDIENTE = 1 " +
               "  AND FECHA_ACTO_PROCESAL IS NOT NULL";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -352,7 +352,7 @@ public class V3Colect_Econom {
         return Array;
     }
 
-    public ArrayList Fase_Sol_expNoExiste() {
+    public ArrayList Fase_Sol_expNoExiste(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT P.CLAVE_ORGANO, P.EXPEDIENTE_CLAVE, S.DESCRIPCION AS FASE_SOLI_EXPEDIENTE " +
@@ -362,7 +362,7 @@ public class V3Colect_Econom {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -382,7 +382,7 @@ public class V3Colect_Econom {
     }
 
     //---CUANDO FORMA_SOLUCION = (2,3,4,5) no debe capturar info de sentencia/medidas/etc.
-    public ArrayList Forma_Solucion() {
+    public ArrayList Forma_Solucion(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FORMA_SOLUCION " +
@@ -393,7 +393,7 @@ public class V3Colect_Econom {
               "       DISMINUCION_SEMANA IS NOT NULL OR AUMENTO_SALARIOS IS NOT NULL OR DISMINUCION_SALARIOS IS NOT NULL OR " +
               "       OTRO_TIPO IS NOT NULL OR ESPECIFIQUE_TIPO IS NOT NULL)";
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

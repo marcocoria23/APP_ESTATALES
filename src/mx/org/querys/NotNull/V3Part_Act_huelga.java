@@ -17,7 +17,7 @@ public class V3Part_Act_huelga {
     ArrayList<String[]> Array;
 
     /// Actor no debe ser No identificado
-    public ArrayList ActorNI() {
+    public ArrayList ActorNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -28,7 +28,7 @@ public class V3Part_Act_huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -49,7 +49,7 @@ public class V3Part_Act_huelga {
     }
 
     /// CUANDO ACTOR = Otro no debe capturar desde Nombre del sindicato hasta No_identificado
-    public ArrayList Actor_Otro() {
+    public ArrayList Actor_Otro(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -64,7 +64,7 @@ public class V3Part_Act_huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -85,7 +85,7 @@ public class V3Part_Act_huelga {
     }
 
     /// CUANDO ACTOR = Mayoría de Trabajadores no debe capturar desde Nombre del sindicato hasta Especifique (otra organización obrera)
-    public ArrayList Actor_Mayoria() {
+    public ArrayList Actor_Mayoria(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -100,7 +100,7 @@ public class V3Part_Act_huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

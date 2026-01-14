@@ -17,7 +17,7 @@ public class V3Part_Act_colectivo {
     ArrayList<String[]> Array;
 
     /// Actor no debe ser No identificado
-    public ArrayList ActorNI() {
+    public ArrayList ActorNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -28,7 +28,7 @@ public class V3Part_Act_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -49,7 +49,7 @@ public class V3Part_Act_colectivo {
     }
 
     // CUANDO ACTOR = Sindicato no debe capturar desde Tipo hasta Longitud
-    public ArrayList Actor_Sindicato() {
+    public ArrayList Actor_Sindicato(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -65,7 +65,7 @@ public class V3Part_Act_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -86,7 +86,7 @@ public class V3Part_Act_colectivo {
     }
 
     // CUANDO ACTOR = Patron no debe capturar desde Nombre del sindicato hasta No_identificado.
-    public ArrayList Actor_Patron() {
+    public ArrayList Actor_Patron(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -101,7 +101,7 @@ public class V3Part_Act_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -122,7 +122,7 @@ public class V3Part_Act_colectivo {
     }
 
     // CUANDO TIPO = Persona_fisica no debe capturar desde Razon social hasta Longitud.
-    public ArrayList Persona_Fisica() {
+    public ArrayList Persona_Fisica(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -137,7 +137,7 @@ public class V3Part_Act_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

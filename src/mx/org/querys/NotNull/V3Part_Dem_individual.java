@@ -17,7 +17,7 @@ public class V3Part_Dem_individual {
     ArrayList<String[]> Array;
 
     /// Demandado no debe ser 9 = No identificado
-    public ArrayList DemandadoNI() {
+    public ArrayList DemandadoNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -28,7 +28,7 @@ public class V3Part_Dem_individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -49,7 +49,7 @@ public class V3Part_Dem_individual {
     }
 
     /// Cuando Demandado = Otro no debe capturar desde Tipo hasta Longitud
-    public ArrayList Demandado_otro() {
+    public ArrayList Demandado_otro(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -65,7 +65,7 @@ public class V3Part_Dem_individual {
 
         //System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -86,7 +86,7 @@ public class V3Part_Dem_individual {
     }
 
     /// Cuando TIPO = persona_Fisica no debe capturar desde Razón social hasta Longitud
-    public ArrayList Tipo_persona() {
+    public ArrayList Tipo_persona(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -102,7 +102,7 @@ public class V3Part_Dem_individual {
 
         //System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

@@ -21,7 +21,7 @@ public class V3Individual {
     private static final Logger LOGGER = Logger.getLogger(V3Individual.class.getName());
 
     ///Tipo de asunto no debe de ser =9 No_identificado
-    public ArrayList Tipo_Asunto() {
+    public ArrayList Tipo_Asunto(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -31,7 +31,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -49,7 +49,7 @@ public class V3Individual {
     }
 
     //Cuando ¿El trabajador contó con contrato escrito? = No o No identificado, no debe de capturar tipo de contrato
-    public ArrayList Contrato_Escrito() {
+    public ArrayList Contrato_Escrito(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -63,7 +63,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -81,7 +81,7 @@ public class V3Individual {
     }
 
     ////Cuando ¿Se anexó constancia de no conciliación... ? = NO O NO IDENTIFICADO no debe capturar constancia_clave
-    public ArrayList Centro_conciliacion() {
+    public ArrayList Centro_conciliacion(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -97,7 +97,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -115,7 +115,7 @@ public class V3Individual {
     }
 
     ////Cuando ¿Se formuló prevención a la demanda? = NO/NO IDENTIFICADO no debe capturar DESAHOGO_PREV_DEMANDA
-    public ArrayList Preve_demanda() {
+    public ArrayList Preve_demanda(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -131,7 +131,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -149,7 +149,7 @@ public class V3Individual {
     }
 
     ////Estatus de la demanda no debe de ser 9=No_identificado.
-    public ArrayList Estatus_Demanda() {
+    public ArrayList Estatus_Demanda(Connection con) {
         Array = new ArrayList<>();
 
         // Nota: el NOT IN se conserva pero sin filtros PValidacion
@@ -162,7 +162,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -181,7 +181,7 @@ public class V3Individual {
     }
 
     ////Cuando Estatus de la demanda =Admitida no debe capturarse Causas que impiden la admisión
-    public ArrayList Estatus_Demanda_admitida() {
+    public ArrayList Estatus_Demanda_admitida(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -191,7 +191,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -209,7 +209,7 @@ public class V3Individual {
     }
 
     ////Tramitación por auto de depuración = No/No identificado, no debe capturar FECHA_DEPURACION
-    public ArrayList Tram_depuracion() {
+    public ArrayList Tram_depuracion(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -225,7 +225,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -243,7 +243,7 @@ public class V3Individual {
     }
 
     ////Audiencia preliminar = No/No identificado, no debe capturar FECHA_AUDIENCIA_PRELIM
-    public ArrayList Audiencia_preliminar() {
+    public ArrayList Audiencia_preliminar(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -259,7 +259,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -277,7 +277,7 @@ public class V3Individual {
     }
 
     ////Audiencia de juicio = No/No identificado, no debe capturar FECHA_AUDIENCIA_JUICIO
-    public ArrayList Audiencia_juicio() {
+    public ArrayList Audiencia_juicio(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -293,7 +293,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -311,7 +311,7 @@ public class V3Individual {
     }
 
     ////Estatus del expediente no debe de ser 9=No_identificado.
-    public ArrayList Estatus_ExpedienteNI() {
+    public ArrayList Estatus_ExpedienteNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -322,7 +322,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -341,7 +341,7 @@ public class V3Individual {
     }
 
     ///INCOMPETENCIA NO DEBE SER = NO IDENTIFICADA
-    public ArrayList IncompetenciaNI() {
+    public ArrayList IncompetenciaNI(Connection con) {
         Array = new ArrayList<>();
 
         // En H2 ya no hace falta el subselect, pero lo dejo simple y equivalente:
@@ -352,7 +352,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -371,7 +371,7 @@ public class V3Individual {
     }
 
     ///INCOMPETENCIA=2 (No) y trae TIPO_INCOMPETENCIA -> no debe tenerlo
-    public ArrayList Tipo_IncompetenciaNI() {
+    public ArrayList Tipo_IncompetenciaNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -381,7 +381,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -399,7 +399,7 @@ public class V3Individual {
     }
 
     //INCOMPETENCIA=SI no debe capturar datos posteriores
-    public ArrayList PivIncompetencia() {
+    public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA " +
@@ -422,7 +422,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -440,7 +440,7 @@ public class V3Individual {
     }
 
     //INCOMPETENCIA=9 (No identificado) pero hay datos a partir de tipo_incompetencia y demás
-    public ArrayList PivIncompetencia_Noindentificado() {
+    public ArrayList PivIncompetencia_Noindentificado(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA " +
@@ -464,7 +464,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -482,7 +482,7 @@ public class V3Individual {
     }
 
     //Estatus demanda desechada/archivo/no se dio trámite (2,3,4) y hay datos posteriores
-    public ArrayList Estatus_Demanda_Desechada() {
+    public ArrayList Estatus_Demanda_Desechada(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA " +
@@ -503,7 +503,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -521,7 +521,7 @@ public class V3Individual {
     }
 
     //Estatus demanda = 9 y hay datos posteriores
-    public ArrayList Estatus_Demanda_Noidentificada() {
+    public ArrayList Estatus_Demanda_Noidentificada(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA " +
@@ -542,7 +542,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -560,7 +560,7 @@ public class V3Individual {
     }
 
     //Estatus demanda = 5 y fecha apertura excede 2 meses (H2: DATEADD)
-    public ArrayList Estatus_Demanda_PrevenProceso() {
+    public ArrayList Estatus_Demanda_PrevenProceso(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -571,7 +571,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -589,7 +589,7 @@ public class V3Individual {
     }
 
     //ESTATUS EXPEDIENTE = 2 pero hay campos de solución
-    public ArrayList Estatus_Expediente() {
+    public ArrayList Estatus_Expediente(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE " +
@@ -606,7 +606,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -624,7 +624,7 @@ public class V3Individual {
     }
 
     //ESTATUS EXPEDIENTE = 9 pero hay campos contestados
-    public ArrayList Estatus_Expediente_Noidentificado() {
+    public ArrayList Estatus_Expediente_Noidentificado(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE " +
@@ -641,7 +641,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -659,7 +659,7 @@ public class V3Individual {
     }
 
     //cuando el estatus del expediente es = solucionado no debe de haber nada en fecha del ultimo acto procesal
-    public ArrayList Fecha_acto_procesal() {
+    public ArrayList Fecha_acto_procesal(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL " +
@@ -668,7 +668,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -686,7 +686,7 @@ public class V3Individual {
         return Array;
     }
 
-    public ArrayList Fase_Sol_expNoExiste() {
+    public ArrayList Fase_Sol_expNoExiste(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT P.CLAVE_ORGANO, P.EXPEDIENTE_CLAVE, S.DESCRIPCION AS FASE_SOLI_EXPEDIENTE " +
@@ -696,7 +696,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -713,7 +713,7 @@ public class V3Individual {
         return Array;
     }
 
-    public ArrayList Fase_Sol_expNI() {
+    public ArrayList Fase_Sol_expNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -729,7 +729,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -746,7 +746,7 @@ public class V3Individual {
         return Array;
     }
 
-    public ArrayList Fase_Sol_exp_TD() {
+    public ArrayList Fase_Sol_exp_TD(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE " +
@@ -761,7 +761,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -778,7 +778,7 @@ public class V3Individual {
         return Array;
     }
 
-    public ArrayList Fase_Sol_exp_TA() {
+    public ArrayList Fase_Sol_exp_TA(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE " +
@@ -792,7 +792,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -809,7 +809,7 @@ public class V3Individual {
         return Array;
     }
 
-    public ArrayList Fase_Sol_exp_AP() {
+    public ArrayList Fase_Sol_exp_AP(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE " +
@@ -823,7 +823,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -840,7 +840,7 @@ public class V3Individual {
         return Array;
     }
 
-    public ArrayList Fase_Sol_exp_AJ() {
+    public ArrayList Fase_Sol_exp_AJ(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE " +
@@ -854,7 +854,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -871,7 +871,7 @@ public class V3Individual {
         return Array;
     }
 
-    public ArrayList SinMotivo_Conflicto() {
+    public ArrayList SinMotivo_Conflicto(Connection con) {
         Array = new ArrayList<>();
 
         // En H2: TO_CHAR puede funcionar si estás en modo Oracle, si no: FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy')
@@ -885,7 +885,7 @@ public class V3Individual {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

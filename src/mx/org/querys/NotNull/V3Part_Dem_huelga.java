@@ -17,7 +17,7 @@ public class V3Part_Dem_huelga {
     ArrayList<String[]> Array;
 
     /// Demandado no debe ser 9 = No identificado
-    public ArrayList DemandadoNI() {
+    public ArrayList DemandadoNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -28,7 +28,7 @@ public class V3Part_Dem_huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -49,7 +49,7 @@ public class V3Part_Dem_huelga {
     }
 
     /// Cuando TIPO = Persona_fisica no debe capturar desde Razón social hasta Longitud
-    public ArrayList Persona_fisica() {
+    public ArrayList Persona_fisica(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -65,7 +65,7 @@ public class V3Part_Dem_huelga {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

@@ -17,7 +17,7 @@ public class V3Part_Act_ordinario {
     ArrayList<String[]> Array;
 
     /// Actor no debe ser No identificado
-    public ArrayList ActorNI() {
+    public ArrayList ActorNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -28,7 +28,7 @@ public class V3Part_Act_ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -49,7 +49,7 @@ public class V3Part_Act_ordinario {
     }
 
     /// CUANDO ACTOR = Trabajador no debe capturar desde Nombre del sindicato hasta No_identificado.
-    public ArrayList Actor_Trabajador() {
+    public ArrayList Actor_Trabajador(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -65,7 +65,7 @@ public class V3Part_Act_ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -86,7 +86,7 @@ public class V3Part_Act_ordinario {
     }
 
     /// CUANDO ACTOR = Sindicato no debe capturar desde Sexo hasta Jornada.
-    public ArrayList Actor_Sindicato() {
+    public ArrayList Actor_Sindicato(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -100,7 +100,7 @@ public class V3Part_Act_ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -121,7 +121,7 @@ public class V3Part_Act_ordinario {
     }
 
     /// CUANDO ACTOR = Coalicion_de_trabajadores no debe capturar desde Sexo hasta Jornada.
-    public ArrayList Actor_Coalicion() {
+    public ArrayList Actor_Coalicion(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -135,7 +135,7 @@ public class V3Part_Act_ordinario {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

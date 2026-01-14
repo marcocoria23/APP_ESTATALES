@@ -1,7 +1,6 @@
 package Exportar_Valida;
 
 
-import Conexion.ConexionH2;
 import QuerysNuevosVal.QNuevos;
 //import Screen_laborales.PValidacion;
 //import static Screen_laborales.PValidacion.periodoAnt;
@@ -87,7 +86,7 @@ public class V3validaciones {
   
     
     //DateFormat dateformat= new SimpleDateFormat("dd/MM/yyyy");
-    public void Valida_LaboralesNE() throws SQLException, IOException, ParseException {
+    public void Valida_LaboralesNE(Connection con) throws SQLException, IOException, ParseException {
 
       
     f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -365,27 +364,27 @@ public class V3validaciones {
         hoja17.setColumnWidth((short) 3, (short) 6000);
         hoja17.setColumnWidth((short) 4, (short) 30000);
 
-        /*ResumenNE(libro, hojaresumenval, estiloCelda0, estiloCeldabordes0, encabezado, estiloCelda1);
-        Desglose(libro, hoja0, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo, progressBar);
-        Despliega_Control_Expediente(libro, hojaControl_expe, estiloCelda0, estiloCelda1, estiloCeldabordes0,progressBar);*/
-        Despliega_Audiencias(libro, hojaAudiencias, estiloCelda0, estiloCelda1, estiloCeldabordes0,progressBar);
-       /* Despliega_OrdinarioNE(libro, hoja1, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
-        Despliega_Part_Act_Ordinario(libro, hoja2, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_Part_Dem_Ordinario(libro, hoja3, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_IndividualNE(libro, hoja4, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
-        Despliega_Part_Act_Individual(libro, hoja5, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_Part_Dem_Individual(libro, hoja6, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_ColectivoNE(libro, hoja7, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
-        Despliega_Part_Act_Colectivo(libro, hoja8, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_Part_Dem_Colectivo(libro, hoja9, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_HuelgaNE(libro, hoja10, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
-        Despliega_Part_Act_Huelga(libro, hoja11, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_Part_dem_Huelga(libro, hoja12, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_Colect_EconomNE(libro, hoja13, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
-        Despliega_Part_Act_Nat_econo(libro, hoja14, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_Part_Dem_Nat_econo(libro, hoja15, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar);
-        Despliega_ParaprocesalNE(libro, hoja16, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);
-        Despliega_Ejecucion(libro, hoja17, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar);*/
+        ResumenNE(libro, hojaresumenval, estiloCelda0, estiloCeldabordes0, encabezado, estiloCelda1);
+        Desglose(libro, hoja0, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo, progressBar, con);
+        Despliega_Control_Expediente(libro, hojaControl_expe, estiloCelda0, estiloCelda1, estiloCeldabordes0,progressBar, con);
+        Despliega_Audiencias(libro, hojaAudiencias, estiloCelda0, estiloCelda1, estiloCeldabordes0,progressBar, con);
+        Despliega_OrdinarioNE(libro, hoja1, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar, con);
+        Despliega_Part_Act_Ordinario(libro, hoja2, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_Part_Dem_Ordinario(libro, hoja3, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_IndividualNE(libro, hoja4, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar, con);
+        Despliega_Part_Act_Individual(libro, hoja5, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_Part_Dem_Individual(libro, hoja6, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_ColectivoNE(libro, hoja7, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar, con);
+        Despliega_Part_Act_Colectivo(libro, hoja8, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_Part_Dem_Colectivo(libro, hoja9, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_HuelgaNE(libro, hoja10, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar, con);
+        Despliega_Part_Act_Huelga(libro, hoja11, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_Part_dem_Huelga(libro, hoja12, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_Colect_EconomNE(libro, hoja13, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar, con);
+        Despliega_Part_Act_Nat_econo(libro, hoja14, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_Part_Dem_Nat_econo(libro, hoja15, estiloCelda0, estiloCelda1, estiloCeldabordes0, estiloCelda2,progressBar, con);
+        Despliega_ParaprocesalNE(libro, hoja16, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar, con);
+        Despliega_Ejecucion(libro, hoja17, hojaresumenval, estiloCelda0, estiloCelda1, estiloCeldabordes0, PAmarillo,progressBar, con);
         SaveFileTo(libro,progressBar,f);
     }
 
@@ -534,7 +533,7 @@ public class V3validaciones {
 
     }
 
-    public void Desglose(HSSFWorkbook libro, HSSFSheet hoja0, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar) {
+    public void Desglose(HSSFWorkbook libro, HSSFSheet hoja0, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar, Connection con) {
         int fila=3;
         V3QDesgloses Desgloses = new V3QDesgloses();
         progressBar.setValue(0);
@@ -557,7 +556,7 @@ public class V3validaciones {
         celda1.setCellValue(texto1);
         fila1.setHeight((short) 500);
 
-        ArrayResult = Desgloses.Desglose_OrdinarioNE();
+        ArrayResult = Desgloses.Desglose_OrdinarioNE(con);
         for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila21 = hoja0.createRow(3 + i);//FILA
             HSSFCell celda21 = fila21.createCell((short) 1);//COLUMNA
@@ -629,7 +628,7 @@ public class V3validaciones {
             fila22.setHeight((short) 300);
         }
 
-        ArrayResult = Desgloses.Desglose_IndividualNE();
+        ArrayResult = Desgloses.Desglose_IndividualNE(con);
         HSSFRow fila4 = hoja0.createRow(2);//FILA
         HSSFCell celda4 = fila4.createCell((short) 4);//COLUMNA
         celda4.setCellStyle(estiloCelda1);
@@ -686,7 +685,7 @@ public class V3validaciones {
             fila22.setHeight((short) 300);
         }
 
-        ArrayResult = Desgloses.Desglose_ColectivoNE();
+        ArrayResult = Desgloses.Desglose_ColectivoNE(con);
         HSSFRow fila5 = hoja0.createRow(2);//FILA
         HSSFCell celda5 = fila5.createCell((short) 6);//COLUMNA
         celda5.setCellStyle(estiloCelda1);
@@ -743,7 +742,7 @@ public class V3validaciones {
             fila22.setHeight((short) 300);
         }
 
-        ArrayResult = Desgloses.Desglose_HuelgaNE();
+        ArrayResult = Desgloses.Desglose_HuelgaNE(con);
         HSSFRow fila7 = hoja0.createRow(2);//FILA
         HSSFCell celda7 = fila7.createCell((short) 8);//COLUMNA
         celda7.setCellStyle(estiloCelda1);
@@ -800,7 +799,7 @@ public class V3validaciones {
             fila22.setHeight((short) 300);
         }
 
-        ArrayResult = Desgloses.Desglose_Colec_EconomNE();
+        ArrayResult = Desgloses.Desglose_Colec_EconomNE(con);
         HSSFRow fila11 = hoja0.createRow(2);//FILA
         HSSFCell celda11 = fila11.createCell((short) 10);//COLUMNA
         celda11.setCellStyle(estiloCelda1);
@@ -857,7 +856,7 @@ public class V3validaciones {
             fila22.setHeight((short) 300);
         }
 
-        ArrayResult = Desgloses.Desglose_ParaprocesalNE();
+        ArrayResult = Desgloses.Desglose_ParaprocesalNE(con);
         HSSFRow fila13 = hoja0.createRow(2);//FILA
         HSSFCell celda13 = fila13.createCell((short) 12);//COLUMNA
         celda13.setCellStyle(estiloCelda1);
@@ -914,7 +913,7 @@ public class V3validaciones {
             fila22.setHeight((short) 300);
         }
 
-        ArrayResult = Desgloses.Desglose_TerceriasNE();
+        ArrayResult = Desgloses.Desglose_TerceriasNE(con);
         HSSFRow fila15 = hoja0.createRow(2);//FILA
         HSSFCell celda15 = fila15.createCell((short) 14);//COLUMNA
         celda15.setCellStyle(estiloCelda1);
@@ -971,7 +970,7 @@ public class V3validaciones {
             fila22.setHeight((short) 300);
         }
 
-        ArrayResult = Desgloses.Desglose_Pref_CreditoNE();
+        ArrayResult = Desgloses.Desglose_Pref_CreditoNE(con);
         HSSFRow fila17 = hoja0.createRow(2);//FILA
         HSSFCell celda17 = fila17.createCell((short) 16);//COLUMNA
         celda17.setCellStyle(estiloCelda1);
@@ -1028,7 +1027,7 @@ public class V3validaciones {
             fila22.setHeight((short) 300);
         }
 
-        ArrayResult = Desgloses.Desglose_EjecucionNE();
+        ArrayResult = Desgloses.Desglose_EjecucionNE(con);
         HSSFRow fila19 = hoja0.createRow(2);//FILA
         HSSFCell celda19 = fila19.createCell((short) 18);//COLUMNA
         celda19.setCellStyle(estiloCelda1);
@@ -1097,7 +1096,7 @@ public class V3validaciones {
         row00.setHeight((short) 600);
         hoja0.addMergedRegion(new Region(fila, (short) 1, fila, (short) 19));
 
-        ArrayResult = Desgloses.Desglose_OrdinarioNEAnt();
+        ArrayResult = Desgloses.Desglose_OrdinarioNEAnt(con);
         for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila21 = hoja0.createRow((fila +1) + i);//FILA
             HSSFCell celda21 = fila21.createCell((short) 1);//COLUMNA
@@ -1150,7 +1149,7 @@ public class V3validaciones {
             celda22.setCellValue(texto22);
             fila22.setHeight((short) 300);
         }
-ArrayResult = Desgloses.Desglose_IndividualNEAnt();
+ArrayResult = Desgloses.Desglose_IndividualNEAnt(con);
         for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila23 = hoja0.createRow((fila +1) + i);//FILA
             HSSFCell celda23 = fila23.createCell((short) 4);//COLUMNA
@@ -1188,7 +1187,7 @@ ArrayResult = Desgloses.Desglose_IndividualNEAnt();
             celda22.setCellValue(texto22);
             fila22.setHeight((short) 300);
         }
-ArrayResult = Desgloses.Desglose_ColectivoNEAnt();
+ArrayResult = Desgloses.Desglose_ColectivoNEAnt(con);
         for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila23 = hoja0.createRow((fila +1) + i);//FILA
             HSSFCell celda23 = fila23.createCell((short) 6);//COLUMNA
@@ -1226,7 +1225,7 @@ ArrayResult = Desgloses.Desglose_ColectivoNEAnt();
             celda22.setCellValue(texto22);
             fila22.setHeight((short) 300);
         }
- ArrayResult = Desgloses.Desglose_HuelgaNEAnt();
+ ArrayResult = Desgloses.Desglose_HuelgaNEAnt(con);
         for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila23 = hoja0.createRow((fila +1) + i);//FILA
             HSSFCell celda23 = fila23.createCell((short) 8);//COLUMNA
@@ -1264,7 +1263,7 @@ ArrayResult = Desgloses.Desglose_ColectivoNEAnt();
             celda22.setCellValue(texto22);
             fila22.setHeight((short) 300);
         }
-ArrayResult = Desgloses.Desglose_Colec_EconomNEAnt();
+ArrayResult = Desgloses.Desglose_Colec_EconomNEAnt(con);
         for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila23 = hoja0.createRow((fila +1) + i);//FILA
             HSSFCell celda23 = fila23.createCell((short) 10);//COLUMNA
@@ -1302,7 +1301,7 @@ ArrayResult = Desgloses.Desglose_Colec_EconomNEAnt();
             celda22.setCellValue(texto22);
             fila22.setHeight((short) 300);
         }
-ArrayResult = Desgloses.Desglose_ParaprocesalNEAnt();
+ArrayResult = Desgloses.Desglose_ParaprocesalNEAnt(con);
         for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila23 = hoja0.createRow((fila +1) + i);//FILA
             HSSFCell celda23 = fila23.createCell((short) 12);//COLUMNA
@@ -1340,7 +1339,7 @@ ArrayResult = Desgloses.Desglose_ParaprocesalNEAnt();
             celda22.setCellValue(texto22);
             fila22.setHeight((short) 300);
         }
-ArrayResult = Desgloses.Desglose_TerceriasNEAnt();        
+ArrayResult = Desgloses.Desglose_TerceriasNEAnt(con);        
         for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila23 = hoja0.createRow((fila +1) + i);//FILA
             HSSFCell celda23 = fila23.createCell((short) 14);//COLUMNA
@@ -1378,7 +1377,7 @@ ArrayResult = Desgloses.Desglose_TerceriasNEAnt();
             celda22.setCellValue(texto22);
             fila22.setHeight((short) 300);
         }
-ArrayResult = Desgloses.Desglose_Pref_CreditoNEAnt();
+ArrayResult = Desgloses.Desglose_Pref_CreditoNEAnt(con);
         for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila23 = hoja0.createRow((fila +1) + i);//FILA
             HSSFCell celda23 = fila23.createCell((short) 16);//COLUMNA
@@ -1416,7 +1415,7 @@ ArrayResult = Desgloses.Desglose_Pref_CreditoNEAnt();
             celda22.setCellValue(texto22);
             fila22.setHeight((short) 300);
         }
-ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
+ArrayResult = Desgloses.Desglose_EjecucionNEAnt(con);
        for (int i = 0; i < ArrayResult.size(); i++) {
             HSSFRow fila23 = hoja0.createRow((fila +1) + i);//FILA
             HSSFCell celda23 = fila23.createCell((short) 18);//COLUMNA
@@ -1459,7 +1458,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         
     }
 
-    public void Despliega_Control_Expediente(HSSFWorkbook libro, HSSFSheet hojaControl_expe, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0,JProgressBar progressBar) {
+    public void Despliega_Control_Expediente(HSSFWorkbook libro, HSSFSheet hojaControl_expe, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0,JProgressBar progressBar, Connection con) {
         V3Control_expediente CE = new V3Control_expediente();
         int conEnc = 1, conDat = 2, coni = 1;
         //fecha de admision de la demanda
@@ -1475,7 +1474,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         row0.setHeight((short) 600);
 
     
-        ArrayResult = CE.Horario();
+        ArrayResult = CE.Horario(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -1583,7 +1582,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = CE.SubJuecesHom();
+        ArrayResult = CE.SubJuecesHom(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -1691,7 +1690,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = CE.SubJuecesMuj();
+        ArrayResult = CE.SubJuecesMuj(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -1799,7 +1798,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = CE.TotalJueces();
+        ArrayResult = CE.TotalJueces(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -1910,7 +1909,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
          progressBar.setValue(10);
     }
 
-    public void Despliega_Audiencias(HSSFWorkbook libro, HSSFSheet hojaAudiencias, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0,JProgressBar progressBar) throws SQLException {
+    public void Despliega_Audiencias(HSSFWorkbook libro, HSSFSheet hojaAudiencias, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0,JProgressBar progressBar, Connection con) {
         V3_Audiencias NNV3_Audiencias = new V3_Audiencias();
         V3QAudiencias Audiencias = new V3QAudiencias();
 
@@ -1930,8 +1929,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         
         
         
-     try (Connection con = ConexionH2.getConnection();){
-         
+        
         ArrayResult = Audiencias.FORMATO_INICIO(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
@@ -3820,10 +3818,9 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
      progressBar.setValue(15);
-     }
     }
 
-    public void Despliega_OrdinarioNE(HSSFWorkbook libro, HSSFSheet hoja1, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar) {
+    public void Despliega_OrdinarioNE(HSSFWorkbook libro, HSSFSheet hoja1, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar, Connection con) {
 
         V3QOrdinario Ordinario = new V3QOrdinario();
         V3Ordinario NNOrdinario = new V3Ordinario();
@@ -4604,7 +4601,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         
         
         
-        ArrayResult = Ordinario.FECHA_APERTURA_EXPEDIENTE_FUT();
+        ArrayResult = Ordinario.FECHA_APERTURA_EXPEDIENTE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -4712,7 +4709,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = Ordinario.FECHA_PRES_DEMANDA_FUT();
+        ArrayResult = Ordinario.FECHA_PRES_DEMANDA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -4820,7 +4817,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = Ordinario.FECHA_ADMI_DEMANDA_FUT();
+        ArrayResult = Ordinario.FECHA_ADMI_DEMANDA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -4928,7 +4925,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = Ordinario.FECHA_AUDIENCIA_PRELIM_FUT();
+        ArrayResult = Ordinario.FECHA_AUDIENCIA_PRELIM_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -5036,7 +5033,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = Ordinario.FECHA_AUDIENCIA_JUICIO_FUT();
+        ArrayResult = Ordinario.FECHA_AUDIENCIA_JUICIO_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -5144,7 +5141,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = Ordinario.FECHA_ACTO_PROCESAL_FUT();
+        ArrayResult = Ordinario.FECHA_ACTO_PROCESAL_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -5252,7 +5249,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = Ordinario.FECHA_DICTO_RESOLUCIONFE_FUT();
+        ArrayResult = Ordinario.FECHA_DICTO_RESOLUCIONFE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -5360,7 +5357,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = Ordinario.FECHA_DICTO_RESOLUCIONAP_FUT();
+        ArrayResult = Ordinario.FECHA_DICTO_RESOLUCIONAP_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -5468,7 +5465,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = Ordinario.FECHA_RESOLUCIONAJ_FUT();
+        ArrayResult = Ordinario.FECHA_RESOLUCIONAJ_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -5830,7 +5827,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }*/
 
-        ArrayResult = Ordinario.Duplicidad_expediente();
+        ArrayResult = Ordinario.Duplicidad_expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -5942,7 +5939,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Ordinario.Fecha_Acto_ProcesalNE();
+        ArrayResult = Ordinario.Fecha_Acto_ProcesalNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -6080,7 +6077,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Ordinario.Fecha_Aud_Apertura();
+        ArrayResult = Ordinario.Fecha_Aud_Apertura(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -6244,7 +6241,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Ordinario.Fecha_Aud_Presentacion();
+        ArrayResult = Ordinario.Fecha_Aud_Presentacion(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -6408,7 +6405,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Ordinario.Fecha_Aud_Admision();
+        ArrayResult = Ordinario.Fecha_Aud_Admision(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -6572,7 +6569,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Ordinario.Fecha_PresentacionNE();
+        ArrayResult = Ordinario.Fecha_PresentacionNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -6710,7 +6707,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Ordinario.Fecha_PresentacionAdmiNE();
+        ArrayResult = Ordinario.Fecha_PresentacionAdmiNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -6848,7 +6845,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Ordinario.Fecha_Admi_demandaNE();
+        ArrayResult = Ordinario.Fecha_Admi_demandaNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaA00 = hojaresumenval.createRow(2);//filaA
@@ -6985,7 +6982,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Ordinario.Fecha_Audiencia_JuicioNE();
+        ArrayResult = Ordinario.Fecha_Audiencia_JuicioNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaB00 = hojaresumenval.createRow(2);//filaB
@@ -7122,7 +7119,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Ordinario.Fecha_Audiencia_PrelimNE();
+        ArrayResult = Ordinario.Fecha_Audiencia_PrelimNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -7259,7 +7256,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Ordinario.Fecha_Dicto_ResolucionAP();
+        ArrayResult = Ordinario.Fecha_Dicto_ResolucionAP(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -7396,7 +7393,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Ordinario.Fecha_ResolucionAJ();
+        ArrayResult = Ordinario.Fecha_ResolucionAJ(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -7533,7 +7530,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Ordinario.Fecha_Dicto_ResolucionFE();
+        ArrayResult = Ordinario.Fecha_Dicto_ResolucionFE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -7670,7 +7667,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = NNOrdinario.Tipo_asuntoNI();
+        ArrayResult = NNOrdinario.Tipo_asuntoNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -7781,7 +7778,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Tipo_asunto_ColectNI();
+        ArrayResult = NNOrdinario.Tipo_asunto_ColectNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -7892,7 +7889,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Contrato_escritoNI();
+        ArrayResult = NNOrdinario.Contrato_escritoNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -8003,7 +8000,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Ta_Colectivo();
+        ArrayResult = NNOrdinario.Ta_Colectivo(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -8114,7 +8111,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
         
-         ArrayResult = NNOrdinario.SinMotivo_Conflicto();
+         ArrayResult = NNOrdinario.SinMotivo_Conflicto(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -8227,7 +8224,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         
         
 
-        ArrayResult = NNOrdinario.Mot_conflicto();
+        ArrayResult = NNOrdinario.Mot_conflicto(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -8338,7 +8335,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Pago_prestaciones();
+        ArrayResult = NNOrdinario.Pago_prestaciones(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -8449,7 +8446,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Cons_expedida();
+        ArrayResult = NNOrdinario.Cons_expedida(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -8560,7 +8557,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Preve_demanda();
+        ArrayResult = NNOrdinario.Preve_demanda(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -8672,7 +8669,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         }
 // PValidacion validacion = new PValidacion();       
  
-        ArrayResult = NNOrdinario.Estatus_demaNi();
+        ArrayResult = NNOrdinario.Estatus_demaNi(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -8783,7 +8780,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
  
-        ArrayResult = NNOrdinario.Impiden_admision_demanda();
+        ArrayResult = NNOrdinario.Impiden_admision_demanda(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -8894,7 +8891,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.audiencia_preliminar();
+        ArrayResult = NNOrdinario.audiencia_preliminar(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -9005,7 +9002,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.audiencia_juicio();
+        ArrayResult = NNOrdinario.audiencia_juicio(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -9115,7 +9112,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             conDat = conDat + coni;
             coni = 1;
         }
-        ArrayResult = NNOrdinario.Estatus_ExpedienteNI();
+        ArrayResult = NNOrdinario.Estatus_ExpedienteNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -9227,7 +9224,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         }
   
         
-        ArrayResult = NNOrdinario.Estatus_Expediente_Noidentificado();
+        ArrayResult = NNOrdinario.Estatus_Expediente_Noidentificado(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -9338,7 +9335,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.IncompetenciaNI();
+        ArrayResult = NNOrdinario.IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -9450,7 +9447,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         }
         
         
-        ArrayResult = NNOrdinario.PivIncompetencia_Noidentificado();
+        ArrayResult = NNOrdinario.PivIncompetencia_Noidentificado(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -9561,7 +9558,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Tipo_IncompetenciaNI();
+        ArrayResult = NNOrdinario.Tipo_IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -9672,7 +9669,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.PivIncompetencia();
+        ArrayResult = NNOrdinario.PivIncompetencia(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -9787,7 +9784,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Estatus_Demanda_Desechada();
+        ArrayResult = NNOrdinario.Estatus_Demanda_Desechada(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -9902,7 +9899,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         }
         
         
-        ArrayResult = NNOrdinario.Estatus_Demanda_NoIdentificada();
+        ArrayResult = NNOrdinario.Estatus_Demanda_NoIdentificada(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -10018,7 +10015,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         
                 /* EN PROCESO O PREVENCION */
         //Favor de verificar el campo Estatus_demanda, ya que la Fecha de Apertura del Expediente (FECHA_APERTURA_EXPEDIENTE) excede el plazo máximo permitido de 60 días (2 meses).
-        ArrayResult = NNOrdinario.Estatus_Demanda_EnPrevenProceso();
+        ArrayResult = NNOrdinario.Estatus_Demanda_EnPrevenProceso(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -10132,7 +10129,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Estatus_Expediente();
+        ArrayResult = NNOrdinario.Estatus_Expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -10247,7 +10244,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Fecha_acto_procesal();
+        ArrayResult = NNOrdinario.Fecha_acto_procesal(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -10362,7 +10359,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-         ArrayResult = NNOrdinario.Fase_Sol_expNoExiste();
+         ArrayResult = NNOrdinario.Fase_Sol_expNoExiste(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -10478,7 +10475,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
         }
         
         
-        ArrayResult = NNOrdinario.Fase_Sol_expNI();
+        ArrayResult = NNOrdinario.Fase_Sol_expNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -10593,7 +10590,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Fase_Sol_exp_FE();
+        ArrayResult = NNOrdinario.Fase_Sol_exp_FE(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -10708,7 +10705,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Fase_Sol_exp_AP();
+        ArrayResult = NNOrdinario.Fase_Sol_exp_AP(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -10823,7 +10820,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
             coni = 1;
         }
 
-        ArrayResult = NNOrdinario.Fase_Sol_exp_AJ();
+        ArrayResult = NNOrdinario.Fase_Sol_exp_AJ(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -10940,7 +10937,7 @@ ArrayResult = Desgloses.Desglose_EjecucionNEAnt();
 progressBar.setValue(20);
     }
 
-    public void Despliega_Part_Act_Ordinario(HSSFWorkbook libro, HSSFSheet hoja2, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_Act_Ordinario(HSSFWorkbook libro, HSSFSheet hoja2, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_act_ordinario Part_ordinarioNE = new V3QPart_act_ordinario();
         V3Part_Act_ordinario NNPart_Act_ordinario = new V3Part_Act_ordinario();
 
@@ -10956,7 +10953,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600); 
  
-        ArrayResult = NNPart_Act_ordinario.ActorNI();
+        ArrayResult = NNPart_Act_ordinario.ActorNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -11065,7 +11062,7 @@ progressBar.setValue(20);
         }
  
      
-        ArrayResult = NNPart_Act_ordinario.Actor_Trabajador();
+        ArrayResult = NNPart_Act_ordinario.Actor_Trabajador(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -11173,7 +11170,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNPart_Act_ordinario.Actor_Sindicato();
+        ArrayResult = NNPart_Act_ordinario.Actor_Sindicato(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -11281,7 +11278,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNPart_Act_ordinario.Actor_Coalicion();
+        ArrayResult = NNPart_Act_ordinario.Actor_Coalicion(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -11389,7 +11386,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_ordinarioNE.ExpeNDesglose();
+        ArrayResult = Part_ordinarioNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja2.createRow(conEnc);//filaBC
@@ -11506,7 +11503,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_ordinarioNE.IncompetenciaNE();
+        ArrayResult = Part_ordinarioNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja2.createRow(conEnc);//filaBC
@@ -11625,7 +11622,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_ordinarioNE.Estatus_demandaNE();
+        ArrayResult = Part_ordinarioNE.Estatus_demandaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja2.createRow(conEnc);//filaBC
@@ -11742,7 +11739,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_ordinarioNE.Dif_ActoresNE();
+        ArrayResult = Part_ordinarioNE.Dif_ActoresNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja2.createRow(conEnc);//filaBC
@@ -11877,7 +11874,7 @@ progressBar.setValue(20);
         progressBar.setValue(25);
     }
 
-    public void Despliega_Part_Dem_Ordinario(HSSFWorkbook libro, HSSFSheet hoja3, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_Dem_Ordinario(HSSFWorkbook libro, HSSFSheet hoja3, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_dem_ordinario Part_ordinarioNE = new V3QPart_dem_ordinario();
         V3Part_Dem_ordinario NNPart_Dem_ordinario = new V3Part_Dem_ordinario();
 
@@ -11893,7 +11890,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
         
-       ArrayResult = NNPart_Dem_ordinario.DemandadoNI();
+       ArrayResult = NNPart_Dem_ordinario.DemandadoNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -12001,7 +11998,7 @@ progressBar.setValue(20);
             coni = 1;
         }
  
-        ArrayResult = NNPart_Dem_ordinario.Demandado_Otro();
+        ArrayResult = NNPart_Dem_ordinario.Demandado_Otro(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -12109,7 +12106,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNPart_Dem_ordinario.Tipo_pf();
+        ArrayResult = NNPart_Dem_ordinario.Tipo_pf(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -12217,7 +12214,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_ordinarioNE.ExpeNDesglose();
+        ArrayResult = Part_ordinarioNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja3.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -12333,7 +12330,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_ordinarioNE.IncompetenciaNE();
+        ArrayResult = Part_ordinarioNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja3.createRow(conEnc);//filaBC
@@ -12452,7 +12449,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_ordinarioNE.Estatus_demandaNE();
+        ArrayResult = Part_ordinarioNE.Estatus_demandaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja3.createRow(conEnc);//filaBC
@@ -12569,7 +12566,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_ordinarioNE.Dif_demandadosNE();
+        ArrayResult = Part_ordinarioNE.Dif_demandadosNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja3.createRow(conEnc);//filaBC
@@ -12705,7 +12702,7 @@ progressBar.setValue(20);
        
     }
 
-    public void Despliega_IndividualNE(HSSFWorkbook libro, HSSFSheet hoja4, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar) {
+    public void Despliega_IndividualNE(HSSFWorkbook libro, HSSFSheet hoja4, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar, Connection con) {
 
         V3QIndividual Individual = new V3QIndividual();
         V3Individual NNindividual = new V3Individual();
@@ -13700,7 +13697,7 @@ progressBar.setValue(20);
         }
         
         
-        ArrayResult = Individual.FECHA_APERTURA_EXPEDIENTE_FUT();
+        ArrayResult = Individual.FECHA_APERTURA_EXPEDIENTE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -13808,7 +13805,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_PRES_DEMANDA_FUT();
+        ArrayResult = Individual.FECHA_PRES_DEMANDA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -13916,7 +13913,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_ADMI_DEMANDA_FUT();
+        ArrayResult = Individual.FECHA_ADMI_DEMANDA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -14024,7 +14021,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_DEPURACION_FUT();
+        ArrayResult = Individual.FECHA_DEPURACION_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -14132,7 +14129,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_AUDIENCIA_PRELIM_FUT();
+        ArrayResult = Individual.FECHA_AUDIENCIA_PRELIM_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -14240,7 +14237,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_AUDIENCIA_JUICIO_FUT();
+        ArrayResult = Individual.FECHA_AUDIENCIA_JUICIO_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -14348,7 +14345,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_ACTO_PROCESAL_FUT();
+        ArrayResult = Individual.FECHA_ACTO_PROCESAL_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -14456,7 +14453,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_DEPURACION_FUT();
+        ArrayResult = Individual.FECHA_DEPURACION_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -14564,7 +14561,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_DICTO_RESOLUCION_AD_FUT();
+        ArrayResult = Individual.FECHA_DICTO_RESOLUCION_AD_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -14672,7 +14669,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_RESOLUCION_TA_FUT();
+        ArrayResult = Individual.FECHA_RESOLUCION_TA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -14780,7 +14777,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_DICTO_RESOLUCION_AP_FUT();
+        ArrayResult = Individual.FECHA_DICTO_RESOLUCION_AP_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -14888,7 +14885,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.FECHA_DICTO_RESOLUCION_AJ_FUT();
+        ArrayResult = Individual.FECHA_DICTO_RESOLUCION_AJ_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -15249,7 +15246,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }*/
 
-        ArrayResult = Individual.Duplicidad_expediente();
+        ArrayResult = Individual.Duplicidad_expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(3);//FILA
@@ -15361,7 +15358,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Individual.Fecha_Aud_Presentacion();
+        ArrayResult = Individual.Fecha_Aud_Presentacion(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(3);//FILA
@@ -15525,7 +15522,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Individual.Fecha_Aud_Apertura();
+        ArrayResult = Individual.Fecha_Aud_Apertura(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(3);//FILA
@@ -15689,7 +15686,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Individual.Fecha_Aud_Admision();
+        ArrayResult = Individual.Fecha_Aud_Admision(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(3);//FILA
@@ -15853,7 +15850,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Individual.Fecha_PresentacionNE();
+        ArrayResult = Individual.Fecha_PresentacionNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(3);//FILA
@@ -15991,7 +15988,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Individual.Fecha_PresentacionAdmiNE();
+        ArrayResult = Individual.Fecha_PresentacionAdmiNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(3);//FILA
@@ -16129,7 +16126,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Individual.Fecha_Admi_demandaNE();
+        ArrayResult = Individual.Fecha_Admi_demandaNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado Fecha_Admi_demanda: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(3);//FILA
@@ -16290,7 +16287,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Individual.Fecha_DepuracionNE();
+        ArrayResult = Individual.Fecha_DepuracionNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaA00 = hojaresumenval.createRow(3);//filaA
@@ -16427,7 +16424,7 @@ progressBar.setValue(20);
             System.out.println("contador FECHA_AUDIENCIA_JUICIO Encabezado: " + conEnc + "Contador Datos: " + conDat);
         }
 
-        ArrayResult = Individual.Fecha_Audiencia_PrelimNE();
+        ArrayResult = Individual.Fecha_Audiencia_PrelimNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaB00 = hojaresumenval.createRow(3);//filaB
@@ -16564,7 +16561,7 @@ progressBar.setValue(20);
             System.out.println("contador FECHA_AUDINECIA_PRELIMINAR Encabezado: " + conEnc + "Contador Datos: " + conDat);
         }
 
-        ArrayResult = Individual.Fecha_Audiencia_JuicioNE();
+        ArrayResult = Individual.Fecha_Audiencia_JuicioNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -16701,7 +16698,7 @@ progressBar.setValue(20);
             System.out.println("contador feCHA_EMPLAZ_DEMANDA Encabezado: " + conEnc + "Contador Datos: " + conDat);
         }
 
-        ArrayResult = Individual.Fecha_Acto_procesalNE();
+        ArrayResult = Individual.Fecha_Acto_procesalNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaD00 = hojaresumenval.createRow(3);//filaD
@@ -16838,7 +16835,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Individual.Fecha_Dicto_Resolucion_AdNE();
+        ArrayResult = Individual.Fecha_Dicto_Resolucion_AdNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaE00 = hojaresumenval.createRow(3);//filaE
@@ -16975,7 +16972,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Individual.Fecha_Resolucion_TaNE();
+        ArrayResult = Individual.Fecha_Resolucion_TaNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaF00 = hojaresumenval.createRow(3);//filaF
@@ -17113,7 +17110,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Individual.Fecha_Resolucion_ApNE();
+        ArrayResult = Individual.Fecha_Resolucion_ApNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaG00 = hojaresumenval.createRow(3);//filaG
@@ -17250,7 +17247,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Individual.Fecha_Resolucion_AjNE();
+        ArrayResult = Individual.Fecha_Resolucion_AjNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaH00 = hojaresumenval.createRow(3);//filaH
@@ -17389,7 +17386,7 @@ progressBar.setValue(20);
 
         
         
-                 ArrayResult = NNindividual.SinMotivo_Conflicto();
+                 ArrayResult = NNindividual.SinMotivo_Conflicto(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -17501,7 +17498,7 @@ progressBar.setValue(20);
         }
         
         
-        ArrayResult = NNindividual.Tipo_Asunto();
+        ArrayResult = NNindividual.Tipo_Asunto(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -17615,7 +17612,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Contrato_Escrito();
+        ArrayResult = NNindividual.Contrato_Escrito(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -17729,7 +17726,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Centro_conciliacion();
+        ArrayResult = NNindividual.Centro_conciliacion(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -17843,7 +17840,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Preve_demanda();
+        ArrayResult = NNindividual.Preve_demanda(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -17957,7 +17954,7 @@ progressBar.setValue(20);
             coni = 1;
         }
  
-        ArrayResult = NNindividual.Estatus_Demanda();
+        ArrayResult = NNindividual.Estatus_Demanda(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             System.out.println("1");
@@ -18068,7 +18065,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Estatus_Demanda_admitida();
+        ArrayResult = NNindividual.Estatus_Demanda_admitida(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             System.out.println("1");
@@ -18179,7 +18176,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Tram_depuracion();
+        ArrayResult = NNindividual.Tram_depuracion(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -18293,7 +18290,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Audiencia_preliminar();
+        ArrayResult = NNindividual.Audiencia_preliminar(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -18407,7 +18404,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Audiencia_juicio();
+        ArrayResult = NNindividual.Audiencia_juicio(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -18521,7 +18518,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Estatus_ExpedienteNI();
+        ArrayResult = NNindividual.Estatus_ExpedienteNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             System.out.println("1");
@@ -18633,7 +18630,7 @@ progressBar.setValue(20);
         }
         
         
-        ArrayResult = NNindividual.Estatus_Expediente_Noidentificado();
+        ArrayResult = NNindividual.Estatus_Expediente_Noidentificado(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             System.out.println("1");
@@ -18744,7 +18741,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.IncompetenciaNI();
+        ArrayResult = NNindividual.IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -18858,7 +18855,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Tipo_IncompetenciaNI();
+        ArrayResult = NNindividual.Tipo_IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -18969,7 +18966,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.PivIncompetencia();
+        ArrayResult = NNindividual.PivIncompetencia(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19084,7 +19081,7 @@ progressBar.setValue(20);
         }
         
         
-        ArrayResult = NNindividual.PivIncompetencia_Noindentificado();
+        ArrayResult = NNindividual.PivIncompetencia_Noindentificado(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19198,7 +19195,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Estatus_Demanda_Desechada();
+        ArrayResult = NNindividual.Estatus_Demanda_Desechada(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19312,7 +19309,7 @@ progressBar.setValue(20);
             coni = 1;
         }
         
-          ArrayResult = NNindividual.Estatus_Demanda_Noidentificada();
+          ArrayResult = NNindividual.Estatus_Demanda_Noidentificada(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19428,7 +19425,7 @@ progressBar.setValue(20);
         
        //Favor de verificar el campo Estatus_demanda, ya que la Fecha de Apertura del Expediente (FECHA_APERTURA_EXPEDIENTE) excede el plazo máximo permitido de 60 días (2 meses).
         // EN PROCESO O PREVENCION
-                  ArrayResult = NNindividual.Estatus_Demanda_PrevenProceso();
+                  ArrayResult = NNindividual.Estatus_Demanda_PrevenProceso(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19542,7 +19539,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Estatus_Expediente();
+        ArrayResult = NNindividual.Estatus_Expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19656,7 +19653,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Fecha_acto_procesal();
+        ArrayResult = NNindividual.Fecha_acto_procesal(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19771,7 +19768,7 @@ progressBar.setValue(20);
         }
         
         
-         ArrayResult = NNindividual.Fase_Sol_expNoExiste();
+         ArrayResult = NNindividual.Fase_Sol_expNoExiste(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19885,7 +19882,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Fase_Sol_expNI();
+        ArrayResult = NNindividual.Fase_Sol_expNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19999,7 +19996,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Fase_Sol_exp_TD();
+        ArrayResult = NNindividual.Fase_Sol_exp_TD(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -20113,7 +20110,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Fase_Sol_exp_TA();
+        ArrayResult = NNindividual.Fase_Sol_exp_TA(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -20227,7 +20224,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Fase_Sol_exp_AP();
+        ArrayResult = NNindividual.Fase_Sol_exp_AP(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -20341,7 +20338,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNindividual.Fase_Sol_exp_AJ();
+        ArrayResult = NNindividual.Fase_Sol_exp_AJ(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -20457,7 +20454,7 @@ progressBar.setValue(20);
     progressBar.setValue(35);
     }
 
-    public void Despliega_Part_Act_Individual(HSSFWorkbook libro, HSSFSheet hoja5, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_Act_Individual(HSSFWorkbook libro, HSSFSheet hoja5, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_act_individual Part_individualNE = new V3QPart_act_individual();
         V3Part_Act_individual NNV3Part_Act_individual = new V3Part_Act_individual();
 
@@ -20473,7 +20470,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = NNV3Part_Act_individual.ActorNI();
+        ArrayResult = NNV3Part_Act_individual.ActorNI(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja5.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -20589,7 +20586,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNV3Part_Act_individual.Actor_otro();
+        ArrayResult = NNV3Part_Act_individual.Actor_otro(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja5.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -20705,7 +20702,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_individualNE.ExpeNDesglose();
+        ArrayResult = Part_individualNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja5.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -20821,7 +20818,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_individualNE.IncompetenciaNE();
+        ArrayResult = Part_individualNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja5.createRow(conEnc);//filaBC
@@ -20940,7 +20937,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_individualNE.Estatus_demandaNE();
+        ArrayResult = Part_individualNE.Estatus_demandaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja5.createRow(conEnc);//filaBC
@@ -21057,7 +21054,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_individualNE.Dif_ActoresNE();
+        ArrayResult = Part_individualNE.Dif_ActoresNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja5.createRow(conEnc);//filaBC
@@ -21192,7 +21189,7 @@ progressBar.setValue(20);
         progressBar.setValue(40);
     }
 
-    public void Despliega_Part_Dem_Individual(HSSFWorkbook libro, HSSFSheet hoja6, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_Dem_Individual(HSSFWorkbook libro, HSSFSheet hoja6, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_dem_individual Part_individualNE = new V3QPart_dem_individual();
         V3Part_Dem_individual NNPart_Dem_individual = new V3Part_Dem_individual();
 
@@ -21208,7 +21205,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = NNPart_Dem_individual.DemandadoNI();
+        ArrayResult = NNPart_Dem_individual.DemandadoNI(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaC1 = hoja6.createRow(conEnc);//filaC
@@ -21314,7 +21311,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNPart_Dem_individual.Demandado_otro();
+        ArrayResult = NNPart_Dem_individual.Demandado_otro(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaC1 = hoja6.createRow(conEnc);//filaC
@@ -21420,7 +21417,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNPart_Dem_individual.Tipo_persona();
+        ArrayResult = NNPart_Dem_individual.Tipo_persona(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaC1 = hoja6.createRow(conEnc);//filaC
@@ -21526,7 +21523,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_individualNE.ExpeNDesglose();
+        ArrayResult = Part_individualNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja6.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -21642,7 +21639,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_individualNE.IncompetenciaNE();
+        ArrayResult = Part_individualNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja6.createRow(conEnc);//filaBC
@@ -21761,7 +21758,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_individualNE.Estatus_demandaNE();
+        ArrayResult = Part_individualNE.Estatus_demandaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja6.createRow(conEnc);//filaBC
@@ -21878,7 +21875,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_individualNE.Dif_demandadosNE();
+        ArrayResult = Part_individualNE.Dif_demandadosNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja6.createRow(conEnc);//filaBC
@@ -22013,7 +22010,7 @@ progressBar.setValue(20);
       progressBar.setValue(45);
     }
 
-    public void Despliega_ColectivoNE(HSSFWorkbook libro, HSSFSheet hoja7, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar) {
+    public void Despliega_ColectivoNE(HSSFWorkbook libro, HSSFSheet hoja7, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar, Connection con) {
 
         V3QColectivo Colectivo = new V3QColectivo();
         V3Colectivo NNColectivo = new V3Colectivo();
@@ -22574,7 +22571,7 @@ progressBar.setValue(20);
         }
             
         
-        ArrayResult = Colectivo.FECHA_APERTURA_EXPEDIENTE_FUT();
+        ArrayResult = Colectivo.FECHA_APERTURA_EXPEDIENTE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -22682,7 +22679,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colectivo.FECHA_PRES_DEMANDA_FUT();
+        ArrayResult = Colectivo.FECHA_PRES_DEMANDA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -22790,7 +22787,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colectivo.FECHA_ADMI_DEMANDA_FUT();
+        ArrayResult = Colectivo.FECHA_ADMI_DEMANDA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -22898,7 +22895,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colectivo.FECHA_DEPURACION_FUT();
+        ArrayResult = Colectivo.FECHA_DEPURACION_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -23006,7 +23003,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colectivo.FECHA_DEPURACION_FUT();
+        ArrayResult = Colectivo.FECHA_DEPURACION_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -23114,7 +23111,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colectivo.FECHA_RESOLUCION_AJ_FUT();
+        ArrayResult = Colectivo.FECHA_RESOLUCION_AJ_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -23475,7 +23472,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }*/
 
-        ArrayResult = Colectivo.Duplicidad_expediente();
+        ArrayResult = Colectivo.Duplicidad_expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -23587,7 +23584,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Colectivo.Fecha_Aud_Presentacion();
+        ArrayResult = Colectivo.Fecha_Aud_Presentacion(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -23751,7 +23748,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Colectivo.Fecha_Aud_Apertura();
+        ArrayResult = Colectivo.Fecha_Aud_Apertura(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -23915,7 +23912,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Colectivo.Fecha_Aud_Admision();
+        ArrayResult = Colectivo.Fecha_Aud_Admision(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -24079,7 +24076,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Colectivo.Fecha_PresentacionNE();
+        ArrayResult = Colectivo.Fecha_PresentacionNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -24217,7 +24214,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Colectivo.Fecha_PresentacionAdmiNE();
+        ArrayResult = Colectivo.Fecha_PresentacionAdmiNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -24355,7 +24352,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Colectivo.Fecha_Admi_DemandaNE();
+        ArrayResult = Colectivo.Fecha_Admi_DemandaNE(con);
         if (ArrayResult.size() > 0) {
             // System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -24492,7 +24489,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colectivo.Fecha_Audiencia_JuicioNE();
+        ArrayResult = Colectivo.Fecha_Audiencia_JuicioNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaA00 = hojaresumenval.createRow(4);//filaA
@@ -24629,7 +24626,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Colectivo.Fecha_DepuracionNE();
+        ArrayResult = Colectivo.Fecha_DepuracionNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaB00 = hojaresumenval.createRow(4);//filaB
@@ -24766,7 +24763,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Colectivo.Fecha_Acto_ProcesalNE();
+        ArrayResult = Colectivo.Fecha_Acto_ProcesalNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaC00 = hojaresumenval.createRow(4);//filaC
@@ -24903,7 +24900,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Colectivo.Fecha_Resolucion_AjNE();
+        ArrayResult = Colectivo.Fecha_Resolucion_AjNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaD00 = hojaresumenval.createRow(4);//filaD
@@ -25040,7 +25037,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Colectivo.Fecha_Dicto_Resolucion_ADNE();
+        ArrayResult = Colectivo.Fecha_Dicto_Resolucion_ADNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaE00 = hojaresumenval.createRow(4);//filaD
@@ -25179,7 +25176,7 @@ progressBar.setValue(20);
         
         
         
-                         ArrayResult = NNColectivo.SinMotivo_Conflicto();
+                         ArrayResult = NNColectivo.SinMotivo_Conflicto(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -25292,7 +25289,7 @@ progressBar.setValue(20);
         
         
 
-        ArrayResult = NNColectivo.Tipo_Asunto();
+        ArrayResult = NNColectivo.Tipo_Asunto(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -25401,7 +25398,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Cons_Expedida();
+        ArrayResult = NNColectivo.Cons_Expedida(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -25510,7 +25507,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Suspencion_temporal();
+        ArrayResult = NNColectivo.Suspencion_temporal(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -25619,7 +25616,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Terminacion_Colectiva();
+        ArrayResult = NNColectivo.Terminacion_Colectiva(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -25728,7 +25725,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Viola_Derechos();
+        ArrayResult = NNColectivo.Viola_Derechos(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -25837,7 +25834,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Preve_demanda();
+        ArrayResult = NNColectivo.Preve_demanda(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -25948,7 +25945,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Estatus_ExpedienteNI();
+        ArrayResult = NNColectivo.Estatus_ExpedienteNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -26057,7 +26054,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Estatus_Demanda();
+        ArrayResult = NNColectivo.Estatus_Demanda(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -26168,7 +26165,7 @@ progressBar.setValue(20);
         
         //Favor de verificar el campo Estatus_demanda, ya que la Fecha de Apertura del Expediente (FECHA_APERTURA_EXPEDIENTE) excede el plazo máximo permitido de 60 días (2 meses).
                 // EN PROCESO O PREVENCION
-                  ArrayResult = NNColectivo.Estatus_Demanda_PrevenProceso();
+                  ArrayResult = NNColectivo.Estatus_Demanda_PrevenProceso(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -26282,7 +26279,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Tram_depuracion();
+        ArrayResult = NNColectivo.Tram_depuracion(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -26396,7 +26393,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Audiencia_juicio();
+        ArrayResult = NNColectivo.Audiencia_juicio(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -26510,7 +26507,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.IncompetenciaNI();
+        ArrayResult = NNColectivo.IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -26619,7 +26616,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Tipo_IncompetenciaNI();
+        ArrayResult = NNColectivo.Tipo_IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -26730,7 +26727,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.PivIncompetencia();
+        ArrayResult = NNColectivo.PivIncompetencia(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -26839,7 +26836,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Estatus_Demanda_Desechada();
+        ArrayResult = NNColectivo.Estatus_Demanda_Desechada(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -26948,7 +26945,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Estatus_Expediente();
+        ArrayResult = NNColectivo.Estatus_Expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -27057,7 +27054,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Fecha_acto_procesal();
+        ArrayResult = NNColectivo.Fecha_acto_procesal(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -27166,7 +27163,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-         ArrayResult = NNColectivo.Fase_Sol_expNoExiste();
+         ArrayResult = NNColectivo.Fase_Sol_expNoExiste(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -27275,7 +27272,7 @@ progressBar.setValue(20);
             coni = 1;
         }
           
-        ArrayResult = NNColectivo.Fase_Sol_expNI();
+        ArrayResult = NNColectivo.Fase_Sol_expNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -27384,7 +27381,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Fase_Sol_exp_TAP();
+        ArrayResult = NNColectivo.Fase_Sol_exp_TAP(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -27493,7 +27490,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNColectivo.Fase_Sol_exp_AJ();
+        ArrayResult = NNColectivo.Fase_Sol_exp_AJ(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(4);//FILA
@@ -27604,7 +27601,7 @@ progressBar.setValue(20);
       progressBar.setValue(50);
     }
 
-    public void Despliega_Part_Act_Colectivo(HSSFWorkbook libro, HSSFSheet hoja8, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_Act_Colectivo(HSSFWorkbook libro, HSSFSheet hoja8, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_act_colectivo Part_colectivoNE = new V3QPart_act_colectivo();
         V3Part_Act_colectivo NNPart_Act_colectivo = new V3Part_Act_colectivo();
 
@@ -27620,7 +27617,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = NNPart_Act_colectivo.ActorNI();
+        ArrayResult = NNPart_Act_colectivo.ActorNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -27728,7 +27725,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNPart_Act_colectivo.Actor_Sindicato();
+        ArrayResult = NNPart_Act_colectivo.Actor_Sindicato(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -27834,7 +27831,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNPart_Act_colectivo.Actor_Patron();
+        ArrayResult = NNPart_Act_colectivo.Actor_Patron(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -27940,7 +27937,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNPart_Act_colectivo.Persona_Fisica();
+        ArrayResult = NNPart_Act_colectivo.Persona_Fisica(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -28046,7 +28043,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_colectivoNE.ExpeNDesglose();
+        ArrayResult = Part_colectivoNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja8.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -28162,7 +28159,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_colectivoNE.IncompetenciaNE();
+        ArrayResult = Part_colectivoNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja8.createRow(conEnc);//filaBC
@@ -28281,7 +28278,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_colectivoNE.Estatus_demandaNE();
+        ArrayResult = Part_colectivoNE.Estatus_demandaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja8.createRow(conEnc);//filaBC
@@ -28398,7 +28395,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_colectivoNE.Dif_ActoresNE();
+        ArrayResult = Part_colectivoNE.Dif_ActoresNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja8.createRow(conEnc);//filaBC
@@ -28533,7 +28530,7 @@ progressBar.setValue(20);
         progressBar.setValue(55);
     }
 
-    public void Despliega_Part_Dem_Colectivo(HSSFWorkbook libro, HSSFSheet hoja9, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_Dem_Colectivo(HSSFWorkbook libro, HSSFSheet hoja9, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_dem_colectivo Part_colectivoNE = new V3QPart_dem_colectivo();
         V3Part_Dem_colectivo NNV3Part_Dem_colectivo = new V3Part_Dem_colectivo();
 
@@ -28549,7 +28546,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = NNV3Part_Dem_colectivo.DemandadoNI();
+        ArrayResult = NNV3Part_Dem_colectivo.DemandadoNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -28657,7 +28654,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNV3Part_Dem_colectivo.Demandado_Otro();
+        ArrayResult = NNV3Part_Dem_colectivo.Demandado_Otro(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -28763,7 +28760,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNV3Part_Dem_colectivo.Demandado_Sindicato();
+        ArrayResult = NNV3Part_Dem_colectivo.Demandado_Sindicato(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -28869,7 +28866,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNV3Part_Dem_colectivo.Demandado_Coalicion();
+        ArrayResult = NNV3Part_Dem_colectivo.Demandado_Coalicion(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -28975,7 +28972,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNV3Part_Dem_colectivo.Demandado_Patron();
+        ArrayResult = NNV3Part_Dem_colectivo.Demandado_Patron(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -29081,7 +29078,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNV3Part_Dem_colectivo.persona_fisica();
+        ArrayResult = NNV3Part_Dem_colectivo.persona_fisica(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -29187,7 +29184,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_colectivoNE.ExpeNDesglose();
+        ArrayResult = Part_colectivoNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja9.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -29303,7 +29300,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_colectivoNE.IncompetenciaNE();
+        ArrayResult = Part_colectivoNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja9.createRow(conEnc);//filaBC
@@ -29422,7 +29419,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_colectivoNE.Estatus_demandaNE();
+        ArrayResult = Part_colectivoNE.Estatus_demandaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja9.createRow(conEnc);//filaBC
@@ -29539,7 +29536,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_colectivoNE.Dif_demandadosNE();
+        ArrayResult = Part_colectivoNE.Dif_demandadosNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja9.createRow(conEnc);//filaBC
@@ -29675,7 +29672,7 @@ progressBar.setValue(20);
         progressBar.setValue(60);
     }
 
-    public void Despliega_HuelgaNE(HSSFWorkbook libro, HSSFSheet hoja10, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar) {
+    public void Despliega_HuelgaNE(HSSFWorkbook libro, HSSFSheet hoja10, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar, Connection con) {
         V3QHuelga Huelga = new V3QHuelga();
         V3Huelga NNHuelga = new V3Huelga();
         QNuevos Q=new QNuevos();
@@ -30236,7 +30233,7 @@ progressBar.setValue(20);
         
         
         
-        ArrayResult = Huelga.FECHA_APERTURA_EXPEDIENTE_FUT();
+        ArrayResult = Huelga.FECHA_APERTURA_EXPEDIENTE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -30344,7 +30341,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.FECHA_EMPLAZAMIENTO_FUT();
+        ArrayResult = Huelga.FECHA_EMPLAZAMIENTO_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -30452,7 +30449,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.FECHA_PRESENTA_PETIC_FUT();
+        ArrayResult = Huelga.FECHA_PRESENTA_PETIC_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -30560,7 +30557,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.FECHA_AUDIENCIA_FUT();
+        ArrayResult = Huelga.FECHA_AUDIENCIA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -30668,7 +30665,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.FECHA_ACTO_PROCESAL_FUT();
+        ArrayResult = Huelga.FECHA_ACTO_PROCESAL_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -30776,7 +30773,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.FECHA_RESOLU_EMPLAZ_FUT();
+        ArrayResult = Huelga.FECHA_RESOLU_EMPLAZ_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -30884,7 +30881,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.FECHA_RESOLU_HUELGA_FUT();
+        ArrayResult = Huelga.FECHA_RESOLU_HUELGA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -30992,7 +30989,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.FECHA_ESTALLAM_HUELGA_FUT();
+        ArrayResult = Huelga.FECHA_ESTALLAM_HUELGA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -31100,7 +31097,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.FECHA_LEVANT_HUELGA_FUT();
+        ArrayResult = Huelga.FECHA_LEVANT_HUELGA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -31461,7 +31458,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }*/
 
-        ArrayResult = Huelga.Duplicidad_expediente();
+        ArrayResult = Huelga.Duplicidad_expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -31573,7 +31570,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Huelga.Fecha_Aud_Presentacion();
+        ArrayResult = Huelga.Fecha_Aud_Presentacion(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -31737,7 +31734,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Huelga.Fecha_Aud_Apertura();
+        ArrayResult = Huelga.Fecha_Aud_Apertura(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -31901,7 +31898,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Huelga.Fecha_PresentacionNE();
+        ArrayResult = Huelga.Fecha_PresentacionNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -32039,7 +32036,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Huelga.Fecha_AudienciaNE();
+        ArrayResult = Huelga.Fecha_AudienciaNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaB00 = hojaresumenval.createRow(5);//filaB
@@ -32176,7 +32173,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Huelga.Fecha_EmplazamientoNE();
+        ArrayResult = Huelga.Fecha_EmplazamientoNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaC00 = hojaresumenval.createRow(5);//filaC
@@ -32313,7 +32310,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Huelga.Fecha_Acto_ProcesalNE();
+        ArrayResult = Huelga.Fecha_Acto_ProcesalNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaC00 = hojaresumenval.createRow(5);//filaC
@@ -32450,7 +32447,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Huelga.Fecha_Resolu_EmplazNE();
+        ArrayResult = Huelga.Fecha_Resolu_EmplazNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaE00 = hojaresumenval.createRow(5);//filaE
@@ -32587,7 +32584,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Huelga.Fecha_Resolu_HuelgaNE();
+        ArrayResult = Huelga.Fecha_Resolu_HuelgaNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaF00 = hojaresumenval.createRow(5);//filaF
@@ -32724,7 +32721,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Huelga.Fecha_Estallam_HuelgaNE();
+        ArrayResult = Huelga.Fecha_Estallam_HuelgaNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaG00 = hojaresumenval.createRow(5);//filaG
@@ -32861,7 +32858,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Huelga.Huelga();
+        ArrayResult = Huelga.Huelga(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -33170,7 +33167,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.EMPLAZAMIENTO_HUELGA();
+        ArrayResult = Huelga.EMPLAZAMIENTO_HUELGA(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -33429,7 +33426,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Huelga.PREHUELGA();
+        ArrayResult = Huelga.PREHUELGA(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -33689,7 +33686,7 @@ progressBar.setValue(20);
         }
         
         
-        ArrayResult = NNHuelga.SinMotivo_Conflicto();
+        ArrayResult = NNHuelga.SinMotivo_Conflicto(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -33800,7 +33797,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Tipo_Asunto();
+        ArrayResult = NNHuelga.Tipo_Asunto(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -33909,7 +33906,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Emplaz_huelga();
+        ArrayResult = NNHuelga.Emplaz_huelga(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -34023,7 +34020,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Preghuelga();
+        ArrayResult = NNHuelga.Preghuelga(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -34137,7 +34134,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Aud_conciliacion();
+        ArrayResult = NNHuelga.Aud_conciliacion(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -34251,7 +34248,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Estallamiento_huelga();
+        ArrayResult = NNHuelga.Estallamiento_huelga(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -34365,7 +34362,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Estatus_ExpedienteNI();
+        ArrayResult = NNHuelga.Estatus_ExpedienteNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -34474,7 +34471,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.IncompetenciaNI();
+        ArrayResult = NNHuelga.IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -34583,7 +34580,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Tipo_IncompetenciaNI();
+        ArrayResult = NNHuelga.Tipo_IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -34694,7 +34691,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.PivIncompetencia();
+        ArrayResult = NNHuelga.PivIncompetencia(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -34803,7 +34800,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Estatus_Expediente();
+        ArrayResult = NNHuelga.Estatus_Expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -34912,7 +34909,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Fecha_acto_procesal();
+        ArrayResult = NNHuelga.Fecha_acto_procesal(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -35022,7 +35019,7 @@ progressBar.setValue(20);
         }
         
         
-          ArrayResult = NNHuelga.Fase_Sol_expNoExiste();
+          ArrayResult = NNHuelga.Fase_Sol_expNoExiste(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -35131,7 +35128,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Fase_Sol_expNI();
+        ArrayResult = NNHuelga.Fase_Sol_expNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -35240,7 +35237,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Fase_Sol_exp_EMPH();
+        ArrayResult = NNHuelga.Fase_Sol_exp_EMPH(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -35349,7 +35346,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Fase_Sol_exp_Huelga();
+        ArrayResult = NNHuelga.Fase_Sol_exp_Huelga(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -35458,7 +35455,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNHuelga.Fase_Sol_Desechamiento();
+        ArrayResult = NNHuelga.Fase_Sol_Desechamiento(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(5);//FILA
@@ -35594,7 +35591,7 @@ progressBar.setValue(20);
       progressBar.setValue(65);
     }
 
-    public void Despliega_Part_Act_Huelga(HSSFWorkbook libro, HSSFSheet hoja11, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_Act_Huelga(HSSFWorkbook libro, HSSFSheet hoja11, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_act_huelga Part_huelgaNE = new V3QPart_act_huelga();
         V3Part_Act_huelga NNV3Part_Act_huelga = new V3Part_Act_huelga();
 
@@ -35610,7 +35607,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = NNV3Part_Act_huelga.ActorNI();
+        ArrayResult = NNV3Part_Act_huelga.ActorNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -35718,7 +35715,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNV3Part_Act_huelga.Actor_Otro();
+        ArrayResult = NNV3Part_Act_huelga.Actor_Otro(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -35824,7 +35821,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNV3Part_Act_huelga.Actor_Mayoria();
+        ArrayResult = NNV3Part_Act_huelga.Actor_Mayoria(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -35930,7 +35927,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_huelgaNE.ExpeNDesglose();
+        ArrayResult = Part_huelgaNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja11.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -36046,7 +36043,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_huelgaNE.IncompetenciaNE();
+        ArrayResult = Part_huelgaNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja11.createRow(conEnc);//filaBC
@@ -36165,7 +36162,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_huelgaNE.Dif_ActoresNE();
+        ArrayResult = Part_huelgaNE.Dif_ActoresNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja11.createRow(conEnc);//filaBC
@@ -36301,7 +36298,7 @@ progressBar.setValue(20);
         progressBar.setValue(65);
     }
 
-    public void Despliega_Part_dem_Huelga(HSSFWorkbook libro, HSSFSheet hoja12, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_dem_Huelga(HSSFWorkbook libro, HSSFSheet hoja12, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_dem_huelga Part_huelgaNE = new V3QPart_dem_huelga();
         V3Part_Dem_huelga NNV3Part_Dem_huelga = new V3Part_Dem_huelga();
 
@@ -36317,7 +36314,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = NNV3Part_Dem_huelga.DemandadoNI();
+        ArrayResult = NNV3Part_Dem_huelga.DemandadoNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -36425,7 +36422,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNV3Part_Dem_huelga.Persona_fisica();
+        ArrayResult = NNV3Part_Dem_huelga.Persona_fisica(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
 
@@ -36531,7 +36528,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_huelgaNE.ExpeNDesglose();
+        ArrayResult = Part_huelgaNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja12.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -36647,7 +36644,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_huelgaNE.IncompetenciaNE();
+        ArrayResult = Part_huelgaNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja12.createRow(conEnc);//filaBC
@@ -36766,7 +36763,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_huelgaNE.Dif_demandadosNE();
+        ArrayResult = Part_huelgaNE.Dif_demandadosNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja12.createRow(conEnc);//filaBC
@@ -36901,7 +36898,7 @@ progressBar.setValue(20);
      progressBar.setValue(70);
     }
 
-    public void Despliega_Colect_EconomNE(HSSFWorkbook libro, HSSFSheet hoja13, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar) {
+    public void Despliega_Colect_EconomNE(HSSFWorkbook libro, HSSFSheet hoja13, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar, Connection con) {
 
         V3QColec_Econom Economico = new V3QColec_Econom();
         V3Colect_Econom Colect = new V3Colect_Econom();
@@ -37246,7 +37243,7 @@ progressBar.setValue(20);
         
         
         
-        ArrayResult = Economico.FECHA_APERTURA_EXPEDIENTE_FUT();
+        ArrayResult = Economico.FECHA_APERTURA_EXPEDIENTE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -37354,7 +37351,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Economico.FECHA_APERTURA_EXPEDIENTE_FUT();
+        ArrayResult = Economico.FECHA_APERTURA_EXPEDIENTE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -37462,7 +37459,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Economico.FECHA_PRES_DEMANDA_FUT();
+        ArrayResult = Economico.FECHA_PRES_DEMANDA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -37570,7 +37567,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Economico.FECHA_ADMISION_DEMANDA_FUT();
+        ArrayResult = Economico.FECHA_ADMISION_DEMANDA_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -37678,7 +37675,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Economico.FECHA_AUDIENCIA_ECONOM_FUT();
+        ArrayResult = Economico.FECHA_AUDIENCIA_ECONOM_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -37786,7 +37783,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Economico.FECHA_ACTO_PROCESAL_FUT();
+        ArrayResult = Economico.FECHA_ACTO_PROCESAL_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -37894,7 +37891,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Economico.FECHA_RESOLUCION_FUT();
+        ArrayResult = Economico.FECHA_RESOLUCION_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -38255,7 +38252,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }*/
 
-        ArrayResult = Economico.Duplicidad_expediente();
+        ArrayResult = Economico.Duplicidad_expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -38367,7 +38364,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Economico.Fecha_Aud_Presentacion();
+        ArrayResult = Economico.Fecha_Aud_Presentacion(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -38531,7 +38528,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Economico.Fecha_Aud_Apertura();
+        ArrayResult = Economico.Fecha_Aud_Apertura(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -38695,7 +38692,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Economico.Fecha_Aud_Admision();
+        ArrayResult = Economico.Fecha_Aud_Admision(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -38859,7 +38856,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Economico.Fecha_PresentacionNE();
+        ArrayResult = Economico.Fecha_PresentacionNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -38997,7 +38994,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Economico.Fecha_PresentacionAdmiNE();
+        ArrayResult = Economico.Fecha_PresentacionAdmiNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -39135,7 +39132,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Economico.Fecha_Admision_DemandaNE();
+        ArrayResult = Economico.Fecha_Admision_DemandaNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaB00 = hojaresumenval.createRow(8);//filaB
@@ -39272,7 +39269,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Economico.Fecha_acto_procesalNE();
+        ArrayResult = Economico.Fecha_acto_procesalNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaB00 = hojaresumenval.createRow(8);//filaB
@@ -39409,7 +39406,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Economico.Fecha_resolucionNE();
+        ArrayResult = Economico.Fecha_resolucionNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaB00 = hojaresumenval.createRow(8);//filaB
@@ -39547,7 +39544,7 @@ progressBar.setValue(20);
         }
         
         
-        ArrayResult = Economico.SinMotivo_Conflicto();
+        ArrayResult = Economico.SinMotivo_Conflicto(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -39658,7 +39655,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.Tipo_Asunto();
+        ArrayResult = Colect.Tipo_Asunto(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -39767,7 +39764,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.Suspencion_Temporal();
+        ArrayResult = Colect.Suspencion_Temporal(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -39876,7 +39873,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.Estatus_demandaNI();
+        ArrayResult = Colect.Estatus_demandaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -39987,7 +39984,7 @@ progressBar.setValue(20);
         
         //Favor de verificar el campo Estatus_demanda, ya que la Fecha de Apertura del Expediente (FECHA_APERTURA_EXPEDIENTE) excede el plazo máximo permitido de 60 días (2 meses).
                 // EN PROCESO O PREVENCION
-                  ArrayResult = Colect.Estatus_Demanda_PrevenProceso();
+                  ArrayResult = Colect.Estatus_Demanda_PrevenProceso(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -40101,7 +40098,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.Estatus_expedienteNI();
+        ArrayResult = Colect.Estatus_expedienteNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -40210,7 +40207,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.IncompetenciaNI();
+        ArrayResult = Colect.IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -40319,7 +40316,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.Tipo_IncompetenciaNI();
+        ArrayResult = Colect.Tipo_IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -40430,7 +40427,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.PivIncompetencia();
+        ArrayResult = Colect.PivIncompetencia(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -40539,7 +40536,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.Estatus_Demanda_Desechada();
+        ArrayResult = Colect.Estatus_Demanda_Desechada(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -40648,7 +40645,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.Estatus_Expediente();
+        ArrayResult = Colect.Estatus_Expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -40758,7 +40755,7 @@ progressBar.setValue(20);
         }
         
         
-         ArrayResult = Colect.Fase_Sol_expNoExiste();
+         ArrayResult = Colect.Fase_Sol_expNoExiste(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
@@ -40873,7 +40870,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.Fecha_acto_procesal();
+        ArrayResult = Colect.Fecha_acto_procesal(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -40982,7 +40979,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Colect.Forma_Solucion();
+        ArrayResult = Colect.Forma_Solucion(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -41094,7 +41091,7 @@ progressBar.setValue(20);
          progressBar.setValue(75);
     }
 
-    public void Despliega_Part_Act_Nat_econo(HSSFWorkbook libro, HSSFSheet hoja14, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_Act_Nat_econo(HSSFWorkbook libro, HSSFSheet hoja14, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_act_nat_eco Part_nat_ecoNE = new V3QPart_act_nat_eco();
 
         int conEnc = 1, conDat = 2, coni = 1;
@@ -41109,7 +41106,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = Part_nat_ecoNE.ExpeNDesglose();
+        ArrayResult = Part_nat_ecoNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja14.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -41225,7 +41222,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_nat_ecoNE.IncompetenciaNE();
+        ArrayResult = Part_nat_ecoNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja14.createRow(conEnc);//filaBC
@@ -41344,7 +41341,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_nat_ecoNE.Dif_ActoresNE();
+        ArrayResult = Part_nat_ecoNE.Dif_ActoresNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja14.createRow(conEnc);//filaBC
@@ -41479,7 +41476,7 @@ progressBar.setValue(20);
      progressBar.setValue(80);
     }
 
-    public void Despliega_Part_Dem_Nat_econo(HSSFWorkbook libro, HSSFSheet hoja15, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar) {
+    public void Despliega_Part_Dem_Nat_econo(HSSFWorkbook libro, HSSFSheet hoja15, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
         V3QPart_dem_nat_eco Part_nat_ecoNE = new V3QPart_dem_nat_eco();
 
         int conEnc = 1, conDat = 2, coni = 1;
@@ -41494,7 +41491,7 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = Part_nat_ecoNE.ExpeNDesglose();
+        ArrayResult = Part_nat_ecoNE.ExpeNDesglose(con);
         if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja15.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -41610,7 +41607,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Part_nat_ecoNE.IncompetenciaNE();
+        ArrayResult = Part_nat_ecoNE.IncompetenciaNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja15.createRow(conEnc);//filaBC
@@ -41729,7 +41726,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_nat_ecoNE.Dif_demandadosNE();
+        ArrayResult = Part_nat_ecoNE.Dif_demandadosNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja15.createRow(conEnc);//filaBC
@@ -41864,7 +41861,7 @@ progressBar.setValue(20);
         progressBar.setValue(85);
     }
 
-    public void Despliega_ParaprocesalNE(HSSFWorkbook libro, HSSFSheet hoja16, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar) {
+    public void Despliega_ParaprocesalNE(HSSFWorkbook libro, HSSFSheet hoja16, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar, Connection con) {
 
         V3QParaprocesal Paraprocesal = new V3QParaprocesal();
         V3Paraprocesal NNParaprocesal = new V3Paraprocesal();
@@ -41991,7 +41988,7 @@ progressBar.setValue(20);
             coni = 1;
         }
  
-        ArrayResult = Paraprocesal.FECHA_APERTURA_EXPEDIENTE_FUT();
+        ArrayResult = Paraprocesal.FECHA_APERTURA_EXPEDIENTE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -42099,7 +42096,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Paraprocesal.FECHA_PRESENTA_SOLI_FUT();
+        ArrayResult = Paraprocesal.FECHA_PRESENTA_SOLI_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -42207,7 +42204,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Paraprocesal.FECHA_ADMISION_SOLI_FUT();
+        ArrayResult = Paraprocesal.FECHA_ADMISION_SOLI_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -42315,7 +42312,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Paraprocesal.FECHA_CONCLUSION_EXPE_FUT();
+        ArrayResult = Paraprocesal.FECHA_CONCLUSION_EXPE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -42676,7 +42673,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }*/
 
-        ArrayResult = Paraprocesal.Duplicidad_expediente();
+        ArrayResult = Paraprocesal.Duplicidad_expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(6);//FILA
@@ -42788,7 +42785,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Paraprocesal.Fecha_PresentacionNE();
+        ArrayResult = Paraprocesal.Fecha_PresentacionNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(6);//FILA
@@ -42926,7 +42923,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Paraprocesal.Fecha_PresentacionAdmiNE();
+        ArrayResult = Paraprocesal.Fecha_PresentacionAdmiNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(6);//FILA
@@ -43063,7 +43060,7 @@ progressBar.setValue(20);
          
         }
 
-        ArrayResult = Paraprocesal.Fecha_Admision_SoliNE();
+        ArrayResult = Paraprocesal.Fecha_Admision_SoliNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaB00 = hojaresumenval.createRow(6);//filaB
@@ -43200,7 +43197,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Paraprocesal.Fecha_Conclusion_ExpeNE();
+        ArrayResult = Paraprocesal.Fecha_Conclusion_ExpeNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaC00 = hojaresumenval.createRow(6);//filaC
@@ -43376,7 +43373,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = NNParaprocesal.Estatus_expedienteNi();
+        ArrayResult = NNParaprocesal.Estatus_expedienteNi(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(6);//FILA
@@ -43485,7 +43482,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNParaprocesal.IncompetenciaNI();
+        ArrayResult = NNParaprocesal.IncompetenciaNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(6);//FILA
@@ -43594,7 +43591,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNParaprocesal.PivIncompetencia();
+        ArrayResult = NNParaprocesal.PivIncompetencia(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(6);//FILA
@@ -43703,7 +43700,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNParaprocesal.Estatus_Expediente();
+        ArrayResult = NNParaprocesal.Estatus_Expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(6);//FILA
@@ -43815,7 +43812,7 @@ progressBar.setValue(20);
         progressBar.setValue(90);
     }
 
-    public void Despliega_Ejecucion(HSSFWorkbook libro, HSSFSheet hoja17, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar) {
+    public void Despliega_Ejecucion(HSSFWorkbook libro, HSSFSheet hoja17, HSSFSheet hojaresumenval, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle PAmarillo,JProgressBar progressBar, Connection con) {
         V3QEjecucion Ejecucion = new V3QEjecucion();
         V3Ejecucion NNEjecucion = new V3Ejecucion();
         QNuevos Q=new QNuevos();
@@ -43942,7 +43939,7 @@ progressBar.setValue(20);
         }
         
         
-        ArrayResult = Ejecucion.FECHA_APERTURA_EXPEDIENTE_FUT();
+        ArrayResult = Ejecucion.FECHA_APERTURA_EXPEDIENTE_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -44050,7 +44047,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Ejecucion.FECHA_PRESENTACION_FUT();
+        ArrayResult = Ejecucion.FECHA_PRESENTACION_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -44158,7 +44155,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = Ejecucion.FECHA_CONCLUSION_FUT();
+        ArrayResult = Ejecucion.FECHA_CONCLUSION_FUT(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -44519,7 +44516,7 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }*/
 
-        ArrayResult = Ejecucion.Duplicidad_expediente();
+        ArrayResult = Ejecucion.Duplicidad_expediente(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(7);//FILA
@@ -44631,7 +44628,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Ejecucion.Fecha_PresentacionNE();
+        ArrayResult = Ejecucion.Fecha_PresentacionNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(7);//FILA
@@ -44769,7 +44766,7 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Ejecucion.Fecha_ConclusionNE();
+        ArrayResult = Ejecucion.Fecha_ConclusionNE(con);
         if (ArrayResult.size() > 0) {
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
             HSSFRow filaB00 = hojaresumenval.createRow(8);//filaB
@@ -44906,7 +44903,7 @@ progressBar.setValue(20);
             //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = NNEjecucion.Estatus_expedienteNi();
+        ArrayResult = NNEjecucion.Estatus_expedienteNi(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA
@@ -45015,7 +45012,7 @@ progressBar.setValue(20);
             coni = 1;
         }
 
-        ArrayResult = NNEjecucion.FaseConclucion();
+        ArrayResult = NNEjecucion.FaseConclucion(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(8);//FILA

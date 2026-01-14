@@ -565,10 +565,10 @@ public class InsertaTR extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       
-         V3validaciones ValAud=new V3validaciones();
-           try {
-               ValAud.Valida_LaboralesNE();
-           } catch (SQLException ex) {
+        try (Connection con=ConexionH2.getConnection()){
+        V3validaciones V3=new V3validaciones();
+        V3.Valida_LaboralesNE(con);
+        }  catch (SQLException ex) {
                Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
            } catch (IOException ex) {
                Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);

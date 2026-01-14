@@ -17,7 +17,7 @@ public class V3Part_Dem_colectivo {
     ArrayList<String[]> Array;
 
     /// Demandado no debe ser 9 = No identificado
-    public ArrayList DemandadoNI() {
+    public ArrayList DemandadoNI(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -28,7 +28,7 @@ public class V3Part_Dem_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -49,7 +49,7 @@ public class V3Part_Dem_colectivo {
     }
 
     // Cuando Demandado = Otro no debe capturar desde Nombre del sindicato hasta Longitud
-    public ArrayList Demandado_Otro() {
+    public ArrayList Demandado_Otro(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -68,7 +68,7 @@ public class V3Part_Dem_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -89,7 +89,7 @@ public class V3Part_Dem_colectivo {
     }
 
     // Cuando Demandado = Sindicato no debe capturar desde tipo hasta longitud
-    public ArrayList Demandado_Sindicato() {
+    public ArrayList Demandado_Sindicato(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -105,7 +105,7 @@ public class V3Part_Dem_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -126,7 +126,7 @@ public class V3Part_Dem_colectivo {
     }
 
     // Cuando Demandado = Coalicion_de_trabajadores solo debe capturar Cantidad/Hombres/Mujeres/No_identificado (si trae otras, está mal)
-    public ArrayList Demandado_Coalicion() {
+    public ArrayList Demandado_Coalicion(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -144,7 +144,7 @@ public class V3Part_Dem_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -165,7 +165,7 @@ public class V3Part_Dem_colectivo {
     }
 
     // Cuando Demandado = Patron no debe capturar desde Nombre del sindicato hasta No_identificado
-    public ArrayList Demandado_Patron() {
+    public ArrayList Demandado_Patron(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -180,7 +180,7 @@ public class V3Part_Dem_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
@@ -202,7 +202,7 @@ public class V3Part_Dem_colectivo {
 
     // Cuando Demandado = Patron y tipo = persona_Fisica no debe capturar desde Razon social hasta Longitud
     // (NOTA: en tu SQL original estás usando TIPO_SINDICATO_DEM; lo dejo igual)
-    public ArrayList persona_fisica() {
+    public ArrayList persona_fisica(Connection con) {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
@@ -217,7 +217,7 @@ public class V3Part_Dem_colectivo {
 
         System.out.println(sql);
 
-        try (Connection con = ConexionH2.getConnection();
+        try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 

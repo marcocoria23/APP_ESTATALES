@@ -1,31 +1,11 @@
 package triggers;
 
 import org.h2.api.Trigger;
+
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class V3TrPartActOrdinarioJL implements Trigger {
-
-    // ===== Column indexes (ADJUST TO YOUR TABLE ORDER) =====
-    private static final int ACTOR = 1;
-    private static final int DEFENSA_ACT = 2;
-
-    // Trabajador
-    private static final int SEXO = 3;
-    private static final int EDAD = 4;
-    private static final int OCUPACION = 5;
-    private static final int NSS = 6;
-    private static final int CURP = 7;
-    private static final int RFC_TRABAJADOR = 8;
-    private static final int JORNADA = 9;
-
-    // Sindicato
-    private static final int NOMBRE_SINDICATO = 10;
-    private static final int REG_ASOC_SINDICAL = 11;
-    private static final int TIPO_SINDICATO = 12;
-    private static final int OTRO_ESP_SINDICATO = 13;
-    private static final int ORG_OBRERA = 14;
-    private static final int NOMBRE_ORG_OBRERA = 15;
-    private static final int OTRO_ESP_OBRERA = 16;
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -33,80 +13,92 @@ public class V3TrPartActOrdinarioJL implements Trigger {
         // no-op
     }
 
-    @Override
-    public void fire(Connection conn, Object[] oldRow, Object[] newRow) {
-
-        int actor = toInt(newRow[ACTOR], 0);
-        int tipoSindicato = toInt(newRow[TIPO_SINDICATO], 0);
-        int orgObrera = toInt(newRow[ORG_OBRERA], 0);
-        int nombreOrgObrera = toInt(newRow[NOMBRE_ORG_OBRERA], 0);
-
-        // ===== Global defaults =====
-        if (newRow[DEFENSA_ACT] == null)
-            newRow[DEFENSA_ACT] = 9;
-
-        if (newRow[ACTOR] == null)
-            newRow[ACTOR] = 99;
-
-        // ===== Actor = Trabajador (1) =====
-        if (actor == 1) {
-
-            if (newRow[SEXO] == null)
-                newRow[SEXO] = 9;
-
-            if (newRow[EDAD] == null)
-                newRow[EDAD] = 99;
-
-            if (newRow[OCUPACION] == null)
-                newRow[OCUPACION] = 999;
-
-            if (newRow[NSS] == null)
-                newRow[NSS] = "No Identificado";
-
-            if (newRow[CURP] == null)
-                newRow[CURP] = "No Identificado";
-
-            if (newRow[RFC_TRABAJADOR] == null)
-                newRow[RFC_TRABAJADOR] = "No Identificado";
-
-            if (newRow[JORNADA] == null)
-                newRow[JORNADA] = 9;
-        }
-
-        // ===== Actor = Sindicato (3) =====
-        if (actor == 3) {
-
-            if (newRow[NOMBRE_SINDICATO] == null)
-                newRow[NOMBRE_SINDICATO] = "No Identificado";
-
-            if (newRow[REG_ASOC_SINDICAL] == null)
-                newRow[REG_ASOC_SINDICAL] = "No Identificado";
-
-            if (newRow[TIPO_SINDICATO] == null)
-                newRow[TIPO_SINDICATO] = 9;
-
-            if (tipoSindicato == 6 && newRow[OTRO_ESP_SINDICATO] == null)
-                newRow[OTRO_ESP_SINDICATO] = "No Especifico";
-
-            if (newRow[ORG_OBRERA] == null)
-                newRow[ORG_OBRERA] = 9;
-
-            if (orgObrera == 1 && newRow[NOMBRE_ORG_OBRERA] == null)
-                newRow[NOMBRE_ORG_OBRERA] = 9;
-
-            if (orgObrera == 1 && nombreOrgObrera == 8 && newRow[OTRO_ESP_OBRERA] == null)
-                newRow[OTRO_ESP_OBRERA] = "No Especifico";
-        }
-    }
-
-    @Override public void close() {}
-    @Override public void remove() {}
-
-    // ===== Helper =====
-    private static int toInt(Object v, int def) {
-        if (v == null) return def;
+    private Integer asInt(Object v) {
+        if (v == null) return null;
         if (v instanceof Number) return ((Number) v).intValue();
-        try { return Integer.parseInt(v.toString()); }
-        catch (Exception e) { return def; }
+        String s = v.toString().trim();
+        if (s.isEmpty()) return null;
+        return Integer.valueOf(s);
     }
+
+    private void setIfNull(Object[] newRow, int idx, Object value) {
+        if (newRow[idx] == null) newRow[idx] = value;
+    }
+
+    @Override
+    public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
+
+        // ===== Índices (0-based) según tu DDL =====
+        // 0  NOMBRE_ORGANO_JURIS
+        // 1  CLAVE_ORGANO
+        // 2  EXPEDIENTE_CLAVE
+        // 3  ID_ACTOR
+        final int iACTOR = 4;
+        final int iDEFENSA_ACT = 5;
+        final int iSEXO = 6;
+        final int iEDAD = 7;
+        final int iOCUPACION = 8;
+        final int iNSS = 9;
+        final int iCURP = 10;
+        final int iRFC_TRABAJADOR = 11;
+        final int iJORNADA = 12;
+
+        final int iNOMBRE_SINDICATO = 13;
+        final int iREG_ASOC_SINDICAL = 14;
+        final int iTIPO_SINDICATO = 15;
+        final int iOTRO_ESP_SINDICATO = 16;
+        final int iORG_OBRERA = 17;
+        final int iNOMBRE_ORG_OBRERA = 18;
+        final int iOTRO_ESP_OBRERA = 19;
+
+        // ===== Defaults base =====
+        // if (:New.DEFENSA_ACT IS NULL) then 9
+        setIfNull(newRow, iDEFENSA_ACT, 9);
+
+        // if :NEW.ACTOR IS NULL then 99
+        setIfNull(newRow, iACTOR, 99);
+
+        Integer actor = asInt(newRow[iACTOR]);
+
+        // ===== Actor: trabajador (actor = 1) =====
+        if (actor != null && actor == 1) {
+            setIfNull(newRow, iSEXO, 9);
+            setIfNull(newRow, iEDAD, 99);
+            setIfNull(newRow, iOCUPACION, 999);
+
+            setIfNull(newRow, iNSS, "No Identificado");
+            setIfNull(newRow, iCURP, "No Identificado");
+            setIfNull(newRow, iRFC_TRABAJADOR, "No Identificado");
+
+            setIfNull(newRow, iJORNADA, 9);
+        }
+
+        // ===== Sindicato (actor = 3) =====
+        if (actor != null && actor == 3) {
+
+            setIfNull(newRow, iNOMBRE_SINDICATO, "No Identificado");
+            setIfNull(newRow, iREG_ASOC_SINDICAL, "No Identificado");
+            setIfNull(newRow, iTIPO_SINDICATO, 9);
+
+            Integer tipoSind = asInt(newRow[iTIPO_SINDICATO]);
+            if (tipoSind != null && tipoSind == 6) {
+                setIfNull(newRow, iOTRO_ESP_SINDICATO, "No Especifico");
+            }
+
+            setIfNull(newRow, iORG_OBRERA, 9);
+
+            Integer orgObrera = asInt(newRow[iORG_OBRERA]);
+            if (orgObrera != null && orgObrera == 1) {
+                setIfNull(newRow, iNOMBRE_ORG_OBRERA, 9);
+
+                Integer nombreOrgObrera = asInt(newRow[iNOMBRE_ORG_OBRERA]);
+                if (nombreOrgObrera != null && nombreOrgObrera == 8) {
+                    setIfNull(newRow, iOTRO_ESP_OBRERA, "No Especifico");
+                }
+            }
+        }
+    }
+
+    @Override public void close() { }
+    @Override public void remove() { }
 }

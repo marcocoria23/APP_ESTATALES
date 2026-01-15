@@ -1,38 +1,11 @@
 package triggers;
 
 import org.h2.api.Trigger;
+
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class V3TrPartDemColectEconomJL implements Trigger {
-
-    // ===== Column indexes (ADJUST TO YOUR TABLE ORDER) =====
-    private static final int DEMANDADO = 1;
-    private static final int DEFENSA_DEM = 2;
-
-    // Sindicato demandado
-    private static final int NOMBRE_SINDICATO_DEM = 3;
-    private static final int REG_ASOC_SINDICAL_DEM = 4;
-    private static final int TIPO_SINDICATO_DEM = 5;
-    private static final int OTRO_ESP_SINDICATO_DEM = 6;
-    private static final int ORG_OBRERA_DEM = 7;
-    private static final int NOMBRE_ORG_OBRERA_DEM = 8;
-    private static final int OTRO_ESP_OBRERA_DEM = 9;
-
-    // Patrón demandado
-    private static final int TIPO_DEM_PAT = 10;
-    private static final int RFC_PATRON_DEM = 11;
-    private static final int RAZON_SOCIAL_EMPR_DEM = 12;
-    private static final int CALLE = 13;
-    private static final int N_EXT = 14;
-    private static final int N_INT = 15;
-    private static final int COLONIA = 16;
-    private static final int CP = 17;
-    private static final int ENTIDAD_NOMBRE_EMPR = 18;
-    private static final int ENTIDAD_CLAVE_EMPR = 19;
-    private static final int MUNICIPIO_NOMBRE_EMPR = 20;
-    private static final int MUNICIPIO_CLAVE_EMPR = 21;
-    private static final int LATITUD_EMPR = 22;
-    private static final int LONGITUD_EMPR = 23;
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -40,106 +13,120 @@ public class V3TrPartDemColectEconomJL implements Trigger {
         // no-op
     }
 
+    private Integer asInt(Object v) {
+        if (v == null) return null;
+        if (v instanceof Number) return ((Number) v).intValue();
+        String s = v.toString().trim();
+        if (s.isEmpty()) return null;
+        return Integer.valueOf(s);
+    }
+
+    private void setIfNull(Object[] newRow, int idx, Object value) {
+        if (newRow[idx] == null) newRow[idx] = value;
+    }
+
     @Override
-    public void fire(Connection conn, Object[] oldRow, Object[] newRow) {
+    public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
 
-        int demandado = toInt(newRow[DEMANDADO], 0);
-        int tipoSindicatoDem = toInt(newRow[TIPO_SINDICATO_DEM], 0);
-        int orgObreraDem = toInt(newRow[ORG_OBRERA_DEM], 0);
-        int nombreOrgObreraDem = toInt(newRow[NOMBRE_ORG_OBRERA_DEM], 0);
-        int tipoDemPat = toInt(newRow[TIPO_DEM_PAT], 0);
+        // ===== Índices (0-based) según tu DDL =====
+        // 0  NOMBRE_ORGANO_JURIS
+        // 1  CLAVE_ORGANO
+        // 2  EXPEDIENTE_CLAVE
+        // 3  ID_DEMANDADO
+        final int iDEMANDADO = 4;
+        final int iDEFENSA_DEM = 5;
 
-        // ===== Global defaults =====
-        if (newRow[DEMANDADO] == null)
-            newRow[DEMANDADO] = 9;
+        final int iNOMBRE_SINDICATO_DEM = 6;
+        final int iREG_ASOC_SINDICAL_DEM = 7;
+        final int iTIPO_SINDICATO_DEM = 8;
+        final int iOTRO_ESP_SINDICATO_DEM = 9;
+        final int iORG_OBRERA_DEM = 10;
+        final int iNOMBRE_ORG_OBRERA_DEM = 11;
+        final int iOTRO_ESP_OBRERA_DEM = 12;
 
-        if (newRow[DEFENSA_DEM] == null)
-            newRow[DEFENSA_DEM] = 9;
+        final int iTIPO_DEM_PAT = 18;
+        final int iRFC_PATRON_DEM = 19;
+        final int iRAZON_SOCIAL_EMPR_DEM = 20;
 
-        // ===== DEMANDADO = Sindicato (2) =====
-        if (demandado == 2) {
+        final int iCALLE = 21;
+        final int iN_EXT = 22;
+        final int iN_INT = 23;
+        final int iCOLONIA = 24;
+        final int iCP = 25;
 
-            if (newRow[NOMBRE_SINDICATO_DEM] == null)
-                newRow[NOMBRE_SINDICATO_DEM] = "No Identificado";
+        final int iENTIDAD_NOMBRE_EMPR = 26;
+        final int iENTIDAD_CLAVE_EMPR = 27;
+        final int iMUNICIPIO_NOMBRE_EMPR = 28;
+        final int iMUNICIPIO_CLAVE_EMPR = 29;
 
-            if (newRow[REG_ASOC_SINDICAL_DEM] == null)
-                newRow[REG_ASOC_SINDICAL_DEM] = "No Identificado";
+        final int iLATITUD_EMPR = 30;
+        final int iLONGITUD_EMPR = 31;
 
-            if (newRow[TIPO_SINDICATO_DEM] == null)
-                newRow[TIPO_SINDICATO_DEM] = 9;
+        // ===== Defaults base =====
+        // if :New.DEMANDADO IS NULL then 9
+        setIfNull(newRow, iDEMANDADO, 9);
 
-            if (tipoSindicatoDem == 6 && newRow[OTRO_ESP_SINDICATO_DEM] == null)
-                newRow[OTRO_ESP_SINDICATO_DEM] = "No Especifico";
+        // if :New.DEFENSA_DEM IS NULL then 9
+        setIfNull(newRow, iDEFENSA_DEM, 9);
 
-            if (newRow[ORG_OBRERA_DEM] == null)
-                newRow[ORG_OBRERA_DEM] = 9;
+        Integer demandado = asInt(newRow[iDEMANDADO]);
 
-            if (orgObreraDem == 1 && newRow[NOMBRE_ORG_OBRERA_DEM] == null)
-                newRow[NOMBRE_ORG_OBRERA_DEM] = 9;
+        // ===== Demandado sindicato (demandado = 2) =====
+        if (demandado != null && demandado == 2) {
+            setIfNull(newRow, iNOMBRE_SINDICATO_DEM, "No Identificado");
+            setIfNull(newRow, iREG_ASOC_SINDICAL_DEM, "No Identificado");
+            setIfNull(newRow, iTIPO_SINDICATO_DEM, 9);
 
-            if (orgObreraDem == 1 && nombreOrgObreraDem == 8
-                    && newRow[OTRO_ESP_OBRERA_DEM] == null)
-                newRow[OTRO_ESP_OBRERA_DEM] = "No especifico";
+            Integer tipoSind = asInt(newRow[iTIPO_SINDICATO_DEM]);
+            if (tipoSind != null && tipoSind == 6) {
+                setIfNull(newRow, iOTRO_ESP_SINDICATO_DEM, "No Especifico");
+            }
+
+            setIfNull(newRow, iORG_OBRERA_DEM, 9);
+
+            Integer orgObrera = asInt(newRow[iORG_OBRERA_DEM]);
+            if (orgObrera != null && orgObrera == 1) {
+                setIfNull(newRow, iNOMBRE_ORG_OBRERA_DEM, 9);
+
+                Integer nombreOrg = asInt(newRow[iNOMBRE_ORG_OBRERA_DEM]);
+                if (nombreOrg != null && nombreOrg == 8) {
+                    // En tu Oracle trae 'No especifico' (minúscula). Lo dejo igual.
+                    setIfNull(newRow, iOTRO_ESP_OBRERA_DEM, "No especifico");
+                }
+            }
         }
 
-        // ===== DEMANDADO = Patrón (1) =====
-        if (demandado == 1) {
+        // ===== Demandado patrón (demandado = 1) =====
+        if (demandado != null && demandado == 1) {
 
-            if (newRow[TIPO_DEM_PAT] == null)
-                newRow[TIPO_DEM_PAT] = 9;
+            setIfNull(newRow, iTIPO_DEM_PAT, 9);
 
-            if (tipoDemPat == 1 && newRow[RFC_PATRON_DEM] == null)
-                newRow[RFC_PATRON_DEM] = "No Identificado";
+            Integer tipoPat = asInt(newRow[iTIPO_DEM_PAT]);
 
-            if (tipoDemPat == 2) {
+            if (tipoPat != null && tipoPat == 1) {
+                setIfNull(newRow, iRFC_PATRON_DEM, "No Identificado");
+            }
 
-                if (newRow[RAZON_SOCIAL_EMPR_DEM] == null)
-                    newRow[RAZON_SOCIAL_EMPR_DEM] = "No Identificado";
+            if (tipoPat != null && tipoPat == 2) {
+                setIfNull(newRow, iRAZON_SOCIAL_EMPR_DEM, "No Identificado");
+                setIfNull(newRow, iCALLE, "No Identificado");
+                setIfNull(newRow, iN_EXT, "No Identificado");
+                setIfNull(newRow, iN_INT, "No Identificado");
+                setIfNull(newRow, iCOLONIA, "No Identificado");
+                setIfNull(newRow, iCP, "No Identificado");
 
-                if (newRow[CALLE] == null)
-                    newRow[CALLE] = "No Identificado";
+                setIfNull(newRow, iENTIDAD_NOMBRE_EMPR, "No Identificado");
+                setIfNull(newRow, iENTIDAD_CLAVE_EMPR, 99);
 
-                if (newRow[N_EXT] == null)
-                    newRow[N_EXT] = "No Identificado";
+                setIfNull(newRow, iMUNICIPIO_NOMBRE_EMPR, "No Identificado");
+                setIfNull(newRow, iMUNICIPIO_CLAVE_EMPR, 99999);
 
-                if (newRow[N_INT] == null)
-                    newRow[N_INT] = "No Identificado";
-
-                if (newRow[COLONIA] == null)
-                    newRow[COLONIA] = "No Identificado";
-
-                if (newRow[CP] == null)
-                    newRow[CP] = "No Identificado";
-
-                if (newRow[ENTIDAD_NOMBRE_EMPR] == null)
-                    newRow[ENTIDAD_NOMBRE_EMPR] = "No Identificado";
-
-                if (newRow[ENTIDAD_CLAVE_EMPR] == null)
-                    newRow[ENTIDAD_CLAVE_EMPR] = 99;
-
-                if (newRow[MUNICIPIO_NOMBRE_EMPR] == null)
-                    newRow[MUNICIPIO_NOMBRE_EMPR] = "No Identificado";
-
-                if (newRow[MUNICIPIO_CLAVE_EMPR] == null)
-                    newRow[MUNICIPIO_CLAVE_EMPR] = 99999;
-
-                if (newRow[LATITUD_EMPR] == null)
-                    newRow[LATITUD_EMPR] = "No Identificado";
-
-                if (newRow[LONGITUD_EMPR] == null)
-                    newRow[LONGITUD_EMPR] = "No Identificado";
+                setIfNull(newRow, iLATITUD_EMPR, "No Identificado");
+                setIfNull(newRow, iLONGITUD_EMPR, "No Identificado");
             }
         }
     }
 
-    @Override public void close() {}
-    @Override public void remove() {}
-
-    // ===== Helper =====
-    private static int toInt(Object v, int def) {
-        if (v == null) return def;
-        if (v instanceof Number) return ((Number) v).intValue();
-        try { return Integer.parseInt(v.toString()); }
-        catch (Exception e) { return def; }
-    }
+    @Override public void close() { }
+    @Override public void remove() { }
 }

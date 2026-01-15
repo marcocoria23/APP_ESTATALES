@@ -1,27 +1,11 @@
 package triggers;
 
 import org.h2.api.Trigger;
+
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class V3TrPartDemOrdinarioJL implements Trigger {
-
-    // ===== Column indexes (AJUSTAR AL ORDEN REAL DE LA TABLA) =====
-    private static final int DEMANDADO = 1;
-    private static final int DEFENSA_DEM = 2;
-    private static final int TIPO = 3;
-
-    private static final int RFC_PATRON = 4;
-    private static final int CALLE = 5;
-    private static final int N_EXT = 6;
-    private static final int N_INT = 7;
-    private static final int COLONIA = 8;
-    private static final int CP = 9;
-    private static final int ENTIDAD_NOMBRE_EMPR = 10;
-    private static final int ENTIDAD_CLAVE_EMPR = 11;
-    private static final int MUNICIPIO_NOMBRE_EMPR = 12;
-    private static final int MUNICIPIO_CLAVE_EMPR = 13;
-    private static final int LATITUD_EMPR = 14;
-    private static final int LONGITUD_EMPR = 15;
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -29,76 +13,89 @@ public class V3TrPartDemOrdinarioJL implements Trigger {
         // no-op
     }
 
+    private Integer asInt(Object v) {
+        if (v == null) return null;
+        if (v instanceof Number) return ((Number) v).intValue();
+        String s = v.toString().trim();
+        if (s.isEmpty()) return null;
+        return Integer.valueOf(s);
+    }
+
+    private void setIfNull(Object[] newRow, int idx, Object value) {
+        if (newRow[idx] == null) newRow[idx] = value;
+    }
+
     @Override
-    public void fire(Connection conn, Object[] oldRow, Object[] newRow) {
+    public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
 
-        int demandado = toInt(newRow[DEMANDADO], 0);
-        int tipo = toInt(newRow[TIPO], 0);
+        // ===== Índices (0-based) según tu CREATE TABLE =====
+        // 0  NOMBRE_ORGANO_JURIS
+        // 1  CLAVE_ORGANO
+        // 2  EXPEDIENTE_CLAVE
+        // 3  ID_DEMANDADO
+        final int iDEMANDADO = 4;
+        final int iDEFENSA_DEM = 5;
+        final int iTIPO = 6;
+        final int iRFC_PATRON = 7;
+        final int iRAZON_SOCIAL_EMPR = 8;
+        final int iCALLE = 9;
+        final int iN_EXT = 10;
+        final int iN_INT = 11;
+        final int iCOLONIA = 12;
+        final int iCP = 13;
+        final int iENTIDAD_NOMBRE_EMPR = 14;
+        final int iENTIDAD_CLAVE_EMPR = 15;
+        final int iMUNICIPIO_NOMBRE_EMPR = 16;
+        final int iMUNICIPIO_CLAVE_EMPR = 17;
+        final int iLATITUD_EMPR = 18;
+        final int iLONGITUD_EMPR = 19;
+        // 20 COMENTARIOS
 
-        // ===== Defaults generales =====
-        if (newRow[DEMANDADO] == null)
-            newRow[DEMANDADO] = 9;
+        // ===== Defaults base =====
+        // if DEMANDADO is null -> 9
+        setIfNull(newRow, iDEMANDADO, 9);
 
-        if (newRow[DEFENSA_DEM] == null)
-            newRow[DEFENSA_DEM] = 9;
+        // if DEFENSA_DEM is null -> 9
+        setIfNull(newRow, iDEFENSA_DEM, 9);
 
-        // ===== Demandado: Patrón =====
-        if (demandado == 1) {
+        Integer demandado = asInt(newRow[iDEMANDADO]);
 
-            if (newRow[TIPO] == null)
-                newRow[TIPO] = 9;
+        // ===== Demandado = 1 =====
+        if (demandado != null && demandado == 1) {
 
-            // RFC obligatorio (Tipo 1 y 2)
-            if (newRow[RFC_PATRON] == null)
-                newRow[RFC_PATRON] = "No identificado";
+            // if TIPO is null -> 9
+            setIfNull(newRow, iTIPO, 9);
 
-            // ===== Tipo de patrón = Empresa =====
-            if (tipo == 2) {
+            Integer tipo = asInt(newRow[iTIPO]);
 
-                if (newRow[CALLE] == null)
-                    newRow[CALLE] = "No identificado";
-
-                if (newRow[N_EXT] == null)
-                    newRow[N_EXT] = "No identificado";
-
-                if (newRow[N_INT] == null)
-                    newRow[N_INT] = "No identificado";
-
-                if (newRow[COLONIA] == null)
-                    newRow[COLONIA] = "No identificado";
-
-                if (newRow[CP] == null)
-                    newRow[CP] = "No identificado";
-
-                if (newRow[ENTIDAD_NOMBRE_EMPR] == null)
-                    newRow[ENTIDAD_NOMBRE_EMPR] = "No identificado";
-
-                if (newRow[ENTIDAD_CLAVE_EMPR] == null)
-                    newRow[ENTIDAD_CLAVE_EMPR] = 99;
-
-                if (newRow[MUNICIPIO_NOMBRE_EMPR] == null)
-                    newRow[MUNICIPIO_NOMBRE_EMPR] = "No identificado";
-
-                if (newRow[MUNICIPIO_CLAVE_EMPR] == null)
-                    newRow[MUNICIPIO_CLAVE_EMPR] = 99999;
-
-                if (newRow[LATITUD_EMPR] == null)
-                    newRow[LATITUD_EMPR] = "No identificado";
-
-                if (newRow[LONGITUD_EMPR] == null)
-                    newRow[LONGITUD_EMPR] = "No identificado";
+            // RFC_PATRON default cuando Demandado=1 y Tipo=1 o 2
+            if (tipo != null && (tipo == 1 || tipo == 2)) {
+                setIfNull(newRow, iRFC_PATRON, "No identificado");
             }
+
+            // Si Tipo = 2: llenar domicilio/ubicación
+            if (tipo != null && tipo == 2) {
+                setIfNull(newRow, iCALLE, "No identificado");
+                setIfNull(newRow, iN_EXT, "No identificado");
+                setIfNull(newRow, iN_INT, "No identificado");
+                setIfNull(newRow, iCOLONIA, "No identificado");
+                setIfNull(newRow, iCP, "No identificado");
+
+                setIfNull(newRow, iENTIDAD_NOMBRE_EMPR, "No identificado");
+                setIfNull(newRow, iENTIDAD_CLAVE_EMPR, 99);
+
+                setIfNull(newRow, iMUNICIPIO_NOMBRE_EMPR, "No identificado");
+                setIfNull(newRow, iMUNICIPIO_CLAVE_EMPR, 99999);
+
+                setIfNull(newRow, iLATITUD_EMPR, "No identificado");
+                setIfNull(newRow, iLONGITUD_EMPR, "No identificado");
+            }
+
+            // Nota: en tu trigger Oracle NO pones default para RAZON_SOCIAL_EMPR,
+            // por eso aquí NO lo llené (aunque existe la columna).
         }
     }
 
-    @Override public void close() {}
-    @Override public void remove() {}
-
-    // ===== Helper =====
-    private static int toInt(Object v, int def) {
-        if (v == null) return def;
-        if (v instanceof Number) return ((Number) v).intValue();
-        try { return Integer.parseInt(v.toString()); }
-        catch (Exception e) { return def; }
-    }
+    @Override public void close() { }
+    @Override public void remove() { }
 }

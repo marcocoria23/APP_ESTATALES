@@ -1,20 +1,11 @@
 package triggers;
 
 import org.h2.api.Trigger;
+
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class V3TrPartActIndividualJL implements Trigger {
-
-    // ===== Column indexes (ADJUST TO YOUR TABLE ORDER) =====
-    private static final int ACTOR = 1;
-    private static final int DEFENSA_ACT = 2;
-    private static final int SEXO = 3;
-    private static final int EDAD = 4;
-    private static final int OCUPACION = 5;
-    private static final int NSS = 6;
-    private static final int CURP = 7;
-    private static final int RFC_TRABAJADOR = 8;
-    private static final int JORNADA = 9;
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -22,52 +13,60 @@ public class V3TrPartActIndividualJL implements Trigger {
         // no-op
     }
 
+    private Integer asInt(Object v) {
+        if (v == null) return null;
+        if (v instanceof Number) return ((Number) v).intValue();
+        String s = v.toString().trim();
+        if (s.isEmpty()) return null;
+        return Integer.valueOf(s);
+    }
+
+    private void setIfNull(Object[] newRow, int idx, Object value) {
+        if (newRow[idx] == null) newRow[idx] = value;
+    }
+
     @Override
-    public void fire(Connection conn, Object[] oldRow, Object[] newRow) {
+    public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
 
-        int actor = toInt(newRow[ACTOR], 0);
+        // ===== Índices (0-based) según tu DDL =====
+        // 0  NOMBRE_ORGANO_JURIS
+        // 1  CLAVE_ORGANO
+        // 2  EXPEDIENTE_CLAVE
+        // 3  ID_ACTOR
+        final int iACTOR = 4;
+        final int iDEFENSA_ACT = 5;
+        final int iSEXO = 6;
+        final int iEDAD = 7;
+        final int iOCUPACION = 8;
+        final int iNSS = 9;
+        final int iCURP = 10;
+        final int iRFC_TRABAJADOR = 11;
+        final int iJORNADA = 12;
 
-        // ===== Defaults =====
-        if (newRow[ACTOR] == null)
-            newRow[ACTOR] = 99;
+        // ===== Defaults base =====
+        // if :NEW.ACTOR IS NULL THEN 99
+        setIfNull(newRow, iACTOR, 99);
 
-        if (newRow[DEFENSA_ACT] == null)
-            newRow[DEFENSA_ACT] = 9;
+        // if :NEW.DEFENSA_ACT IS NULL THEN 9
+        setIfNull(newRow, iDEFENSA_ACT, 9);
 
-        // ===== Actor = Trabajador (1) =====
-        if (actor == 1) {
+        Integer actor = asInt(newRow[iACTOR]);
 
-            if (newRow[SEXO] == null)
-                newRow[SEXO] = 9;
+        // ===== Actor: trabajador (actor = 1) =====
+        if (actor != null && actor == 1) {
 
-            if (newRow[EDAD] == null)
-                newRow[EDAD] = 99;
+            setIfNull(newRow, iSEXO, 9);
+            setIfNull(newRow, iEDAD, 99);
+            setIfNull(newRow, iOCUPACION, 999);
 
-            if (newRow[OCUPACION] == null)
-                newRow[OCUPACION] = 999;
+            setIfNull(newRow, iNSS, "No Identificado");
+            setIfNull(newRow, iCURP, "No Identificado");
+            setIfNull(newRow, iRFC_TRABAJADOR, "No Identificado");
 
-            if (newRow[NSS] == null)
-                newRow[NSS] = "No Identificado";
-
-            if (newRow[CURP] == null)
-                newRow[CURP] = "No Identificado";
-
-            if (newRow[RFC_TRABAJADOR] == null)
-                newRow[RFC_TRABAJADOR] = "No Identificado";
-
-            if (newRow[JORNADA] == null)
-                newRow[JORNADA] = 9;
+            setIfNull(newRow, iJORNADA, 9);
         }
     }
 
-    @Override public void close() {}
-    @Override public void remove() {}
-
-    // ===== Helper =====
-    private static int toInt(Object v, int def) {
-        if (v == null) return def;
-        if (v instanceof Number) return ((Number) v).intValue();
-        try { return Integer.parseInt(v.toString()); }
-        catch (Exception e) { return def; }
-    }
+    @Override public void close() { }
+    @Override public void remove() { }
 }

@@ -1,28 +1,11 @@
 package triggers;
 
 import org.h2.api.Trigger;
+
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class V3TrPartDemHuelgaJL implements Trigger {
-
-    // ===== Column indexes (ADJUST TO YOUR TABLE DEFINITION) =====
-    private static final int DEMANDADO = 1;
-    private static final int DEFENSA_DEM = 2;
-    private static final int TIPO = 3;
-
-    private static final int RFC_PATRON = 4;
-    private static final int RAZON_SOCIAL_EMPR = 5;
-    private static final int CALLE = 6;
-    private static final int N_EXT = 7;
-    private static final int N_INT = 8;
-    private static final int COLONIA = 9;
-    private static final int CP = 10;
-    private static final int ENTIDAD_NOMBRE_EMPR = 11;
-    private static final int ENTIDAD_CLAVE_EMPR = 12;
-    private static final int MUNICIPIO_NOMBRE_EMPR = 13;
-    private static final int MUNICIPIO_CLAVE_EMPR = 14;
-    private static final int LATITUD_EMPR = 15;
-    private static final int LONGITUD_EMPR = 16;
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -30,77 +13,85 @@ public class V3TrPartDemHuelgaJL implements Trigger {
         // no-op
     }
 
+    private Integer asInt(Object v) {
+        if (v == null) return null;
+        if (v instanceof Number) return ((Number) v).intValue();
+        String s = v.toString().trim();
+        if (s.isEmpty()) return null;
+        return Integer.valueOf(s);
+    }
+
+    private void setIfNull(Object[] newRow, int idx, Object value) {
+        if (newRow[idx] == null) newRow[idx] = value;
+    }
+
     @Override
-    public void fire(Connection conn, Object[] oldRow, Object[] newRow) {
+    public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
 
-        int demandado = toInt(newRow[DEMANDADO], 0);
-        int tipo = toInt(newRow[TIPO], 0);
+        // ===== Índices (0-based) según tu CREATE TABLE =====
+        // 0  NOMBRE_ORGANO_JURIS
+        // 1  CLAVE_ORGANO
+        // 2  EXPEDIENTE_CLAVE
+        // 3  ID_DEMANDADO
+        final int iDEMANDADO = 4;
+        final int iDEFENSA_DEM = 5;
+        final int iTIPO = 6;
+        final int iRFC_PATRON = 7;
+        final int iRAZON_SOCIAL_EMPR = 8;
+        final int iCALLE = 9;
+        final int iN_EXT = 10;
+        final int iN_INT = 11;
+        final int iCOLONIA = 12;
+        final int iCP = 13;
+        final int iENTIDAD_NOMBRE_EMPR = 14;
+        final int iENTIDAD_CLAVE_EMPR = 15;
+        final int iMUNICIPIO_NOMBRE_EMPR = 16;
+        final int iMUNICIPIO_CLAVE_EMPR = 17;
+        final int iLATITUD_EMPR = 18;
+        final int iLONGITUD_EMPR = 19;
+        // 20 COMENTARIOS
 
-        // ===== Global defaults =====
-        if (newRow[DEMANDADO] == null)
-            newRow[DEMANDADO] = 9;
+        // ===== Defaults base =====
+        // if :NEW.DEMANDADO IS NULL then 9
+        setIfNull(newRow, iDEMANDADO, 9);
 
-        if (newRow[DEFENSA_DEM] == null)
-            newRow[DEFENSA_DEM] = 9;
+        // if :NEW.DEFENSA_DEM IS NULL then 9
+        setIfNull(newRow, iDEFENSA_DEM, 9);
 
-        // ===== DEMANDADO = Patrón (1) =====
-        if (demandado == 1) {
+        Integer demandado = asInt(newRow[iDEMANDADO]);
 
-            if (newRow[TIPO] == null)
-                newRow[TIPO] = 9;
+        // ===== Reglas cuando DEMANDADO = 1 =====
+        if (demandado != null && demandado == 1) {
 
-            if (newRow[RFC_PATRON] == null)
-                newRow[RFC_PATRON] = "No Identificado";
+            // if TIPO is null -> 9
+            setIfNull(newRow, iTIPO, 9);
 
-            if (tipo == 2) {
+            // if RFC_PATRON is null -> 'No Identificado'
+            setIfNull(newRow, iRFC_PATRON, "No Identificado");
 
-                if (newRow[RAZON_SOCIAL_EMPR] == null)
-                    newRow[RAZON_SOCIAL_EMPR] = "No Identificado";
+            Integer tipo = asInt(newRow[iTIPO]);
 
-                if (newRow[CALLE] == null)
-                    newRow[CALLE] = "No Identificado";
+            // if Tipo = 2 entonces llena datos de domicilio/empresa
+            if (tipo != null && tipo == 2) {
+                setIfNull(newRow, iRAZON_SOCIAL_EMPR, "No Identificado");
+                setIfNull(newRow, iCALLE, "No Identificado");
+                setIfNull(newRow, iN_EXT, "No Identificado");
+                setIfNull(newRow, iN_INT, "No Identificado");
+                setIfNull(newRow, iCOLONIA, "No Identificado");
+                setIfNull(newRow, iCP, "No Identificado");
 
-                if (newRow[N_EXT] == null)
-                    newRow[N_EXT] = "No Identificado";
+                setIfNull(newRow, iENTIDAD_NOMBRE_EMPR, "No Identificado");
+                setIfNull(newRow, iENTIDAD_CLAVE_EMPR, 99);
 
-                if (newRow[N_INT] == null)
-                    newRow[N_INT] = "No Identificado";
+                setIfNull(newRow, iMUNICIPIO_NOMBRE_EMPR, "No Identificado");
+                setIfNull(newRow, iMUNICIPIO_CLAVE_EMPR, 99999);
 
-                if (newRow[COLONIA] == null)
-                    newRow[COLONIA] = "No Identificado";
-
-                if (newRow[CP] == null)
-                    newRow[CP] = "No Identificado";
-
-                if (newRow[ENTIDAD_NOMBRE_EMPR] == null)
-                    newRow[ENTIDAD_NOMBRE_EMPR] = "No Identificado";
-
-                if (newRow[ENTIDAD_CLAVE_EMPR] == null)
-                    newRow[ENTIDAD_CLAVE_EMPR] = 99;
-
-                if (newRow[MUNICIPIO_NOMBRE_EMPR] == null)
-                    newRow[MUNICIPIO_NOMBRE_EMPR] = "No Identificado";
-
-                if (newRow[MUNICIPIO_CLAVE_EMPR] == null)
-                    newRow[MUNICIPIO_CLAVE_EMPR] = 99999;
-
-                if (newRow[LATITUD_EMPR] == null)
-                    newRow[LATITUD_EMPR] = "No Identificado";
-
-                if (newRow[LONGITUD_EMPR] == null)
-                    newRow[LONGITUD_EMPR] = "No Identificado";
+                setIfNull(newRow, iLATITUD_EMPR, "No Identificado");
+                setIfNull(newRow, iLONGITUD_EMPR, "No Identificado");
             }
         }
     }
 
-    @Override public void close() {}
-    @Override public void remove() {}
-
-    // ===== Helper =====
-    private static int toInt(Object v, int def) {
-        if (v == null) return def;
-        if (v instanceof Number) return ((Number) v).intValue();
-        try { return Integer.parseInt(v.toString()); }
-        catch (Exception e) { return def; }
-    }
+    @Override public void close() { }
+    @Override public void remove() { }
 }

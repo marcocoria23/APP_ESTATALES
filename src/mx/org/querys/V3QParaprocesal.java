@@ -157,7 +157,7 @@ public class V3QParaprocesal {
         ArrayList<String[]> out = new ArrayList<>();
 
         sql =
-            "SELECT clave_organo, expediente_clave, periodo, " +
+            "SELECT clave_organo, expediente_clave,  " +
             "       FORMATDATETIME(" + campoFecha + ",'dd/MM/yyyy') AS " + alias + " " +
             "FROM V3_TR_PARAPROCESALJL " +
             "WHERE " + campoFecha + " > CURRENT_DATE " +
@@ -171,7 +171,7 @@ public class V3QParaprocesal {
                 out.add(new String[]{
                     rs.getString("clave_organo"),
                     rs.getString("expediente_clave"),
-                    rs.getString("periodo"),
+                    //NOTA: MODIFICAR CLASE PRINCIPAL
                     rs.getString(alias)
                 });
             }
@@ -193,11 +193,11 @@ public class V3QParaprocesal {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_PARAPROCESALJL t " +
-            "WHERE (t.CLAVE_ORGANO || REGEXP_REPLACE(t.EXPEDIENTE_CLAVE, '[^0-9]', '') || t.PERIODO) IN (" +
-            "   SELECT (CLAVE_ORGANO || EXP2 || PERIODO) FROM (" +
-            "       SELECT CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXP2, COUNT(*) AS CUENTA " +
+            "WHERE (t.CLAVE_ORGANO || REGEXP_REPLACE(t.EXPEDIENTE_CLAVE, '[^0-9]', '') ) IN (" +
+            "   SELECT (CLAVE_ORGANO || EXP2 ) FROM (" +
+            "       SELECT CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXP2, COUNT(*) AS CUENTA " +
             "       FROM V3_TR_PARAPROCESALJL " +
-            "       GROUP BY CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
+            "       GROUP BY CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
             "   ) x WHERE x.CUENTA > 1" +
             ") " +
             "ORDER BY CLAVE_ORGANO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '')";
@@ -233,7 +233,6 @@ public class V3QParaprocesal {
             "SELECT ESTATUS_EXPEDIENTE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_PRESENTA_SOLI,'dd/MM/yyyy') AS FECHA_PRESENTA_SOLI, " +
-            "       PERIODO " +
             "FROM V3_TR_PARAPROCESALJL " +
             "WHERE FECHA_APERTURA_EXPEDIENTE < FECHA_PRESENTA_SOLI " +
             "  AND FECHA_PRESENTA_SOLI <> DATE '1899-09-09'";
@@ -269,7 +268,6 @@ public class V3QParaprocesal {
             "SELECT ESTATUS_EXPEDIENTE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_ADMISION_SOLI,'dd/MM/yyyy') AS FECHA_ADMISION_SOLI, " +
             "       FORMATDATETIME(FECHA_PRESENTA_SOLI,'dd/MM/yyyy') AS FECHA_PRESENTA_SOLI, " +
-            "       PERIODO " +
             "FROM V3_TR_PARAPROCESALJL " +
             "WHERE FECHA_ADMISION_SOLI < FECHA_PRESENTA_SOLI " +
             "  AND FECHA_PRESENTA_SOLI <> DATE '1899-09-09' " +
@@ -306,7 +304,6 @@ public class V3QParaprocesal {
             "SELECT ESTATUS_EXPEDIENTE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_ADMISION_SOLI,'dd/MM/yyyy') AS FECHA_ADMISION_SOLI, " +
-            "       PERIODO " +
             "FROM V3_TR_PARAPROCESALJL " +
             "WHERE FECHA_ADMISION_SOLI <> DATE '1899-09-09' " +
             "  AND FECHA_ADMISION_SOLI < FECHA_APERTURA_EXPEDIENTE";

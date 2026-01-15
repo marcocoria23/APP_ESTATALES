@@ -22,7 +22,7 @@ public class V3Querys {
         Array = new ArrayList<>();
 
         sql = "SELECT TABLA, CLAVE_ORGANO, CLAVE_EXPEDIENTE, ID, REPLACE(EXCEPCION,',','') AS EXCEPCION, " +
-              "       USUARIO, FECHA_HORA, PERIODO " +
+              "       USUARIO, FECHA_HORA " +
               "FROM V3_ERRORES_INSERT_RALABTR ";
 
         System.out.println(sql);
@@ -39,7 +39,7 @@ public class V3Querys {
                         rs.getString("EXCEPCION"),
                         rs.getString("USUARIO"),
                         rs.getString("FECHA_HORA"),
-                        rs.getString("PERIODO")
+                        //NOTA: MODIFICAR CLASE PRINCIPAL
                     });
                 }
             }
@@ -56,7 +56,7 @@ public class V3Querys {
         Array = new ArrayList<>();
 
         sql = "SELECT TABLA_DESTINO, CLAVE_ORGANO, CLAVE_EXPEDIENTE, ID, MENSAJE, " +
-              "       USUARIO, FECHA_HORA, PERIODO " +
+              "       USUARIO, FECHA_HORA " +
               "FROM V3_ERRORES_INSERT_RALABTR ";
 
         System.out.println(sql);
@@ -73,7 +73,7 @@ public class V3Querys {
                         rs.getString("EXCEPCION"),
                         rs.getString("USUARIO"),
                         rs.getString("FECHA_HORA"),
-                        rs.getString("PERIODO")
+                        //NOTA: MODIFICAR CLASE PRINCIPAL
                     });
                 }
             }

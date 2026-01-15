@@ -149,7 +149,7 @@ public class V3QEjecucion {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave, periodo, " +
+            "SELECT clave_organo, expediente_clave,  " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_EJECUCIONJL " +
             "WHERE FECHA_APERTURA_EXPEDIENTE > CURRENT_DATE " +
@@ -165,7 +165,7 @@ public class V3QEjecucion {
                 Array.add(new String[]{
                     rs.getString("clave_organo"),
                     rs.getString("expediente_clave"),
-                    rs.getString("periodo"),
+                    //NOTA: MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_APERTURA_EXPEDIENTE")
                 });
             }
@@ -181,7 +181,7 @@ public class V3QEjecucion {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave, periodo, " +
+            "SELECT clave_organo, expediente_clave,  " +
             "       FORMATDATETIME(CAST(FECHA_PRESENTACION AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_PRESENTACION " +
             "FROM V3_TR_EJECUCIONJL " +
             "WHERE FECHA_PRESENTACION > CURRENT_DATE " +
@@ -197,7 +197,7 @@ public class V3QEjecucion {
                 Array.add(new String[]{
                     rs.getString("clave_organo"),
                     rs.getString("expediente_clave"),
-                    rs.getString("periodo"),
+                    //NOTA: MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_PRESENTACION")
                 });
             }
@@ -213,7 +213,7 @@ public class V3QEjecucion {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave, periodo, " +
+            "SELECT clave_organo, expediente_clave,  " +
             "       FORMATDATETIME(CAST(FECHA_CONCLUSION AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_CONCLUSION " +
             "FROM V3_TR_EJECUCIONJL " +
             "WHERE FECHA_CONCLUSION > CURRENT_DATE " +
@@ -229,7 +229,7 @@ public class V3QEjecucion {
                 Array.add(new String[]{
                     rs.getString("clave_organo"),
                     rs.getString("expediente_clave"),
-                    rs.getString("periodo"),
+                    //NOTA: MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_CONCLUSION")
                 });
             }
@@ -251,17 +251,16 @@ public class V3QEjecucion {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_EJECUCIONJL " +
-            "WHERE CLAVE_ORGANO || CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT) || PERIODO IN ( " +
-            "  SELECT CLAVE_ORGANO || EXPEDIENTE_CLAVE2 || PERIODO " +
+            "WHERE CLAVE_ORGANO || CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT)  IN ( " +
+            "  SELECT CLAVE_ORGANO || EXPEDIENTE_CLAVE2  " +
             "  FROM ( " +
-            "    SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE2, PERIODO, COUNT(*) AS CUENTA " +
+            "    SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE2,  COUNT(*) AS CUENTA " +
             "    FROM ( " +
             "      SELECT CLAVE_ORGANO, " +
-            "             CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT) AS EXPEDIENTE_CLAVE2, " +
-            "             PERIODO " +
+            "             CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT) AS EXPEDIENTE_CLAVE2 " +
             "      FROM V3_TR_EJECUCIONJL " +
             "    ) T " +
-            "    GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE2, PERIODO " +
+            "    GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE2 " +
             "  ) X " +
             "  WHERE CUENTA > 1 " +
             ") " +

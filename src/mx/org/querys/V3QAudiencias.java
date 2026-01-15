@@ -31,7 +31,7 @@ public class V3QAudiencias {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_AUDIEN_CELEBRADA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_AUDIEN_CELEBRADA " +
             "FROM V3_TR_AUDIENCIASJL " +
             "WHERE FECHA_AUDIEN_CELEBRADA > CURRENT_DATE " +
@@ -46,7 +46,7 @@ public class V3QAudiencias {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA: MODIFICAR EN LA CLASE PRINCIPAL
                     rs.getString("FECHA_AUDIEN_CELEBRADA")
                 });
             }
@@ -68,7 +68,7 @@ public class V3QAudiencias {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_AUDIENCIA, " + tipoProcedTexto() + " AS TIPO_PROCED, " +
             "       INICIO " +
             "FROM ( " +
-            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_AUDIENCIA, TIPO_PROCED, INICIO, PERIODO, " +
+            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_AUDIENCIA, TIPO_PROCED, INICIO,  " +
             "          CASE " +
             "            WHEN LENGTH(REGEXP_REPLACE(INICIO, '[^0-9]', '')) = 4 THEN SUBSTRING(REGEXP_REPLACE(INICIO, '[^0-9]', ''), 1, 2) " +
             "            WHEN LENGTH(REGEXP_REPLACE(INICIO, '[^0-9]', '')) = 3 THEN SUBSTRING(REGEXP_REPLACE(INICIO, '[^0-9]', ''), 1, 1) " +
@@ -110,7 +110,7 @@ public class V3QAudiencias {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_AUDIENCIA, " + tipoProcedTexto() + " AS TIPO_PROCED, " +
             "       CONCLU " +
             "FROM ( " +
-            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_AUDIENCIA, TIPO_PROCED, CONCLU, PERIODO, " +
+            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_AUDIENCIA, TIPO_PROCED, CONCLU,  " +
             "          CASE " +
             "            WHEN LENGTH(REGEXP_REPLACE(CONCLU, '[^0-9]', '')) = 4 THEN SUBSTRING(REGEXP_REPLACE(CONCLU, '[^0-9]', ''), 1, 2) " +
             "            WHEN LENGTH(REGEXP_REPLACE(CONCLU, '[^0-9]', '')) = 3 THEN SUBSTRING(REGEXP_REPLACE(CONCLU, '[^0-9]', ''), 1, 1) " +
@@ -221,7 +221,7 @@ public class V3QAudiencias {
         String sql =
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_AUDIENCIA, " + tipoProcedTexto() + " AS TIPO_PROCED, INICIO, CONCLU " +
             "FROM ( " +
-            "  SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_AUDIENCIA, TIPO_PROCED, PERIODO, " +
+            "  SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_AUDIENCIA, TIPO_PROCED,  " +
             "         CASE WHEN LENGTH(INICIO) < 5 THEN CONCAT('0', INICIO) ELSE INICIO END AS INICIO, " +
             "         CASE WHEN LENGTH(CONCLU) < 5 THEN CONCAT('0', CONCLU) ELSE CONCLU END AS CONCLU " +
             "  FROM V3_TR_AUDIENCIASJL " +

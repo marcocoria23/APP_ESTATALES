@@ -174,7 +174,7 @@ public class V3QOrdinario {
         ArrayList<String[]> out = new ArrayList<>();
 
         sql =
-            "SELECT clave_organo, expediente_clave, periodo, " +
+            "SELECT clave_organo, expediente_clave,  " +
             "       FORMATDATETIME(" + campoFecha + ",'dd/MM/yyyy') AS " + alias + " " +
             "FROM V3_TR_ORDINARIOJL " +
             "WHERE " + campoFecha + " > CURRENT_DATE " +
@@ -188,7 +188,7 @@ public class V3QOrdinario {
                 out.add(new String[]{
                     rs.getString("clave_organo"),
                     rs.getString("expediente_clave"),
-                    rs.getString("periodo"),
+                    //NOTA: MODIFICAR CLASE PRINCIPAL
                     rs.getString(alias)
                 });
             }
@@ -210,11 +210,11 @@ public class V3QOrdinario {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_ORDINARIOJL t " +
-            "WHERE (t.CLAVE_ORGANO || REGEXP_REPLACE(t.EXPEDIENTE_CLAVE, '[^0-9]', '') || t.PERIODO) IN (" +
-            "   SELECT (CLAVE_ORGANO || EXP2 || PERIODO) FROM (" +
-            "       SELECT CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXP2, COUNT(*) AS CUENTA " +
+            "WHERE (t.CLAVE_ORGANO || REGEXP_REPLACE(t.EXPEDIENTE_CLAVE, '[^0-9]', '') ) IN (" +
+            "   SELECT (CLAVE_ORGANO || EXP2 ) FROM (" +
+            "       SELECT CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXP2, COUNT(*) AS CUENTA " +
             "       FROM V3_TR_ORDINARIOJL " +
-            "       GROUP BY CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
+            "       GROUP BY CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
             "   ) x WHERE x.CUENTA > 1" +
             ") " +
             "ORDER BY CLAVE_ORGANO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '')";
@@ -569,7 +569,6 @@ public class V3QOrdinario {
             "JOIN V3_TR_ORDINARIOJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = 1 " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_PRES_DEMANDA <> DATE '1899-09-09' " +
@@ -609,7 +608,6 @@ public class V3QOrdinario {
             "JOIN V3_TR_ORDINARIOJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = 1 " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_APERTURA_EXPEDIENTE <> DATE '1899-09-09' " +
@@ -649,7 +647,6 @@ public class V3QOrdinario {
             "JOIN V3_TR_ORDINARIOJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = 1 " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_ADMI_DEMANDA <> DATE '1899-09-09' " +

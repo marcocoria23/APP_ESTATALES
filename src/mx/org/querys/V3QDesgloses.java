@@ -28,7 +28,6 @@ public class V3QDesgloses {
             "FROM V3_TR_control_expedientejl prin " +
             "LEFT JOIN " + tablaDetalle + " sec " +
             "  ON prin.clave_organo = sec.clave_organo " +
-            " AND prin.periodo     = sec.periodo " +
             "GROUP BY prin.clave_organo, prin." + columnaControl + " " +
             "ORDER BY prin.clave_organo";
 

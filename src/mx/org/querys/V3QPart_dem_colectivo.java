@@ -73,13 +73,12 @@ public class V3QPart_dem_colectivo {
             "             ELSE NULL " +
             "          END AS INCOMPETENCIA " +
             "   FROM ( " +
-            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO " +
+            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO " +
             "       FROM V3_TR_PART_DEM_COLECTIVOJL " +
             "   ) p " +
             "   LEFT JOIN V3_TR_COLECTIVOJL s " +
             "     ON p.CLAVE_ORGANO = s.CLAVE_ORGANO " +
             "    AND p.EXPEDIENTE_CLAVE = s.EXPEDIENTE_CLAVE " +
-            "    AND p.PERIODO = s.PERIODO " +
             ") x " +
             "WHERE x.INCOMPETENCIA = 'Sí'";
 
@@ -121,13 +120,12 @@ public class V3QPart_dem_colectivo {
             "             ELSE NULL " +
             "          END AS ESTATUS_DEMANDA " +
             "   FROM ( " +
-            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO " +
+            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO " +
             "       FROM V3_TR_PART_DEM_COLECTIVOJL " +
             "   ) p " +
             "   LEFT JOIN V3_TR_COLECTIVOJL s " +
             "     ON p.CLAVE_ORGANO = s.CLAVE_ORGANO " +
             "    AND p.EXPEDIENTE_CLAVE = s.EXPEDIENTE_CLAVE " +
-            "    AND p.PERIODO = s.PERIODO " +
             ") x " +
             "WHERE x.ESTATUS_DEMANDA IN ('Desechada','Archivo','No se dio trámite al escrito de demanda')";
 
@@ -162,17 +160,15 @@ public class V3QPart_dem_colectivo {
             "          COALESCE(p.DESGLOSE_DEMANDADO, 0) AS DESGLOSE_DEMANDADO, " +
             "          COALESCE(CAST(s.INCOMPETENCIA AS VARCHAR), 'NULLO') AS INCOMPETENCIA, " +
             "          COALESCE(CAST(s.ESTATUS_DEMANDA AS VARCHAR), 'NULLO') AS ESTATUS_DEMANDA, " +
-            "          p.PERIODO " +
             "   FROM ( " +
-            "       SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, COUNT(ID_DEMANDADO) AS DESGLOSE_DEMANDADO " +
+            "       SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, COUNT(ID_DEMANDADO) AS DESGLOSE_DEMANDADO " +
             "       FROM V3_TR_PART_DEM_COLECTIVOJL " +
             "       WHERE ID_DEMANDADO NOT LIKE '%-%' " +
-            "       GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO " +
+            "       GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE " +
             "   ) p " +
             "   LEFT JOIN V3_TR_COLECTIVOJL s " +
             "     ON p.CLAVE_ORGANO = s.CLAVE_ORGANO " +
             "    AND p.EXPEDIENTE_CLAVE = s.EXPEDIENTE_CLAVE " +
-            "    AND p.PERIODO = s.PERIODO " +
             ") x " +
             "WHERE x.INCOMPETENCIA <> '1' " +
             "  AND x.ESTATUS_DEMANDA NOT IN ('2','3','4') " +

@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 
-public class V3TrProcesoColectEconomJL implements Trigger {
+public class V3TrColectEconomJL implements Trigger {
 
     private static final Date D_1899 = Date.valueOf("1899-09-09");
     private static final Date D_1999 = Date.valueOf("1999-09-09");

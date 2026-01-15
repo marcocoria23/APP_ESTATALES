@@ -14,19 +14,18 @@ import java.awt.Color;
 import java.awt.FileDialog;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import mx.org.BD.ReadCSV_Audiencias;
-import mx.org.querys.V3QAudiencias;
+import mx.org.Insert.BD.ReadCSV_Audiencias;
+import mx.org.Insert.BD.ReadCSV_Control_expediente;
+import mx.org.Insert.BD.ReadCSV_Ordinario;
 import triggers.CreaTriggers;
+
 
 /**
  *
@@ -42,8 +41,10 @@ public class InsertaTR extends javax.swing.JFrame {
        String ruta="",TexTabla="",TexProc;
        List<String> testList = new ArrayList<String>();
        List<String> testProc = new ArrayList<String>();
-      ReadCSV_Audiencias ReadAud=new ReadCSV_Audiencias();
-     
+       ReadCSV_Audiencias ReadAud=new ReadCSV_Audiencias();
+       ReadCSV_Control_expediente ReadControl=new ReadCSV_Control_expediente();
+       ReadCSV_Ordinario ReadOrdinario=new ReadCSV_Ordinario();
+       CreaTriggers Triggers=new CreaTriggers();
     
     public InsertaTR() {
         initComponents();
@@ -419,9 +420,41 @@ public class InsertaTR extends javax.swing.JFrame {
                   } catch (SQLException ex) {
                       Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
                   }
-              CTablas1.setSelectedIndex(1);   
+                  
+               Triggers.crearTriggerAudiencias(con);
+               Triggers.crearTriggerColectEconom(con);
+               Triggers.crearTriggerColectivo(con);
+               Triggers.crearTriggerControlExpediente(con);
+               Triggers.crearTriggerEjecucion(con);
+               Triggers.crearTriggerHuelga(con);
+               Triggers.crearTriggerIndividual(con);
+               Triggers.crearTriggerOrdinario(con);
+               Triggers.crearTriggerParaprocesal(con);
+               Triggers.crearTriggerPartActColectEconom(con);
+               Triggers.crearTriggerPartActColectivo(con);
+               Triggers.crearTriggerPartActHuelga(con);
+               Triggers.crearTriggerPartActIndividual(con);
+               Triggers.crearTriggerPartActOrdinario(con);
+               Triggers.crearTriggerPartDemColectEconom(con);
+               Triggers.crearTriggerPartDemColectivo(con);
+               Triggers.crearTriggerPartDemHuelga(con);
+               Triggers.crearTriggerPartDemIndividual(con);
+               Triggers.crearTriggerPartDemOrdinario(con);
+               Triggers.crearTriggerPrefCredito(con);
+               Triggers.crearTriggerTercerias(con);
+              
+              /* CTablas1.setSelectedIndex(1);   
+               ReadControl.Read_ControlExpediente(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos); */
+               
+             /*  CTablas1.setSelectedIndex(2);   
                ReadAud.Read_Audiencias(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);          
+                jTextField1.setText(readAud.rutaCarpetaArchivos); */
+
+                  CTablas1.setSelectedIndex(3);   
+               ReadOrdinario.Read_Ordinario(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
+                
                 JOptionPane.showMessageDialog(null, "Registros Insertados, Favor de revisar ventana -*Errores de insert*-");
                 Insertar.setEnabled(true);
             } catch (IOException ex) {

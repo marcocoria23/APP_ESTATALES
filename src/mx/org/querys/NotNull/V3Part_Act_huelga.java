@@ -21,8 +21,7 @@ public class V3Part_Act_huelga {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN ACTOR = 99 THEN 'No identificado' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR, " +
-              "PERIODO " +
+              "CASE WHEN ACTOR = 99 THEN 'No identificado' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR " +
               "FROM V3_TR_PART_ACT_HUELGAJL " +
               "WHERE ACTOR = 99";
 
@@ -36,9 +35,7 @@ public class V3Part_Act_huelga {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("ACTOR"),
-                    rs.getString("PERIODO")
-                });
+                    rs.getString("ACTOR")                });
             }
 
         } catch (SQLException ex) {
@@ -53,8 +50,7 @@ public class V3Part_Act_huelga {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN ACTOR = 7 THEN 'Otro' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR, " +
-              "PERIODO " +
+              "CASE WHEN ACTOR = 7 THEN 'Otro' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR " +
               "FROM V3_TR_PART_ACT_HUELGAJL " +
               "WHERE ACTOR = 7 AND (" +
               "NOMBRE_SINDICATO IS NOT NULL OR REG_ASOC_SINDICAL IS NOT NULL OR TIPO_SINDICATO IS NOT NULL OR " +
@@ -72,8 +68,7 @@ public class V3Part_Act_huelga {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("ACTOR"),
-                    rs.getString("PERIODO")
+                    rs.getString("ACTOR")
                 });
             }
 
@@ -89,8 +84,7 @@ public class V3Part_Act_huelga {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN ACTOR = 5 THEN 'Mayoria_de_Trabajadores' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR, " +
-              "PERIODO " +
+              "CASE WHEN ACTOR = 5 THEN 'Mayoria_de_Trabajadores' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR " +
               "FROM V3_TR_PART_ACT_HUELGAJL " +
               "WHERE ACTOR = 5 AND (" +
               "NOMBRE_SINDICATO IS NOT NULL OR REG_ASOC_SINDICAL IS NOT NULL OR TIPO_SINDICATO IS NOT NULL OR " +
@@ -108,8 +102,7 @@ public class V3Part_Act_huelga {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("ACTOR"),
-                    rs.getString("PERIODO")
+                    rs.getString("ACTOR")
                 });
             }
 

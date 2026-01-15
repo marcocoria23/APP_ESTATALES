@@ -21,8 +21,7 @@ public class V3Part_Dem_colectivo {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN DEMANDADO = 9 THEN 'No identificado' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO, " +
-              "PERIODO " +
+              "CASE WHEN DEMANDADO = 9 THEN 'No identificado' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO " +
               "FROM V3_TR_PART_DEM_COLECTIVOJL " +
               "WHERE DEMANDADO = 9";
 
@@ -36,8 +35,7 @@ public class V3Part_Dem_colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("DEMANDADO"),
-                    rs.getString("PERIODO")
+                    rs.getString("DEMANDADO")
                 });
             }
 
@@ -53,8 +51,7 @@ public class V3Part_Dem_colectivo {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN DEMANDADO = 5 THEN 'Otro' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO, " +
-              "PERIODO " +
+              "CASE WHEN DEMANDADO = 5 THEN 'Otro' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO " +
               "FROM V3_TR_PART_DEM_COLECTIVOJL " +
               "WHERE DEMANDADO = 5 AND (" +
               "NOMBRE_SINDICATO_DEM IS NOT NULL OR REG_ASOC_SINDICAL_DEM IS NOT NULL OR TIPO_SINDICATO_DEM IS NOT NULL OR " +
@@ -76,8 +73,7 @@ public class V3Part_Dem_colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("DEMANDADO"),
-                    rs.getString("PERIODO")
+                    rs.getString("DEMANDADO")
                 });
             }
 
@@ -93,8 +89,7 @@ public class V3Part_Dem_colectivo {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN DEMANDADO = 2 THEN 'Sindicato' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO, " +
-              "PERIODO " +
+              "CASE WHEN DEMANDADO = 2 THEN 'Sindicato' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO " +
               "FROM V3_TR_PART_DEM_COLECTIVOJL " +
               "WHERE DEMANDADO = 2 AND (" +
               "TIPO_DEM_PAT IS NOT NULL OR RFC_PATRON_DEM IS NOT NULL OR RAZON_SOCIAL_EMPR_DEM IS NOT NULL OR " +
@@ -113,8 +108,7 @@ public class V3Part_Dem_colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("DEMANDADO"),
-                    rs.getString("PERIODO")
+                    rs.getString("DEMANDADO")
                 });
             }
 
@@ -130,8 +124,7 @@ public class V3Part_Dem_colectivo {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN DEMANDADO = 3 THEN 'Coalicion_de_trabajadores' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO, " +
-              "PERIODO " +
+              "CASE WHEN DEMANDADO = 3 THEN 'Coalicion_de_trabajadores' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO " +
               "FROM V3_TR_PART_DEM_COLECTIVOJL " +
               "WHERE DEMANDADO = 3 AND (" +
               "NOMBRE_SINDICATO_DEM IS NOT NULL OR REG_ASOC_SINDICAL_DEM IS NOT NULL OR TIPO_SINDICATO_DEM IS NOT NULL OR " +
@@ -152,8 +145,7 @@ public class V3Part_Dem_colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("DEMANDADO"),
-                    rs.getString("PERIODO")
+                    rs.getString("DEMANDADO") 
                 });
             }
 
@@ -169,8 +161,7 @@ public class V3Part_Dem_colectivo {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN DEMANDADO = 1 THEN 'Patron' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO, " +
-              "PERIODO " +
+              "CASE WHEN DEMANDADO = 1 THEN 'Patron' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO  " + 
               "FROM V3_TR_PART_DEM_COLECTIVOJL " +
               "WHERE DEMANDADO = 1 AND (" +
               "NOMBRE_SINDICATO_DEM IS NOT NULL OR REG_ASOC_SINDICAL_DEM IS NOT NULL OR TIPO_SINDICATO_DEM IS NOT NULL OR " +
@@ -188,8 +179,7 @@ public class V3Part_Dem_colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("DEMANDADO"),
-                    rs.getString("PERIODO")
+                    rs.getString("DEMANDADO") 
                 });
             }
 
@@ -206,8 +196,7 @@ public class V3Part_Dem_colectivo {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_SINDICATO_DEM = 1 THEN 'persona_Fisica' ELSE CAST(TIPO_SINDICATO_DEM AS VARCHAR) END AS TIPO_SINDICATO_DEM, " +
-              "PERIODO " +
+              "CASE WHEN TIPO_SINDICATO_DEM = 1 THEN 'persona_Fisica' ELSE CAST(TIPO_SINDICATO_DEM AS VARCHAR) END AS TIPO_SINDICATO_DEM  " + 
               "FROM V3_TR_PART_DEM_COLECTIVOJL " +
               "WHERE DEMANDADO = 1 AND TIPO_SINDICATO_DEM = 1 AND (" +
               "RAZON_SOCIAL_EMPR_DEM IS NOT NULL OR CALLE IS NOT NULL OR N_EXT IS NOT NULL OR N_INT IS NOT NULL OR COLONIA IS NOT NULL OR " +
@@ -225,8 +214,7 @@ public class V3Part_Dem_colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_SINDICATO_DEM"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_SINDICATO_DEM") 
                 });
             }
 

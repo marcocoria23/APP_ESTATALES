@@ -17,7 +17,9 @@ public class Execute {
   String sql = "";
 String[] Tabla = {
     "V3_TR_AUDIENCIASJL",
-    "ERRORES_INSERT"
+    "ERRORES_INSERT",
+    "V3_TR_CONTROL_EXPEDIENTEJL",
+    "V3_TR_ORDINARIOJL"
 };
 
 public void LimpiaTablas(Connection con) throws SQLException {

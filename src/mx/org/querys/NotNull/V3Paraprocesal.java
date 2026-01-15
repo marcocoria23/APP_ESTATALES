@@ -23,8 +23,7 @@ public class V3Paraprocesal {
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN ESTATUS_EXPEDIENTE = 9 THEN 'No_identificado' " +
               "     ELSE CAST(ESTATUS_EXPEDIENTE AS VARCHAR) END AS ESTATUS_EXPEDIENTE, " +
-              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, " +
-              "PERIODO " +
+              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS " +
               "FROM V3_TR_PARAPROCESALJL " +
               "WHERE ESTATUS_EXPEDIENTE = 9";
 
@@ -55,8 +54,7 @@ public class V3Paraprocesal {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, " +
-              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, " +
-              "PERIODO " +
+              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS " +
               "FROM V3_TR_PARAPROCESALJL " +
               "WHERE INCOMPETENCIA = 9";
 
@@ -86,7 +84,7 @@ public class V3Paraprocesal {
     public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA " +
               "FROM V3_TR_PARAPROCESALJL " +
               "WHERE INCOMPETENCIA = 1 AND (" +
               "FECHA_PRESENTA_SOLI IS NOT NULL OR FECHA_ADMISION_SOLI IS NOT NULL OR PROMOVENTE IS NOT NULL OR " +
@@ -120,8 +118,7 @@ public class V3Paraprocesal {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN ESTATUS_EXPEDIENTE = 2 THEN 'En proceso de Resolucion' " +
-              "     ELSE CAST(ESTATUS_EXPEDIENTE AS VARCHAR) END AS ESTATUS_EXPEDIENTE, " +
-              "PERIODO " +
+              "     ELSE CAST(ESTATUS_EXPEDIENTE AS VARCHAR) END AS ESTATUS_EXPEDIENTE " +
               "FROM V3_TR_PARAPROCESALJL " +
               "WHERE ESTATUS_EXPEDIENTE = 2 AND FECHA_CONCLUSION_EXPE IS NOT NULL";
 

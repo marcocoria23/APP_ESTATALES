@@ -21,8 +21,7 @@ public class V3Part_Act_individual {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN ACTOR = 99 THEN 'No identificado' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR, " +
-              "PERIODO " +
+              "CASE WHEN ACTOR = 99 THEN 'No identificado' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR " +
               "FROM V3_TR_PART_ACT_INDIVIDUALJL " +
               "WHERE ACTOR = 99";
 
@@ -36,8 +35,7 @@ public class V3Part_Act_individual {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("ACTOR"),
-                    rs.getString("PERIODO")
+                    rs.getString("ACTOR")
                 });
             }
 
@@ -57,8 +55,7 @@ public class V3Part_Act_individual {
               "  WHEN ACTOR = 6 THEN 'Beneficiario' " +
               "  WHEN ACTOR = 7 THEN 'Otro' " +
               "  ELSE CAST(ACTOR AS VARCHAR) " +
-              "END AS ACTOR, " +
-              "PERIODO " +
+              "END AS ACTOR " +
               "FROM V3_TR_PART_ACT_INDIVIDUALJL " +
               "WHERE ACTOR IN (6,7) AND (" +
               "SEXO IS NOT NULL OR EDAD IS NOT NULL OR OCUPACION IS NOT NULL OR " +

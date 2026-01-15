@@ -21,8 +21,7 @@ public class V3Ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_ASUNTO = 9 THEN 'No_identificado' ELSE CAST(TIPO_ASUNTO AS VARCHAR) END AS TIPO_ASUNTO, " +
-              "PERIODO " +
+              "CASE WHEN TIPO_ASUNTO = 9 THEN 'No_identificado' ELSE CAST(TIPO_ASUNTO AS VARCHAR) END AS TIPO_ASUNTO " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE TIPO_ASUNTO = 9";
 
@@ -36,8 +35,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_ASUNTO"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_ASUNTO")
                 });
             }
         } catch (SQLException ex) {
@@ -51,8 +49,7 @@ public class V3Ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_ASUNTO = 2 THEN 'Colectivo' ELSE CAST(TIPO_ASUNTO AS VARCHAR) END AS TIPO_ASUNTO, " +
-              "PERIODO " +
+              "CASE WHEN TIPO_ASUNTO = 2 THEN 'Colectivo' ELSE CAST(TIPO_ASUNTO AS VARCHAR) END AS TIPO_ASUNTO" +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE TIPO_ASUNTO = 2 " +
               "  AND (CONTRATO_ESCRITO IS NOT NULL OR TIPO_CONTRATO IS NOT NULL)";
@@ -67,8 +64,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_ASUNTO"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_ASUNTO")
                 });
             }
         } catch (SQLException ex) {
@@ -84,8 +80,7 @@ public class V3Ordinario {
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN CONTRATO_ESCRITO = 2 THEN 'No' " +
               "     WHEN CONTRATO_ESCRITO = 9 THEN 'No identificado' " +
-              "     ELSE CAST(CONTRATO_ESCRITO AS VARCHAR) END AS CONTRATO_ESCRITO, " +
-              "PERIODO " +
+              "     ELSE CAST(CONTRATO_ESCRITO AS VARCHAR) END AS CONTRATO_ESCRITO " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE TIPO_ASUNTO = 1 " +
               "  AND CONTRATO_ESCRITO IN (2,9) " +
@@ -101,8 +96,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("CONTRATO_ESCRITO"),
-                    rs.getString("PERIODO")
+                    rs.getString("CONTRATO_ESCRITO")
                 });
             }
         } catch (SQLException ex) {
@@ -116,8 +110,7 @@ public class V3Ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_ASUNTO = 2 THEN 'Colectivo' ELSE CAST(TIPO_ASUNTO AS VARCHAR) END AS CONTRATO_ESCRITO, " +
-              "PERIODO " +
+              "CASE WHEN TIPO_ASUNTO = 2 THEN 'Colectivo' ELSE CAST(TIPO_ASUNTO AS VARCHAR) END AS CONTRATO_ESCRITO " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE TIPO_ASUNTO = 2 AND (" +
               "SUBCONTRATACION IS NOT NULL OR DESPIDO IS NOT NULL OR RESCISION_RL IS NOT NULL OR " +
@@ -144,8 +137,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("CONTRATO_ESCRITO"),
-                    rs.getString("PERIODO")
+                    rs.getString("CONTRATO_ESCRITO")
                 });
             }
         } catch (SQLException ex) {
@@ -161,8 +153,7 @@ public class V3Ordinario {
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN CIRCUNS_MOTIVO_CONFL = 2 THEN 'No' " +
               "     WHEN CIRCUNS_MOTIVO_CONFL = 9 THEN 'No identificado' " +
-              "     ELSE CAST(CIRCUNS_MOTIVO_CONFL AS VARCHAR) END AS CIRCUNS_MOTIVO_CONFL, " +
-              "PERIODO " +
+              "     ELSE CAST(CIRCUNS_MOTIVO_CONFL AS VARCHAR) END AS CIRCUNS_MOTIVO_CONFL " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE TIPO_ASUNTO = 1 " +
               "  AND CIRCUNS_MOTIVO_CONFL IN (2,9) " +
@@ -182,8 +173,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("CIRCUNS_MOTIVO_CONFL"),
-                    rs.getString("PERIODO")
+                    rs.getString("CIRCUNS_MOTIVO_CONFL")
                 });
             }
         } catch (SQLException ex) {
@@ -199,8 +189,7 @@ public class V3Ordinario {
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN PAGO_PRESTACIONES = 2 THEN 'No' " +
               "     WHEN PAGO_PRESTACIONES = 9 THEN 'No identificado' " +
-              "     ELSE CAST(PAGO_PRESTACIONES AS VARCHAR) END AS PAGO_PRESTACIONES, " +
-              "PERIODO " +
+              "     ELSE CAST(PAGO_PRESTACIONES AS VARCHAR) END AS PAGO_PRESTACIONES " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE TIPO_ASUNTO = 1 " +
               "  AND PAGO_PRESTACIONES IN (2,9) " +
@@ -217,8 +206,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PAGO_PRESTACIONES"),
-                    rs.getString("PERIODO")
+                    rs.getString("PAGO_PRESTACIONES")
                 });
             }
         } catch (SQLException ex) {
@@ -234,8 +222,7 @@ public class V3Ordinario {
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN CONSTANCIA_CONS_EXPEDIDA = 2 THEN 'No' " +
               "     WHEN CONSTANCIA_CONS_EXPEDIDA = 9 THEN 'No identificado' " +
-              "     ELSE CAST(CONSTANCIA_CONS_EXPEDIDA AS VARCHAR) END AS CONSTANCIA_CONS_EXPEDIDA, " +
-              "PERIODO " +
+              "     ELSE CAST(CONSTANCIA_CONS_EXPEDIDA AS VARCHAR) END AS CONSTANCIA_CONS_EXPEDIDA " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE CONSTANCIA_CONS_EXPEDIDA IN (2,9) " +
               "  AND INCOMPETENCIA = 2 " +
@@ -251,8 +238,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("CONSTANCIA_CONS_EXPEDIDA"),
-                    rs.getString("PERIODO")
+                    rs.getString("CONSTANCIA_CONS_EXPEDIDA")
                 });
             }
         } catch (SQLException ex) {
@@ -268,8 +254,7 @@ public class V3Ordinario {
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN PREVE_DEMANDA = 2 THEN 'No' " +
               "     WHEN PREVE_DEMANDA = 9 THEN 'No identificado' " +
-              "     ELSE CAST(PREVE_DEMANDA AS VARCHAR) END AS PREVE_DEMANDA, " +
-              "PERIODO " +
+              "     ELSE CAST(PREVE_DEMANDA AS VARCHAR) END AS PREVE_DEMANDA " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE PREVE_DEMANDA IN (2,9) " +
               "  AND INCOMPETENCIA = 2 " +
@@ -285,8 +270,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PREVE_DEMANDA"),
-                    rs.getString("PERIODO")
+                    rs.getString("PREVE_DEMANDA")
                 });
             }
         } catch (SQLException ex) {
@@ -301,8 +285,7 @@ public class V3Ordinario {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN ESTATUS_DEMANDA = 9 THEN 'No_identificado' ELSE CAST(ESTATUS_DEMANDA AS VARCHAR) END AS ESTATUS_DEMANDA, " +
-              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, " +
-              "PERIODO " +
+              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE ESTATUS_DEMANDA = 9";
 
@@ -333,8 +316,7 @@ public class V3Ordinario {
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN ESTATUS_DEMANDA = 1 THEN 'Admitida' " +
               "     WHEN ESTATUS_DEMANDA = 9 THEN 'No identificado' " +
-              "     ELSE CAST(ESTATUS_DEMANDA AS VARCHAR) END AS ESTATUS_DEMANDA, " +
-              "PERIODO " +
+              "     ELSE CAST(ESTATUS_DEMANDA AS VARCHAR) END AS ESTATUS_DEMANDA " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE ESTATUS_DEMANDA IN (1,9) " +
               "  AND INCOMPETENCIA = 2 " +
@@ -350,8 +332,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("ESTATUS_DEMANDA"),
-                    rs.getString("PERIODO")
+                    rs.getString("ESTATUS_DEMANDA")
                 });
             }
         } catch (SQLException ex) {
@@ -367,8 +348,7 @@ public class V3Ordinario {
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN AUDIENCIA_PRELIM = 2 THEN 'No' " +
               "     WHEN AUDIENCIA_PRELIM = 9 THEN 'No identificado' " +
-              "     ELSE CAST(AUDIENCIA_PRELIM AS VARCHAR) END AS AUDIENCIA_PRELIM, " +
-              "PERIODO " +
+              "     ELSE CAST(AUDIENCIA_PRELIM AS VARCHAR) END AS AUDIENCIA_PRELIM " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE AUDIENCIA_PRELIM IN (2,9) " +
               "  AND INCOMPETENCIA = 2 " +
@@ -384,8 +364,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("AUDIENCIA_PRELIM"),
-                    rs.getString("PERIODO")
+                    rs.getString("AUDIENCIA_PRELIM")
                 });
             }
         } catch (SQLException ex) {
@@ -401,8 +380,7 @@ public class V3Ordinario {
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN AUDIENCIA_JUICIO = 2 THEN 'No' " +
               "     WHEN AUDIENCIA_JUICIO = 9 THEN 'No identificado' " +
-              "     ELSE CAST(AUDIENCIA_JUICIO AS VARCHAR) END AS AUDIENCIA_JUICIO, " +
-              "PERIODO " +
+              "     ELSE CAST(AUDIENCIA_JUICIO AS VARCHAR) END AS AUDIENCIA_JUICIO " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE AUDIENCIA_JUICIO IN (2,9) " +
               "  AND INCOMPETENCIA = 2 " +
@@ -418,8 +396,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("AUDIENCIA_JUICIO"),
-                    rs.getString("PERIODO")
+                    rs.getString("AUDIENCIA_JUICIO")
                 });
             }
         } catch (SQLException ex) {
@@ -434,8 +411,7 @@ public class V3Ordinario {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN ESTATUS_EXPEDIENTE = 9 THEN 'No_identificado' ELSE CAST(ESTATUS_EXPEDIENTE AS VARCHAR) END AS ESTATUS_EXPEDIENTE, " +
-              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, " +
-              "PERIODO " +
+              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE ESTATUS_EXPEDIENTE = 9";
 
@@ -450,8 +426,7 @@ public class V3Ordinario {
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("ESTATUS_EXPEDIENTE"),
-                    rs.getString("COMENTARIOS"),
-                    rs.getString("PERIODO")
+                    rs.getString("COMENTARIOS")
                 });
             }
         } catch (SQLException ex) {
@@ -465,7 +440,7 @@ public class V3Ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, " +
-              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, PERIODO " +
+              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE INCOMPETENCIA = 9";
 
@@ -480,8 +455,7 @@ public class V3Ordinario {
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("INCOMPETENCIA"),
-                    rs.getString("COMENTARIOS"),
-                    rs.getString("PERIODO")
+                    rs.getString("COMENTARIOS")
                 });
             }
         } catch (SQLException ex) {
@@ -496,7 +470,7 @@ public class V3Ordinario {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
               "CASE WHEN INCOMPETENCIA = 2 THEN 'No' ELSE CAST(INCOMPETENCIA AS VARCHAR) END AS INCOMPETENCIA, " +
-              "TIPO_INCOMPETENCIA, PERIODO " +
+              "TIPO_INCOMPETENCIA " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE INCOMPETENCIA = 2 " +
               "  AND TIPO_INCOMPETENCIA IS NOT NULL";
@@ -512,8 +486,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("INCOMPETENCIA"),
-                    rs.getString("PERIODO")
+                    rs.getString("INCOMPETENCIA")
                 });
             }
         } catch (SQLException ex) {
@@ -526,7 +499,7 @@ public class V3Ordinario {
     public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE INCOMPETENCIA = 1 AND (" +
               "FECHA_PRES_DEMANDA IS NOT NULL OR CONSTANCIA_CONS_EXPEDIDA IS NOT NULL OR CONSTANCIA_CLAVE IS NOT NULL OR " +
@@ -550,8 +523,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("INCOMPETENCIA"),
-                    rs.getString("PERIODO")
+                    rs.getString("INCOMPETENCIA")
                 });
             }
         } catch (SQLException ex) {
@@ -564,7 +536,7 @@ public class V3Ordinario {
     public ArrayList PivIncompetencia_Noidentificado(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE INCOMPETENCIA = 9 AND (" +
               "TIPO_INCOMPETENCIA IS NOT NULL OR OTRO_ESP_INCOMP IS NOT NULL OR FECHA_PRES_DEMANDA IS NOT NULL OR " +
@@ -589,8 +561,7 @@ public class V3Ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("COMENTARIOS"),
-                    rs.getString("PERIODO")
+                    rs.getString("COMENTARIOS")
                 });
             }
         } catch (SQLException ex) {
@@ -603,7 +574,7 @@ public class V3Ordinario {
     public ArrayList Estatus_Demanda_Desechada(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE ESTATUS_DEMANDA IN (2,3,4) AND (" +
               "FECHA_ADMI_DEMANDA IS NOT NULL OR CANTIDAD_ACTORES IS NOT NULL OR CANTIDAD_DEMANDADOS IS NOT NULL OR " +
@@ -638,7 +609,7 @@ public class V3Ordinario {
     public ArrayList Estatus_Demanda_NoIdentificada(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_DEMANDA " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE ESTATUS_DEMANDA = 9 AND (" +
               "FECHA_ADMI_DEMANDA IS NOT NULL OR CANTIDAD_ACTORES IS NOT NULL OR CANTIDAD_DEMANDADOS IS NOT NULL OR " +
@@ -677,7 +648,7 @@ public class V3Ordinario {
         // En H2 reemplazamos: ADD_MONTHS(SYSDATE, -2) por DATEADD('MONTH', -2, CURRENT_DATE)
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, " +
               "'En trámite o prevención' AS ESTATUS_DEMANDA, " +
-              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, PERIODO " +
+              "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE ESTATUS_DEMANDA = 5 " +
               "  AND FECHA_APERTURA_EXPEDIENTE < DATEADD('MONTH', -2, CURRENT_DATE)";
@@ -706,7 +677,7 @@ public class V3Ordinario {
     public ArrayList Estatus_Expediente(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE ESTATUS_EXPEDIENTE = 2 AND (" +
               "FASE_SOLI_EXPEDIENTE IS NOT NULL OR FORMA_SOLUCIONFE IS NOT NULL OR OTRO_ESP_SOLUCIONFE IS NOT NULL OR " +
@@ -738,7 +709,7 @@ public class V3Ordinario {
     public ArrayList Estatus_Expediente_Noidentificado(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE ESTATUS_EXPEDIENTE = 9 AND (" +
               "FASE_SOLI_EXPEDIENTE IS NOT NULL OR FECHA_ACTO_PROCESAL IS NOT NULL OR FORMA_SOLUCIONFE IS NOT NULL OR " +
@@ -770,7 +741,7 @@ public class V3Ordinario {
     public ArrayList Fecha_acto_procesal(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE ESTATUS_EXPEDIENTE = 1 AND FECHA_ACTO_PROCESAL IS NOT NULL";
 
@@ -825,8 +796,7 @@ public class V3Ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN FASE_SOLI_EXPEDIENTE = 99 THEN 'No identificado' ELSE CAST(FASE_SOLI_EXPEDIENTE AS VARCHAR) END AS FASE_SOLI_EXPEDIENTE, " +
-              "PERIODO " +
+              "CASE WHEN FASE_SOLI_EXPEDIENTE = 99 THEN 'No identificado' ELSE CAST(FASE_SOLI_EXPEDIENTE AS VARCHAR) END AS FASE_SOLI_EXPEDIENTE " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE FASE_SOLI_EXPEDIENTE = 99 AND (" +
               "FORMA_SOLUCIONFE IS NOT NULL OR OTRO_ESP_SOLUCIONFE IS NOT NULL OR FECHA_DICTO_RESOLUCIONFE IS NOT NULL OR MONTO_SOLUCION_FE IS NOT NULL OR " +
@@ -855,7 +825,7 @@ public class V3Ordinario {
     public ArrayList Fase_Sol_exp_FE(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE FASE_SOLI_EXPEDIENTE = 9 AND (" +
               "FORMA_SOLUCIONAP IS NOT NULL OR OTRO_ESP_SOLUCIONAP IS NOT NULL OR FECHA_DICTO_RESOLUCIONAP IS NOT NULL OR MONTO_SOLUCION_AP IS NOT NULL OR " +
@@ -883,7 +853,7 @@ public class V3Ordinario {
     public ArrayList Fase_Sol_exp_AP(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE FASE_SOLI_EXPEDIENTE = 1 AND (" +
               "FORMA_SOLUCIONFE IS NOT NULL OR OTRO_ESP_SOLUCIONFE IS NOT NULL OR FECHA_DICTO_RESOLUCIONFE IS NOT NULL OR MONTO_SOLUCION_FE IS NOT NULL OR " +
@@ -911,7 +881,7 @@ public class V3Ordinario {
     public ArrayList Fase_Sol_exp_AJ(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE, PERIODO " +
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FASE_SOLI_EXPEDIENTE " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE FASE_SOLI_EXPEDIENTE = 2 AND (" +
               "FORMA_SOLUCIONAP IS NOT NULL OR OTRO_ESP_SOLUCIONAP IS NOT NULL OR FECHA_DICTO_RESOLUCIONAP IS NOT NULL OR MONTO_SOLUCION_AP IS NOT NULL OR " +

@@ -21,8 +21,7 @@ public class V3Part_Act_ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN ACTOR = 99 THEN 'No identificado' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR, " +
-              "PERIODO " +
+              "CASE WHEN ACTOR = 99 THEN 'No identificado' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR " +
               "FROM V3_TR_PART_ACT_ORDINARIOJL " +
               "WHERE ACTOR = 99";
 
@@ -36,8 +35,7 @@ public class V3Part_Act_ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("ACTOR"),
-                    rs.getString("PERIODO")
+                    rs.getString("ACTOR")
                 });
             }
 
@@ -53,8 +51,7 @@ public class V3Part_Act_ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN ACTOR = 1 THEN 'Trabajador' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR, " +
-              "PERIODO " +
+              "CASE WHEN ACTOR = 1 THEN 'Trabajador' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR " +
               "FROM V3_TR_PART_ACT_ORDINARIOJL " +
               "WHERE ACTOR = 1 AND (" +
               "NOMBRE_SINDICATO IS NOT NULL OR REG_ASOC_SINDICAL IS NOT NULL OR " +
@@ -73,8 +70,7 @@ public class V3Part_Act_ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("ACTOR"),
-                    rs.getString("PERIODO")
+                    rs.getString("ACTOR")
                 });
             }
 
@@ -90,8 +86,7 @@ public class V3Part_Act_ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN ACTOR = 3 THEN 'Sindicato' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR, " +
-              "PERIODO " +
+              "CASE WHEN ACTOR = 3 THEN 'Sindicato' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR " +
               "FROM V3_TR_PART_ACT_ORDINARIOJL " +
               "WHERE ACTOR = 3 AND (" +
               "SEXO IS NOT NULL OR EDAD IS NOT NULL OR OCUPACION IS NOT NULL OR NSS IS NOT NULL OR " +
@@ -108,8 +103,7 @@ public class V3Part_Act_ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("ACTOR"),
-                    rs.getString("PERIODO")
+                    rs.getString("ACTOR")
                 });
             }
 
@@ -125,8 +119,7 @@ public class V3Part_Act_ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN ACTOR = 4 THEN 'Coalicion_de_trabajadores' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR, " +
-              "PERIODO " +
+              "CASE WHEN ACTOR = 4 THEN 'Coalicion_de_trabajadores' ELSE CAST(ACTOR AS VARCHAR) END AS ACTOR " +
               "FROM V3_TR_PART_ACT_ORDINARIOJL " +
               "WHERE ACTOR = 4 AND (" +
               "SEXO IS NOT NULL OR EDAD IS NOT NULL OR OCUPACION IS NOT NULL OR NSS IS NOT NULL OR " +
@@ -143,8 +136,7 @@ public class V3Part_Act_ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("ACTOR"),
-                    rs.getString("PERIODO")
+                    rs.getString("ACTOR")
                 });
             }
 

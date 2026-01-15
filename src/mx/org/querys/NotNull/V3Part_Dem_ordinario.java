@@ -21,8 +21,7 @@ public class V3Part_Dem_ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN DEMANDADO = 9 THEN 'No identificado' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO, " +
-              "PERIODO " +
+              "CASE WHEN DEMANDADO = 9 THEN 'No identificado' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO " +
               "FROM V3_TR_PART_DEM_ORDINARIOJL " +
               "WHERE DEMANDADO = 9";
 
@@ -36,8 +35,7 @@ public class V3Part_Dem_ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("DEMANDADO"),
-                    rs.getString("PERIODO")
+                    rs.getString("DEMANDADO")
                 });
             }
 
@@ -53,8 +51,7 @@ public class V3Part_Dem_ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN DEMANDADO = 5 THEN 'Otro' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO, " +
-              "PERIODO " +
+              "CASE WHEN DEMANDADO = 5 THEN 'Otro' ELSE CAST(DEMANDADO AS VARCHAR) END AS DEMANDADO " +
               "FROM V3_TR_PART_DEM_ORDINARIOJL " +
               "WHERE DEMANDADO = 5 AND (" +
               "TIPO IS NOT NULL OR RFC_PATRON IS NOT NULL OR RAZON_SOCIAL_EMPR IS NOT NULL OR " +
@@ -74,8 +71,7 @@ public class V3Part_Dem_ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("DEMANDADO"),
-                    rs.getString("PERIODO")
+                    rs.getString("DEMANDADO")
                 });
             }
 
@@ -91,8 +87,7 @@ public class V3Part_Dem_ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO = 1 THEN 'persona_Fisica' ELSE CAST(TIPO AS VARCHAR) END AS TIPO, " +
-              "PERIODO " +
+              "CASE WHEN TIPO = 1 THEN 'persona_Fisica' ELSE CAST(TIPO AS VARCHAR) END AS TIPO " +
               "FROM V3_TR_PART_DEM_ORDINARIOJL " +
               "WHERE DEMANDADO IN (1,9) AND TIPO = 1 AND (" +
               "RAZON_SOCIAL_EMPR IS NOT NULL OR CALLE IS NOT NULL OR N_EXT IS NOT NULL OR N_INT IS NOT NULL OR " +
@@ -111,8 +106,7 @@ public class V3Part_Dem_ordinario {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO")
                 });
             }
 

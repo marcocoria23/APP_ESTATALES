@@ -142,7 +142,7 @@ public class V3QColec_Econom {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_COLECT_ECONOMJL " +
             "WHERE FECHA_APERTURA_EXPEDIENTE > CURRENT_DATE " +
@@ -158,7 +158,7 @@ public class V3QColec_Econom {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA: CAMBIAR LA CLASE PRINCIPAL
                     rs.getString("FECHA_APERTURA_EXPEDIENTE")
                 });
             }
@@ -174,7 +174,7 @@ public class V3QColec_Econom {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_PRES_DEMANDA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_PRES_DEMANDA " +
             "FROM V3_TR_COLECT_ECONOMJL " +
             "WHERE FECHA_PRES_DEMANDA > CURRENT_DATE " +
@@ -190,7 +190,7 @@ public class V3QColec_Econom {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA: CAMBIAR LA CLASE PRINCIPAL
                     rs.getString("FECHA_PRES_DEMANDA")
                 });
             }
@@ -206,7 +206,7 @@ public class V3QColec_Econom {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_ADMISION_DEMANDA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_ADMISION_DEMANDA " +
             "FROM V3_TR_COLECT_ECONOMJL " +
             "WHERE FECHA_ADMISION_DEMANDA > CURRENT_DATE " +
@@ -222,7 +222,7 @@ public class V3QColec_Econom {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA: CAMBIAR LA CLASE PRINCIPAL
                     rs.getString("FECHA_ADMISION_DEMANDA")
                 });
             }
@@ -238,7 +238,7 @@ public class V3QColec_Econom {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_AUDIENCIA_ECONOM AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_AUDIENCIA_ECONOM " +
             "FROM V3_TR_COLECT_ECONOMJL " +
             "WHERE FECHA_AUDIENCIA_ECONOM > CURRENT_DATE " +
@@ -254,7 +254,7 @@ public class V3QColec_Econom {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA: CAMBIAR LA CLASE PRINCIPAL
                     rs.getString("FECHA_AUDIENCIA_ECONOM")
                 });
             }
@@ -270,7 +270,7 @@ public class V3QColec_Econom {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_ACTO_PROCESAL AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_ACTO_PROCESAL " +
             "FROM V3_TR_COLECT_ECONOMJL " +
             "WHERE FECHA_ACTO_PROCESAL > CURRENT_DATE " +
@@ -286,7 +286,7 @@ public class V3QColec_Econom {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA: CAMBIAR LA CLASE PRINCIPAL
                     rs.getString("FECHA_ACTO_PROCESAL")
                 });
             }
@@ -302,7 +302,7 @@ public class V3QColec_Econom {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_RESOLUCION AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLUCION " +
             "FROM V3_TR_COLECT_ECONOMJL " +
             "WHERE FECHA_RESOLUCION > CURRENT_DATE " +
@@ -318,7 +318,7 @@ public class V3QColec_Econom {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA: CAMBIAR LA CLASE PRINCIPAL
                     rs.getString("FECHA_RESOLUCION")
                 });
             }
@@ -340,11 +340,11 @@ public class V3QColec_Econom {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_COLECT_ECONOMJL T " +
-            "WHERE (CLAVE_ORGANO || REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') || PERIODO) IN ( " +
-            "   SELECT (CLAVE_ORGANO || EXPEDIENTE_NUM || PERIODO) FROM ( " +
-            "      SELECT CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXPEDIENTE_NUM, COUNT(*) AS C " +
+            "WHERE (CLAVE_ORGANO || REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') ) IN ( " +
+            "   SELECT (CLAVE_ORGANO || EXPEDIENTE_NUM ) FROM ( " +
+            "      SELECT CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXPEDIENTE_NUM, COUNT(*) AS C " +
             "      FROM V3_TR_COLECT_ECONOMJL " +
-            "      GROUP BY CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
+            "      GROUP BY CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
             "   ) X WHERE X.C > 1 " +
             ") " +
             "ORDER BY CLAVE_ORGANO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '')";
@@ -615,7 +615,6 @@ public class V3QColec_Econom {
             "JOIN V3_TR_COLECT_ECONOMJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = '5' " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_PRES_DEMANDA <> DATE '1899-09-09' " +
@@ -661,7 +660,6 @@ public class V3QColec_Econom {
             "JOIN V3_TR_COLECT_ECONOMJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = '5' " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_APERTURA_EXPEDIENTE <> DATE '1899-09-09' " +
@@ -707,7 +705,6 @@ public class V3QColec_Econom {
             "JOIN V3_TR_COLECT_ECONOMJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = '5' " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_ADMISION_DEMANDA <> DATE '1899-09-09' " +

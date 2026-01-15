@@ -78,13 +78,12 @@ public class V3QPart_act_huelga {
             "             ELSE NULL " +
             "          END AS INCOMPETENCIA " +
             "   FROM (" +
-            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO " +
+            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO " +
             "       FROM V3_TR_PART_ACT_HUELGAJL" +
             "   ) PRIN " +
             "   LEFT JOIN V3_TR_HUELGAJL SEC " +
             "     ON PRIN.CLAVE_ORGANO = SEC.CLAVE_ORGANO " +
             "    AND PRIN.EXPEDIENTE_CLAVE = SEC.EXPEDIENTE_CLAVE " +
-            "    AND PRIN.PERIODO = SEC.PERIODO" +
             ") x " +
             "WHERE x.INCOMPETENCIA = 'Sí'";
 
@@ -121,18 +120,16 @@ public class V3QPart_act_huelga {
             "          COALESCE(SEC.CANTIDAD_ACTORES, 0) AS CANTIDAD_ACTORES, " +
             "          COALESCE(PRIN.DESGLOSE_ACTOR, 0) AS DESGLOSE_ACTORES, " +
             "          COALESCE(CAST(SEC.INCOMPETENCIA AS VARCHAR), '0') AS INCOMPETENCIA, " +
-            "          PRIN.PERIODO, " +
             "          COALESCE(CAST(SEC.FASE_SOLI_EXPEDIENTE AS VARCHAR), '0') AS FASE_SOLI_EXPEDIENTE " +
             "   FROM (" +
-            "       SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, COUNT(ID_ACTOR) AS DESGLOSE_ACTOR " +
+            "       SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, COUNT(ID_ACTOR) AS DESGLOSE_ACTOR " +
             "       FROM V3_TR_PART_ACT_HUELGAJL " +
             "       WHERE ID_ACTOR NOT LIKE '%-%' " +
-            "       GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO" +
+            "       GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE" +
             "   ) PRIN " +
             "   LEFT JOIN V3_TR_HUELGAJL SEC " +
             "     ON PRIN.CLAVE_ORGANO = SEC.CLAVE_ORGANO " +
             "    AND PRIN.EXPEDIENTE_CLAVE = SEC.EXPEDIENTE_CLAVE " +
-            "    AND PRIN.PERIODO = SEC.PERIODO" +
             ") x " +
             "WHERE x.INCOMPETENCIA <> '1' " +
             "  AND x.FASE_SOLI_EXPEDIENTE <> '5' " +

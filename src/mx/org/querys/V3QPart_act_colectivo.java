@@ -77,13 +77,12 @@ public class V3QPart_act_colectivo {
             "             ELSE NULL " +
             "          END AS INCOMPETENCIA " +
             "   FROM (" +
-            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO " +
+            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO " +
             "       FROM V3_TR_PART_ACT_COLECTIVOJL" +
             "   ) PRIN " +
             "   LEFT JOIN V3_TR_COLECTIVOJL SEC " +
             "     ON PRIN.CLAVE_ORGANO = SEC.CLAVE_ORGANO " +
             "    AND PRIN.EXPEDIENTE_CLAVE = SEC.EXPEDIENTE_CLAVE " +
-            "    AND PRIN.PERIODO = SEC.PERIODO" +
             ") x " +
             "WHERE x.INCOMPETENCIA = 'Sí'";
 
@@ -126,13 +125,12 @@ public class V3QPart_act_colectivo {
             "             ELSE NULL " +
             "          END AS ESTATUS_DEMANDA " +
             "   FROM (" +
-            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO " +
+            "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO " +
             "       FROM V3_TR_PART_ACT_COLECTIVOJL" +
             "   ) PRIN " +
             "   LEFT JOIN V3_TR_COLECTIVOJL SEC " +
             "     ON PRIN.CLAVE_ORGANO = SEC.CLAVE_ORGANO " +
             "    AND PRIN.EXPEDIENTE_CLAVE = SEC.EXPEDIENTE_CLAVE " +
-            "    AND PRIN.PERIODO = SEC.PERIODO" +
             ") x " +
             "WHERE x.ESTATUS_DEMANDA IN (" +
             "   'Desechada','Archivo','No se dio trámite al escrito de demanda'" +
@@ -170,17 +168,15 @@ public class V3QPart_act_colectivo {
             "          CASE WHEN PRIN.DESGLOSE_ACTOR IS NULL THEN 0 ELSE PRIN.DESGLOSE_ACTOR END AS DESGLOSE_ACTORES, " +
             "          CASE WHEN SEC.INCOMPETENCIA IS NULL THEN 'NULLO' ELSE CAST(SEC.INCOMPETENCIA AS VARCHAR) END AS INCOMPETENCIA, " +
             "          CASE WHEN SEC.ESTATUS_DEMANDA IS NULL THEN 'NULLO' ELSE CAST(SEC.ESTATUS_DEMANDA AS VARCHAR) END AS ESTATUS_DEMANDA, " +
-            "          PRIN.PERIODO " +
             "   FROM (" +
-            "       SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, COUNT(ID_ACTOR) AS DESGLOSE_ACTOR " +
+            "       SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, COUNT(ID_ACTOR) AS DESGLOSE_ACTOR " +
             "       FROM V3_TR_PART_ACT_COLECTIVOJL " +
             "       WHERE ID_ACTOR NOT LIKE '%-%' " +
-            "       GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO" +
+            "       GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE" +
             "   ) PRIN " +
             "   LEFT JOIN V3_TR_COLECTIVOJL SEC " +
             "     ON PRIN.CLAVE_ORGANO = SEC.CLAVE_ORGANO " +
             "    AND PRIN.EXPEDIENTE_CLAVE = SEC.EXPEDIENTE_CLAVE " +
-            "    AND PRIN.PERIODO = SEC.PERIODO" +
             ") x " +
             "WHERE x.INCOMPETENCIA <> '1' " +
             "  AND x.ESTATUS_DEMANDA NOT IN ('2','3','4') " +

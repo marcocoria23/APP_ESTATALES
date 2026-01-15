@@ -192,7 +192,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         // - Comparar directo > CURRENT_DATE
         // - Excluir sentinela 1899-09-09
         sql =
-            "SELECT clave_organo, expediente_clave, periodo, " +
+            "SELECT clave_organo, expediente_clave,  " +
             "       FORMATDATETIME(" + campoFecha + ",'dd/MM/yyyy') AS " + alias + " " +
             "FROM V3_TR_INDIVIDUALJL " +
             "WHERE " + campoFecha + " > CURRENT_DATE " +
@@ -206,7 +206,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
                 out.add(new String[]{
                     rs.getString("clave_organo"),
                     rs.getString("expediente_clave"),
-                    rs.getString("periodo"),
+                    //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString(alias)
                 });
             }
@@ -228,11 +228,11 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_INDIVIDUALJL t " +
-            "WHERE (t.CLAVE_ORGANO || REGEXP_REPLACE(t.EXPEDIENTE_CLAVE, '[^0-9]', '') || t.PERIODO) IN (" +
-            "   SELECT (CLAVE_ORGANO || EXP2 || PERIODO) FROM (" +
-            "       SELECT CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXP2, COUNT(*) AS CUENTA " +
+            "WHERE (t.CLAVE_ORGANO || REGEXP_REPLACE(t.EXPEDIENTE_CLAVE, '[^0-9]', '') ) IN (" +
+            "   SELECT (CLAVE_ORGANO || EXP2 ) FROM (" +
+            "       SELECT CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXP2, COUNT(*) AS CUENTA " +
             "       FROM V3_TR_INDIVIDUALJL " +
-            "       GROUP BY CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
+            "       GROUP BY CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
             "   ) x WHERE x.CUENTA > 1" +
             ") " +
             "ORDER BY CLAVE_ORGANO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '')";
@@ -660,7 +660,6 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
             "JOIN V3_TR_INDIVIDUALJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = 2 " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_PRES_DEMANDA <> DATE '1899-09-09' " +
@@ -700,7 +699,6 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
             "JOIN V3_TR_INDIVIDUALJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = 2 " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_APERTURA_EXPEDIENTE <> DATE '1899-09-09' " +
@@ -740,7 +738,6 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
             "JOIN V3_TR_INDIVIDUALJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = 2 " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_ADMI_DEMANDA <> DATE '1899-09-09' " +

@@ -145,7 +145,7 @@ public class V3QColectivo {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_COLECTIVOJL " +
             "WHERE FECHA_APERTURA_EXPEDIENTE > CURRENT_DATE " +
@@ -161,7 +161,7 @@ public class V3QColectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_APERTURA_EXPEDIENTE")
                 });
             }
@@ -176,7 +176,7 @@ public class V3QColectivo {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_PRES_DEMANDA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_PRES_DEMANDA " +
             "FROM V3_TR_COLECTIVOJL " +
             "WHERE FECHA_PRES_DEMANDA > CURRENT_DATE " +
@@ -192,7 +192,7 @@ public class V3QColectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_PRES_DEMANDA")
                 });
             }
@@ -207,7 +207,7 @@ public class V3QColectivo {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_ADMI_DEMANDA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_ADMI_DEMANDA " +
             "FROM V3_TR_COLECTIVOJL " +
             "WHERE FECHA_ADMI_DEMANDA > CURRENT_DATE " +
@@ -223,7 +223,7 @@ public class V3QColectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_ADMI_DEMANDA")
                 });
             }
@@ -238,7 +238,7 @@ public class V3QColectivo {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_DEPURACION AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_DEPURACION " +
             "FROM V3_TR_COLECTIVOJL " +
             "WHERE FECHA_DEPURACION > CURRENT_DATE " +
@@ -254,7 +254,7 @@ public class V3QColectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_DEPURACION")
                 });
             }
@@ -269,7 +269,7 @@ public class V3QColectivo {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_AUDIENCIA_JUICIO AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_AUDIENCIA_JUICIO " +
             "FROM V3_TR_COLECTIVOJL " +
             "WHERE FECHA_AUDIENCIA_JUICIO > CURRENT_DATE " +
@@ -285,7 +285,7 @@ public class V3QColectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_AUDIENCIA_JUICIO")
                 });
             }
@@ -300,7 +300,7 @@ public class V3QColectivo {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_DICTO_RESOLUCION_AD AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_DICTO_RESOLUCION_AD " +
             "FROM V3_TR_COLECTIVOJL " +
             "WHERE FECHA_DICTO_RESOLUCION_AD > CURRENT_DATE " +
@@ -316,7 +316,7 @@ public class V3QColectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_DICTO_RESOLUCION_AD")
                 });
             }
@@ -331,7 +331,7 @@ public class V3QColectivo {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, PERIODO, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_RESOLUCION_AJ AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLUCION_AJ " +
             "FROM V3_TR_COLECTIVOJL " +
             "WHERE FECHA_RESOLUCION_AJ > CURRENT_DATE " +
@@ -347,7 +347,7 @@ public class V3QColectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PERIODO"),
+                    //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_RESOLUCION_AJ")
                 });
             }
@@ -368,11 +368,11 @@ public class V3QColectivo {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_COLECTIVOJL T " +
-            "WHERE (CLAVE_ORGANO || REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') || PERIODO) IN ( " +
-            "   SELECT (CLAVE_ORGANO || EXPEDIENTE_NUM || PERIODO) FROM ( " +
-            "      SELECT CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXPEDIENTE_NUM, COUNT(*) AS C " +
+            "WHERE (CLAVE_ORGANO || REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') ) IN ( " +
+            "   SELECT (CLAVE_ORGANO || EXPEDIENTE_NUM ) FROM ( " +
+            "      SELECT CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS EXPEDIENTE_NUM, COUNT(*) AS C " +
             "      FROM V3_TR_COLECTIVOJL " +
-            "      GROUP BY CLAVE_ORGANO, PERIODO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
+            "      GROUP BY CLAVE_ORGANO,  REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') " +
             "   ) X WHERE X.C > 1 " +
             ") " +
             "ORDER BY CLAVE_ORGANO, REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '')";
@@ -719,7 +719,6 @@ public class V3QColectivo {
             "JOIN V3_TR_COLECTIVOJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = '3' " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_PRES_DEMANDA <> DATE '1899-09-09' " +
@@ -761,7 +760,6 @@ public class V3QColectivo {
             "JOIN V3_TR_COLECTIVOJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = '3' " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_APERTURA_EXPEDIENTE <> DATE '1899-09-09' " +
@@ -803,7 +801,6 @@ public class V3QColectivo {
             "JOIN V3_TR_COLECTIVOJL S " +
             "  ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
             " AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
-            " AND P.PERIODO = S.PERIODO " +
             "WHERE P.TIPO_PROCED = '3' " +
             "  AND P.FECHA_AUDIEN_CELEBRADA <> DATE '1899-09-09' " +
             "  AND S.FECHA_ADMI_DEMANDA <> DATE '1899-09-09' " +

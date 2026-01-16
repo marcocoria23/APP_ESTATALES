@@ -7,7 +7,7 @@ CUANDO EL PROGRAMA SE QUEDA EN ST.EXECUTE POR CADA PROCEDIMIENTO FAVOR DE REVISA
  */
 package mx.org.Insert.BD;
 
-import Screen_laborales.InsertaTR;
+import Pantallas_laborales.InsertaTR;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,7 +21,7 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import Bean_Procedures.Part_Dem_Huelga;
 import ConverCat.Convers;
-import Screen_laborales.cargando;
+import Pantallas_laborales.cargando;
 import java.io.BufferedInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;

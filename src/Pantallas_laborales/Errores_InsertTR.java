@@ -2,13 +2,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Screen_laborales;
+package Pantallas_laborales;
 
-import static Screen_laborales.InsertaTR.ventanaAbierta;
+import static Pantallas_laborales.InsertaTR.ventanaAbierta;
 import java.awt.Color;
 import java.util.ArrayList;
 import mx.org.querys.V3Querys;
-import Screen_laborales.InsertaTR;
+import Pantallas_laborales.InsertaTR;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.io.IOException;

@@ -5,7 +5,7 @@
  */
 package mx.org.Insert.BD;
 
-import Screen_laborales.InsertaTR;
+import Pantallas_laborales.InsertaTR;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;

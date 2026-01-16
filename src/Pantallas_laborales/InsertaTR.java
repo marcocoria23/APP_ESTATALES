@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Screen_laborales;
+package Pantallas_laborales;
 
 
 
@@ -469,7 +469,7 @@ public class InsertaTR extends javax.swing.JFrame {
                /* CTablas1.setSelectedIndex(4);   
                ReadColectivo.Read_Colectivo(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);*/
-                
+                //Aqui me quede para probar clases Read...
                CTablas1.setSelectedIndex(5);   
                ReadHuelga.Read_Huelga(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);

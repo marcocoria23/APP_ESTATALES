@@ -823,10 +823,8 @@ public class Convers {
         if (campo == null || campo.trim().isEmpty()) {
             return null;
         }else{
-
         String sql = "SELECT ID_SUBSECTOR FROM V3_TC_SUBSECTOR_RAMAJL " +
                      "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
-
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, campo.toUpperCase().trim());
 
@@ -834,7 +832,7 @@ public class Convers {
                 if (rs.next()) {
                     return rs.getString("ID_SUBSECTOR");
                 } else {
-                    return "Valor Cat No encontrado";
+                   return "Valor Cat No encontrado";
                 }
             }
 
@@ -1053,4 +1051,59 @@ public class Convers {
         }
     }
     }
+    public String CON_V3_TC_FASE_CONCLUSIONJL(Connection con, String campo) {
+        if (campo == null || campo.trim().isEmpty()) {
+            return null;
+        }else{
+
+        String sql = "SELECT ID FROM V3_TC_FASE_CONCLUSION_EJEJL " +
+                     "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, campo.toUpperCase().trim());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("ID");
+                } else {
+                    return "Valor Cat No encontrado";
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error en CON_V3_TC_TIPO_SINDICATOJL");
+            e.printStackTrace();
+            return "Error SQL";
+        }
+    }
+    }
+    public String CON_V3_TC_OCUPACI_TRABAJADORJL(Connection con, String campo) {
+        if (campo == null || campo.trim().isEmpty()) {
+            return null;
+        }else{
+
+        String sql = "SELECT ID FROM V3_TC_OCUPACION_TRABAJADORJL " +
+                     "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, campo.toUpperCase().trim());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("ID");
+                } else {
+                    return "Valor Cat No encontrado";
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error en CON_V3_TC_TIPO_SINDICATOJL");
+            e.printStackTrace();
+            return "Error SQL";
+        }
+    }
+    }    
+    
+    
+    
 }

@@ -22,7 +22,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import mx.org.Insert.BD.ReadCSV_Audiencias;
+import mx.org.Insert.BD.ReadCSV_Colectivo;
 import mx.org.Insert.BD.ReadCSV_Control_expediente;
+import mx.org.Insert.BD.ReadCSV_Huelga;
+import mx.org.Insert.BD.ReadCSV_Individual;
 import mx.org.Insert.BD.ReadCSV_Ordinario;
 import triggers.CreaTriggers;
 
@@ -44,6 +47,10 @@ public class InsertaTR extends javax.swing.JFrame {
        ReadCSV_Audiencias ReadAud=new ReadCSV_Audiencias();
        ReadCSV_Control_expediente ReadControl=new ReadCSV_Control_expediente();
        ReadCSV_Ordinario ReadOrdinario=new ReadCSV_Ordinario();
+       ReadCSV_Individual ReadIndividual=new ReadCSV_Individual();
+       ReadCSV_Colectivo ReadColectivo=new ReadCSV_Colectivo();
+       ReadCSV_Huelga ReadHuelga=new ReadCSV_Huelga();
+       
        CreaTriggers Triggers=new CreaTriggers();
     
     public InsertaTR() {
@@ -443,16 +450,28 @@ public class InsertaTR extends javax.swing.JFrame {
                Triggers.crearTriggerPrefCredito(con);
                Triggers.crearTriggerTercerias(con);
               
-              /* CTablas1.setSelectedIndex(1);   
+              /* CTablas1.setSelectedIndex(0);   
                ReadControl.Read_ControlExpediente(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos); */
+                jTextField1.setText(readAud.rutaCarpetaArchivos); 
                
-             /*  CTablas1.setSelectedIndex(2);   
+               CTablas1.setSelectedIndex(1);   
                ReadAud.Read_Audiencias(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos); */
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
 
-                  CTablas1.setSelectedIndex(3);   
+                  CTablas1.setSelectedIndex(2);   
                ReadOrdinario.Read_Ordinario(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);*/
+                
+                 /*  CTablas1.setSelectedIndex(3);   
+               ReadIndividual.Read_Individual(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);*/
+                
+               /* CTablas1.setSelectedIndex(4);   
+               ReadColectivo.Read_Colectivo(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);*/
+                
+               CTablas1.setSelectedIndex(5);   
+               ReadHuelga.Read_Huelga(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
                 JOptionPane.showMessageDialog(null, "Registros Insertados, Favor de revisar ventana -*Errores de insert*-");

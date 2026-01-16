@@ -32,9 +32,17 @@ public class V3TrOrdinarioJL implements Trigger {
         return Integer.valueOf(s);
     }
 
-    private void setIfNull(Object[] newRow, int idx, Object value) {
-        if (newRow[idx] == null) newRow[idx] = value;
+   private void setIfNull(Object[] newRow, int idx, Object value) {
+    if (newRow[idx] == null) {
+        newRow[idx] = value;
+        return;
     }
+
+    String s = newRow[idx].toString().trim();
+    if (s.isEmpty() || s.equalsIgnoreCase("Valor Cat No encontrado")) {
+        newRow[idx] = value;
+    }
+}
 
     private void replace1999With1899(Object[] newRow, int idx) {
         Object v = newRow[idx];

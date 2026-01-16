@@ -240,6 +240,16 @@ public class ReadCSV_Ordinario {
                             c.SetCOMENTARIOS(record.get(93).toUpperCase());
 
                             ad.add(c);
+                            
+   /*                         System.out.println(
+    "REG=" + TotalRegistros +
+    " | CLAVE_ORGANO=" + record.get(1) +
+    " | EXPEDIENTE=" + record.get(2) +
+    " | SECTOR_RAW=" + record.get(9) +
+    " | SUBSECTOR_RAW=" + record.get(10) +
+    " | SECTOR_CONV=" + c.GetSECTOR_RAMA() +
+    " | SUBSECTOR_CONV=" + c.GetSUBSECTOR_RAMA()
+);*/
                         }
                         System.out.println("entro 1");
                         if (TotalRegistros > 0) {
@@ -319,7 +329,7 @@ public class ReadCSV_Ordinario {
                                             System.err.println("❌ Último batch falló (bloque " + blockStart + " - " + ad.size() + ")");
                                             System.err.println("Mensaje: " + bue.getMessage());
                                             con.rollback();
-                                            insertarBloqueUnoAUno(con, conErr, ps, ad, blockStart, ad.size(), "V3_TR_AUDIENCIASJL");
+                                            insertarBloqueUnoAUno(con, conErr, ps, ad, blockStart, ad.size(), "V3_TR_ORDINARIOJL");
                                             con.commit();
                                         }
                                     }

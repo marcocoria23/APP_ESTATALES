@@ -133,7 +133,7 @@ public class ReadCSV_Paraprocesal {
                             c.SetEXPEDIENTE_CLAVE(record.get(2).toUpperCase().replace("\\n", "").trim());
                             c.SetFECHA_APERTURA_EXPEDIENTE(conver.toH2Date(record.get(3).toUpperCase(), "FECHA_APERTURA_EXPEDIENTE"));
                             c.SetRAMA_INVOLUCRAD(record.get(4).toUpperCase());
-                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(5).toUpperCase().replace("_", " ")));
+                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(5).toUpperCase().replace("_", " ").replace(",", "")));
                             c.SetSUBSECTOR_RAMA(conver.CON_V3_TC_SUBSECTOR_RAMAJL(con, record.get(6).toUpperCase()));
                             c.SetMOTIVO_SOLICITUD(conver.CON_V3_TC_MOTIVO_SOLICITUDJL(con, record.get(7).toUpperCase()));
                             c.SetESPECIFIQUE_MOTIVO(record.get(8).toUpperCase());

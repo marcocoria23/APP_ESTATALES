@@ -134,7 +134,7 @@ public class ReadCSV_Huelga {
                             c.SetFECHA_APERTURA_EXPEDIENTE(conver.toH2Date(record.get(3).toUpperCase(), "FECHA_APERTURA_EXPEDIENTE"));
                             c.SetTIPO_ASUNTO(conver.CON_V3_TC_TIPO_ASUNTOJL(con, record.get(4).toUpperCase()));
                             c.SetRAMA_INDUS_INVOLUCRAD(record.get(5).toUpperCase());
-                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(6).toUpperCase().replace("_", " ")));
+                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(6).toUpperCase().replace("_", " ").replace(",", "")));
                             c.SetSUBSECTOR_RAMA(conver.CON_V3_TC_SUBSECTOR_RAMAJL(con, record.get(7).toUpperCase()));
                             c.SetENTIDAD_CLAVE(record.get(8).toUpperCase());
                             c.SetENTIDAD_NOMBRE(record.get(9).toUpperCase());

@@ -137,7 +137,7 @@ public class ReadCSV_Ordinario {
                             c.SetCONTRATO_ESCRITO(conver.CON_V3_TC_RESPUESTA_SIMPLEJL(con, record.get(6).toUpperCase()));
                             c.SetTIPO_CONTRATO(conver.CON_V3_TC_TIPO_CONTRATOJL(con, record.get(7).toUpperCase()));
                             c.SetRAMA_INDUS_INVOLUCRADA(record.get(8).toUpperCase());
-                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(9).toUpperCase().replace("_", " ")));
+                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(9).toUpperCase().replace("_", " ").replace(",", "")));
                             c.SetSUBSECTOR_RAMA(conver.CON_V3_TC_SUBSECTOR_RAMAJL(con, record.get(10).toUpperCase()));
                             c.SetENTIDAD_CLAVE(record.get(11).toUpperCase());
                             c.SetENTIDAD_NOMBRE(record.get(12).toUpperCase());

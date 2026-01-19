@@ -872,7 +872,7 @@ public class Convers {
         } else {
             if (!esNumero(campo)) {
                 String sql = "SELECT ID FROM V3_TC_SECTOR_RAMAJL "
-                        + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
+                        + "WHERE REPLACE(UPPER(TRIM(DESCRIPCION)),',','') = ?";
 
                 try ( PreparedStatement ps = con.prepareStatement(sql)) {
                     ps.setString(1, campo.toUpperCase().trim());

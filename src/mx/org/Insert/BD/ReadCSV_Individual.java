@@ -137,7 +137,7 @@ public class ReadCSV_Individual {
                             c.SetCONTRATO_ESCRITO(conver.CON_V3_TC_RESPUESTA_SIMPLEJL(con, record.get(6).toUpperCase()));
                             c.SetTIPO_CONTRATO(conver.CON_V3_TC_TIPO_CONTRATOJL(con, record.get(7).toUpperCase()));
                             c.SetRAMA_INDUS_INVOLUCRADA(record.get(8).toUpperCase());
-                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(9).toUpperCase().replace("_", " ")));
+                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(9).toUpperCase().replace("_", " ").replace(",", "")));
                             c.SetSUBSECTOR_RAMA(conver.CON_V3_TC_SUBSECTOR_RAMAJL(con, record.get(10).toUpperCase()));
                             c.SetENTIDAD_CLAVE(record.get(11).toUpperCase());
                             c.SetENTIDAD_NOMBRE(record.get(12).toUpperCase());
@@ -202,7 +202,7 @@ public class ReadCSV_Individual {
                             c.SetESTATUS_EXPEDIENTE(conver.CON_V3_TC_ESTATUS_EXPEDIENTEJL(con, record.get(55).toUpperCase()));
                             c.SetFECHA_ACTO_PROCESAL(conver.toH2Date(record.get(56).toUpperCase(), "FECHA_ACTO_PROCESAL"));
                             c.SetFASE_SOLI_EXPEDIENTE(conver.CON_V3_TC_FASE_EXPEDIENTEJL(con, record.get(57).toUpperCase()));
-                            c.SetFORMA_SOLUCION_AD(record.get(58).toUpperCase());
+                            c.SetFORMA_SOLUCION_AD(conver.CON_V3_TC_FORMA_SOLUCIONJL(con, record.get(58).toUpperCase()));
                             c.SetOTRO_ESP_SOLUCION_AD(conver.CON_V3_TC_FORMA_SOLUCIONJL(con, record.get(59).toUpperCase()));
                             c.SetFECHA_DICTO_RESOLUCION_AD(conver.toH2Date(record.get(60).toUpperCase(), "FECHA_DICTO_RESOLUCION_AD"));
                             c.SetTIPO_SENTENCIA_AD(conver.CON_V3_TC_TIPO_SENTENCIAJL(con, record.get(61).toUpperCase()));
@@ -216,7 +216,7 @@ public class ReadCSV_Individual {
                             c.SetOTRO_ESP_SOLUCION_AP(record.get(69).toUpperCase());
                             c.SetFECHA_DICTO_RESOLUCION_AP(conver.toH2Date(record.get(70).toUpperCase(), "FECHA_DICTO_RESOLUCION_AP"));
                             c.SetMONTO_SOLUCION_AP(conver.CON_V3_TC_FORMA_SOLUCIONJL(con, record.get(71).toUpperCase()));
-                            c.SetFORMA_SOLUCION_AJ(record.get(72).toUpperCase());
+                            c.SetFORMA_SOLUCION_AJ(conver.CON_V3_TC_FORMA_SOLUCIONJL(con, record.get(72).toUpperCase()));
                             c.SetOTRO_ESP_SOLUCION_AJ(record.get(73).toUpperCase());
                             c.SetFECHA_DICTO_RESOLUCION_AJ(conver.toH2Date(record.get(74).toUpperCase(), "FECHA_DICTO_RESOLUCION_AJ"));
                             c.SetTIPO_SENTENCIA_AJ(conver.CON_V3_TC_TIPO_SENTENCIAJL(con, record.get(75).toUpperCase()));

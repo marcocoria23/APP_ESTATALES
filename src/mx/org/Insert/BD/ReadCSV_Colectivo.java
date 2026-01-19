@@ -135,7 +135,7 @@ public class ReadCSV_Colectivo {
                             c.SetTIPO_ASUNTO(conver.CON_V3_TC_TIPO_ASUNTOJL(con, record.get(4).toUpperCase()));
                             c.SetNAT_CONFLICTO(conver.CON_V3_TC_NAT_CONFLICTOJL(con, record.get(5).toUpperCase()));
                             c.SetRAMA_INDUS_INVOLUCRAD(record.get(6).toUpperCase());
-                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(7).toUpperCase()));
+                            c.SetSECTOR_RAMA(conver.CON_V3_TC_SECTOR_RAMAJL(con, record.get(7).toUpperCase().replace("_", " ")));
                             c.SetSUBSECTOR_RAMA(conver.CON_V3_TC_SUBSECTOR_RAMAJL(con, record.get(8).toUpperCase()));
                             c.SetENTIDAD_CLAVE(record.get(9).toUpperCase());
                             c.SetENTIDAD_NOMBRE(record.get(10).toUpperCase());

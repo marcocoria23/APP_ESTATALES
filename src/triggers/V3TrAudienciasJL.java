@@ -56,23 +56,13 @@ public class V3TrAudienciasJL implements Trigger {
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) {
-
+try {
         // ===== 1) Si TIPO_PROCED es NULL => 9  (igual que Oracle)
         if (newRow[IDX_TIPO_PROCED] == null) {
             newRow[IDX_TIPO_PROCED] = BigDecimal.valueOf(9);
         }
 
         int tipo = toInt(newRow[IDX_TIPO_PROCED], 9);
-
-        try {
-            // ===== 2) SELECT COUNT(*) INTO Tipo_proced FROM V3_TC_AUD_TIPO_PROCEJL WHERE ID = :NEW.TIPO_PROCED;
-            // En Oracle no usas el resultado para validar; aquí lo dejamos igual (y opcionalmente podrías validar)
-         //   int existe = countTipoProced(conn, tipo);
-            // Si quieres RECHAZAR cuando no existe, descomenta:
-            // if (existe == 0) throw new IllegalArgumentException("TIPO_PROCED no existe en catálogo: " + tipo);
-        } catch (Exception ex) {
-            Logger.getLogger(V3TrAudienciasJL.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         // ===== 3) Defaults dependientes de tipo
         if (tipo == 1 && newRow[IDX_ORDINARIO_TA] == null) {
@@ -113,7 +103,15 @@ public class V3TrAudienciasJL implements Trigger {
         if (fecha != null && fecha.equals(DATE_1999_09_09)) {
             newRow[IDX_FECHA] = DATE_1899_09_09;
         }
-    }
+     } catch (Exception e) {
+            System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace(System.out); // <-- AQUI veras la linea exacta
+            throw e; // <-- importante: no te comas el error
+        }
+
+}
+
+
 
     @Override public void close() {}
     @Override public void remove() {}

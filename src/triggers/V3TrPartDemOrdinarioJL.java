@@ -27,7 +27,7 @@ public class V3TrPartDemOrdinarioJL implements Trigger {
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
-
+try {
         // ===== Índices (0-based) según tu CREATE TABLE =====
         // 0  NOMBRE_ORGANO_JURIS
         // 1  CLAVE_ORGANO
@@ -94,7 +94,13 @@ public class V3TrPartDemOrdinarioJL implements Trigger {
             // Nota: en tu trigger Oracle NO pones default para RAZON_SOCIAL_EMPR,
             // por eso aquí NO lo llené (aunque existe la columna).
         }
-    }
+ } catch (Exception e) {
+            System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace(System.out); // <-- AQUI veras la linea exacta
+            throw e; // <-- importante: no te comas el error
+        }
+
+}
 
     @Override public void close() { }
     @Override public void remove() { }

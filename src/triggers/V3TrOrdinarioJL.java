@@ -63,7 +63,7 @@ public class V3TrOrdinarioJL implements Trigger {
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
-
+try {
         // ===== Índices (0-based) según el CREATE TABLE que pegaste =====
         // 0 NOMBRE_ORGANO_JURIS
         // 1 CLAVE_ORGANO
@@ -380,7 +380,14 @@ public class V3TrOrdinarioJL implements Trigger {
         replace1999With1899(newRow, iFECHA_DICTO_RESOLUCIONFE);
         replace1999With1899(newRow, iFECHA_DICTO_RESOLUCIONAP);
         replace1999With1899(newRow, iFECHA_RESOLUCIONAJ);
-    }
+        
+     } catch (Exception e) {
+            System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace(System.out); // <-- AQUI veras la linea exacta
+            throw e; // <-- importante: no te comas el error
+        }
+
+}
 
     @Override public void close() { }
     @Override public void remove() { }

@@ -57,7 +57,7 @@ public class V3TrControlExpedienteJL implements Trigger {
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) {
-
+try {
         // ===== 1) CIRCUNS_ORG_JUR default = 9
         if (newRow[IDX_CIRCUNS_ORG_JUR] == null) {
             newRow[IDX_CIRCUNS_ORG_JUR] = BigDecimal.valueOf(9);
@@ -95,7 +95,13 @@ public class V3TrControlExpedienteJL implements Trigger {
         if (newRow[IDX_LONGITUD_ORG] == null) {
             newRow[IDX_LONGITUD_ORG] = "No identificado";
         }
-    }
+  } catch (Exception e) {
+            System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace(System.out); // <-- AQUI veras la linea exacta
+            throw e; // <-- importante: no te comas el error
+        }
+
+}
 
     @Override public void close() {}
     @Override public void remove() {}

@@ -46,7 +46,7 @@ public class V3TrTerceriasJL implements Trigger {
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
-
+try {
         // ===== Índices (0-based) según tu CREATE TABLE =====
         final int iNOMBRE_ORGANO_JURIS        = 0;
         final int iCLAVE_ORGANO               = 1;
@@ -92,7 +92,13 @@ public class V3TrTerceriasJL implements Trigger {
         replaceDate1999To1899(newRow, iFECHA_APERTURA_INCIDENTAL);
         replaceDate1999To1899(newRow, iFECHA_AUDIENCIA);
         replaceDate1999To1899(newRow, iFECHA_RESOLUCION);
-    }
+} catch (Exception e) {
+            System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace(System.out); // <-- AQUI veras la linea exacta
+            throw e; // <-- importante: no te comas el error
+        }
+
+}
 
     @Override public void close() { }
     @Override public void remove() { }

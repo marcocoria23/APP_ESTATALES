@@ -27,7 +27,7 @@ public class V3TrPartActHuelgaJL implements Trigger {
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
-
+try {
         // ===== Índices (0-based) según tu CREATE TABLE =====
         final int iNOMBRE_ORGANO_JURIS   = 0;
         final int iCLAVE_ORGANO          = 1;
@@ -100,7 +100,13 @@ public class V3TrPartActHuelgaJL implements Trigger {
                 setIfNull(newRow, iNOMBRE_ORG_OBRERA, 9);
             }
         }
-    }
+ } catch (Exception e) {
+            System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace(System.out); // <-- AQUI veras la linea exacta
+            throw e; // <-- importante: no te comas el error
+        }
+
+}
 
     @Override public void close() { }
     @Override public void remove() { }

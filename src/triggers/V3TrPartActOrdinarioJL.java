@@ -27,6 +27,7 @@ public class V3TrPartActOrdinarioJL implements Trigger {
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
+try {
 
         // ===== Índices (0-based) según tu DDL =====
         // 0  NOMBRE_ORGANO_JURIS
@@ -97,7 +98,13 @@ public class V3TrPartActOrdinarioJL implements Trigger {
                 }
             }
         }
-    }
+ } catch (Exception e) {
+            System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace(System.out); // <-- AQUI veras la linea exacta
+            throw e; // <-- importante: no te comas el error
+        }
+
+}
 
     @Override public void close() { }
     @Override public void remove() { }

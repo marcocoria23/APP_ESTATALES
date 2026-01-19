@@ -120,7 +120,7 @@ public class ReadCSV_Huelga {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 54) {
+                    if (numeroColumnas == 53) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Huelga> ad = new ArrayList<>();
@@ -147,9 +147,12 @@ public class ReadCSV_Huelga {
                                     c.SetMUNICIPIO_CLAVE(record.get(8).toUpperCase() + "0" + record.get(10).toUpperCase());
                                 }
                                 if (record.get(10).toUpperCase().length() == 5) {
-                                } else {
-                                    c.SetMUNICIPIO_CLAVE(record.get(10).toUpperCase());
+                                     c.SetMUNICIPIO_CLAVE(record.get(10).toUpperCase());
                                 }
+                                   if (record.get(10).toUpperCase().length() == 3) {
+                                      c.SetMUNICIPIO_CLAVE(record.get(8).toUpperCase()+record.get(10).toUpperCase());
+                                } 
+                                
                             } else {
                                 c.SetMUNICIPIO_CLAVE(record.get(10).toUpperCase());
                             }
@@ -329,7 +332,7 @@ public class ReadCSV_Huelga {
             pe.setString(4, "");
             pe.setString(5, e.getSQLState());
             pe.setInt(6, e.getErrorCode());
-            String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado");
+            String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado").replace("Violación de una restricción de Integridad Referencial", "Valor de Catalogo no encontrado");
             pe.setString(7, msg != null && msg.length() > 500 ? msg.substring(0, 250) : msg);
             pe.setString(8, raw);
             pe.executeUpdate();

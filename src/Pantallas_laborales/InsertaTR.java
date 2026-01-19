@@ -22,11 +22,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import mx.org.Insert.BD.ReadCSV_Audiencias;
+import mx.org.Insert.BD.ReadCSV_Colect_Econom;
 import mx.org.Insert.BD.ReadCSV_Colectivo;
 import mx.org.Insert.BD.ReadCSV_Control_expediente;
+import mx.org.Insert.BD.ReadCSV_Ejecucion;
 import mx.org.Insert.BD.ReadCSV_Huelga;
 import mx.org.Insert.BD.ReadCSV_Individual;
 import mx.org.Insert.BD.ReadCSV_Ordinario;
+import mx.org.Insert.BD.ReadCSV_Paraprocesal;
+import mx.org.Insert.BD.ReadCSV_Pref_Credito;
+import mx.org.Insert.BD.ReadCSV_Tercerias;
 import triggers.CreaTriggers;
 
 
@@ -50,6 +55,13 @@ public class InsertaTR extends javax.swing.JFrame {
        ReadCSV_Individual ReadIndividual=new ReadCSV_Individual();
        ReadCSV_Colectivo ReadColectivo=new ReadCSV_Colectivo();
        ReadCSV_Huelga ReadHuelga=new ReadCSV_Huelga();
+       ReadCSV_Colect_Econom ReadColectEconom=new ReadCSV_Colect_Econom();
+       ReadCSV_Paraprocesal ReadParaprocesal=new ReadCSV_Paraprocesal();
+       ReadCSV_Ejecucion ReadEjecucion=new ReadCSV_Ejecucion();
+       ReadCSV_Pref_Credito ReadPrefCredito=new ReadCSV_Pref_Credito();
+       ReadCSV_Tercerias ReadTercerias=new ReadCSV_Tercerias();
+       
+       
        
        CreaTriggers Triggers=new CreaTriggers();
     
@@ -450,7 +462,7 @@ public class InsertaTR extends javax.swing.JFrame {
                Triggers.crearTriggerPrefCredito(con);
                Triggers.crearTriggerTercerias(con);
               
-              /* CTablas1.setSelectedIndex(0);   
+               CTablas1.setSelectedIndex(0);   
                ReadControl.Read_ControlExpediente(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos); 
                
@@ -460,19 +472,41 @@ public class InsertaTR extends javax.swing.JFrame {
 
                   CTablas1.setSelectedIndex(2);   
                ReadOrdinario.Read_Ordinario(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);*/
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
-                 /*  CTablas1.setSelectedIndex(3);   
+                  CTablas1.setSelectedIndex(3);   
                ReadIndividual.Read_Individual(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);*/
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
+                        
                 
-               /* CTablas1.setSelectedIndex(4);   
+               CTablas1.setSelectedIndex(4);   
                ReadColectivo.Read_Colectivo(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);*/
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
                 //Aqui me quede para probar clases Read...
                CTablas1.setSelectedIndex(5);   
                ReadHuelga.Read_Huelga(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
+                
+                CTablas1.setSelectedIndex(6);   
+               ReadColectEconom.Read_Colect_Econom(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
+                
+                CTablas1.setSelectedIndex(6);   
+               ReadEjecucion.Read_Ejecucion(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
+                
+                 CTablas1.setSelectedIndex(6);   
+               ReadParaprocesal.Read_Paraprocesal(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
+                
+                 CTablas1.setSelectedIndex(6);   
+               ReadPrefCredito.Read_Pref_Credito(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
+                
+                CTablas1.setSelectedIndex(6);   
+               ReadTercerias.Read_Tercerias(con,conerr);
+                jTextField1.setText(readAud.rutaCarpetaArchivos);
+                
                 
                 JOptionPane.showMessageDialog(null, "Registros Insertados, Favor de revisar ventana -*Errores de insert*-");
                 Insertar.setEnabled(true);

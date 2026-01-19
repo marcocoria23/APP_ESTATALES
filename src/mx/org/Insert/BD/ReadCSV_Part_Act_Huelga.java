@@ -275,7 +275,7 @@ public class ReadCSV_Part_Act_Huelga {
             pe.setString(4, a.GetID_ACTOR());
             pe.setString(5, e.getSQLState());
             pe.setInt(6, e.getErrorCode());
-            String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado");
+             String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado").replace("Violación de una restricción de Integridad Referencial", "Valor de Catalogo no encontrado");
             pe.setString(7, msg != null && msg.length() > 500 ? msg.substring(0, 250) : msg);
             pe.setString(8, raw);
             pe.executeUpdate();

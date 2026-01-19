@@ -146,12 +146,14 @@ public class ReadCSV_Individual {
                                 if (record.get(13).toUpperCase().length() == 1) {
                                     c.SetMUNICIPIO_CLAVE(record.get(11).toUpperCase() + "00" + record.get(13).toUpperCase());
                                 }
-                                if (record.get(16).toUpperCase().length() == 2) {
+                                if (record.get(13).toUpperCase().length() == 2) {
                                     c.SetMUNICIPIO_CLAVE(record.get(11).toUpperCase() + "0" + record.get(13).toUpperCase());
                                 }
-                                if (record.get(16).toUpperCase().length() == 5) {
-                                } else {
+                                if (record.get(13).toUpperCase().length() == 5) {
                                     c.SetMUNICIPIO_CLAVE(record.get(13).toUpperCase());
+                                } 
+                                 if (record.get(13).toUpperCase().length() == 3) {
+                                      c.SetMUNICIPIO_CLAVE(record.get(11).toUpperCase()+record.get(13).toUpperCase());
                                 }
                             } else {
                                 c.SetMUNICIPIO_CLAVE(record.get(13).toUpperCase());
@@ -359,7 +361,7 @@ public class ReadCSV_Individual {
             pe.setString(4, "");
             pe.setString(5, e.getSQLState());
             pe.setInt(6, e.getErrorCode());
-            String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado");
+             String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado").replace("Violación de una restricción de Integridad Referencial", "Valor de Catalogo no encontrado");
             pe.setString(7, msg != null && msg.length() > 500 ? msg.substring(0, 250) : msg);
             pe.setString(8, raw);
             pe.executeUpdate();

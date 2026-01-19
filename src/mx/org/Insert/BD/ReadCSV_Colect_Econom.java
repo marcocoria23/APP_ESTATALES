@@ -120,7 +120,7 @@ public class ReadCSV_Colect_Econom {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 56) {
+                    if (numeroColumnas == 55) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Colect_Econom> ad = new ArrayList<>();
@@ -148,8 +148,10 @@ public class ReadCSV_Colect_Econom {
                                     c.SetMUNICIPIO_CLAVE(record.get(9).toUpperCase() + "0" + record.get(11).toUpperCase());
                                 }
                                 if (record.get(11).toUpperCase().length() == 5) {
-                                } else {
-                                    c.SetMUNICIPIO_CLAVE(record.get(11).toUpperCase());
+                                      c.SetMUNICIPIO_CLAVE(record.get(11).toUpperCase());
+                                }
+                                if (record.get(11).toUpperCase().length() == 3) {
+                                      c.SetMUNICIPIO_CLAVE(record.get(9).toUpperCase()+record.get(11).toUpperCase());
                                 }
                             } else {
                                 c.SetMUNICIPIO_CLAVE(record.get(11).toUpperCase());
@@ -180,7 +182,7 @@ public class ReadCSV_Colect_Econom {
                             c.SetAUDIENCIA_ECONOM(conver.CON_V3_TC_RESPUESTA_SIMPLEJL(con, record.get(35).toUpperCase()));
                             c.SetFECHA_AUDIENCIA_ECONOM(conver.toH2Date(record.get(36).toUpperCase(), "FECHA_AUDIENCIA_ECONOM"));
                             c.SetESTATUS_EXPEDIENTE(conver.CON_V3_TC_ESTATUS_EXPEDIENTEJL(con, record.get(37).toUpperCase()));
-                            c.SetFECHA_ACTO_PROCESAL(conver.toH2Date(record.get(11).toUpperCase(), "FECHA_ACTO_PROCESAL"));
+                            c.SetFECHA_ACTO_PROCESAL(conver.toH2Date(record.get(38).toUpperCase(), "FECHA_ACTO_PROCESAL"));
                             c.SetFASE_SOLI_EXPEDIENTE(conver.CON_V3_TC_FASE_EXPEDIENTEJL(con, record.get(39).toUpperCase()));
                             c.SetFORMA_SOLUCION(conver.CON_V3_TC_FORMA_SOLUCIONJL(con, record.get(40).toUpperCase()));
                             c.SetESPECIFIQUE_FORMA(record.get(41).toUpperCase());
@@ -331,7 +333,7 @@ public class ReadCSV_Colect_Econom {
             pe.setString(4, "");
             pe.setString(5, e.getSQLState());
             pe.setInt(6, e.getErrorCode());
-            String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado");
+             String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado").replace("Violación de una restricción de Integridad Referencial", "Valor de Catalogo no encontrado");
             pe.setString(7, msg != null && msg.length() > 500 ? msg.substring(0, 250) : msg);
             pe.setString(8, raw);
             pe.executeUpdate();

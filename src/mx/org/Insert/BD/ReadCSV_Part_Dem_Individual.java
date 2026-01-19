@@ -7,7 +7,7 @@ CUANDO EL PROGRAMA SE QUEDA EN ST.EXECUTE POR CADA PROCEDIMIENTO FAVOR DE REVISA
  */
 package mx.org.Insert.BD;
 
-import Pantallas_laborales.InsertaTR;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,20 +19,22 @@ import javax.swing.JOptionPane;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import Bean_Procedures.ControlExpediente;
+import Bean_Procedures.Part_Dem_Individual;
 import ConverCat.Convers;
+import Pantallas_laborales.InsertaTR;
 import Pantallas_laborales.cargando;
 import java.io.BufferedInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.sql.BatchUpdateException;
 import java.sql.PreparedStatement;
+import mx.org.Insert.BD.Convertir_utf8;
 
 /**
  *
  * @author ANDREA.HERNANDEZL
  */
-public class ReadCSV_Control_expediente {
+public class ReadCSV_Part_Dem_Individual {
 
     public static String impErro = "", RutaT = "", CampoNotConver = "";
     public static int TotalRegistros = 0;
@@ -41,14 +43,14 @@ public class ReadCSV_Control_expediente {
     public static String rutaCarpetaArchivos = "";
     Convertir_utf8 conUTF8 = new Convertir_utf8();
 
-    public void Read_ControlExpediente(Connection con, Connection conErr) throws FileNotFoundException, IOException {
+    public void Read_Part_Dem_Individual(Connection con, Connection conErr) throws FileNotFoundException, IOException {
         InsertaTR Insert = new InsertaTR();
         //FileInputStream f = new FileInputStream(Insert.rutaT);  
         try {
             System.out.println("1.....");
             if (Insert.CarpetaArchivos == true) {
                 System.out.println("2.....");
-                rutaCarpetaArchivos = Insert.rutaT + "CSV_BD_Control_expediente.csv";
+                rutaCarpetaArchivos = Insert.rutaT + "CSV_BD_T.2.3_part_dem_esp_indiv.csv";
                 System.out.println("+++++2" + rutaCarpetaArchivos);
             } else {
                 System.out.println("3.....");
@@ -64,11 +66,11 @@ public class ReadCSV_Control_expediente {
                     if (bytesRead >= 3 && bytes[0] == (byte) 0xEF && bytes[1] == (byte) 0xBB && bytes[2] == (byte) 0xBF) {
                         System.out.println("Archivo en UTF-8");
                         System.out.println("5.....");
-                        IN_CONTROL_EXPEDIENTE(rutaCarpetaArchivos, con, conErr);
+                        IN_PART_DEM_INDIVIDUAL(rutaCarpetaArchivos, con, conErr);
                     } else {
                         System.out.println("6.....");
                         conUTF8.Convertir_utf8_EBaseDatos(rutaCarpetaArchivos);
-                        IN_CONTROL_EXPEDIENTE(conUTF8.rutaNuevoArchivo, con, conErr);
+                        IN_PART_DEM_INDIVIDUAL(conUTF8.rutaNuevoArchivo, con, conErr);
                         rutaCarpetaArchivos = conUTF8.rutaNuevoArchivo;
 
                     }
@@ -84,11 +86,11 @@ public class ReadCSV_Control_expediente {
                     if (bytesRead >= 3 && bytes[0] == (byte) 0xEF && bytes[1] == (byte) 0xBB && bytes[2] == (byte) 0xBF) {
                         System.out.println("8.....");
                         System.out.println("Archivo en UTF-8");
-                        IN_CONTROL_EXPEDIENTE(rutaCarpetaArchivos, con, conErr);
+                        IN_PART_DEM_INDIVIDUAL(rutaCarpetaArchivos, con, conErr);
                     } else {
                         System.out.println("9.....");
                         conUTF8.Convertir_utf8(rutaCarpetaArchivos);
-                        IN_CONTROL_EXPEDIENTE(conUTF8.rutaNuevoArchivo, con, conErr);
+                        IN_PART_DEM_INDIVIDUAL(conUTF8.rutaNuevoArchivo, con, conErr);
                         rutaCarpetaArchivos = conUTF8.rutaNuevoArchivo;
                     }
                 } catch (IOException e) {
@@ -101,7 +103,7 @@ public class ReadCSV_Control_expediente {
 
     }
 
-    public void IN_CONTROL_EXPEDIENTE(String Ruta, Connection con, Connection conErr) throws Exception {
+    public void IN_PART_DEM_INDIVIDUAL(String Ruta, Connection con, Connection conErr) throws Exception {
         String rutaArchivoCSV = Ruta;
         Array = new ArrayList();
         TotalRegistros = 0;
@@ -120,67 +122,50 @@ public class ReadCSV_Control_expediente {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 33) {
+                    if (numeroColumnas == 15) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
-                        ArrayList<ControlExpediente> ad = new ArrayList<>();
+                        ArrayList<Part_Dem_Individual> ad = new ArrayList<>();
                         for (CSVRecord record : csvParser) {
-                            System.out.println("llenado de csv");
+                            // System.out.println("llenado de csv");
                             TotalRegistros++;
-                            ControlExpediente c = new ControlExpediente();
-                            c.SetID_CONTROL(record.get(0).toUpperCase());
-                            c.SetNOMBRE_ORGANO_JURIS(record.get(1).toUpperCase());
-                            c.SetCLAVE_ORGANO(record.get(2).toUpperCase());
-                            c.SetSEDE(record.get(3).toUpperCase());
-                            c.SetJUECES_LABORAL_TOTAL(record.get(4).toUpperCase());
-                            c.SetJUECES_LABORAL_SUB_HOM(record.get(5).toUpperCase());
-                            c.SetJUECES_LABORAL_SUB_MUJ(record.get(6).toUpperCase());
-                            c.SetJUECES_LABORAL_INDIV_HOM(record.get(7).toUpperCase());
-                            c.SetJUECES_LABORAL_INDIV_MUJ(record.get(8).toUpperCase());
-                            c.SetJUECES_LABORAL_COLEC_HOM(record.get(9).toUpperCase());
-                            c.SetJUECES_LABORAL_COLEC_MUJ(record.get(10).toUpperCase());
-                            c.SetJUECES_LABORAL_MIX_HOM(record.get(11).toUpperCase());
-                            c.SetJUECES_LABORAL_MIX_MUJ(record.get(12).toUpperCase());
-                            c.SetHORARIO(record.get(13).toUpperCase());
-                            c.SetENTIDAD_CLAVE(record.get(14).toUpperCase());
-                            c.SetENTIDAD_NOMBRE(record.get(15).toUpperCase());
-                            if (!record.get(16).toUpperCase().equals(""))
-                            {
-                             if (record.get(16).toUpperCase().length()==1)
-                             {
-                            c.SetMUNICIPIO_CLAVE(record.get(14).toUpperCase()+"00"+record.get(16).toUpperCase());   
-                             }
-                             if (record.get(16).toUpperCase().length()==2)
-                             {
-                            c.SetMUNICIPIO_CLAVE(record.get(14).toUpperCase()+"0"+record.get(16).toUpperCase());     
-                             }
-                              if (record.get(16).toUpperCase().length() == 3) {
-                                      c.SetMUNICIPIO_CLAVE(record.get(14).toUpperCase()+record.get(16).toUpperCase());
+                            Part_Dem_Individual c = new Part_Dem_Individual();
+                            c.SetNOMBRE_ORGANO_JURIS(record.get(0).toUpperCase());
+                            c.SetCLAVE_ORGANO(record.get(1).toUpperCase());
+                            c.SetEXPEDIENTE_CLAVE(record.get(2).toUpperCase().replace("\\n", "").trim());
+                            c.SetID_DEMANDADO(record.get(3).toUpperCase());
+                            c.SetDEMANDADO(conver.CON_V3_TC_DEMANDADOJL(con, record.get(4).toUpperCase()));
+                            c.SetDEFENSA_DEM(conver.CON_V3_TC_TIPO_DEFENSAJL(con, record.get(5).toUpperCase()));
+                            c.SetTIPO(conver.CON_V3_TC_TIPO_PATRONJL(con, record.get(6).toUpperCase()));
+                            c.SetRFC_PATRON(record.get(7).toUpperCase());
+                            c.SetRAZON_SOCIAL_EMPR(record.get(8).toUpperCase());
+                            c.SetCALLE(record.get(9).toUpperCase());
+                            c.SetN_EXT(record.get(10).toUpperCase());
+                            c.SetN_INT(record.get(11).toUpperCase());
+                            c.SetCOLONIA(record.get(12).toUpperCase());
+                            c.SetCP(record.get(13).toUpperCase());
+                            c.SetENTIDAD_NOMBRE_EMPR(record.get(14).toUpperCase());
+                            c.SetENTIDAD_CLAVE_EMPR(record.get(15).toUpperCase());
+                            c.SetMUNICIPIO_NOMBRE_EMPR(record.get(16).toUpperCase());
+                            c.SetMUNICIPIO_CLAVE_EMPR(record.get(17).toUpperCase());
+                            if (!record.get(17).toUpperCase().equals("")) {
+                                if (record.get(17).toUpperCase().length() == 1) {
+                                    c.SetMUNICIPIO_CLAVE_EMPR(record.get(15).toUpperCase() + "00" + record.get(17).toUpperCase());
                                 }
-                             if (record.get(16).toUpperCase().length() == 5) {
-                                      c.SetMUNICIPIO_CLAVE(record.get(14).toUpperCase());
+                                if (record.get(17).toUpperCase().length() == 2) {
+                                    c.SetMUNICIPIO_CLAVE_EMPR(record.get(15).toUpperCase() + "0" + record.get(17).toUpperCase());
                                 }
-                            }else{
-                                 c.SetMUNICIPIO_CLAVE(record.get(16).toUpperCase()); 
+                                if (record.get(17).toUpperCase().length() == 5) {
+                                } else {
+                                    c.SetMUNICIPIO_CLAVE_EMPR(record.get(17).toUpperCase());
+                                }
+                            } else {
+                                c.SetMUNICIPIO_CLAVE_EMPR(record.get(17).toUpperCase());
                             }
-                            c.SetMUNICIPIO_NOMBRE(record.get(17).toUpperCase());
-                            c.SetCOLONIA_NOMBRE(record.get(18).toUpperCase());
-                            c.SetLATITUD_ORG1(record.get(19).toUpperCase());
-                            c.SetLONGITUD_ORG1(record.get(20).toUpperCase());
-                            c.SetCIRCUNS_ORG_JUR(conver.CON_V3_TC_CIRCUNS_ORGANOJL(con, record.get(21).toUpperCase()));
-                            c.SetOTRO_ESP_CIRCUNS(record.get(22).toUpperCase());
-                            c.SetJURISDICCION(conver.CON_V3_TC_JURISDICCIONJL(con, record.get(23).toUpperCase()));
-                            c.SetORDINARIO(record.get(24).toUpperCase());
-                            c.SetESPECIAL_INDIVI(record.get(25).toUpperCase());
-                            c.SetESPECIAL_COLECT(record.get(26).toUpperCase());
-                            c.SetHUELGA(record.get(27).toUpperCase());
-                            c.SetCOL_NATU_ECONOMICA(record.get(28).toUpperCase());
-                            c.SetPARAP_VOLUNTARIO(record.get(29).toUpperCase());
-                            c.SetTERCERIAS(record.get(30).toUpperCase());
-                            c.SetPREF_CREDITO(record.get(31).toUpperCase());
-                            c.SetEJECUCION(record.get(32).toUpperCase());
+                            c.SetLATITUD1_EMPR(record.get(18).toUpperCase());
+                            c.SetLONGITUD1_EMPR(record.get(19).toUpperCase());
+                            c.SetCOMENTARIOS(record.get(20).toUpperCase());
                             ad.add(c);
-                            System.out.println("SUSHY");
                         }
                         System.out.println("entro 1");
                         if (TotalRegistros > 0) {
@@ -189,15 +174,13 @@ public class ReadCSV_Control_expediente {
                                 cargar.setVisible(true);
                                 // OJO: AJUSTA los nombres reales de columnas en tu tabla H2
                                 final String sql
-                                        = "INSERT INTO V3_TR_CONTROL_EXPEDIENTEJL ("
-                                        + "ID_CONTROL, NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, SEDE, JUECES_LABORAL_TOTAL,\n"
-                                        + "JUECES_LABORAL_SUB_HOM, JUECES_LABORAL_SUB_MUJ, JUECES_LABORAL_INDIV_HOM, JUECES_LABORAL_INDIV_MUJ, JUECES_LABORAL_COLEC_HOM,\n"
-                                        + "JUECES_LABORAL_COLEC_MUJ, JUECES_LABORAL_MIX_HOM, JUECES_LABORAL_MIX_MUJ, HORARIO, ENTIDAD_CLAVE,\n"
-                                        + "ENTIDAD_NOMBRE, MUNICIPIO_CLAVE, MUNICIPIO_NOMBRE, COLONIA_NOMBRE, LATITUD_ORG,\n"
-                                        + "LONGITUD_ORG, CIRCUNS_ORG_JUR, OTRO_ESP_CIRCUNS, JURISDICCION, ORDINARIO,\n"
-                                        + "ESPECIAL_INDIVI, ESPECIAL_COLECT, HUELGA, COL_NATU_ECONOMICA, PARAP_VOLUNTARIO,\n"
-                                        + "TERCERIAS, PREF_CREDITO, EJECUCION\n"
-                                        + ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                                        = "INSERT INTO V3_TR_PART_DEM_INDIVIDUALJL ("
+                                        + "NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_DEMANDADO, DEMANDADO,\n"
+                                        + "DEFENSA_DEM, TIPO, RFC_PATRON, RAZON_SOCIAL_EMPR, CALLE,\n"
+                                        + "N_EXT, N_INT, COLONIA, CP, ENTIDAD_NOMBRE_EMPR,\n"
+                                        + "ENTIDAD_CLAVE_EMPR, MUNICIPIO_NOMBRE_EMPR, MUNICIPIO_CLAVE_EMPR, LATITUD_EMPR, LONGITUD_EMPR,\n"
+                                        + "COMENTARIOS"
+                                        + ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                                 try {
                                     System.out.println("A) antes getConnection");
                                     System.out.println("B) despues getConnection");
@@ -211,9 +194,9 @@ public class ReadCSV_Control_expediente {
                                     int blockStart = 0; // índice inicial del bloque actual dentro de "ad"
                                     System.out.println("tamaño del array=" + ad.size());
                                     for (int i = 0; i < ad.size(); i++) {
-                                        ControlExpediente a = ad.get(i);
+                                        Part_Dem_Individual a = ad.get(i);
                                         // ✅ usa tu helper para setear params (mismo orden de tu INSERT)
-                                        setParamsAudiencias(ps, a);
+                                        setParamsPart_Dem_Individual(ps, a);
                                         ps.addBatch();
                                         batch++;
                                         // Ejecutamos cada 1000
@@ -230,7 +213,7 @@ public class ReadCSV_Control_expediente {
                                                 con.rollback();
 
                                                 // ✅ fallback: inserta uno por uno y guarda en ERRORES_INSERT lo que falle
-                                                insertarBloqueUnoAUno(con, conErr, ps, ad, blockStart, blockEnd, "V3_TR_CONTROL_EXPEDIENTEJL");
+                                                insertarBloqueUnoAUno(con, conErr, ps, ad, blockStart, blockEnd, "V3_TR_PART_DEM_INDIVIDUALJL");
 
                                                 // ✅ commit de los buenos (los que sí entraron en el uno-a-uno)
                                                 con.commit();
@@ -248,7 +231,7 @@ public class ReadCSV_Control_expediente {
                                             System.err.println("❌ Último batch falló (bloque " + blockStart + " - " + ad.size() + ")");
                                             System.err.println("Mensaje: " + bue.getMessage());
                                             con.rollback();
-                                            insertarBloqueUnoAUno(con, conErr, ps, ad, blockStart, ad.size(), "V3_TR_AUDIENCIASJL");
+                                            insertarBloqueUnoAUno(con, conErr, ps, ad, blockStart, ad.size(), "V3_TR_PART_DEM_INDIVIDUALJL");
                                             con.commit();
                                         }
                                     }
@@ -282,7 +265,7 @@ public class ReadCSV_Control_expediente {
                             }
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "Archivo .CSV sin Registros-V3_TMP_AUDIENCIASJL");
+                            JOptionPane.showMessageDialog(null, "Archivo .CSV sin Registros-V3_TMP_PART_DEM_INDIVIDUALJL");
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Numero de columnas no coincide con la Base de datos");
@@ -297,20 +280,20 @@ public class ReadCSV_Control_expediente {
 
     private static final String SQL_INSERT_ERROR
             = "INSERT INTO ERRORES_INSERT "
-            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_DEMANDADO, "
             + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
             + "VALUES (?,?,?,?,?,?,?,?)";
 
-    private static void guardarError(Connection conErr, String tablaDestino, ControlExpediente a,
+    private static void guardarError(Connection conErr, String tablaDestino, Part_Dem_Individual a,
             SQLException e, String raw) {
         try ( PreparedStatement pe = conErr.prepareStatement(SQL_INSERT_ERROR)) {
             pe.setString(1, tablaDestino);
             pe.setString(2, a.GetCLAVE_ORGANO());
-            pe.setString(3, "");
-            pe.setString(4, "");
+            pe.setString(3, a.GetEXPEDIENTE_CLAVE());
+            pe.setString(4, a.GetID_DEMANDADO());
             pe.setString(5, e.getSQLState());
             pe.setInt(6, e.getErrorCode());
-             String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado").replace("Violación de una restricción de Integridad Referencial", "Valor de Catalogo no encontrado");
+            String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado").replace("Violación de una restricción de Integridad Referencial", "Valor de Catalogo no encontrado");
             pe.setString(7, msg != null && msg.length() > 500 ? msg.substring(0, 250) : msg);
             pe.setString(8, raw);
             pe.executeUpdate();
@@ -320,63 +303,48 @@ public class ReadCSV_Control_expediente {
         }
     }
 
-    private static void setParamsAudiencias(PreparedStatement ps, ControlExpediente a) throws SQLException {
-        ps.setString(1, a.GetID_CONTROL());
-        ps.setString(2, a.GetNOMBRE_ORGANO_JURIS());
-        ps.setString(3, a.GetCLAVE_ORGANO());
-        ps.setString(4, a.GetSEDE());
-        ps.setString(5, a.GetJUECES_LABORAL_TOTAL());
+    private static void setParamsPart_Dem_Individual(PreparedStatement ps, Part_Dem_Individual a) throws SQLException {
+        ps.setString(1, a.GetNOMBRE_ORGANO_JURIS());
+        ps.setString(2, a.GetCLAVE_ORGANO());
+        ps.setString(3, a.GetEXPEDIENTE_CLAVE());
+        ps.setString(4, a.GetID_DEMANDADO());
+        ps.setString(5, a.GetDEMANDADO());
 
-        ps.setString(6, a.GetJUECES_LABORAL_SUB_HOM());
-        ps.setString(7, a.GetJUECES_LABORAL_SUB_MUJ());
-        ps.setString(8, a.GetJUECES_LABORAL_INDIV_HOM());
-        ps.setString(9, a.GetJUECES_LABORAL_INDIV_MUJ());
-        ps.setString(10, a.GetJUECES_LABORAL_COLEC_HOM());
+        ps.setString(6, a.GetDEFENSA_DEM());
+        ps.setString(7, a.GetTIPO());
+        ps.setString(8, a.GetRFC_PATRON());
+        ps.setString(9, a.GetRAZON_SOCIAL_EMPR());
+        ps.setString(10, a.GetCALLE());
 
-        ps.setString(11, a.GetJUECES_LABORAL_COLEC_MUJ());
-        ps.setString(12, a.GetJUECES_LABORAL_MIX_HOM());
-        ps.setString(13, a.GetJUECES_LABORAL_MIX_MUJ());
-        ps.setString(14, a.GetHORARIO());
-        ps.setString(15, a.GetENTIDAD_CLAVE());
+        ps.setString(11, a.GetN_EXT());
+        ps.setString(12, a.GetN_INT());
+        ps.setString(13, a.GetCOLONIA());
+        ps.setString(14, a.GetCP());
+        ps.setString(15, a.GetENTIDAD_NOMBRE_EMPR());
 
-        ps.setString(16, a.GetENTIDAD_NOMBRE());
-        ps.setString(17, a.GetMUNICIPIO_CLAVE());
-        ps.setString(18, a.GetMUNICIPIO_NOMBRE());
-        ps.setString(19, a.GetCOLONIA_NOMBRE());
-        ps.setString(20, a.GetLATITUD_ORG1());
+        ps.setString(16, a.GetENTIDAD_CLAVE_EMPR());
+        ps.setString(17, a.GetMUNICIPIO_NOMBRE_EMPR());
+        ps.setString(18, a.GetMUNICIPIO_CLAVE_EMPR());
+        ps.setString(19, a.GetLATITUD1_EMPR());
+        ps.setString(20, a.GetLONGITUD1_EMPR());
 
-        ps.setString(21, a.GetLONGITUD_ORG1());
-        ps.setString(22, a.GetCIRCUNS_ORG_JUR());
-        ps.setString(23, a.GetOTRO_ESP_CIRCUNS());
-        ps.setString(24, a.GetJURISDICCION());
-        ps.setString(25, a.GetORDINARIO());
-
-        ps.setString(26, a.GetESPECIAL_INDIVI());
-        ps.setString(27, a.GetESPECIAL_COLECT());
-        ps.setString(28, a.GetHUELGA());
-        ps.setString(29, a.GetCOL_NATU_ECONOMICA());
-        ps.setString(30, a.GetPARAP_VOLUNTARIO());
-
-        ps.setString(31, a.GetTERCERIAS());
-        ps.setString(32, a.GetPREF_CREDITO());
-        ps.setString(33, a.GetEJECUCION());
+        ps.setString(21, a.GetCOMENTARIOS());
     }
 
     private static void insertarBloqueUnoAUno(Connection con, Connection conErr, PreparedStatement ps,
-            ArrayList<ControlExpediente> ad, int inicio, int fin, String tablaDestino) throws SQLException {
+            ArrayList<Part_Dem_Individual> ad, int inicio, int fin, String tablaDestino) throws SQLException {
 
         for (int i = inicio; i < fin; i++) {
-            ControlExpediente a = ad.get(i);
+            Part_Dem_Individual a = ad.get(i);
 
             try {
-                setParamsAudiencias(ps, a);
+                setParamsPart_Dem_Individual(ps, a);
                 ps.executeUpdate(); // 👈 uno a uno
             } catch (SQLException e) {
                 String raw = "idx=" + i
                         + "|CLAVE_ORGANO=" + a.GetCLAVE_ORGANO()
-                        + "|EXPEDIENTE_CLAVE=" + ""
-                        + "|ID=" + "";
-                       
+                        + "|EXPEDIENTE_CLAVE=" + a.GetEXPEDIENTE_CLAVE()
+                        + "|ID_DEMANDADO=" + a.GetID_DEMANDADO();
                 guardarError(conErr, tablaDestino, a, e, raw);
             }
         }

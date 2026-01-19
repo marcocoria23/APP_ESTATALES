@@ -155,8 +155,10 @@ public class ReadCSV_Part_Dem_Huelga {
                                     c.SetMUNICIPIO_CLAVE_EMPR(record.get(15).toUpperCase() + "0" + record.get(17).toUpperCase());
                                 }
                                 if (record.get(17).toUpperCase().length() == 5) {
-                                } else {
                                     c.SetMUNICIPIO_CLAVE_EMPR(record.get(17).toUpperCase());
+                                }
+                                if (record.get(17).toUpperCase().length() == 3) {
+                                      c.SetMUNICIPIO_CLAVE_EMPR(record.get(15).toUpperCase()+record.get(17).toUpperCase());
                                 }
                             } else {
                                 c.SetMUNICIPIO_CLAVE_EMPR(record.get(17).toUpperCase());
@@ -293,7 +295,7 @@ public class ReadCSV_Part_Dem_Huelga {
             pe.setString(4, a.GetID_DEMANDADO());
             pe.setString(5, e.getSQLState());
             pe.setInt(6, e.getErrorCode());
-            String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado");
+             String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado").replace("Violación de una restricción de Integridad Referencial", "Valor de Catalogo no encontrado");
             pe.setString(7, msg != null && msg.length() > 500 ? msg.substring(0, 250) : msg);
             pe.setString(8, raw);
             pe.executeUpdate();

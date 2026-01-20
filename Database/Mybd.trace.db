@@ -245,3 +245,77 @@ ORDER BY ORDINAL_POSITION [42122-232]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "V3_TC_RALAB_COMENTARIOSJL" no encontrada
 Table "V3_TC_RALAB_COMENTARIOSJL" not found; SQL statement:
 SELECT * FROM V3_TC_RALAB_COMENTARIOSJL [42102-232]
+2026-01-20 15:11:23.812263-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT Count(*) cuenta_reg FROM [*]'V3_TR_CONTROL_EXPEDIENTEJL' "; se esperaba "identifier"
+Syntax error in SQL statement "SELECT Count(*) cuenta_reg FROM [*]'V3_TR_CONTROL_EXPEDIENTEJL' "; expected "identifier"; SQL statement:
+SELECT Count(*) cuenta_reg FROM 'V3_TR_CONTROL_EXPEDIENTEJL'  [42001-232]
+2026-01-20 15:11:23.866583-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "TABLA" no encontrada
+Column "TABLA" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3518)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at mx.org.querys.V3Querys.Total_Reg_NITR(V3Querys.java:85)
+	at Pantallas_laborales.Errores_InsertTR.TextAreaInicio(Errores_InsertTR.java:324)
+	at Pantallas_laborales.Errores_InsertTR.despliegaErroresInicio(Errores_InsertTR.java:262)
+	at Pantallas_laborales.Errores_InsertTR.lambda$BmostrarActionPerformed$0(Errores_InsertTR.java:228)
+	at java.base/java.lang.Thread.run(Thread.java:835)
+2026-01-20 15:12:03.189815-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "TABLA" no encontrada
+Column "TABLA" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3518)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at mx.org.querys.V3Querys.Total_Reg_insertadosTR(V3Querys.java:62)
+	at Pantallas_laborales.Errores_InsertTR.TextAreaInicio(Errores_InsertTR.java:323)
+	at Pantallas_laborales.Errores_InsertTR.despliegaErroresInicio(Errores_InsertTR.java:262)
+	at Pantallas_laborales.Errores_InsertTR.lambda$BmostrarActionPerformed$0(Errores_InsertTR.java:228)
+	at java.base/java.lang.Thread.run(Thread.java:835)
+2026-01-20 15:12:03.231127-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "TABLA" no encontrada
+Column "TABLA" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3518)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at mx.org.querys.V3Querys.Total_Reg_NITR(V3Querys.java:85)
+	at Pantallas_laborales.Errores_InsertTR.TextAreaInicio(Errores_InsertTR.java:324)
+	at Pantallas_laborales.Errores_InsertTR.despliegaErroresInicio(Errores_InsertTR.java:262)
+	at Pantallas_laborales.Errores_InsertTR.lambda$BmostrarActionPerformed$0(Errores_InsertTR.java:228)
+	at java.base/java.lang.Thread.run(Thread.java:835)
+2026-01-20 15:13:03.621999-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "TABLA" no encontrada
+Column "TABLA" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3518)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at mx.org.querys.V3Querys.Total_Reg_insertadosTR(V3Querys.java:62)
+	at Pantallas_laborales.Errores_InsertTR.TextAreaInicio(Errores_InsertTR.java:323)
+	at Pantallas_laborales.Errores_InsertTR.despliegaErroresInicio(Errores_InsertTR.java:262)
+	at Pantallas_laborales.Errores_InsertTR.lambda$BmostrarActionPerformed$0(Errores_InsertTR.java:228)
+	at java.base/java.lang.Thread.run(Thread.java:835)
+2026-01-20 15:13:03.658093-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "TABLA" no encontrada
+Column "TABLA" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3518)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at mx.org.querys.V3Querys.Total_Reg_NITR(V3Querys.java:85)
+	at Pantallas_laborales.Errores_InsertTR.TextAreaInicio(Errores_InsertTR.java:324)
+	at Pantallas_laborales.Errores_InsertTR.despliegaErroresInicio(Errores_InsertTR.java:262)
+	at Pantallas_laborales.Errores_InsertTR.lambda$BmostrarActionPerformed$0(Errores_InsertTR.java:228)
+	at java.base/java.lang.Thread.run(Thread.java:835)

@@ -4,6 +4,8 @@
  */
 package Pantallas_laborales;
 
+import Conexion.ConexionH2;
+import Exporta_Exception.ExportXLS;
 import static Pantallas_laborales.InsertaTR.ventanaAbierta;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -12,8 +14,12 @@ import Pantallas_laborales.InsertaTR;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -50,6 +56,7 @@ public class Errores_InsertTR extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(15);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(15);
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(600);
+        ExportaEi.setVisible(false);
            
         
     }
@@ -75,6 +82,7 @@ public class Errores_InsertTR extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
         LProgress = new javax.swing.JLabel();
+        ExportaEi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Errores Insert TR");
@@ -105,7 +113,7 @@ public class Errores_InsertTR extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(70, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -158,6 +166,13 @@ public class Errores_InsertTR extends javax.swing.JFrame {
 
         LProgress.setText("Procesando...");
 
+        ExportaEi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Exporta.png"))); // NOI18N
+        ExportaEi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportaEiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,7 +186,11 @@ public class Errores_InsertTR extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1042, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Bmostrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Bmostrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ExportaEi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,13 +212,14 @@ public class Errores_InsertTR extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 5, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Bmostrar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(LProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Bmostrar, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(LProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(ExportaEi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2)
@@ -218,31 +238,32 @@ public class Errores_InsertTR extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void BmostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BmostrarActionPerformed
-     /*    new Thread(() -> {        
-             despliegaErroresInicio();      
-        }).start();   */   
+     new Thread(() -> {    
+         try (Connection con = ConexionH2.getConnection();) {   
+             despliegaErroresInicio(con);      
+         } catch (SQLException ex) {
+             Logger.getLogger(Errores_InsertTR.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        }).start();     
     }//GEN-LAST:event_BmostrarActionPerformed
 
     private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
-        // TODO add your handling code here:
-      /*  int selectedRowIndex = jTable1.getSelectedRow();
-         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        if ((evt.getClickCount()==2)  && (evt.getButton()==1)){
-          Ttabla="";
-          Tclave_organo="";
-          Tclave_expediente="";
-          Tid="";      
-          Ttabla=model.getValueAt(selectedRowIndex, 0).toString();
-          Tclave_organo=model.getValueAt(selectedRowIndex, 1).toString();
-          Tclave_expediente=model.getValueAt(selectedRowIndex, 2).toString();
-          Tid=model.getValueAt(selectedRowIndex, 3).toString();
-          Reg_NI Reg= new Reg_NI();
-          Reg.setVisible(true);
-         }*/
+    
     }//GEN-LAST:event_jTable1MousePressed
 
+    private void ExportaEiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportaEiActionPerformed
+        // TODO add your handling code here:
+      
+        ExportXLS ErroresInsert = new ExportXLS();
+        try {
+            ErroresInsert.exportarExcel(jTable1);
+        } catch (IOException ex) {
+            Logger.getLogger(ExportXLS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ExportaEiActionPerformed
+
     
- /*   public void despliegaErroresInicio(){
+  public void despliegaErroresInicio(Connection con){
         // TODO add your handling code here:
         jTextArea1.setText("");
         jTextArea1.setVisible(true);
@@ -250,11 +271,12 @@ public class Errores_InsertTR extends javax.swing.JFrame {
         jProgressBar1.setVisible(true);
         jLabel3.setText(InsertaTR.tabla);
         limpiarTabla();    
-        TextAreaInicio();   
-       ArrayErroresInsInicio=V3queryNE.TErroresInserTRInicio();
+        TextAreaInicio(con);   
+       ArrayErroresInsInicio=V3queryNE.TErroresInserTRInicio(con);
 
          if (TTRegNI>0){ 
              System.out.println("entro a inicio");
+            ExportaEi.setVisible(true);
             DefaultTableModel TablaError = (DefaultTableModel) jTable1.getModel();
             Object[] fila = new Object[8];
             for (int j = 0; j < ArrayErroresInsInicio.size(); j++) {
@@ -265,8 +287,6 @@ public class Errores_InsertTR extends javax.swing.JFrame {
                 part2 = errorarray[2].trim();
                 part3 = errorarray[3].trim();
                 part4 = errorarray[4].trim();
-                part5 = errorarray[5].trim();
-                part6 = errorarray[6].trim();
                 fila[0] = part0;
                 fila[1] = part1;
                 fila[2] = part2;
@@ -279,13 +299,14 @@ public class Errores_InsertTR extends javax.swing.JFrame {
             }
         } else {
             limpiarTabla();
+            ExportaEi.setVisible(false);
             JOptionPane.showMessageDialog(null, "No se encontraron registros con Error de insert", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
-    }*/
+    }
     
   
     
-  /*  public void TextAreaInicio(){
+   public void TextAreaInicio(Connection con){
     
     int progres=5;
     String[] ArrayTablas = new String[21];
@@ -313,11 +334,11 @@ public class Errores_InsertTR extends javax.swing.JFrame {
         
      for (int i=0;i<=20;i++)
      {  
-        T_reg=V3queryNE.Total_Reg_insertadosTR(ArrayTablas[i]);
-        T_regNI=V3queryNE.Total_Reg_NITR(ArrayTablas[i], InsertaTR.clave_entidad, InsertaTR.clave_organo, InsertaTR.periodo);
+        T_reg=V3queryNE.Total_Reg_insertadosTR(con,ArrayTablas[i]);
+        T_regNI=V3queryNE.Total_Reg_NITR(con,ArrayTablas[i]);
         TTRegNI=TTRegNI+Integer.parseInt(T_regNI);
         texto=texto+ArrayTablas[i]+": \n \n"
-                +"Reg_TMP:"+T_regTMP+"   Reg_TR:"+T_reg+"   "+"Reg_NoIn:"+T_regNI+ "\n"
+                +"Reg_TR:"+T_reg+"    "+"Reg_NoIn:"+T_regNI+ "\n"
                 +"-----------------------------------------------------------------\n";
          progres=progres+5;
          jProgressBar1.setValue(progres);
@@ -326,7 +347,7 @@ public class Errores_InsertTR extends javax.swing.JFrame {
          LProgress.setVisible(false);
         jProgressBar1.setVisible(false);
         jTextArea1.setText(texto);  
-    }*/
+    }
     
     
      public void limpiarTabla() {
@@ -378,6 +399,7 @@ public class Errores_InsertTR extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bmostrar;
+    private javax.swing.JButton ExportaEi;
     private javax.swing.JLabel LProgress;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

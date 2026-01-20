@@ -21,9 +21,8 @@ public class V3Querys {
     public ArrayList TErroresInserTRInicio(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT TABLA, CLAVE_ORGANO, CLAVE_EXPEDIENTE, ID, REPLACE(EXCEPCION,',','') AS EXCEPCION, " +
-              "       USUARIO, FECHA_HORA " +
-              "FROM V3_ERRORES_INSERT_RALABTR ";
+        sql = "SELECT TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, REPLACE(MENSAJE,',','') AS MENSAJE " +
+              "FROM ERRORES_INSERT";
 
         System.out.println(sql);
 
@@ -32,14 +31,11 @@ public class V3Querys {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Array.add(new String[]{
-                        rs.getString("TABLA"),
+                        rs.getString("TABLA_DESTINO"),
                         rs.getString("CLAVE_ORGANO"),
-                        rs.getString("CLAVE_EXPEDIENTE"),
+                        rs.getString("EXPEDIENTE_CLAVE"),
                         rs.getString("ID"),
-                        rs.getString("EXCEPCION"),
-                        rs.getString("USUARIO"),
-                        rs.getString("FECHA_HORA"),
-                        //NOTA: MODIFICAR CLASE PRINCIPAL
+                        rs.getString("MENSAJE")
                     });
                 }
             }
@@ -52,29 +48,19 @@ public class V3Querys {
     }
     
     
-     public ArrayList Total_Reg_insertadosTR(Connection con) {
-        Array = new ArrayList<>();
-
-        sql = "SELECT TABLA_DESTINO, CLAVE_ORGANO, CLAVE_EXPEDIENTE, ID, MENSAJE, " +
-              "       USUARIO, FECHA_HORA " +
-              "FROM V3_ERRORES_INSERT_RALABTR ";
+     public String Total_Reg_insertadosTR(Connection con,String Tabla) {
+      String Valor="";
+        sql = "SELECT Count(*) cuenta_reg " +
+              "FROM "+Tabla+" ";
 
         System.out.println(sql);
 
         try (
              PreparedStatement ps = con.prepareStatement(sql)) {
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    Array.add(new String[]{
-                        rs.getString("TABLA"),
-                        rs.getString("CLAVE_ORGANO"),
-                        rs.getString("CLAVE_EXPEDIENTE"),
-                        rs.getString("ID"),
-                        rs.getString("EXCEPCION"),
-                        rs.getString("USUARIO"),
-                        rs.getString("FECHA_HORA"),
+                if(rs.next()) {
+                        Valor=rs.getString("cuenta_reg");
                         //NOTA: MODIFICAR CLASE PRINCIPAL
-                    });
                 }
             }
 
@@ -82,7 +68,30 @@ public class V3Querys {
             LOG.log(Level.SEVERE, "Error en TErroresInserTRInicio()", ex);
         }
 
-        return Array;
+        return Valor;
+    }
+     
+      public String Total_Reg_NITR(Connection con,String Tabla) {
+      String Valor="";
+        sql = "SELECT Count(*) cuenta_reg " +
+              "FROM ERRORES_INSERT WHERE TABLA_DESTINO='"+Tabla+"' ";
+
+        System.out.println(sql);
+
+        try (
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            try (ResultSet rs = ps.executeQuery()) {
+                if(rs.next()) {
+                        Valor=rs.getString("cuenta_reg");
+                        //NOTA: MODIFICAR CLASE PRINCIPAL
+                }
+            }
+
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en TErroresInserTRInicio()", ex);
+        }
+
+        return Valor;
     }
     
     

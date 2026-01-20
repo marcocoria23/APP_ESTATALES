@@ -121,7 +121,7 @@ public class ReadCSV_Part_Dem_Huelga {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 16) {
+                    if (numeroColumnas == 22) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Part_Dem_Huelga> ad = new ArrayList<>();
@@ -282,7 +282,7 @@ public class ReadCSV_Part_Dem_Huelga {
 
     private static final String SQL_INSERT_ERROR
             = "INSERT INTO ERRORES_INSERT "
-            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_DEMANDADO, "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
             + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
             + "VALUES (?,?,?,?,?,?,?,?)";
 

@@ -133,7 +133,7 @@ public class ReadCSV_Part_Act_Ordinario {
                             c.SetCLAVE_ORGANO(record.get(1).toUpperCase());
                             c.SetEXPEDIENTE_CLAVE(record.get(2).toUpperCase().replace("\\n", "").trim());
                             c.SetID_ACTOR(record.get(3).toUpperCase());
-                            c.SetACTOR(record.get(4).toUpperCase());
+                            c.SetACTOR(conver.CON_V3_TC_ACTORJL(con, record.get(4).toUpperCase()));
                             c.SetDEFENSA_ACT(conver.CON_V3_TC_TIPO_DEFENSAJL(con, record.get(5).toUpperCase()));
                             c.SetSEXO(conver.CON_V3_TC_SEXO_TRABAJADORJL(con, record.get(6).toUpperCase()));
                             c.SetEDAD(conver.CON_V3_TC_EDAD_TRABAJADORJL(con, record.get(7).toUpperCase()));
@@ -269,7 +269,7 @@ public class ReadCSV_Part_Act_Ordinario {
 
     private static final String SQL_INSERT_ERROR
             = "INSERT INTO ERRORES_INSERT "
-            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_ACTOR, "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
             + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
             + "VALUES (?,?,?,?,?,?,?,?)";
 
@@ -278,8 +278,8 @@ public class ReadCSV_Part_Act_Ordinario {
         try ( PreparedStatement pe = conErr.prepareStatement(SQL_INSERT_ERROR)) {
             pe.setString(1, tablaDestino);
             pe.setString(2, a.GetCLAVE_ORGANO());
-            pe.setString(3, "");
-            pe.setString(4, "");
+            pe.setString(3, a.GetEXPEDIENTE_CLAVE());
+            pe.setString(4, a.GetID_ACTOR());
             pe.setString(5, e.getSQLState());
             pe.setInt(6, e.getErrorCode());
              String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado").replace("Violación de una restricción de Integridad Referencial", "Valor de Catalogo no encontrado");

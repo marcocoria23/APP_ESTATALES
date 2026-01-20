@@ -146,7 +146,7 @@ public class ReadCSV_Part_Act_Colect_Econom {
                             c.SetHOMBRES(record.get(14).toUpperCase());
                             c.SetMUJERES(record.get(15).toUpperCase());
                             c.SetNO_IDENTIFICADO(record.get(16).toUpperCase());
-                            c.SetTIPO(record.get(17).toUpperCase());
+                            c.SetTIPO(conver.CON_V3_TC_TIPO_PATRONJL(con, record.get(17).toUpperCase()));
                             c.SetRFC_PATRON(record.get(18).toUpperCase());
                             c.SetRAZON_SOCIAL_EMPR(record.get(19).toUpperCase());
                             c.SetCALLE(record.get(20).toUpperCase());
@@ -294,7 +294,7 @@ public class ReadCSV_Part_Act_Colect_Econom {
 
     private static final String SQL_INSERT_ERROR
             = "INSERT INTO ERRORES_INSERT "
-            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_ACTOR, "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
             + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
             + "VALUES (?,?,?,?,?,?,?,?)";
 

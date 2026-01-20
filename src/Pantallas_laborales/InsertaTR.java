@@ -28,6 +28,16 @@ import mx.org.Insert.BD.ReadCSV_Huelga;
 import mx.org.Insert.BD.ReadCSV_Individual;
 import mx.org.Insert.BD.ReadCSV_Ordinario;
 import mx.org.Insert.BD.ReadCSV_Paraprocesal;
+import mx.org.Insert.BD.ReadCSV_Part_Act_Colect_Econom;
+import mx.org.Insert.BD.ReadCSV_Part_Act_Colectivo;
+import mx.org.Insert.BD.ReadCSV_Part_Act_Huelga;
+import mx.org.Insert.BD.ReadCSV_Part_Act_Individual;
+import mx.org.Insert.BD.ReadCSV_Part_Act_Ordinario;
+import mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom;
+import mx.org.Insert.BD.ReadCSV_Part_Dem_Colectivo;
+import mx.org.Insert.BD.ReadCSV_Part_Dem_Huelga;
+import mx.org.Insert.BD.ReadCSV_Part_Dem_Individual;
+import mx.org.Insert.BD.ReadCSV_Part_Dem_Ordinario;
 import mx.org.Insert.BD.ReadCSV_Pref_Credito;
 import mx.org.Insert.BD.ReadCSV_Tercerias;
 import triggers.CreaTriggers;
@@ -58,15 +68,23 @@ public class InsertaTR extends javax.swing.JFrame {
        ReadCSV_Ejecucion ReadEjecucion=new ReadCSV_Ejecucion();
        ReadCSV_Pref_Credito ReadPrefCredito=new ReadCSV_Pref_Credito();
        ReadCSV_Tercerias ReadTercerias=new ReadCSV_Tercerias();
-       
-       
-       
+       ReadCSV_Part_Act_Colect_Econom ReadPartActEconom=new ReadCSV_Part_Act_Colect_Econom();
+       ReadCSV_Part_Dem_Colect_Econom ReadPartDemEconom=new ReadCSV_Part_Dem_Colect_Econom();
+       ReadCSV_Part_Act_Colectivo ReadPartActColectivo=new ReadCSV_Part_Act_Colectivo();
+       ReadCSV_Part_Dem_Colectivo ReadPartDemColectivo=new ReadCSV_Part_Dem_Colectivo();
+       ReadCSV_Part_Act_Huelga ReadPartActHuelga=new ReadCSV_Part_Act_Huelga();
+       ReadCSV_Part_Dem_Huelga ReadPartDemHuelga=new ReadCSV_Part_Dem_Huelga();
+       ReadCSV_Part_Act_Individual ReadPartActIndividual=new ReadCSV_Part_Act_Individual();
+       ReadCSV_Part_Dem_Individual ReadPartDemIndividual=new ReadCSV_Part_Dem_Individual();
+       ReadCSV_Part_Act_Ordinario ReadPartActOrdinario=new ReadCSV_Part_Act_Ordinario();
+       ReadCSV_Part_Dem_Ordinario ReadPartDemOrdinario=new ReadCSV_Part_Dem_Ordinario();
        CreaTriggers Triggers=new CreaTriggers();
     
     public InsertaTR() {
         initComponents();
         this.setLocationRelativeTo(null);//JFRAME LOCALIZACION AL CENTRO DE LA PANTALLA
         this.getContentPane().setBackground(Color.WHITE);//JFRAME COLOR POR DEFAULT BLANCO 
+        jProgressBar1.setVisible(false);
         
     }
 
@@ -87,6 +105,8 @@ public class InsertaTR extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        LNombreTabla = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
@@ -152,6 +172,10 @@ public class InsertaTR extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(PanelILayout.createSequentialGroup()
                 .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelILayout.createSequentialGroup()
@@ -162,7 +186,10 @@ public class InsertaTR extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelILayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel3))
+                    .addGroup(PanelILayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         PanelILayout.setVerticalGroup(
@@ -179,11 +206,15 @@ public class InsertaTR extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Insertar1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(56, 56, 56)
                 .addComponent(jLabel4)
-                .addGap(52, 52, 52))
+                .addGap(22, 22, 22)
+                .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Logo Laborales.png"))); // NOI18N
@@ -265,7 +296,6 @@ public class InsertaTR extends javax.swing.JFrame {
 
         new Thread(() -> {
             Valores();
-                ReadCSV_Audiencias readAud=new ReadCSV_Audiencias();   
            int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Insertar todos los archivos RALAB?", "Alerta!", JOptionPane.YES_NO_OPTION);   
            if (resp == JOptionPane.YES_OPTION) {
               Execute Q =new Execute();
@@ -298,41 +328,91 @@ public class InsertaTR extends javax.swing.JFrame {
                Triggers.crearTriggerPartDemOrdinario(con);
                Triggers.crearTriggerPrefCredito(con);
                Triggers.crearTriggerTercerias(con);
-               
+               jProgressBar1.setVisible(true);   
+               LNombreTabla.setText("Insertando...V3_TR_CONTROL_EXPEDIENTE");
+               jProgressBar1.setValue(5);
                ReadControl.Read_ControlExpediente(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos); 
                
+               LNombreTabla.setText("Insertando..V3_TR_AUDIENCIAS");
+               jProgressBar1.setValue(10); 
                ReadAud.Read_Audiencias(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
-
+              
+                LNombreTabla.setText("Insertando..V3_TR_ORDINARIO");
+               jProgressBar1.setValue(15); 
                ReadOrdinario.Read_Ordinario(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
+                 LNombreTabla.setText("Insertando..V3_TR_PART_ACT_ORDINARIO");
+               jProgressBar1.setValue(20); 
+               ReadPartActOrdinario.Read_Part_Act_Ordinario(con,conerr);
+                
+               LNombreTabla.setText("Insertando..V3_TR_PART_DEM_ORDINARIO");
+               jProgressBar1.setValue(25); 
+               ReadPartDemOrdinario.Read_Part_Dem_Ordinario(con,conerr);
+                
+                 LNombreTabla.setText("Insertando..V3_TR_INDIVIDUAL");
+               jProgressBar1.setValue(30); 
                ReadIndividual.Read_Individual(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
-                        
                 
+                  LNombreTabla.setText("Insertando..V3_TR_PART_ACT_INDIVIDUAL");
+               jProgressBar1.setValue(35); 
+               ReadPartActIndividual.Read_Part_Act_Individual(con,conerr);
+                
+                LNombreTabla.setText("Insertando..V3_TR_PART_DEM_INDIVIDUAL");
+               jProgressBar1.setValue(40); 
+               ReadPartDemIndividual.Read_Part_Dem_Individual(con,conerr);
+                
+                LNombreTabla.setText("Insertando..V3_TR_COLECTIVO");
+               jProgressBar1.setValue(45); 
                ReadColectivo.Read_Colectivo(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
-                //Aqui me quede para probar clases Read...
-               ReadHuelga.Read_Huelga(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
+               LNombreTabla.setText("Insertando..V3_TR_PART_ACT_COLECTIVO");
+               jProgressBar1.setValue(50); 
+               ReadPartActColectivo.Read_Part_Act_Colectivo(con,conerr);
+               
+               LNombreTabla.setText("Insertando..V3_TR_PART_DEM_COLECTIVO");
+               jProgressBar1.setValue(55); 
+               ReadPartDemColectivo.Read_Part_Dem_Colectivo(con,conerr);
+                
+               LNombreTabla.setText("Insertando..V3_TR_HUELGA");
+               jProgressBar1.setValue(60); 
+                ReadHuelga.Read_Huelga(con,conerr);
+                
+                LNombreTabla.setText("Insertando..V3_TR_PART_ACT_HUELGA");
+               jProgressBar1.setValue(65); 
+                ReadPartActHuelga.Read_Part_Act_Huelga(con,conerr);
+                
+                
+               LNombreTabla.setText("Insertando..V3_TR_PART_DEM_HUELGA");
+               jProgressBar1.setValue(70); 
+                ReadPartDemHuelga.Read_Part_Dem_Huelga(con,conerr);
+                
+                LNombreTabla.setText("Insertando..V3_COLECT_ECONOM");
+               jProgressBar1.setValue(75);
                ReadColectEconom.Read_Colect_Econom(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
-               ReadEjecucion.Read_Ejecucion(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
+               LNombreTabla.setText("Insertando..V3_PART_ACT_COLECT_ECONOM");
+               jProgressBar1.setValue(80);
+               ReadPartActEconom.Read_Part_Act_Colect_Econom(con,conerr);
                 
+                LNombreTabla.setText("Insertando..V3_PART_DEM_COLECT_ECONOM");
+               jProgressBar1.setValue(85);
+               ReadPartDemEconom.Read_Part_Dem_Colect_Econom(con,conerr);
+                 
+                 LNombreTabla.setText("Insertando..V3_PARAPROCESAL");
+               jProgressBar1.setValue(90);
                ReadParaprocesal.Read_Paraprocesal(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
+                LNombreTabla.setText("Insertando..V3_PREFCREDITO");
+               jProgressBar1.setValue(92);
                ReadPrefCredito.Read_Pref_Credito(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
+                 LNombreTabla.setText("Insertando..V3_TERCERIAS");
+               jProgressBar1.setValue(94);
               ReadTercerias.Read_Tercerias(con,conerr);
-                jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
+                LNombreTabla.setText("Insertando..V3_EJECUCION");
+               ReadEjecucion.Read_Ejecucion(con,conerr);
+                 jProgressBar1.setValue(100);
                 
                 JOptionPane.showMessageDialog(null, "Registros Insertados, Favor de revisar ventana -*Errores de insert*-");
                 Insertar.setEnabled(true);
@@ -416,6 +496,7 @@ public class InsertaTR extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Insertar;
     private javax.swing.JButton Insertar1;
+    private javax.swing.JLabel LNombreTabla;
     public static javax.swing.JPanel PanelI;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
@@ -423,6 +504,7 @@ public class InsertaTR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

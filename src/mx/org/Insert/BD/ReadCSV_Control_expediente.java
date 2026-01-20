@@ -248,7 +248,7 @@ public class ReadCSV_Control_expediente {
                                             System.err.println("❌ Último batch falló (bloque " + blockStart + " - " + ad.size() + ")");
                                             System.err.println("Mensaje: " + bue.getMessage());
                                             con.rollback();
-                                            insertarBloqueUnoAUno(con, conErr, ps, ad, blockStart, ad.size(), "V3_TR_AUDIENCIASJL");
+                                            insertarBloqueUnoAUno(con, conErr, ps, ad, blockStart, ad.size(), "V3_TR_CONTROL_EXPEDIENTEJL");
                                             con.commit();
                                         }
                                     }

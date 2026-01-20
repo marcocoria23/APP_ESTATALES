@@ -293,7 +293,7 @@ public class ReadCSV_Part_Dem_Colectivo {
 
     private static final String SQL_INSERT_ERROR
             = "INSERT INTO ERRORES_INSERT "
-            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_DEMANDADO, "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
             + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
             + "VALUES (?,?,?,?,?,?,?,?)";
 

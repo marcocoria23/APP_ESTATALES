@@ -281,7 +281,7 @@ public class ReadCSV_Part_Dem_Ordinario {
 
     private static final String SQL_INSERT_ERROR
             = "INSERT INTO ERRORES_INSERT "
-            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_DEMANDADO, "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
             + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
             + "VALUES (?,?,?,?,?,?,?,?)";
 
@@ -290,8 +290,8 @@ public class ReadCSV_Part_Dem_Ordinario {
         try ( PreparedStatement pe = conErr.prepareStatement(SQL_INSERT_ERROR)) {
             pe.setString(1, tablaDestino);
             pe.setString(2, a.GetCLAVE_ORGANO());
-            pe.setString(3, "");
-            pe.setString(4, "");
+            pe.setString(3, a.GetEXPEDIENTE_CLAVE());
+            pe.setString(4, a.GetID_DEMANDADO());
             pe.setString(5, e.getSQLState());
             pe.setInt(6, e.getErrorCode());
              String msg = e.getMessage().replace("Violación de indice de Unicidad ó Clave primaria", "Registro Duplicado").replace("Violación de una restricción de Integridad Referencial", "Valor de Catalogo no encontrado");

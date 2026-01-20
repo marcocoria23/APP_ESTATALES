@@ -132,7 +132,7 @@ public class ReadCSV_Part_Act_Colectivo {
                             c.SetCLAVE_ORGANO(record.get(1).toUpperCase());
                             c.SetEXPEDIENTE_CLAVE(record.get(2).toUpperCase().replace("\\n", "").trim());
                             c.SetID_ACTOR(record.get(3).toUpperCase());
-                            c.SetACTOR(record.get(4).toUpperCase());
+                           c.SetACTOR(conver.CON_V3_TC_ACTORJL(con, record.get(4).toUpperCase()));
                             c.SetDEFENSA_ACT(conver.CON_V3_TC_TIPO_DEFENSAJL(con, record.get(5).toUpperCase()));
                             c.SetNOMBRE_SINDICATO(record.get(6).toUpperCase());
                             c.SetREG_ASOC_SINDICAL(record.get(7).toUpperCase());
@@ -293,7 +293,7 @@ public class ReadCSV_Part_Act_Colectivo {
 
     private static final String SQL_INSERT_ERROR
             = "INSERT INTO ERRORES_INSERT "
-            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_ACTOR, "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
             + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
             + "VALUES (?,?,?,?,?,?,?,?)";
 

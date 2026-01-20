@@ -46,23 +46,23 @@ try {
         final int iOTRO_ESP_OBRERA_DEM = 12;
 
         // 13..17 cantidades (no se tocan en el trigger)
-        final int iTIPO_DEM_PAT = 18;
-        final int iRFC_PATRON_DEM = 19;
-        final int iRAZON_SOCIAL_EMPR_DEM = 20;
+        final int iTIPO_DEM_PAT = 17;
+        final int iRFC_PATRON_DEM = 18;
+        final int iRAZON_SOCIAL_EMPR_DEM = 19;
 
-        final int iCALLE = 21;
-        final int iN_EXT = 22;
-        final int iN_INT = 23;
-        final int iCOLONIA = 24;
-        final int iCP = 25;
+        final int iCALLE = 20;
+        final int iN_EXT = 21;
+        final int iN_INT = 22;
+        final int iCOLONIA = 23;
+        final int iCP = 24;
 
-        final int iENTIDAD_NOMBRE_EMPR = 26;
-        final int iENTIDAD_CLAVE_EMPR = 27;
-        final int iMUNICIPIO_NOMBRE_EMPR = 28;
-        final int iMUNICIPIO_CLAVE_EMPR = 29;
+        final int iENTIDAD_NOMBRE_EMPR = 25;
+        final int iENTIDAD_CLAVE_EMPR = 26;
+        final int iMUNICIPIO_NOMBRE_EMPR = 27;
+        final int iMUNICIPIO_CLAVE_EMPR = 28;
 
-        final int iLATITUD_EMPR = 30;
-        final int iLONGITUD_EMPR = 31;
+        final int iLATITUD_EMPR = 29;
+        final int iLONGITUD_EMPR = 30;
 
         // ===== Defaults base =====
         // if :New.DEMANDADO IS NULL then 9

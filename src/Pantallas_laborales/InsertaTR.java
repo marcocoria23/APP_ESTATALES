@@ -8,14 +8,12 @@ package Pantallas_laborales;
 
 
 import Conexion.ConexionH2;
-import Exportar_Valida.V3validaciones;
 import QuerysH2.Execute;
 import java.awt.Color;
 import java.awt.FileDialog;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -68,11 +66,7 @@ public class InsertaTR extends javax.swing.JFrame {
     public InsertaTR() {
         initComponents();
         this.setLocationRelativeTo(null);//JFRAME LOCALIZACION AL CENTRO DE LA PANTALLA
-        this.getContentPane().setBackground(Color.WHITE);//JFRAME COLOR POR DEFAULT BLANCO
-        PanelI.setVisible(false);
-        R1.setVisible(false);
-        R2.setVisible(false);
-        jRadioButton1.setVisible(false);        
+        this.getContentPane().setBackground(Color.WHITE);//JFRAME COLOR POR DEFAULT BLANCO 
         
     }
 
@@ -86,23 +80,13 @@ public class InsertaTR extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        R1 = new javax.swing.JRadioButton();
-        R2 = new javax.swing.JRadioButton();
-        R3 = new javax.swing.JRadioButton();
         PanelI = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         Insertar1 = new javax.swing.JButton();
         Insertar = new javax.swing.JButton();
-        CTablas = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        Lname = new javax.swing.JLabel();
-        CTablas1 = new javax.swing.JComboBox();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
@@ -120,34 +104,8 @@ public class InsertaTR extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(R1);
-        R1.setText("VERSION 1.0");
-        R1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                R1ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(R2);
-        R2.setText("VERSION 2.0");
-        R2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                R2ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(R3);
-        R3.setText("VERSION 3.0");
-        R3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                R3ActionPerformed(evt);
-            }
-        });
-
         PanelI.setBackground(new java.awt.Color(255, 255, 255));
         PanelI.setBorder(javax.swing.BorderFactory.createTitledBorder("Seleccione Tabla a Insertar"));
-
-        jLabel1.setText("TABLA:");
 
         jTextField1.setEditable(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -171,12 +129,6 @@ public class InsertaTR extends javax.swing.JFrame {
             }
         });
 
-        CTablas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CTablasActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("ARCHIVO:");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/errorins.png"))); // NOI18N
@@ -186,118 +138,52 @@ public class InsertaTR extends javax.swing.JFrame {
             }
         });
 
-        Lname.setText("PROCEDIMIENTO:");
-
-        CTablas1.setName(""); // NOI18N
-        CTablas1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CTablas1ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton1.setText("Modificar Excel");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton2.setText("Carpeta Archivos");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Conexion a h2 prueba");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout PanelILayout = new javax.swing.GroupLayout(PanelI);
         PanelI.setLayout(PanelILayout);
         PanelILayout.setHorizontalGroup(
             PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Insertar1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(PanelILayout.createSequentialGroup()
                 .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelILayout.createSequentialGroup()
-                        .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Lname)
-                            .addGroup(PanelILayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CTablas, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelILayout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton1)
-                                    .addComponent(CTablas1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel4))
                     .addGroup(PanelILayout.createSequentialGroup()
-                        .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelILayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel4))
-                            .addGroup(PanelILayout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addComponent(jButton2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelILayout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 46, Short.MAX_VALUE))
-                            .addGroup(PanelILayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 329, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(Insertar1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
-            .addGroup(PanelILayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRadioButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelILayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         PanelILayout.setVerticalGroup(
             PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelILayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(Lname)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CTablas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jRadioButton1)
-                .addGap(33, 33, 33)
-                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(CTablas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
                 .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                    .addGroup(PanelILayout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(jLabel3))
+                    .addGroup(PanelILayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(Insertar1)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
                 .addComponent(jLabel4)
-                .addGap(16, 16, 16)
-                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addContainerGap())
+                .addGap(52, 52, 52))
         );
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Logo Laborales.png"))); // NOI18N
@@ -325,14 +211,6 @@ public class InsertaTR extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(R1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(R2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(R3)
-                .addContainerGap(148, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(PanelI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -343,46 +221,14 @@ public class InsertaTR extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(R1)
-                    .addComponent(R2)
-                    .addComponent(R3))
-                .addGap(18, 18, 18)
                 .addComponent(PanelI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        R1.getAccessibleContext().setAccessibleDescription("");
 
         getAccessibleContext().setAccessibleParent(this);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void R1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R1ActionPerformed
-        // TODO add your handling code here:
-       if(R1.isSelected()){
-        Versiones="";
-        Versiones="V1";
-        lLCTablas();
-       }
-    }//GEN-LAST:event_R1ActionPerformed
-
-    private void R2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R2ActionPerformed
-         if(R2.isSelected()){
-        Versiones="";
-         Versiones="V2";
-          lLCTablas();
-         }
-    }//GEN-LAST:event_R2ActionPerformed
-
-    private void R3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R3ActionPerformed
-        if(R3.isSelected()){
-        Versiones="";
-         Versiones="V3";
-          lLCTablas();
-        }
-    }//GEN-LAST:event_R3ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
@@ -415,20 +261,11 @@ public class InsertaTR extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void CTablasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CTablasActionPerformed
-        // TODO add your handling code here:
-        if (CTablas.getSelectedIndex() == -1){
-        }else{
-            tabla=CTablas.getSelectedItem().toString();
-        }
-    }//GEN-LAST:event_CTablasActionPerformed
-
     private void InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarActionPerformed
 
         new Thread(() -> {
             Valores();
-                ReadCSV_Audiencias readAud=new ReadCSV_Audiencias();
-        if(jRadioButton2.isSelected()){        
+                ReadCSV_Audiencias readAud=new ReadCSV_Audiencias();   
            int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Insertar todos los archivos RALAB?", "Alerta!", JOptionPane.YES_NO_OPTION);   
            if (resp == JOptionPane.YES_OPTION) {
               Execute Q =new Execute();
@@ -461,50 +298,39 @@ public class InsertaTR extends javax.swing.JFrame {
                Triggers.crearTriggerPartDemOrdinario(con);
                Triggers.crearTriggerPrefCredito(con);
                Triggers.crearTriggerTercerias(con);
-              
-               CTablas1.setSelectedIndex(0);   
+               
                ReadControl.Read_ControlExpediente(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos); 
                
-               CTablas1.setSelectedIndex(1);   
                ReadAud.Read_Audiencias(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
 
-                  CTablas1.setSelectedIndex(2);   
                ReadOrdinario.Read_Ordinario(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
-                  CTablas1.setSelectedIndex(3);   
                ReadIndividual.Read_Individual(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                         
                 
-               CTablas1.setSelectedIndex(4);   
                ReadColectivo.Read_Colectivo(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                 //Aqui me quede para probar clases Read...
-               CTablas1.setSelectedIndex(5);   
                ReadHuelga.Read_Huelga(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
-                CTablas1.setSelectedIndex(6);   
                ReadColectEconom.Read_Colect_Econom(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
-                CTablas1.setSelectedIndex(6);   
                ReadEjecucion.Read_Ejecucion(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
-                 CTablas1.setSelectedIndex(6);   
                ReadParaprocesal.Read_Paraprocesal(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
-                 CTablas1.setSelectedIndex(6);   
                ReadPrefCredito.Read_Pref_Credito(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
-                CTablas1.setSelectedIndex(6);   
-               ReadTercerias.Read_Tercerias(con,conerr);
+              ReadTercerias.Read_Tercerias(con,conerr);
                 jTextField1.setText(readAud.rutaCarpetaArchivos);
                 
                 
@@ -515,11 +341,8 @@ public class InsertaTR extends javax.swing.JFrame {
             }  catch (SQLException ex) {
                    Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
          }
-         jRadioButton2.setSelected(false);
-         jRadioButton1.setSelected(false);
          jTextField1.setText("");
            }
-        }
         }).start();
          
     }//GEN-LAST:event_InsertarActionPerformed
@@ -534,16 +357,8 @@ public class InsertaTR extends javax.swing.JFrame {
             String nombreArchivo =dialogoArchivo.getFile();
             Nombre_archivo=nombreArchivo;
             Directorio=directorio;
-          
-            if (jRadioButton2.isSelected()){
-            jTextField1.setText(Directorio);
-            }else
-            {
-            jTextField1.setText(Directorio+Nombre_archivo);
-            }
-            
-            ruta = jTextField1.getText();
-            
+            jTextField1.setText(Directorio); 
+           ruta = jTextField1.getText();
             Valores();
         }
         else
@@ -551,212 +366,15 @@ public class InsertaTR extends javax.swing.JFrame {
 
     }//GEN-LAST:event_Insertar1ActionPerformed
 
-    private void CTablas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CTablas1ActionPerformed
-        // TODO add your handling code here:
-         if (CTablas1.getSelectedIndex() == -1){
-        }else{
-            procedimiento=CTablas1.getSelectedItem().toString();
-            if(procedimiento.equals("CONTROL_EXPEDIENTE"))   
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_CONTROL_EXPEDIENTEJL");
-               // Lname.setText("CONTROL EXPEDIENTE");
-                
-                
-            }
-            if(procedimiento.equals("AUDIENCIAS"))
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_AUDIENCIASJL");
-                //Lname.setText("AUDIENCIAS");
-            }
-            if(procedimiento.equals("ORDINARIO"))
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_ORDINARIOJL");
-                CTablas.addItem("V3_TMP_PART_ACT_ORDINARIOJL");
-                CTablas.addItem("V3_TMP_PART_DEM_ORDINARIOJL");
-                // Lname.setText("T1 ORDINARIO");
-            }
-            if(procedimiento.equals("INDIVIDUAL"))
-            {
-                CTablas.removeAllItems();
-                 CTablas.addItem("V3_TMP_INDIVIDUALJL");
-                CTablas.addItem("V3_TMP_PART_ACT_INDIVIDUALJL");
-                CTablas.addItem("V3_TMP_PART_DEM_INDIVIDUALJL");
-               // Lname.setText("T2 INDIVIDUAL");
-            }
-            if(procedimiento.equals("COLECTIVO"))
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_COLECTIVOJL");
-                CTablas.addItem("V3_TMP_PART_ACT_COLECTIVOJL");
-                CTablas.addItem("V3_TMP_PART_DEM_COLECTIVOJL");
-               // Lname.setText("T3 COLECTIVO");
-            }
-            if(procedimiento.equals("HUELGA"))
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_HUELGAJL");
-                CTablas.addItem("V3_TMP_PART_ACT_HUELGAJL");
-                CTablas.addItem("V3_TMP_PART_DEM_HUELGAJL");
-               // Lname.setText("T4 HUELGA");
-            }
-            if(procedimiento.equals("COLECTIVO_ECONOMICO"))
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_COLECT_ECONOMJL");
-                CTablas.addItem("V3_TMP_PART_ACT_COLECT_ECONOMJL");
-                CTablas.addItem("V3_TMP_PART_DEM_COLECT_ECONOMJL");
-                Lname.setText("T5 COLECT ECONOM");
-            }
-            if(procedimiento.equals("TERCERIAS"))
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_TERCERIASJL");
-              //  Lname.setText("T6 TERCERIAS");
-            }
-            if(procedimiento.equals("PREFERENCIA_CREDITO"))
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_PREF_CREDITOJL");
-                // Lname.setText("T7 PREF CREDITO");
-            }
-             if(procedimiento.equals("PARAPROCESAL"))
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_PARAPROCESALJL");
-               // Lname.setText("T8 PARAPROCESAL");
-            }
-              if(procedimiento.equals("EJECUCION"))
-            {
-                CTablas.removeAllItems();
-                CTablas.addItem("V3_TMP_EJECUCIONJL");
-               // Lname.setText("T9 EJECUCION");
-            }
-        }
-    }//GEN-LAST:event_CTablas1ActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
-        try (Connection con=ConexionH2.getConnection()){
-        V3validaciones V3=new V3validaciones();
-        V3.Valida_LaboralesNE(con);
-        }  catch (SQLException ex) {
-               Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
-           } catch (IOException ex) {
-               Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
-           } catch (ParseException ex) {
-               Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
-           }
-         
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    
     public void Valores(){
-          tabla=CTablas.getSelectedItem().toString();
           rutaT=jTextField1.getText();
-      
-           if (jRadioButton1.isSelected()){
-            Bandera=true;
-        }else
-           {
-              Bandera=false; 
-           }
-            if (jRadioButton2.isSelected()){
-           CarpetaArchivos=true;
-            }else{
-                CarpetaArchivos=false; 
-            }
+          CarpetaArchivos=true;
         System.out.println(tabla+ruta+Versiones);
     }
-    
-    public void lLCTablas(){
-       PanelI.setVisible(true);
-       
-       if (Versiones.equals("V1"))
-        {
-            System.out.println(Versiones);     
-        testList.clear();
-        testList.add("Control");
-        testList.add("Ordinario");
-        testList.add("Especial individual");
-        testList.add("Especial colectivo");
-        testList.add("Huelga");
-        testList.add("Seguridad Social");
-        testList.add("Colectivo_Nat_Económica");
-        testList.add("Paraprocesal");
-        testList.add("Tercerías");
-        testList.add("Preferencia de crédito");
-        testList.add("Ejecución");  
-        }
-        if (Versiones.equals("V2"))
-        {
-         System.out.println(Versiones);
-         testList.clear();   
-         CTablas.removeAllItems();
-         testList.add("Control_expediente");
-        testList.add("T.1.0_audiencias");
-        testList.add("T.1.1_ordinario");
-        testList.add("T.1.2_part_ordinario");
-        testList.add("T.2.1_esp_indiv");
-        testList.add("T.2.2_part_esp_indiv");
-        testList.add("T.3.1_esp_colec");
-        testList.add("T.3.2_part_esp_colec");
-        testList.add("T.4.1_huelga");
-        testList.add("T.4.2_part_huelga");
-        testList.add("T.5.1_seg_soc");  
-        testList.add("T.5.2_part_seg_soc"); 
-        testList.add("T.7.1_parapro");
-        testList.add("T.8.1_terce");
-        testList.add("T.9.1_pref_cred");  
-        testList.add("T.10.1_ejecu");
-        }
-         if (Versiones.equals("V3"))
-        {
-        System.out.println(Versiones);
-        testProc.clear();
-        testProc.add("CONTROL_EXPEDIENTE");
-        testProc.add("AUDIENCIAS");
-        testProc.add("ORDINARIO");
-        testProc.add("INDIVIDUAL");
-        testProc.add("COLECTIVO");
-        testProc.add("HUELGA");
-        testProc.add("COLECTIVO_ECONOMICO");
-        testProc.add("TERCERIAS");
-        testProc.add("PREFERENCIA_CREDITO");
-        testProc.add("PARAPROCESAL");
-        testProc.add("EJECUCION");
-        } 
-         CTablas1.removeAllItems();
-         
-         for (int i=0;i<testProc.size();i++){
-          TexProc=testProc.get(i).toString();
-           CTablas1.addItem(TexProc);   
-        } 
-        
-        
-    }
-    
-  
-    
-    
-    
-    
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -796,25 +414,15 @@ public class InsertaTR extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox CTablas;
-    private javax.swing.JComboBox CTablas1;
     private javax.swing.JButton Insertar;
     private javax.swing.JButton Insertar1;
-    private javax.swing.JLabel Lname;
     public static javax.swing.JPanel PanelI;
-    private javax.swing.JRadioButton R1;
-    private javax.swing.JRadioButton R2;
-    private javax.swing.JRadioButton R3;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

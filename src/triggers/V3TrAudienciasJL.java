@@ -77,7 +77,7 @@ try {
         if (tipo == 4 && newRow[IDX_HUELGA_TA] == null) {
             newRow[IDX_HUELGA_TA] = BigDecimal.valueOf(9);
         }
-        if (tipo == 6 && newRow[IDX_COL_NATU_ECONOMICA_TA] == null) {
+        if (tipo == 5 && newRow[IDX_COL_NATU_ECONOMICA_TA] == null) {
             newRow[IDX_COL_NATU_ECONOMICA_TA] = BigDecimal.valueOf(9);
         }
 

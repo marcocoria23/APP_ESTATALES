@@ -11,19 +11,16 @@ package main;
 import org.h2.tools.Server;
 
 public class MainH2 {
-  public static void main(String[] args) throws Exception {
-   // Server tcp = Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092").start();
-    Server web = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8082").start();
+    public static void main(String[] args) throws Exception {
 
-   // System.out.println("TCP: " + tcp.getURL());
-    System.out.println("WEB: " + web.getURL()); // abre esta  
-    try {
-    Class.forName("triggers.V3TrAudienciasJL");
-    System.out.println("OK: triggers.V3TrAudienciasJL SI está en el classpath");
-} catch (ClassNotFoundException e) {
-    System.out.println("ERROR: triggers.V3TrAudienciasJL NO está en el classpath");
-    e.printStackTrace();
-}
-    Thread.currentThread().join();
-  }
+        Server web = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8082").start();
+        System.out.println("WEB: " + web.getURL());
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Apagando H2 Web...");
+            web.stop();
+        }));
+
+        Thread.currentThread().join();
+    }
 }

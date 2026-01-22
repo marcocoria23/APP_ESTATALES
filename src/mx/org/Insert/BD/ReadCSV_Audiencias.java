@@ -120,7 +120,7 @@ public class ReadCSV_Audiencias {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 15) {
+                    if (numeroColumnas == 16) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Audiencias> ad = new ArrayList<>();

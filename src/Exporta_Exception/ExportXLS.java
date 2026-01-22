@@ -97,7 +97,7 @@ public class ExportXLS {
 
             /* ===== GUARDAR ===== */
             FileDialog d = new FileDialog(new JFrame(), "Guardar", FileDialog.SAVE);
-            d.setFile("PLE_Exporta_Exception.xls");
+            d.setFile("RALAB_Exporta_Exception.xls");
             d.setVisible(true);
 
             if (d.getDirectory() != null && d.getFile() != null) {

@@ -1107,3 +1107,17 @@ Caused by: java.lang.IllegalArgumentException: ERROR EN FORMATO FECHA CAMPO:||FE
 	at org.h2.util.DateTimeUtils.parseTimestamp(DateTimeUtils.java:338)
 	at org.h2.value.ValueTimestamp.parse(ValueTimestamp.java:86)
 	... 18 more
+2026-01-22 08:35:58.718042-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "V3_TC_SECTOR_RAMA" no encontrada
+Table "V3_TC_SECTOR_RAMA" not found; SQL statement:
+SELECT ID,REPLACE(DESCRIPCION,' ','_') FROM V3_TC_SECTOR_RAMA [42102-232]
+2026-01-22 11:27:27.128934-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "ALTER TABLE V3_TC_SECTOR_RAMA SET [*]DESCRIPCION='Agricultura_cría_y_explotación_de_animales_aprovechamiento_forestal_pesca_y_caza'\000d\000aWHERE ID=1"; se esperaba "REFERENTIAL_INTEGRITY"
+Syntax error in SQL statement "ALTER TABLE V3_TC_SECTOR_RAMA SET [*]DESCRIPCION='Agricultura_cría_y_explotación_de_animales_aprovechamiento_forestal_pesca_y_caza'\000d\000aWHERE ID=1"; expected "REFERENTIAL_INTEGRITY"; SQL statement:
+ALTER TABLE V3_TC_SECTOR_RAMA SET DESCRIPCION='Agricultura_cría_y_explotación_de_animales_aprovechamiento_forestal_pesca_y_caza'
+WHERE ID=1 [42001-232]
+2026-01-22 11:27:54.286364-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "V3_TC_SECTOR_RAMA" no encontrada
+Table "V3_TC_SECTOR_RAMA" not found; SQL statement:
+UPDATE V3_TC_SECTOR_RAMA SET DESCRIPCION='Agricultura_cría_y_explotación_de_animales_aprovechamiento_forestal_pesca_y_caza'
+WHERE ID=1 [42102-232]

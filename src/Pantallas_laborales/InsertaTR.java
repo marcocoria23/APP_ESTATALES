@@ -128,7 +128,7 @@ public class InsertaTR extends javax.swing.JFrame {
         });
 
         PanelI.setBackground(new java.awt.Color(255, 255, 255));
-        PanelI.setBorder(javax.swing.BorderFactory.createTitledBorder("Integrar Info"));
+        PanelI.setBorder(javax.swing.BorderFactory.createTitledBorder("Integrar Información"));
 
         jTextField1.setEditable(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +152,7 @@ public class InsertaTR extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("ARCHIVO:");
+        jLabel3.setText("Ruta Archivo:");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/errorins.png"))); // NOI18N
         jButton1.setToolTipText("Errores de Insert");
@@ -163,86 +163,80 @@ public class InsertaTR extends javax.swing.JFrame {
         });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Ima Menu.png"))); // NOI18N
-        jButton2.setToolTipText("Errores de Insert");
+        jButton2.setToolTipText("Consultar Catalogo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Ver Catalogo");
+        jLabel5.setText("Catalogo");
 
-        jLabel6.setText("Ver Errores Insert");
+        jLabel6.setText("Errores Insert");
 
         javax.swing.GroupLayout PanelILayout = new javax.swing.GroupLayout(PanelI);
         PanelI.setLayout(PanelILayout);
         PanelILayout.setHorizontalGroup(
             PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelILayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Insertar1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(129, 129, 129))))
+            .addGroup(PanelILayout.createSequentialGroup()
+                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelILayout.createSequentialGroup()
                         .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelILayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel4))
                             .addGroup(PanelILayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelILayout.createSequentialGroup()
-                                        .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(PanelILayout.createSequentialGroup()
-                                        .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelILayout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(PanelILayout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addGap(12, 12, 12)))
-                                        .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(PanelILayout.createSequentialGroup()
-                                                .addGap(29, 29, 29)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                        .addGap(0, 21, Short.MAX_VALUE)))
+                                .addGap(265, 265, 265)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelILayout.createSequentialGroup()
+                                .addGap(367, 367, 367)
+                                .addComponent(jLabel6))
+                            .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 18, Short.MAX_VALUE))
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Insertar1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
+            .addGroup(PanelILayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(PanelILayout.createSequentialGroup()
-                        .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelILayout.setVerticalGroup(
             PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelILayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(41, 41, 41)
                 .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(21, 21, 21)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Insertar1)
-                .addGap(50, 50, 50)
+                .addGap(54, 54, 54)
                 .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,88 +360,88 @@ public class InsertaTR extends javax.swing.JFrame {
                Triggers.crearTriggerPrefCredito(con);
                Triggers.crearTriggerTercerias(con);
                jProgressBar1.setVisible(true);   
-               LNombreTabla.setText("Insertando...V3_TR_CONTROL_EXPEDIENTE");
+               LNombreTabla.setText("Insertando...TR_CONTROL_EXPEDIENTE");
                jProgressBar1.setValue(5);
                ReadControl.Read_ControlExpediente(con,conerr);
                
-               LNombreTabla.setText("Insertando..V3_TR_AUDIENCIAS");
+               LNombreTabla.setText("Insertando..TR_AUDIENCIAS");
                jProgressBar1.setValue(10); 
                ReadAud.Read_Audiencias(con,conerr);
               
-                LNombreTabla.setText("Insertando..V3_TR_ORDINARIO");
+                LNombreTabla.setText("Insertando..TR_ORDINARIO");
                jProgressBar1.setValue(15); 
                ReadOrdinario.Read_Ordinario(con,conerr);
                 
-                 LNombreTabla.setText("Insertando..V3_TR_PART_ACT_ORDINARIO");
+                 LNombreTabla.setText("Insertando..TR_PART_ACT_ORDINARIO");
                jProgressBar1.setValue(20); 
                ReadPartActOrdinario.Read_Part_Act_Ordinario(con,conerr);
                 
-               LNombreTabla.setText("Insertando..V3_TR_PART_DEM_ORDINARIO");
+               LNombreTabla.setText("Insertando..TR_PART_DEM_ORDINARIO");
                jProgressBar1.setValue(25); 
                ReadPartDemOrdinario.Read_Part_Dem_Ordinario(con,conerr);
                 
-                 LNombreTabla.setText("Insertando..V3_TR_INDIVIDUAL");
+                 LNombreTabla.setText("Insertando..TR_INDIVIDUAL");
                jProgressBar1.setValue(30); 
                ReadIndividual.Read_Individual(con,conerr);
                 
-                  LNombreTabla.setText("Insertando..V3_TR_PART_ACT_INDIVIDUAL");
+                  LNombreTabla.setText("Insertando..TR_PART_ACT_INDIVIDUAL");
                jProgressBar1.setValue(35); 
                ReadPartActIndividual.Read_Part_Act_Individual(con,conerr);
                 
-                LNombreTabla.setText("Insertando..V3_TR_PART_DEM_INDIVIDUAL");
+                LNombreTabla.setText("Insertando..TR_PART_DEM_INDIVIDUAL");
                jProgressBar1.setValue(40); 
                ReadPartDemIndividual.Read_Part_Dem_Individual(con,conerr);
                 
-                LNombreTabla.setText("Insertando..V3_TR_COLECTIVO");
+                LNombreTabla.setText("Insertando..TR_COLECTIVO");
                jProgressBar1.setValue(45); 
                ReadColectivo.Read_Colectivo(con,conerr);
                 
-               LNombreTabla.setText("Insertando..V3_TR_PART_ACT_COLECTIVO");
+               LNombreTabla.setText("Insertando..TR_PART_ACT_COLECTIVO");
                jProgressBar1.setValue(50); 
                ReadPartActColectivo.Read_Part_Act_Colectivo(con,conerr);
                
-               LNombreTabla.setText("Insertando..V3_TR_PART_DEM_COLECTIVO");
+               LNombreTabla.setText("Insertando..TR_PART_DEM_COLECTIVO");
                jProgressBar1.setValue(55); 
                ReadPartDemColectivo.Read_Part_Dem_Colectivo(con,conerr);
                 
-               LNombreTabla.setText("Insertando..V3_TR_HUELGA");
+               LNombreTabla.setText("Insertando..TR_HUELGA");
                jProgressBar1.setValue(60); 
                 ReadHuelga.Read_Huelga(con,conerr);
-                
-                LNombreTabla.setText("Insertando..V3_TR_PART_ACT_HUELGA");
+               
+               LNombreTabla.setText("Insertando..TR_PART_ACT_HUELGA");
                jProgressBar1.setValue(65); 
                 ReadPartActHuelga.Read_Part_Act_Huelga(con,conerr);
                 
                 
-               LNombreTabla.setText("Insertando..V3_TR_PART_DEM_HUELGA");
+               LNombreTabla.setText("Insertando..TR_PART_DEM_HUELGA");
                jProgressBar1.setValue(70); 
                 ReadPartDemHuelga.Read_Part_Dem_Huelga(con,conerr);
                 
-                LNombreTabla.setText("Insertando..V3_COLECT_ECONOM");
+                LNombreTabla.setText("Insertando..TR_COLECT_ECONOM");
                jProgressBar1.setValue(75);
                ReadColectEconom.Read_Colect_Econom(con,conerr);
                 
-               LNombreTabla.setText("Insertando..V3_PART_ACT_COLECT_ECONOM");
+               LNombreTabla.setText("Insertando..TR_PART_ACT_COLECT_ECONOM");
                jProgressBar1.setValue(80);
                ReadPartActEconom.Read_Part_Act_Colect_Econom(con,conerr);
                 
-                LNombreTabla.setText("Insertando..V3_PART_DEM_COLECT_ECONOM");
+                LNombreTabla.setText("Insertando..TR_PART_DEM_COLECT_ECONOM");
                jProgressBar1.setValue(85);
                ReadPartDemEconom.Read_Part_Dem_Colect_Econom(con,conerr);
                  
-                 LNombreTabla.setText("Insertando..V3_PARAPROCESAL");
+                 LNombreTabla.setText("Insertando..TR_PARAPROCESAL");
                jProgressBar1.setValue(90);
                ReadParaprocesal.Read_Paraprocesal(con,conerr);
                 
-                LNombreTabla.setText("Insertando..V3_PREFCREDITO");
+                LNombreTabla.setText("Insertando..TR_PREFCREDITO");
                jProgressBar1.setValue(92);
                ReadPrefCredito.Read_Pref_Credito(con,conerr);
                 
-                 LNombreTabla.setText("Insertando..V3_TERCERIAS");
+                 LNombreTabla.setText("Insertando..TR_TERCERIAS");
                jProgressBar1.setValue(94);
               ReadTercerias.Read_Tercerias(con,conerr);
                 
-                LNombreTabla.setText("Insertando..V3_EJECUCION");
+                LNombreTabla.setText("Insertando..TR_EJECUCION");
                ReadEjecucion.Read_Ejecucion(con,conerr);
                  jProgressBar1.setValue(100);
                 

@@ -867,6 +867,7 @@ public class Convers {
     }
 
     public String CON_V3_TC_SECTOR_RAMAJL(Connection con, String campo) {
+       // System.out.println("camposector"+campo);
         if (campo == null || campo.trim().isEmpty()) {
             return null;
         } else {
@@ -957,6 +958,7 @@ public class Convers {
     }
 
     public String CON_V3_TC_SUBSECTOR_RAMAJL(Connection con, String campo) {
+        //System.out.println("camposubsector"+campo);
         if (campo == null || campo.trim().isEmpty()) {
             return null;
         } else {

@@ -11,10 +11,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import plantillas.ExportaCatalogosHSSF;
 
 /**
  *
@@ -51,6 +55,7 @@ public class Catalogos extends javax.swing.JFrame {
         CCat = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         TCat = new javax.swing.JTable();
+        ExportaEi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -86,6 +91,7 @@ public class Catalogos extends javax.swing.JFrame {
             }
         });
 
+        TCat.setAutoCreateRowSorter(true);
         TCat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         TCat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,26 +104,38 @@ public class Catalogos extends javax.swing.JFrame {
         TCat.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(TCat);
 
+        ExportaEi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Exporta.png"))); // NOI18N
+        ExportaEi.setToolTipText("Exportar catalogos");
+        ExportaEi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportaEiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(CCat, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 982, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 982, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(CCat, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ExportaEi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(CCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExportaEi, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -132,7 +150,7 @@ public class Catalogos extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1006, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,53 +178,53 @@ public class Catalogos extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-CCat.addItem("V3_TC_ACTORJL");
-CCat.addItem("V3_TC_ACTOR_HUELGAJL");
-CCat.addItem("V3_TC_AUD_TIPO_AUDIENJL");
-CCat.addItem("V3_TC_AUD_TIPO_PROCEJL");
-CCat.addItem("V3_TC_CAU_IMPI_ADMI_DEMJL");
-CCat.addItem("V3_TC_CIRCUNS_ORGANOJL");
-CCat.addItem("V3_TC_DEMANDADOJL");
-CCat.addItem("V3_TC_EDAD_TRABAJADORJL");
-CCat.addItem("V3_TC_ENTIDADESJL");
-CCat.addItem("V3_TC_ESTATUS_DEMANDAJL");
-CCat.addItem("V3_TC_ESTATUS_EXPEDIENTEJL");
-CCat.addItem("V3_TC_EXISTENCIA_HUELGAJL");
-CCat.addItem("V3_TC_FASE_CONCLUSION_EJEJL");
-CCat.addItem("V3_TC_FASE_EXPEDIENTEJL");
-CCat.addItem("V3_TC_FORMA_SOLUCIONJL");
-CCat.addItem("V3_TC_FORMA_SOLUCION_HJL");
-CCat.addItem("V3_TC_FORMA_SOLUCION_PHJL");
-CCat.addItem("V3_TC_JORNADA_TRABAJADORJL");
-CCat.addItem("V3_TC_JURISDICCIONJL");
-CCat.addItem("V3_TC_LICITUD_HUELGAJL");
-CCat.addItem("V3_TC_MOTIVO_PROMOCIONJL");
-CCat.addItem("V3_TC_MOTIVO_SOLICITUDJL");
-CCat.addItem("V3_TC_MUNICIPIOJL");
-CCat.addItem("V3_TC_NAT_CONFLICTOJL");
-CCat.addItem("V3_TC_OCUPACION_TRABAJADORJL");
-CCat.addItem("V3_TC_ORGAN_OBRERAJL");
-CCat.addItem("V3_TC_PROMOVENTEJL");
-CCat.addItem("V3_TC_RESPUESTA_SIMPLEJL");
-CCat.addItem("V3_TC_SECTOR_RAMAJL");
-CCat.addItem("V3_TC_SENTE_INCIDENTALJL");
-CCat.addItem("V3_TC_SEXO_TRABAJADORJL");
-CCat.addItem("V3_TC_SUBSECTOR_RAMAJL");
-CCat.addItem("V3_TC_TIPO_ASUNTOJL");
-CCat.addItem("V3_TC_TIPO_CONTRATOJL");
-CCat.addItem("V3_TC_TIPO_DEFENSAJL");
-CCat.addItem("V3_TC_TIPO_INCIDENTEJL");
-CCat.addItem("V3_TC_TIPO_INCOMPETENCIAJL");
-CCat.addItem("V3_TC_TIPO_PATRONJL");
-CCat.addItem("V3_TC_TIPO_SENTENCIAJL");
-CCat.addItem("V3_TC_TIPO_SINDICATOJL");
+CCat.addItem("TC_ACTOR");
+CCat.addItem("TC_ACTOR_HUELGA");
+CCat.addItem("TC_AUD_TIPO_AUDIEN");
+CCat.addItem("TC_AUD_TIPO_PROCE");
+CCat.addItem("TC_CAU_IMPI_ADMI_DEM");
+CCat.addItem("TC_CIRCUNS_ORGANO");
+CCat.addItem("TC_DEMANDADO");
+CCat.addItem("TC_EDAD_TRABAJADOR");
+CCat.addItem("TC_ENTIDADES");
+CCat.addItem("TC_ESTATUS_DEMANDA");
+CCat.addItem("TC_ESTATUS_EXPEDIENTE");
+CCat.addItem("TC_EXISTENCIA_HUELGA");
+CCat.addItem("TC_FASE_CONCLUSION_EJE");
+CCat.addItem("TC_FASE_EXPEDIENTE");
+CCat.addItem("TC_FORMA_SOLUCION");
+CCat.addItem("TC_FORMA_SOLUCION_H");
+CCat.addItem("TC_FORMA_SOLUCION_PH");
+CCat.addItem("TC_JORNADA_TRABAJADOR");
+CCat.addItem("TC_JURISDICCION");
+CCat.addItem("TC_LICITUD_HUELGA");
+CCat.addItem("TC_MOTIVO_PROMOCION");
+CCat.addItem("TC_MOTIVO_SOLICITUD");
+CCat.addItem("TC_MUNICIPIO");
+CCat.addItem("TC_NAT_CONFLICTO");
+CCat.addItem("TC_OCUPACION_TRABAJADOR");
+CCat.addItem("TC_ORGAN_OBRERA");
+CCat.addItem("TC_PROMOVENTE");
+CCat.addItem("TC_RESPUESTA_SIMPLE");
+CCat.addItem("TC_SECTOR_RAMA");
+CCat.addItem("TC_SENTE_INCIDENTAL");
+CCat.addItem("TC_SEXO_TRABAJADOR");
+CCat.addItem("TC_SUBSECTOR_RAMA");
+CCat.addItem("TC_TIPO_ASUNTO");
+CCat.addItem("TC_TIPO_CONTRATO");
+CCat.addItem("TC_TIPO_DEFENSA");
+CCat.addItem("TC_TIPO_INCIDENTE");
+CCat.addItem("TC_TIPO_INCOMPETENCIA");
+CCat.addItem("TC_TIPO_PATRON");
+CCat.addItem("TC_TIPO_SENTENCIA");
+CCat.addItem("TC_TIPO_SINDICATO");
     }//GEN-LAST:event_formWindowOpened
 
     private void CCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCatActionPerformed
         // TODO add your handling code here:
         //System.out.println("Cambio");
            try (Connection con = ConexionH2.getConnection();){
-                   cargarJTable(TCat,Ver_catalogo(con,CCat.getSelectedItem().toString()));
+                   cargarJTable(TCat,Ver_catalogo(con,CCat.getSelectedItem().toString()),CCat.getSelectedItem().toString());
            } catch (SQLException ex) {
             Logger.getLogger(Catalogos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -214,39 +232,108 @@ CCat.addItem("V3_TC_TIPO_SINDICATOJL");
         
     }//GEN-LAST:event_CCatActionPerformed
 
+    private void ExportaEiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportaEiActionPerformed
+        // TODO add your handling code here:
+         List<String> catalogos = Arrays.asList(
+            "V3_TC_ACTORJL",
+            "V3_TC_ACTOR_HUELGAJL",
+            "V3_TC_AUD_TIPO_AUDIENJL",
+            "V3_TC_AUD_TIPO_PROCEJL",
+            "V3_TC_CAU_IMPI_ADMI_DEMJL",
+            "V3_TC_CIRCUNS_ORGANOJL",
+            "V3_TC_DEMANDADOJL",
+            "V3_TC_EDAD_TRABAJADORJL",
+            "V3_TC_ENTIDADESJL",
+            "V3_TC_ESTATUS_DEMANDAJL",
+            "V3_TC_ESTATUS_EXPEDIENTEJL",
+            "V3_TC_EXISTENCIA_HUELGAJL",
+            "V3_TC_FASE_CONCLUSION_EJEJL",
+            "V3_TC_FASE_EXPEDIENTEJL",
+            "V3_TC_FORMA_SOLUCIONJL",
+            "V3_TC_FORMA_SOLUCION_HJL",
+            "V3_TC_FORMA_SOLUCION_PHJL",
+            "V3_TC_JORNADA_TRABAJADORJL",
+            "V3_TC_JURISDICCIONJL",
+            "V3_TC_LICITUD_HUELGAJL",
+            "V3_TC_MOTIVO_PROMOCIONJL",
+            "V3_TC_MOTIVO_SOLICITUDJL",
+            "V3_TC_MUNICIPIOJL",
+            "V3_TC_NAT_CONFLICTOJL",
+            "V3_TC_OCUPACION_TRABAJADORJL",
+            "V3_TC_ORGAN_OBRERAJL",
+            "V3_TC_PROMOVENTEJL",
+            "V3_TC_RESPUESTA_SIMPLEJL",
+            "V3_TC_SECTOR_RAMAJL",
+            "V3_TC_SENTE_INCIDENTALJL",
+            "V3_TC_SEXO_TRABAJADORJL",
+            "V3_TC_SUBSECTOR_RAMAJL",
+            "V3_TC_TIPO_ASUNTOJL",
+            "V3_TC_TIPO_CONTRATOJL",
+            "V3_TC_TIPO_DEFENSAJL",
+            "V3_TC_TIPO_INCIDENTEJL",
+            "V3_TC_TIPO_INCOMPETENCIAJL",
+            "V3_TC_TIPO_PATRONJL",
+            "V3_TC_TIPO_SENTENCIAJL",
+            "V3_TC_TIPO_SINDICATOJL"
+        );
+       try (Connection con = ConexionH2.getConnection()) {
+    ExportaCatalogosHSSF.exportarCatalogosConDialog(
+        new java.awt.Frame(),
+        con,
+        catalogos
+    );
+         JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");
+}       catch (SQLException ex) {
+            Logger.getLogger(Catalogos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Catalogos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ExportaEiActionPerformed
+
     public ArrayList<String[]> Ver_catalogo(Connection con,String Tabla){
          Array = new ArrayList<>();
-        if (Tabla.equals("V3_TC_ENTIDADESJL"))
+        if (Tabla.equals("TC_ENTIDADES"))
         {
-           // System.out.println("Entro a Catalogo entidades");
-            
-         sql="SELECT ENTIDAD_ID,DESCRIPCION FROM "+Tabla+"";
+           // System.out.println("Entro a Catalogo entidades");       
+         sql="SELECT ENTIDAD_ID,DESCRIPCION FROM V3_"+Tabla+"JL ";
          System.out.println("sql:"+sql);
         }
-        if (Tabla.equals("V3_TC_MUNICIPIOJL"))
+        if (Tabla.equals("TC_MUNICIPIO"))
         {
-         sql="SELECT MUNICIPIO_ID,DESCRIPCION FROM "+Tabla+"";
+         sql="SELECT ENTIDAD_ID,MUNICIPIO_ID,DESCRIPCION FROM V3_"+Tabla+"JL";
         }
-        if (Tabla.equals("V3_TC_SUBSECTOR_RAMAJL"))
+        if (Tabla.equals("TC_SECTOR_RAMA"))
         {
-         sql="SELECT ID_SUBSECTOR,DESCRIPCION FROM "+Tabla+"";
+         sql="SELECT ID,REPLACE(REPLACE(DESCRIPCION,' ','_'),',','') DESCRIPCION FROM V3_"+Tabla+"JL";
         }
-       if ( !Tabla.equals("V3_TC_ENTIDADESJL") && !Tabla.equals("V3_TC_MUNICIPIOJL") && !Tabla.equals("V3_TC_SUBSECTOR_RAMAJL"))
+        if (Tabla.equals("TC_SUBSECTOR_RAMA"))
         {
-         sql="SELECT ID,DESCRIPCION FROM "+Tabla+"";   
+         sql="SELECT ID_SECTOR,ID_SUBSECTOR,DESCRIPCION FROM V3_"+Tabla+"JL";
+        }
+       if ( !Tabla.equals("TC_ENTIDADES") && !Tabla.equals("TC_MUNICIPIO") && !Tabla.equals("TC_SUBSECTOR_RAMA") && !Tabla.equals("TC_SECTOR_RAMA"))
+        {
+         sql="SELECT ID,DESCRIPCION FROM V3_"+Tabla+"JL";   
         }
         
          try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
-
+         if (Tabla.equals("TC_SUBSECTOR_RAMA") ||(Tabla.equals("TC_MUNICIPIO"))  ){
+              while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3)
+                });
+            }
+         }else{
             while (rs.next()) {
                 Array.add(new String[]{
                     rs.getString(1),
                     rs.getString(2)
                 });
             }
-
+         }
         } catch (SQLException ex) {
              System.out.println( "Error al desplegar catalogo"+ ex);
         }
@@ -254,10 +341,21 @@ CCat.addItem("V3_TC_TIPO_SINDICATOJL");
     }
     
     
-public void cargarJTable(JTable tabla, ArrayList<String[]> datos) {
+public void cargarJTable(JTable tabla, ArrayList<String[]> datos,String TablaCatalogo) {
 
     // Encabezados
-    String[] columnas = {"ID", "DESCRIPCION"};
+    String[] columnas;
+    if (TablaCatalogo.equals("TC_SUBSECTOR_RAMA"))
+    {
+    columnas = new String[]{"ID_SECTOR", "ID_SUBSECTOR", "DESCRIPCION"};
+    }
+   else if (TablaCatalogo.equals("TC_MUNICIPIO")){
+    columnas = new String[]{"ID_ENTIDAD", "ID_MUNICIPIO", "DESCRIPCION"};
+    }
+    else{
+       columnas = new String[]{"ID", "DESCRIPCION"};
+    }
+    
 
     // Crear modelo
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
@@ -279,8 +377,15 @@ public void cargarJTable(JTable tabla, ArrayList<String[]> datos) {
     tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
     // Ajustar ancho de columnas
+    if (TablaCatalogo.equals("TC_SUBSECTOR_RAMA") || TablaCatalogo.equals("TC_MUNICIPIO"))
+    {
     tabla.getColumnModel().getColumn(0).setPreferredWidth(75);   // ID
-    tabla.getColumnModel().getColumn(1).setPreferredWidth(1200);  // DESCRIPCION
+    tabla.getColumnModel().getColumn(1).setPreferredWidth(75);  // DESCRIPCION  
+    tabla.getColumnModel().getColumn(2).setPreferredWidth(1200);  // DESCRIPCION  
+    }else{
+    tabla.getColumnModel().getColumn(0).setPreferredWidth(75);   // ID
+    tabla.getColumnModel().getColumn(1).setPreferredWidth(1200);  // DESCRIPCION  
+    }
 }
 
     
@@ -322,6 +427,7 @@ public void cargarJTable(JTable tabla, ArrayList<String[]> datos) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CCat;
+    private javax.swing.JButton ExportaEi;
     private javax.swing.JTable TCat;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

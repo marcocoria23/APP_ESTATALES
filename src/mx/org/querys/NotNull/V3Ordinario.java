@@ -49,7 +49,7 @@ public class V3Ordinario {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_ASUNTO = 2 THEN 'Colectivo' ELSE CAST(TIPO_ASUNTO AS VARCHAR) END AS TIPO_ASUNTO" +
+              "CASE WHEN TIPO_ASUNTO = 2 THEN 'Colectivo' ELSE CAST(TIPO_ASUNTO AS VARCHAR) END AS TIPO_ASUNTO " +
               "FROM V3_TR_ORDINARIOJL " +
               "WHERE TIPO_ASUNTO = 2 " +
               "  AND (CONTRATO_ESCRITO IS NOT NULL OR TIPO_CONTRATO IS NOT NULL)";

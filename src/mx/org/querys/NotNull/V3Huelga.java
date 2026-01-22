@@ -30,8 +30,7 @@ public class V3Huelga {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
-            + "CASE WHEN TIPO_ASUNTO = 9 THEN 'No_identificado' ELSE NULL END AS TIPO_ASUNTO, "
-            + "PERIODO "
+            + "CASE WHEN TIPO_ASUNTO = 9 THEN 'NO_IDENTIFICADO' ELSE NULL END AS TIPO_ASUNTO "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE TIPO_ASUNTO = 9";
 
@@ -45,8 +44,7 @@ public class V3Huelga {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_ASUNTO"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_ASUNTO")
                 });
             }
 
@@ -63,11 +61,10 @@ public class V3Huelga {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
             + "CASE "
-            + "  WHEN EMPLAZAMIENTO_HUELGA = 2 THEN 'No' "
-            + "  WHEN EMPLAZAMIENTO_HUELGA = 9 THEN 'No identificado' "
+            + "  WHEN EMPLAZAMIENTO_HUELGA = 2 THEN 'NO' "
+            + "  WHEN EMPLAZAMIENTO_HUELGA = 9 THEN 'NO IDENTIFICADO' "
             + "  ELSE NULL "
-            + "END AS EMPLAZAMIENTO_HUELGA, "
-            + "PERIODO "
+            + "END AS EMPLAZAMIENTO_HUELGA "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE EMPLAZAMIENTO_HUELGA IN (2,9) "
             + "  AND FECHA_EMPLAZAMIENTO IS NOT NULL";
@@ -97,11 +94,10 @@ public class V3Huelga {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
             + "CASE "
-            + "  WHEN PREHUELGA = 2 THEN 'No' "
-            + "  WHEN PREHUELGA = 9 THEN 'No identificado' "
+            + "  WHEN PREHUELGA = 2 THEN 'NO' "
+            + "  WHEN PREHUELGA = 9 THEN 'NO IDENTIFICADO' "
             + "  ELSE NULL "
-            + "END AS PREHUELGA, "
-            + "PERIODO "
+            + "END AS PREHUELGA "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE PREHUELGA IN (2,9) "
             + "  AND (AUDIENCIA_CONCILIACION IS NOT NULL OR FECHA_AUDIENCIA IS NOT NULL)";
@@ -131,11 +127,10 @@ public class V3Huelga {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
             + "CASE "
-            + "  WHEN AUDIENCIA_CONCILIACION = 2 THEN 'No' "
-            + "  WHEN AUDIENCIA_CONCILIACION = 9 THEN 'No identificado' "
+            + "  WHEN AUDIENCIA_CONCILIACION = 2 THEN 'NO' "
+            + "  WHEN AUDIENCIA_CONCILIACION = 9 THEN 'NO IDENTIFICADO' "
             + "  ELSE NULL "
-            + "END AS AUDIENCIA_CONCILIACION, "
-            + "PERIODO "
+            + "END AS AUDIENCIA_CONCILIACION "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE PREHUELGA = 1 "
             + "  AND AUDIENCIA_CONCILIACION IN (2,9) "
@@ -166,11 +161,10 @@ public class V3Huelga {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
             + "CASE "
-            + "  WHEN ESTALLAMIENTO_HUELGA = 2 THEN 'No' "
-            + "  WHEN ESTALLAMIENTO_HUELGA = 9 THEN 'No identificado' "
+            + "  WHEN ESTALLAMIENTO_HUELGA = 2 THEN 'NO' "
+            + "  WHEN ESTALLAMIENTO_HUELGA = 9 THEN 'NO IDENTIFICADO' "
             + "  ELSE NULL "
-            + "END AS ESTALLAMIENTO_HUELGA, "
-            + "PERIODO "
+            + "END AS ESTALLAMIENTO_HUELGA "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE ESTALLAMIENTO_HUELGA IN (2,9) "
             + "  AND (DECLARA_LICITUD_HUELGA IS NOT NULL OR DECLARA_EXISTEN_HUELGA IS NOT NULL)";
@@ -199,9 +193,8 @@ public class V3Huelga {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
-            + "CASE WHEN ESTATUS_EXPEDIENTE = 9 THEN 'No_identificado' ELSE NULL END AS ESTATUS_EXPEDIENTE, "
-            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, "
-            + "PERIODO "
+            + "CASE WHEN ESTATUS_EXPEDIENTE = 9 THEN 'NO_IDENTIFICADO' ELSE NULL END AS ESTATUS_EXPEDIENTE, "
+            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE ESTATUS_EXPEDIENTE = 9";
 
@@ -216,8 +209,7 @@ public class V3Huelga {
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("ESTATUS_EXPEDIENTE"),
-                    rs.getString("COMENTARIOS"),
-                    rs.getString("PERIODO")
+                    rs.getString("COMENTARIOS") 
                 });
             }
 
@@ -233,8 +225,7 @@ public class V3Huelga {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, "
-            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, "
-            + "PERIODO "
+            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE INCOMPETENCIA = 9";
 
@@ -249,8 +240,7 @@ public class V3Huelga {
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("INCOMPETENCIA"),
-                    rs.getString("COMENTARIOS"),
-                    rs.getString("PERIODO")
+                    rs.getString("COMENTARIOS") 
                 });
             }
 
@@ -267,8 +257,7 @@ public class V3Huelga {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
             + "CASE WHEN INCOMPETENCIA = 2 THEN 'No' ELSE NULL END AS INCOMPETENCIA, "
-            + "TIPO_INCOMPETENCIA, "
-            + "PERIODO "
+            + "TIPO_INCOMPETENCIA "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE INCOMPETENCIA = 2 "
             + "  AND TIPO_INCOMPETENCIA IS NOT NULL";
@@ -283,8 +272,7 @@ public class V3Huelga {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("INCOMPETENCIA"),
-                    rs.getString("PERIODO")
+                    rs.getString("INCOMPETENCIA") 
                 });
             }
 
@@ -299,7 +287,7 @@ public class V3Huelga {
     public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO "
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE INCOMPETENCIA = 1 "
             + "  AND ("
@@ -324,8 +312,7 @@ public class V3Huelga {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("INCOMPETENCIA"),
-                    rs.getString("PERIODO")
+                    rs.getString("INCOMPETENCIA") 
                 });
             }
 
@@ -340,7 +327,7 @@ public class V3Huelga {
     public ArrayList PivIncompetencia_Noidentificado(Connection con) {
         Array = new ArrayList();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO "
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE INCOMPETENCIA = 9 "
             + "  AND ("
@@ -365,8 +352,7 @@ public class V3Huelga {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("INCOMPETENCIA"),
-                    rs.getString("PERIODO")
+                    rs.getString("INCOMPETENCIA") 
                 });
             }
 
@@ -480,8 +466,7 @@ public class V3Huelga {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
-            + "CASE WHEN FASE_SOLI_EXPEDIENTE = 99 THEN 'No identificado' ELSE NULL END AS FASE_SOLI_EXPEDIENTE, "
-            + "PERIODO "
+            + "CASE WHEN FASE_SOLI_EXPEDIENTE = 99 THEN 'No identificado' ELSE NULL END AS FASE_SOLI_EXPEDIENTE "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE FASE_SOLI_EXPEDIENTE = 99 "
             + "  AND ("
@@ -585,16 +570,16 @@ public class V3Huelga {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
-            + "FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE, 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE "
+            + "FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE, 'DD/MM/YYYY') AS FECHA_APERTURA_EXPEDIENTE "
             + "FROM V3_TR_HUELGAJL "
-            + "WHERE firma_contrato = 2 "
-            + "  AND revision_contrato = 2 "
-            + "  AND incumplim_contrato = 2 "
-            + "  AND revision_salario = 2 "
-            + "  AND reparto_utilidades = 2 "
-            + "  AND apoyo_otra_huelga = 2 "
-            + "  AND desequilibrio_fac_prod = 2 "
-            + "  AND otro_motivo = 2";
+            + "WHERE FIRMA_CONTRATO = '2' "
+            + "  AND REVISION_CONTRATO = '2' "
+            + "  AND INCUMPLIM_CONTRATO = '2' "
+            + "  AND REVISION_SALARIO = '2' "
+            + "  AND REPARTO_UTILIDADES = '2' "
+            + "  AND APOYO_OTRA_HUELGA = '2' "
+            + "  AND DESEQUILIBRIO_FAC_PROD = '2' "
+            + "  AND OTRO_MOTIVO = '2'";
 
         System.out.println(sql);
 
@@ -632,66 +617,65 @@ public ArrayList Fase_Sol_Desechamiento(Connection con) {
 
     sql =
         "SELECT DISTINCT " +
-        "  (P1.CLAVE_ORGANO || P1.EXPEDIENTE_CLAVE || P1.PERIODO) AS UNIQUE_CODE, " +
+        "  (P1.CLAVE_ORGANO || P1.EXPEDIENTE_CLAVE ) AS UNIQUE_CODE, " +
         "  P1.CLAVE_ORGANO, " +
         "  P1.EXPEDIENTE_CLAVE, " +
         "  CASE P1.FASE_SOLI_EXPEDIENTE " +
-        "    WHEN 1  THEN 'Audiencia preliminar' " +
-        "    WHEN 2  THEN 'Audiencia de juicio' " +
-        "    WHEN 3  THEN 'Tramitación por auto de depuración' " +
-        "    WHEN 4  THEN 'Tramitación sin audiencias' " +
-        "    WHEN 5  THEN 'Emplazamiento a huelga' " +
-        "    WHEN 6  THEN 'Prehuelga' " +
-        "    WHEN 7  THEN 'Huelga' " +
-        "    WHEN 8  THEN 'Audiencia dentro del procedimiento colectivo de naturaleza económica' " +
-        "    WHEN 9  THEN 'Fase escrita' " +
-        "    WHEN 99 THEN 'No identificado' " +
+        "    WHEN 1  THEN 'AUDIENCIA PRELIMINAR' " +
+        "    WHEN 2  THEN 'AUDIENCIA DE JUICIO' " +
+        "    WHEN 3  THEN 'TRAMITACIÓN POR AUTO DE DEPURACIÓN' " +
+        "    WHEN 4  THEN 'TRAMITACIÓN SIN AUDIENCIAS' " +
+        "    WHEN 5  THEN 'EMPLAZAMIENTO A HUELGA' " +
+        "    WHEN 6  THEN 'PREHUELGA' " +
+        "    WHEN 7  THEN 'HUELGA' " +
+        "    WHEN 8  THEN 'AUDIENCIA DENTRO DEL PROCEDIMIENTO COLECTIVO DE NATURALEZA ECONÓMICA' " +
+        "    WHEN 9  THEN 'FASE ESCRITA' " +
+        "    WHEN 99 THEN 'NO IDENTIFICADO' " +
         "    ELSE NULL " +
         "  END AS FASE_SOLI_EXPEDIENTE, " +
         "  CASE P1.FORMA_SOLUCION_HUELGA " +
-        "    WHEN 1 THEN 'Sentencia' " +
-        "    WHEN 2 THEN 'Convenio conciliatorio' " +
-        "    WHEN 3 THEN 'Desistimiento' " +
-        "    WHEN 4 THEN 'Caducidad' " +
-        "    WHEN 5 THEN 'Otra forma de solución (especifique)' " +
-        "    WHEN 9 THEN 'No Identificado' " +
+        "    WHEN 1 THEN 'SENTENCIA' " +
+        "    WHEN 2 THEN 'CONVENIO CONCILIATORIO' " +
+        "    WHEN 3 THEN 'DESISTIMIENTO' " +
+        "    WHEN 4 THEN 'CADUCIDAD' " +
+        "    WHEN 5 THEN 'OTRA FORMA DE SOLUCIÓN (ESPECIFIQUE)' " +
+        "    WHEN 9 THEN 'NO IDENTIFICADO' " +
         "    ELSE NULL " +
         "  END AS FORMA_SOLUCION_HUELGA, " +
         "  P1.ESPECIFI_FORMA_HUELGA, " +
-        "  P1.COMENTARIOS, " +
-        "  P1.PERIODO " +
+        "  P1.COMENTARIOS " +
         "FROM " +
         "  V3_TR_HUELGAJL P1, " +
-        "  TC_RALAB_FASEJL P2, " +
-        "  TC_RALAB_FORMA_SOLUCIONJL P3, " +
-        "  TC_RALAB_ESPECIFIQUEJL P4, " +
-        "  TC_RALAB_COMENTARIOSJL P5 " +
+        "  V3_TC_RALAB_FASEJL P2, " +
+        "  V3_TC_FORMA_SOLUCIONJL P3, " +
+        "  V3_TC_RALAB_ESPECIFIQUEJL  P4, " +
+        "  V3_TC_RALAB_COMENTARIOSJL  P5 " +
         "WHERE " +
         "  ( " +
         "    TRIM(UPPER( " +
         "      CASE P1.FASE_SOLI_EXPEDIENTE " +
-        "        WHEN 1  THEN 'Audiencia preliminar' " +
-        "        WHEN 2  THEN 'Audiencia de juicio' " +
-        "        WHEN 3  THEN 'Tramitación por auto de depuración' " +
-        "        WHEN 4  THEN 'Tramitación sin audiencias' " +
-        "        WHEN 5  THEN 'Emplazamiento a huelga' " +
-        "        WHEN 6  THEN 'Prehuelga' " +
-        "        WHEN 7  THEN 'Huelga' " +
-        "        WHEN 8  THEN 'Audiencia dentro del procedimiento colectivo de naturaleza económica' " +
-        "        WHEN 9  THEN 'Fase escrita' " +
-        "        WHEN 99 THEN 'No identificado' " +
+        "        WHEN 1  THEN 'AUDIENCIA PRELIMINAR' " +
+        "        WHEN 2  THEN 'AUDIENCIA DE JUICIO' " +
+        "        WHEN 3  THEN 'TRAMITACIÓN POR AUTO DE DEPURACIÓN' " +
+        "        WHEN 4  THEN 'TRAMITACIÓN SIN AUDIENCIAS' " +
+        "        WHEN 5  THEN 'EMPLAZAMIENTO A HUELGA' " +
+        "        WHEN 6  THEN 'PREHUELGA' " +
+        "        WHEN 7  THEN 'HUELGA' " +
+        "        WHEN 8  THEN 'AUDIENCIA DENTRO DEL PROCEDIMIENTO COLECTIVO DE NATURALEZA ECONÓMICA' " +
+        "        WHEN 9  THEN 'FASE ESCRITA' " +
+        "        WHEN 99 THEN 'NO IDENTIFICADO' " +
         "        ELSE NULL " +
         "      END " +
         "    )) = TRIM(UPPER(P2.DESCRIPCION)) " +
         "    AND " +
         "    TRIM(UPPER( " +
         "      CASE P1.FORMA_SOLUCION_HUELGA " +
-        "        WHEN 1 THEN 'Sentencia' " +
-        "        WHEN 2 THEN 'Convenio conciliatorio' " +
-        "        WHEN 3 THEN 'Desistimiento' " +
-        "        WHEN 4 THEN 'Caducidad' " +
-        "        WHEN 5 THEN 'Otra forma de solución (especifique)' " +
-        "        WHEN 9 THEN 'No Identificado' " +
+        "        WHEN 1 THEN 'SENTENCIA' " +
+        "        WHEN 2 THEN 'CONVENIO CONCILIATORIO' " +
+        "        WHEN 3 THEN 'DESISTIMIENTO' " +
+        "        WHEN 4 THEN 'CADUCIDAD' " +
+        "        WHEN 5 THEN 'OTRA FORMA DE SOLUCIÓN (ESPECIFIQUE)' " +
+        "        WHEN 9 THEN 'NO IDENTIFICADO' " +
         "        ELSE NULL " +
         "      END " +
         "    )) = TRIM(UPPER(P3.DESCRIPCION)) " +

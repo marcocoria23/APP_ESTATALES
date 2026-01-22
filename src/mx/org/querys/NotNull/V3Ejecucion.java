@@ -25,14 +25,13 @@ public class V3Ejecucion {
     String sql;
     ArrayList<String[]> Array;
 
-    // Estatus del expediente no debe de ser 9 = No_identificado (sin filtros)
+    // Estatus del expediente no debe de ser 9 = NO_IDENTIFICADO (sin filtros)
     public ArrayList Estatus_expedienteNi(Connection con) {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
-            + "CASE WHEN ESTATUS_EXPE = 9 THEN 'No_identificado' ELSE NULL END AS ESTATUS_EXPE, "
-            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, "
-            + "PERIODO "
+            + "CASE WHEN ESTATUS_EXPE = 9 THEN 'NO_IDENTIFICADO' ELSE NULL END AS ESTATUS_EXPE, "
+            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS "
             + "FROM V3_TR_EJECUCIONJL "
             + "WHERE ESTATUS_EXPE = 9";
 

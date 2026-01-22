@@ -30,7 +30,7 @@ public class V3Control_expediente {
         Array = new ArrayList();
 
         sql = "SELECT REPLACE(NOMBRE_ORGANO_JURIS, ',', '') AS NOMBRE_ORGANO_JURIS, "
-            + "CLAVE_ORGANO, HORARIO, PERIODO "
+            + "CLAVE_ORGANO, HORARIO "
             + "FROM V3_TR_CONTROL_EXPEDIENTEJL "
             + "WHERE LENGTH(TRIM(REPLACE(HORARIO, ' ', ''))) < 6";
 
@@ -44,8 +44,7 @@ public class V3Control_expediente {
                 Array.add(new String[]{
                     rs.getString("NOMBRE_ORGANO_JURIS"),
                     rs.getString("CLAVE_ORGANO"),
-                    rs.getString("HORARIO"),
-                    rs.getString("PERIODO")
+                    rs.getString("HORARIO")
                 });
             }
 
@@ -61,15 +60,13 @@ public class V3Control_expediente {
         // TO_NUMBER(TRIM(x)) -> CAST(TRIM(x) AS INT)
         sql = "SELECT CLAVE_ORGANO, "
             + "COALESCE(SUMHOM, 0) AS SUMHOM, "
-            + "COALESCE(JUECES_LABORAL_SUB_HOM, 0) AS JUECES_LABORAL_SUB_HOM, "
-            + "PERIODO "
+            + "COALESCE(JUECES_LABORAL_SUB_HOM, 0) AS JUECES_LABORAL_SUB_HOM "
             + "FROM ( "
             + "   SELECT CLAVE_ORGANO, "
             + "          (CAST(TRIM(JUECES_LABORAL_MIX_HOM) AS INT) "
             + "         + CAST(TRIM(JUECES_LABORAL_INDIV_HOM) AS INT) "
             + "         + CAST(TRIM(JUECES_LABORAL_COLEC_HOM) AS INT)) AS SUMHOM, "
-            + "          CAST(TRIM(JUECES_LABORAL_SUB_HOM) AS INT) AS JUECES_LABORAL_SUB_HOM, "
-            + "          PERIODO "
+            + "          CAST(TRIM(JUECES_LABORAL_SUB_HOM) AS INT) AS JUECES_LABORAL_SUB_HOM "
             + "   FROM V3_TR_CONTROL_EXPEDIENTEJL "
             + ") X "
             + "WHERE COALESCE(SUMHOM, 0) <> COALESCE(JUECES_LABORAL_SUB_HOM, 0)";
@@ -99,15 +96,13 @@ public class V3Control_expediente {
 
         sql = "SELECT CLAVE_ORGANO, "
             + "COALESCE(SUMMUJ, 0) AS SUMMUJ, "
-            + "COALESCE(JUECES_LABORAL_SUB_MUJ, 0) AS JUECES_LABORAL_SUB_MUJ, "
-            + "PERIODO "
+            + "COALESCE(JUECES_LABORAL_SUB_MUJ, 0) AS JUECES_LABORAL_SUB_MUJ "
             + "FROM ( "
             + "   SELECT CLAVE_ORGANO, "
             + "          (CAST(TRIM(JUECES_LABORAL_MIX_MUJ) AS INT) "
             + "         + CAST(TRIM(JUECES_LABORAL_INDIV_MUJ) AS INT) "
             + "         + CAST(TRIM(JUECES_LABORAL_COLEC_MUJ) AS INT)) AS SUMMUJ, "
-            + "          CAST(TRIM(JUECES_LABORAL_SUB_MUJ) AS INT) AS JUECES_LABORAL_SUB_MUJ, "
-            + "          PERIODO "
+            + "          CAST(TRIM(JUECES_LABORAL_SUB_MUJ) AS INT) AS JUECES_LABORAL_SUB_MUJ "
             + "   FROM V3_TR_CONTROL_EXPEDIENTEJL "
             + ") X "
             + "WHERE COALESCE(SUMMUJ, 0) <> COALESCE(JUECES_LABORAL_SUB_MUJ, 0)";
@@ -137,14 +132,12 @@ public class V3Control_expediente {
 
         sql = "SELECT CLAVE_ORGANO, "
             + "COALESCE(SUMHM, 0) AS SUMHM, "
-            + "COALESCE(JUECES_LABORAL_TOTAL, 0) AS JUECES_LABORAL_TOTAL, "
-            + "PERIODO "
+            + "COALESCE(JUECES_LABORAL_TOTAL, 0) AS JUECES_LABORAL_TOTAL "
             + "FROM ( "
             + "   SELECT CLAVE_ORGANO, "
             + "          (CAST(TRIM(JUECES_LABORAL_SUB_HOM) AS INT) "
             + "         + CAST(TRIM(JUECES_LABORAL_SUB_MUJ) AS INT)) AS SUMHM, "
-            + "          CAST(TRIM(JUECES_LABORAL_TOTAL) AS INT) AS JUECES_LABORAL_TOTAL, "
-            + "          PERIODO "
+            + "          CAST(TRIM(JUECES_LABORAL_TOTAL) AS INT) AS JUECES_LABORAL_TOTAL "
             + "   FROM V3_TR_CONTROL_EXPEDIENTEJL "
             + ") X "
             + "WHERE COALESCE(SUMHM, 0) <> COALESCE(JUECES_LABORAL_TOTAL, 0)";

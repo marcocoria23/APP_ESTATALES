@@ -23,13 +23,13 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT clave_organo, expediente_clave, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES " +
             "FROM (" +
-            "   SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTE, " +
+            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, " +
             "          CAST(YEAR(FECHA_APERTURA_EXPEDIENTE) AS VARCHAR) AS FECHA_APERTURA_ANIO, " +
             "          CAST(YEAR(FECHA_APERTURA_EXPEDIENTE)+1 AS VARCHAR) AS FECHA_APERTURA_ANIO_SIG, " +
-            "          SUBSTRING(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
+            "          SUBSTRING(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
             "   FROM V3_TR_ORDINARIOJL" +
             ") x " +
             "WHERE x.FECHA_APERTURA_ANIO <> x.EXPE_ANIO " +
@@ -43,8 +43,8 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -65,12 +65,12 @@ public class V3QOrdinario {
         // Antes: EXPE_AÑO NOT IN PValidacion.AñoJuridico
         // Aquí lo dejo sin ese filtro (solo detecta año diferente)
         sql =
-            "SELECT clave_organo, expediente_clave, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES " +
             "FROM (" +
-            "   SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTE, " +
+            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, " +
             "          CAST(YEAR(FECHA_APERTURA_EXPEDIENTE) AS VARCHAR) AS FECHA_APERTURA_ANIO, " +
-            "          SUBSTRING(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
+            "          SUBSTRING(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
             "   FROM V3_TR_ORDINARIOJL" +
             ") x " +
             "WHERE x.FECHA_APERTURA_ANIO <> x.EXPE_ANIO";
@@ -81,8 +81,8 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -101,12 +101,12 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT clave_organo, expediente_clave, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES " +
             "FROM (" +
-            "   SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTE, " +
+            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, " +
             "          CAST(YEAR(FECHA_APERTURA_EXPEDIENTE) AS VARCHAR) AS FECHA_APERTURA_ANIO, " +
-            "          SUBSTRING(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
+            "          SUBSTRING(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
             "   FROM V3_TR_ORDINARIOJL" +
             ") x " +
             "WHERE x.FECHA_APERTURA_ANIO <> x.EXPE_ANIO " +
@@ -118,8 +118,8 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -174,7 +174,7 @@ public class V3QOrdinario {
         ArrayList<String[]> out = new ArrayList<>();
 
         sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(" + campoFecha + ",'dd/MM/yyyy') AS " + alias + " " +
             "FROM V3_TR_ORDINARIOJL " +
             "WHERE " + campoFecha + " > CURRENT_DATE " +
@@ -186,8 +186,8 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 out.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA: MODIFICAR CLASE PRINCIPAL
                     rs.getString(alias)
                 });
@@ -245,7 +245,7 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_PRES_DEMANDA,'dd/MM/yyyy') AS FECHA_PRES_DEMANDA " +
             "FROM V3_TR_ORDINARIOJL " +
@@ -258,9 +258,9 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_PRES_DEMANDA")
                 });
@@ -280,7 +280,7 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_ADMI_DEMANDA,'dd/MM/yyyy') AS FECHA_ADMI_DEMANDA, " +
             "       FORMATDATETIME(FECHA_PRES_DEMANDA,'dd/MM/yyyy') AS FECHA_PRES_DEMANDA " +
             "FROM V3_TR_ORDINARIOJL " +
@@ -294,9 +294,9 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_ADMI_DEMANDA"),
                     rs.getString("FECHA_PRES_DEMANDA")
                 });
@@ -316,7 +316,7 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_ACTO_PROCESAL,'dd/MM/yyyy') AS FECHA_ACTO_PROCESAL " +
             "FROM V3_TR_ORDINARIOJL " +
@@ -329,9 +329,9 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_ACTO_PROCESAL")
                 });
@@ -351,7 +351,7 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_ADMI_DEMANDA,'dd/MM/yyyy') AS FECHA_ADMI_DEMANDA " +
             "FROM V3_TR_ORDINARIOJL " +
@@ -364,9 +364,9 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_ADMI_DEMANDA")
                 });
@@ -386,7 +386,7 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_AUDIENCIA_JUICIO,'dd/MM/yyyy') AS FECHA_AUDIENCIA_JUICIO " +
             "FROM V3_TR_ORDINARIOJL " +
@@ -399,9 +399,9 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_AUDIENCIA_JUICIO")
                 });
@@ -421,7 +421,7 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_AUDIENCIA_PRELIM,'dd/MM/yyyy') AS FECHA_AUDIENCIA_PRELIM " +
             "FROM V3_TR_ORDINARIOJL " +
@@ -434,9 +434,9 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_AUDIENCIA_PRELIM")
                 });
@@ -456,7 +456,7 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_DICTO_RESOLUCIONFE,'dd/MM/yyyy') AS FECHA_DICTO_RESOLUCIONFE " +
             "FROM V3_TR_ORDINARIOJL " +
@@ -469,9 +469,9 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_DICTO_RESOLUCIONFE")
                 });
@@ -491,7 +491,7 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_DICTO_RESOLUCIONAP,'dd/MM/yyyy') AS FECHA_DICTO_RESOLUCIONAP " +
             "FROM V3_TR_ORDINARIOJL " +
@@ -504,9 +504,9 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_DICTO_RESOLUCIONAP")
                 });
@@ -526,7 +526,7 @@ public class V3QOrdinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_RESOLUCIONAJ,'dd/MM/yyyy') AS FECHA_RESOLUCIONAJ " +
             "FROM V3_TR_ORDINARIOJL " +
@@ -539,9 +539,9 @@ public class V3QOrdinario {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_RESOLUCIONAJ")
                 });

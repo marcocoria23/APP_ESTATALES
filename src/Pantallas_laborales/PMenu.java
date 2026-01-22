@@ -5,6 +5,10 @@
  */
 package Pantallas_laborales;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JLabel;
+import javax.swing.Timer;
 import plantillas.AbrirPdf;
 import plantillas.AbrirXlsx;
 
@@ -24,6 +28,7 @@ public class PMenu extends javax.swing.JFrame {
         jTextField3.setEditable(false);
         jTextField4.setEditable(false);
         jTextField1.setEditable(false);
+        iniciarReloj(jLabel5);
     }
 
     /**
@@ -50,11 +55,12 @@ public class PMenu extends javax.swing.JFrame {
         jMenuBar6 = new javax.swing.JMenuBar();
         jMenu11 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
-        jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
@@ -105,9 +111,6 @@ public class PMenu extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
-
         jTextField1.setFont(new java.awt.Font("SansSerif", 1, 32)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(0, 48, 87));
         jTextField1.setText("Justicia Laboral");
@@ -151,8 +154,17 @@ public class PMenu extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, 40));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel4.setText("V1.0");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 170, 20));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Texto del párrafo.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 470));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 830, 470));
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -219,8 +231,6 @@ public class PMenu extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        getAccessibleContext().setAccessibleName("App Justicia Laboral");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -260,6 +270,11 @@ public class PMenu extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         
+        ValidaTR val=new ValidaTR();
+        val.setVisible(true);
+        this.setVisible(false);
+        
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -278,6 +293,21 @@ public class PMenu extends javax.swing.JFrame {
           AbrirPdf.abrirPdfDesdeResources("/plantillas/Validaciones para justicia laboal_07082025_VF.pdf");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    public static void iniciarReloj(JLabel label) {
+
+    SimpleDateFormat formato =
+            new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+    Timer timer = new Timer(1000, e -> {
+        String fechaHora = formato.format(new Date());
+        label.setText(fechaHora);
+    });
+
+    timer.setInitialDelay(0); // actualiza inmediatamente
+    timer.start();
+}
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -316,7 +346,8 @@ public class PMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;

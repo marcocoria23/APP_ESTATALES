@@ -28,11 +28,11 @@ public class V3QPart_act_nat_eco {
             "       CASE WHEN INCOMPETENCIA = 2 THEN 'NO' ELSE NULL END AS INCOMPETENCIA, " +
             "       CASE WHEN ESTATUS_DEMANDA = 1 THEN 'ADMITIDA' ELSE NULL END AS ESTATUS_DEMANDA, " +
             "       CANTIDAD_ACTORES, CANTIDAD_DEMANDADOS " +
-            "FROM V3_TR_COLECT_ECONOMJL s " +
-            "WHERE s.INCOMPETENCIA = 2 " +
-            "  AND s.ESTATUS_DEMANDA = 1 " +
-            "  AND s.CANTIDAD_ACTORES > 0 " +
-            "  AND s.EXPEDIENTE_CLAVE NOT IN ( " +
+            "FROM V3_TR_COLECT_ECONOMJL S " +
+            "WHERE S.INCOMPETENCIA = 2 " +
+            "  AND S.ESTATUS_DEMANDA = 1 " +
+            "  AND S.CANTIDAD_ACTORES > 0 " +
+            "  AND S.EXPEDIENTE_CLAVE NOT IN ( " +
             "      SELECT EXPEDIENTE_CLAVE FROM V3_TR_PART_ACT_COLECT_ECONOMJL " +
             "  )";
 
@@ -66,25 +66,25 @@ public class V3QPart_act_nat_eco {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT x.CLAVE_ORGANO, x.EXPEDIENTE_CLAVE_COLECT_ECONOM, x.INCOMPETENCIA " +
+            "SELECT X.CLAVE_ORGANO, X.EXPEDIENTE_CLAVE_COLECT_ECONOM, X.INCOMPETENCIA " +
             "FROM ( " +
-            "   SELECT p.CLAVE_ORGANO, " +
-            "          p.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_PART, " +
-            "          s.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_COLECT_ECONOM, " +
+            "   SELECT P.CLAVE_ORGANO, " +
+            "          P.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_PART, " +
+            "          S.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_COLECT_ECONOM, " +
             "          CASE " +
-            "             WHEN s.INCOMPETENCIA = 1 THEN 'Sí' " +
-            "             WHEN s.INCOMPETENCIA = 2 THEN 'NO' " +
+            "             WHEN S.INCOMPETENCIA = 1 THEN 'Sí' " +
+            "             WHEN S.INCOMPETENCIA = 2 THEN 'NO' " +
             "             ELSE NULL " +
             "          END AS INCOMPETENCIA " +
             "   FROM ( " +
             "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO " +
             "       FROM V3_TR_PART_ACT_COLECT_ECONOMJL " +
-            "   ) p " +
-            "   LEFT JOIN V3_TR_COLECT_ECONOMJL s " +
-            "     ON p.CLAVE_ORGANO = s.CLAVE_ORGANO " +
-            "    AND p.EXPEDIENTE_CLAVE = s.EXPEDIENTE_CLAVE " +
-            ") x " +
-            "WHERE x.INCOMPETENCIA = 'Sí'";
+            "   ) P " +
+            "   LEFT JOIN V3_TR_COLECT_ECONOMJL S " +
+            "     ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
+            "    AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
+            ") X " +
+            "WHERE X.INCOMPETENCIA = 'Sí'";
 
         try (
              PreparedStatement ps = con.prepareStatement(sql);
@@ -114,22 +114,22 @@ public class V3QPart_act_nat_eco {
 
         sql =
             "SELECT * FROM ( " +
-            "   SELECT p.CLAVE_ORGANO, p.EXPEDIENTE_CLAVE, " +
-            "          COALESCE(s.CANTIDAD_ACTORES, 0) AS CANTIDAD_ACTORES, " +
-            "          COALESCE(p.DESGLOSE_ACTOR, 0) AS DESGLOSE_ACTORES, " +
-            "          COALESCE(CAST(s.INCOMPETENCIA AS VARCHAR), 'NULLO') AS INCOMPETENCIA, " +
+            "   SELECT P.CLAVE_ORGANO, P.EXPEDIENTE_CLAVE, " +
+            "          COALESCE(S.CANTIDAD_ACTORES, 0) AS CANTIDAD_ACTORES, " +
+            "          COALESCE(P.DESGLOSE_ACTOR, 0) AS DESGLOSE_ACTORES, " +
+            "          COALESCE(CAST(S.INCOMPETENCIA AS VARCHAR), 'NULLO') AS INCOMPETENCIA " +
             "   FROM ( " +
             "       SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, COUNT(ID_ACTOR) AS DESGLOSE_ACTOR " +
             "       FROM V3_TR_PART_ACT_COLECT_ECONOMJL " +
             "       WHERE ID_ACTOR NOT LIKE '%-%' " +
             "       GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE " +
-            "   ) p " +
-            "   LEFT JOIN V3_TR_COLECT_ECONOMJL s " +
-            "     ON p.CLAVE_ORGANO = s.CLAVE_ORGANO " +
-            "    AND p.EXPEDIENTE_CLAVE = s.EXPEDIENTE_CLAVE " +
-            ") x " +
-            "WHERE x.INCOMPETENCIA <> '1' " +
-            "  AND x.CANTIDAD_ACTORES <> x.DESGLOSE_ACTORES";
+            "   ) P " +
+            "   LEFT JOIN V3_TR_COLECT_ECONOMJL S " +
+            "     ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
+            "    AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
+            ") X " +
+            "WHERE X.INCOMPETENCIA <> '1' " +
+            "  AND X.CANTIDAD_ACTORES <> X.DESGLOSE_ACTORES";
 
         try (
              PreparedStatement ps = con.prepareStatement(sql);

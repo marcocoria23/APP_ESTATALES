@@ -28,11 +28,11 @@ public class V3QPart_act_ordinario {
             "       CASE WHEN INCOMPETENCIA = 2 THEN 'NO' ELSE NULL END AS INCOMPETENCIA, " +
             "       CASE WHEN ESTATUS_DEMANDA = 1 THEN 'ADMITIDA' ELSE NULL END AS ESTATUS_DEMANDA, " +
             "       CANTIDAD_ACTORES, CANTIDAD_DEMANDADOS " +
-            "FROM V3_TR_ORDINARIOJL s " +
-            "WHERE s.INCOMPETENCIA = 2 " +
-            "  AND s.ESTATUS_DEMANDA = 1 " +
-            "  AND s.CANTIDAD_ACTORES > 0 " +
-            "  AND s.EXPEDIENTE_CLAVE NOT IN ( " +
+            "FROM V3_TR_ORDINARIOJL S " +
+            "WHERE S.INCOMPETENCIA = 2 " +
+            "  AND S.ESTATUS_DEMANDA = 1 " +
+            "  AND S.CANTIDAD_ACTORES > 0 " +
+            "  AND S.EXPEDIENTE_CLAVE NOT IN ( " +
             "      SELECT EXPEDIENTE_CLAVE FROM V3_TR_PART_ACT_ORDINARIOJL " +
             "  )";
 
@@ -66,25 +66,25 @@ public class V3QPart_act_ordinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT x.CLAVE_ORGANO, x.EXPEDIENTE_CLAVE_ORDINARIO, x.INCOMPETENCIA " +
+            "SELECT X.CLAVE_ORGANO, X.EXPEDIENTE_CLAVE_ORDINARIO, X.INCOMPETENCIA " +
             "FROM ( " +
-            "   SELECT p.CLAVE_ORGANO, " +
-            "          p.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_PART, " +
-            "          s.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_ORDINARIO, " +
+            "   SELECT P.CLAVE_ORGANO, " +
+            "          P.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_PART, " +
+            "          S.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_ORDINARIO, " +
             "          CASE " +
-            "             WHEN s.INCOMPETENCIA = 1 THEN 'Sí' " +
-            "             WHEN s.INCOMPETENCIA = 2 THEN 'NO' " +
+            "             WHEN S.INCOMPETENCIA = 1 THEN 'SÍ' " +
+            "             WHEN S.INCOMPETENCIA = 2 THEN 'NO' " +
             "             ELSE NULL " +
             "          END AS INCOMPETENCIA " +
             "   FROM ( " +
             "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO " +
             "       FROM V3_TR_PART_ACT_ORDINARIOJL " +
-            "   ) p " +
-            "   LEFT JOIN V3_TR_ORDINARIOJL s " +
-            "     ON p.CLAVE_ORGANO = s.CLAVE_ORGANO " +
-            "    AND p.EXPEDIENTE_CLAVE = s.EXPEDIENTE_CLAVE " +
-            ") x " +
-            "WHERE x.INCOMPETENCIA = 'Sí'";
+            "   ) P " +
+            "   LEFT JOIN V3_TR_ORDINARIOJL S " +
+            "     ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
+            "    AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
+            ") X " +
+            "WHERE X.INCOMPETENCIA = 'SÍ'";
 
         try (
              PreparedStatement ps = con.prepareStatement(sql);
@@ -113,27 +113,27 @@ public class V3QPart_act_ordinario {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT x.CLAVE_ORGANO, x.EXPEDIENTE_CLAVE_ORDINARIO, x.ESTATUS_DEMANDA " +
+            "SELECT X.CLAVE_ORGANO, X.EXPEDIENTE_CLAVE_ORDINARIO, X.ESTATUS_DEMANDA " +
             "FROM ( " +
-            "   SELECT p.CLAVE_ORGANO, " +
-            "          p.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_PART, " +
-            "          s.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_ORDINARIO, " +
+            "   SELECT P.CLAVE_ORGANO, " +
+            "          P.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_PART, " +
+            "          S.EXPEDIENTE_CLAVE AS EXPEDIENTE_CLAVE_ORDINARIO, " +
             "          CASE " +
-            "             WHEN s.ESTATUS_DEMANDA = 1 THEN 'Admitida' " +
-            "             WHEN s.ESTATUS_DEMANDA = 2 THEN 'Desechada' " +
-            "             WHEN s.ESTATUS_DEMANDA = 3 THEN 'Archivo' " +
-            "             WHEN s.ESTATUS_DEMANDA = 4 THEN 'No se dio trámite al escrito de demanda' " +
+            "             WHEN S.ESTATUS_DEMANDA = 1 THEN 'ADMITIDA' " +
+            "             WHEN S.ESTATUS_DEMANDA = 2 THEN 'DESECHADA' " +
+            "             WHEN S.ESTATUS_DEMANDA = 3 THEN 'ARCHIVO' " +
+            "             WHEN S.ESTATUS_DEMANDA = 4 THEN 'NO SE DIO TRÁMITE AL ESCRITO DE DEMANDA' " +
             "             ELSE NULL " +
             "          END AS ESTATUS_DEMANDA " +
             "   FROM ( " +
             "       SELECT DISTINCT EXPEDIENTE_CLAVE, CLAVE_ORGANO " +
             "       FROM V3_TR_PART_ACT_ORDINARIOJL " +
-            "   ) p " +
-            "   LEFT JOIN V3_TR_ORDINARIOJL s " +
-            "     ON p.CLAVE_ORGANO = s.CLAVE_ORGANO " +
-            "    AND p.EXPEDIENTE_CLAVE = s.EXPEDIENTE_CLAVE " +
-            ") x " +
-            "WHERE x.ESTATUS_DEMANDA IN ('Desechada','Archivo','No se dio trámite al escrito de demanda')";
+            "   ) P " +
+            "   LEFT JOIN V3_TR_ORDINARIOJL S " +
+            "     ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
+            "    AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
+            ") X " +
+            "WHERE X.ESTATUS_DEMANDA IN ('DESECHADA','ARCHIVO','NO SE DIO TRÁMITE AL ESCRITO DE DEMANDA')";
 
         try (
              PreparedStatement ps = con.prepareStatement(sql);
@@ -163,25 +163,26 @@ public class V3QPart_act_ordinario {
 
         sql =
             "SELECT * FROM ( " +
-            "   SELECT p.CLAVE_ORGANO, p.EXPEDIENTE_CLAVE, " +
-            "          COALESCE(s.CANTIDAD_ACTORES, 0) AS CANTIDAD_ACTORES, " +
-            "          COALESCE(p.DESGLOSE_ACTOR, 0) AS DESGLOSE_ACTORES, " +
-            "          COALESCE(CAST(s.INCOMPETENCIA AS VARCHAR), 'NULLO') AS INCOMPETENCIA, " +
-            "          COALESCE(CAST(s.ESTATUS_DEMANDA AS VARCHAR), 'NULLO') AS ESTATUS_DEMANDA, " +
+            "   SELECT P.CLAVE_ORGANO, P.EXPEDIENTE_CLAVE, " +
+            "          COALESCE(S.CANTIDAD_ACTORES, 0) AS CANTIDAD_ACTORES, " +
+            "          COALESCE(P.DESGLOSE_ACTOR, 0) AS DESGLOSE_ACTORES, " +
+            "          COALESCE(CAST(S.INCOMPETENCIA AS VARCHAR), 'NULLO') AS INCOMPETENCIA, " +
+            "          COALESCE(CAST(S.ESTATUS_DEMANDA AS VARCHAR), 'NULLO') AS ESTATUS_DEMANDA " +
             "   FROM ( " +
             "       SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, COUNT(ID_ACTOR) AS DESGLOSE_ACTOR " +
             "       FROM V3_TR_PART_ACT_ORDINARIOJL " +
             "       WHERE ID_ACTOR NOT LIKE '%-%' " +
             "       GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE " +
-            "   ) p " +
-            "   LEFT JOIN V3_TR_ORDINARIOJL s " +
-            "     ON p.CLAVE_ORGANO = s.CLAVE_ORGANO " +
-            "    AND p.EXPEDIENTE_CLAVE = s.EXPEDIENTE_CLAVE " +
-            ") x " +
-            "WHERE x.INCOMPETENCIA <> '1' " +
-            "  AND x.ESTATUS_DEMANDA NOT IN ('2','3','4') " +
-            "  AND x.CANTIDAD_ACTORES <> x.DESGLOSE_ACTORES";
+            "   ) P " +
+            "   LEFT JOIN V3_TR_ORDINARIOJL S " +
+            "     ON P.CLAVE_ORGANO = S.CLAVE_ORGANO " +
+            "    AND P.EXPEDIENTE_CLAVE = S.EXPEDIENTE_CLAVE " +
+            ") X " +
+            "WHERE X.INCOMPETENCIA <> '1' " +
+            "  AND X.ESTATUS_DEMANDA NOT IN ('2','3','4') " +
+            "  AND X.CANTIDAD_ACTORES <> X.DESGLOSE_ACTORES";
 
+        System.out.println(sql);
         try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {

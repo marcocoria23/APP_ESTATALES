@@ -315,7 +315,7 @@ public class V3Individual {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN ESTATUS_EXPEDIENTE = 9 THEN 'No identificado' ELSE CAST(ESTATUS_EXPEDIENTE AS VARCHAR) END AS ESTATUS_EXPEDIENTE, " +
+              "CASE WHEN ESTATUS_EXPEDIENTE = 9 THEN 'NO IDENTIFICADO' ELSE CAST(ESTATUS_EXPEDIENTE AS VARCHAR) END AS ESTATUS_EXPEDIENTE, " +
               "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS " +
               "FROM V3_TR_INDIVIDUALJL " +
               "WHERE ESTATUS_EXPEDIENTE = 9";
@@ -876,12 +876,12 @@ public class V3Individual {
 
         // En H2: TO_CHAR puede funcionar si estás en modo Oracle, si no: FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy')
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE, 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
+              "FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE, 'DD/MM/YYYY') AS FECHA_APERTURA_EXPEDIENTE " +
               "FROM V3_TR_INDIVIDUALJL " +
-              "WHERE indole_trabajo = 2 AND prestacion_fp = 2 AND arrendam_trab = 2 AND capacitacion = 2 AND antiguedad = 2 AND " +
-              "prima_antiguedad = 2 AND convenio_trab = 2 AND designacion_trab_falle = 2 AND designacion_trab_act_delic = 2 AND " +
-              "terminacion_lab = 2 AND recuperacion_carga = 2 AND gastos_traslados = 2 AND indemnizacion = 2 AND pago_indemnizacion = 2 AND " +
-              "desacuerdo_medicos = 2 AND cobro_prestaciones = 2 AND conf_seguro_social = 2 AND otro_conf = 2";
+              "WHERE INDOLE_TRABAJO = '2' AND PRESTACION_FP = '2' AND ARRENDAM_TRAB = '2' AND CAPACITACION = '2' AND ANTIGUEDAD = '2' AND " +
+              "PRIMA_ANTIGUEDAD = '2' AND CONVENIO_TRAB = '2' AND DESIGNACION_TRAB_FALLE = '2' AND DESIGNACION_TRAB_ACT_DELIC = '2' AND " +
+              "TERMINACION_LAB = '2' AND RECUPERACION_CARGA = '2' AND GASTOS_TRASLADOS = '2' AND INDEMNIZACION = '2' AND PAGO_INDEMNIZACION = '2' AND " +
+              "DESACUERDO_MEDICOS = '2' AND COBRO_PRESTACIONES = '2' AND CONF_SEGURO_SOCIAL = '2' AND OTRO_CONF = '2'";
 
         System.out.println(sql);
 

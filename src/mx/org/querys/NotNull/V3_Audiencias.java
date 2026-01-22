@@ -21,8 +21,7 @@ public class V3_Audiencias {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_PROCED = 1 THEN 'Ordinario' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED, " +
-              "PERIODO " +
+              "CASE WHEN TIPO_PROCED = 1 THEN 'Ordinario' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED " +
               "FROM V3_TR_AUDIENCIASJL " +
               "WHERE TIPO_PROCED = 1 AND (" +
               "ESPECIAL_INDIVI_TA IS NOT NULL OR " +
@@ -41,8 +40,7 @@ public class V3_Audiencias {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_PROCED"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_PROCED")
                 });
             }
 
@@ -58,8 +56,7 @@ public class V3_Audiencias {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_PROCED = 2 THEN 'INDIVIDUAL' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED, " +
-              "PERIODO " +
+              "CASE WHEN TIPO_PROCED = 2 THEN 'INDIVIDUAL' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED " +
               "FROM V3_TR_AUDIENCIASJL " +
               "WHERE TIPO_PROCED = 2 AND (" +
               "ORDINARIO_TA IS NOT NULL OR " +
@@ -78,8 +75,7 @@ public class V3_Audiencias {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_PROCED"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_PROCED")
                 });
             }
 
@@ -95,8 +91,7 @@ public class V3_Audiencias {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_PROCED = 3 THEN 'Colectivo' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED, " +
-              "PERIODO " +
+              "CASE WHEN TIPO_PROCED = 3 THEN 'Colectivo' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED " +
               "FROM V3_TR_AUDIENCIASJL " +
               "WHERE TIPO_PROCED = 3 AND (" +
               "ORDINARIO_TA IS NOT NULL OR " +
@@ -115,8 +110,7 @@ public class V3_Audiencias {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_PROCED"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_PROCED")
                 });
             }
 
@@ -132,8 +126,7 @@ public class V3_Audiencias {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_PROCED = 4 THEN 'Huelga' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED, " +
-              "PERIODO " +
+              "CASE WHEN TIPO_PROCED = 4 THEN 'Huelga' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED " +
               "FROM V3_TR_AUDIENCIASJL " +
               "WHERE TIPO_PROCED = 4 AND (" +
               "ORDINARIO_TA IS NOT NULL OR " +
@@ -152,8 +145,7 @@ public class V3_Audiencias {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_PROCED"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_PROCED")
                 });
             }
 
@@ -169,8 +161,7 @@ public class V3_Audiencias {
         Array = new ArrayList<>();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-              "CASE WHEN TIPO_PROCED = 5 THEN 'Colectivo Economico' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED, " +
-              "PERIODO " +
+              "CASE WHEN TIPO_PROCED = 5 THEN 'Colectivo Economico' ELSE CAST(TIPO_PROCED AS VARCHAR) END AS TIPO_PROCED " +
               "FROM V3_TR_AUDIENCIASJL " +
               "WHERE TIPO_PROCED = 5 AND (" +
               "ORDINARIO_TA IS NOT NULL OR " +
@@ -189,8 +180,7 @@ public class V3_Audiencias {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_PROCED"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_PROCED")
                 });
             }
 
@@ -213,7 +203,6 @@ public class V3_Audiencias {
               "LEFT JOIN V3_TR_ORDINARIOJL P " +
               "ON S.CLAVE_ORGANO = P.CLAVE_ORGANO " +
               "AND S.EXPEDIENTE_CLAVE = P.EXPEDIENTE_CLAVE " +
-              "AND S.PERIODO = P.PERIODO " +
               "WHERE S.TIPO_PROCED = 1 AND P.EXPEDIENTE_CLAVE IS NULL " +
               "ORDER BY S.CLAVE_ORGANO, S.EXPEDIENTE_CLAVE";
 
@@ -245,7 +234,6 @@ public class V3_Audiencias {
               "LEFT JOIN V3_TR_INDIVIDUALJL P " +
               "ON S.CLAVE_ORGANO = P.CLAVE_ORGANO " +
               "AND S.EXPEDIENTE_CLAVE = P.EXPEDIENTE_CLAVE " +
-              "AND S.PERIODO = P.PERIODO " +
               "WHERE S.TIPO_PROCED = 2 AND P.EXPEDIENTE_CLAVE IS NULL " +
               "ORDER BY S.CLAVE_ORGANO, S.EXPEDIENTE_CLAVE";
 
@@ -277,7 +265,6 @@ public class V3_Audiencias {
               "LEFT JOIN V3_TR_COLECTIVOJL P " +
               "ON S.CLAVE_ORGANO = P.CLAVE_ORGANO " +
               "AND S.EXPEDIENTE_CLAVE = P.EXPEDIENTE_CLAVE " +
-              "AND S.PERIODO = P.PERIODO " +
               "WHERE S.TIPO_PROCED = 3 AND P.EXPEDIENTE_CLAVE IS NULL " +
               "ORDER BY S.CLAVE_ORGANO, S.EXPEDIENTE_CLAVE";
 
@@ -309,7 +296,6 @@ public class V3_Audiencias {
               "LEFT JOIN V3_TR_HUELGAJL P " +
               "ON S.CLAVE_ORGANO = P.CLAVE_ORGANO " +
               "AND S.EXPEDIENTE_CLAVE = P.EXPEDIENTE_CLAVE " +
-              "AND S.PERIODO = P.PERIODO " +
               "WHERE S.TIPO_PROCED = 4 AND P.EXPEDIENTE_CLAVE IS NULL " +
               "ORDER BY S.CLAVE_ORGANO, S.EXPEDIENTE_CLAVE";
 
@@ -341,7 +327,6 @@ public class V3_Audiencias {
               "LEFT JOIN V3_TR_COLECT_ECONOMJL P " +
               "ON S.CLAVE_ORGANO = P.CLAVE_ORGANO " +
               "AND S.EXPEDIENTE_CLAVE = P.EXPEDIENTE_CLAVE " +
-              "AND S.PERIODO = P.PERIODO " +
               "WHERE S.TIPO_PROCED = 5 AND P.EXPEDIENTE_CLAVE IS NULL " +
               "ORDER BY S.CLAVE_ORGANO, S.EXPEDIENTE_CLAVE";
 

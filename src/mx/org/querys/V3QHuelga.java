@@ -20,17 +20,17 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTES " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTES " +
             "FROM ( " +
-            "  SELECT clave_organo, expediente_clave, " +
+            "  SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "         FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES, " +
             "         SUBSTRING(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy'), " +
             "                   LENGTH(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy')) - 3, 4) AS FECHA_APERTURA_EXPEDIENTE, " +
             "         (CAST(SUBSTRING(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy'), " +
             "                        LENGTH(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy')) - 3, 4) AS INT) + 1) AS FECHA_APERTURA_EXPEDIENTES1, " +
             "         SUBSTRING(TRIM( " +
-            "             REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(expediente_clave,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ','')) " +
-            "         ), LENGTH(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(expediente_clave,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ',''))) - 3, 4) AS EXPE_ANIO " +
+            "             REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EXPEDIENTE_CLAVE,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ','')) " +
+            "         ), LENGTH(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EXPEDIENTE_CLAVE,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ',''))) - 3, 4) AS EXPE_ANIO " +
             "  FROM V3_TR_huelgajl " +
             ") X " +
             "WHERE X.FECHA_APERTURA_EXPEDIENTE <> X.EXPE_ANIO " +
@@ -46,8 +46,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -67,15 +67,15 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTES " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTES " +
             "FROM ( " +
-            "  SELECT clave_organo, expediente_clave, " +
+            "  SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "         FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES, " +
             "         SUBSTRING(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy'), " +
             "                   LENGTH(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy')) - 3, 4) AS FECHA_APERTURA_EXPEDIENTE, " +
             "         SUBSTRING(TRIM( " +
-            "             REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(expediente_clave,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ','')) " +
-            "         ), LENGTH(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(expediente_clave,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ',''))) - 3, 4) AS EXPE_ANIO " +
+            "             REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EXPEDIENTE_CLAVE,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ','')) " +
+            "         ), LENGTH(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EXPEDIENTE_CLAVE,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ',''))) - 3, 4) AS EXPE_ANIO " +
             "  FROM V3_TR_huelgajl " +
             ") X " +
             "WHERE X.FECHA_APERTURA_EXPEDIENTE <> X.EXPE_ANIO";
@@ -88,8 +88,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -108,14 +108,14 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTES " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTES " +
             "FROM ( " +
-            "  SELECT clave_organo, expediente_clave, " +
+            "  SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "         FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES, " +
             "         SUBSTRING(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy'), " +
             "                   LENGTH(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy')) - 3, 4) AS FECHA_APERTURA_EXPEDIENTE, " +
-            "         SUBSTRING(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''), " +
-            "                   LENGTH(REGEXP_REPLACE(expediente_clave, '[^0-9]', '')) - 3, 4) AS EXPE_ANIO " +
+            "         SUBSTRING(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''), " +
+            "                   LENGTH(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '')) - 3, 4) AS EXPE_ANIO " +
             "  FROM V3_TR_huelgajl " +
             ") X " +
             "WHERE X.FECHA_APERTURA_EXPEDIENTE <> X.EXPE_ANIO " +
@@ -129,8 +129,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -149,8 +149,8 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
-            "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
+            "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'DD/MM/YYYY') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_APERTURA_EXPEDIENTE > CURRENT_DATE " +
             "  AND FECHA_APERTURA_EXPEDIENTE <> DATE '1899-09-09'";
@@ -163,8 +163,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_APERTURA_EXPEDIENTE")
                 });
@@ -181,8 +181,8 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
-            "       FORMATDATETIME(CAST(FECHA_PRESENTA_PETIC AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_PRESENTA_PETIC " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
+            "       FORMATDATETIME(CAST(FECHA_PRESENTA_PETIC AS TIMESTAMP), 'DD/MM/YYYY') AS FECHA_PRESENTA_PETIC " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_PRESENTA_PETIC > CURRENT_DATE " +
             "  AND FECHA_PRESENTA_PETIC <> DATE '1899-09-09'";
@@ -195,8 +195,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_PRESENTA_PETIC")
                 });
@@ -213,7 +213,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_EMPLAZAMIENTO AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_EMPLAZAMIENTO " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_EMPLAZAMIENTO > CURRENT_DATE " +
@@ -227,8 +227,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_EMPLAZAMIENTO")
                 });
@@ -245,7 +245,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_AUDIENCIA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_AUDIENCIA " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_AUDIENCIA > CURRENT_DATE " +
@@ -259,8 +259,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_AUDIENCIA")
                 });
@@ -277,7 +277,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_ACTO_PROCESAL AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_ACTO_PROCESAL " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_ACTO_PROCESAL > CURRENT_DATE " +
@@ -291,8 +291,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_ACTO_PROCESAL")
                 });
@@ -309,7 +309,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_RESOLU_EMPLAZ AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLU_EMPLAZ " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_RESOLU_EMPLAZ > CURRENT_DATE " +
@@ -323,8 +323,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_RESOLU_EMPLAZ")
                 });
@@ -341,7 +341,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_RESOLU_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLU_HUELGA " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_RESOLU_HUELGA > CURRENT_DATE " +
@@ -355,8 +355,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_RESOLU_HUELGA")
                 });
@@ -373,7 +373,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_ESTALLAM_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_ESTALLAM_HUELGA " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_ESTALLAM_HUELGA > CURRENT_DATE " +
@@ -387,8 +387,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_ESTALLAM_HUELGA")
                 });
@@ -405,7 +405,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_LEVANT_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_LEVANT_HUELGA " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_LEVANT_HUELGA > CURRENT_DATE " +
@@ -419,8 +419,8 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_LEVANT_HUELGA")
                 });
@@ -443,20 +443,20 @@ public class V3QHuelga {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_HUELGAJL " +
-            "WHERE CLAVE_ORGANO || CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT)  IN ( " +
+            "WHERE CLAVE_ORGANO || CAST(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS BIGINT)  IN ( " +
             "  SELECT CLAVE_ORGANO || EXPEDIENTE_CLAVE2  " +
             "  FROM ( " +
             "    SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE2,  COUNT(*) AS CUENTA " +
             "    FROM ( " +
             "      SELECT CLAVE_ORGANO, " +
-            "             CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT) AS EXPEDIENTE_CLAVE2, " +
+            "             CAST(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS BIGINT) AS EXPEDIENTE_CLAVE2 " +
             "      FROM V3_TR_HUELGAJL " +
             "    ) T " +
             "    GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE2 " +
             "  ) X " +
             "  WHERE CUENTA > 1 " +
             ") " +
-            "ORDER BY CLAVE_ORGANO, CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT)";
+            "ORDER BY CLAVE_ORGANO, CAST(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS BIGINT)";
 
         System.out.println(sql);
 
@@ -486,9 +486,9 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT entidad_clave, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
-            "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
-            "       FORMATDATETIME(CAST(FECHA_PRESENTA_PETIC AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_PRESENTA_PETIC " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
+            "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'DD/MM/YYYY') AS FECHA_APERTURA_EXPEDIENTE, " +
+            "       FORMATDATETIME(CAST(FECHA_PRESENTA_PETIC AS TIMESTAMP), 'DD/MM/YYYY') AS FECHA_PRESENTA_PETIC " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE FECHA_PRESENTA_PETIC <> DATE '1899-09-09' " +
             "  AND CAST(FECHA_APERTURA_EXPEDIENTE AS DATE) < CAST(FECHA_PRESENTA_PETIC AS DATE)";
@@ -501,7 +501,7 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
@@ -523,7 +523,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT entidad_clave, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(CAST(FECHA_EMPLAZAMIENTO AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_EMPLAZAMIENTO " +
             "FROM V3_TR_HUELGAJL " +
@@ -536,7 +536,7 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
@@ -555,7 +555,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT entidad_clave, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(CAST(FECHA_AUDIENCIA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_AUDIENCIA " +
             "FROM V3_TR_HUELGAJL " +
@@ -568,7 +568,7 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
@@ -587,7 +587,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT entidad_clave, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(CAST(FECHA_ACTO_PROCESAL AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_ACTO_PROCESAL " +
             "FROM V3_TR_HUELGAJL " +
@@ -600,7 +600,7 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
@@ -619,7 +619,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT entidad_clave, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(CAST(FECHA_RESOLU_EMPLAZ AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLU_EMPLAZ " +
             "FROM V3_TR_HUELGAJL " +
@@ -632,7 +632,7 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
@@ -651,7 +651,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT entidad_clave, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(CAST(FECHA_RESOLU_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLU_HUELGA " +
             "FROM V3_TR_HUELGAJL " +
@@ -664,7 +664,7 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
@@ -683,7 +683,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT entidad_clave, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(CAST(FECHA_ESTALLAM_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_ESTALLAM_HUELGA " +
             "FROM V3_TR_HUELGAJL " +
@@ -696,7 +696,7 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
@@ -715,7 +715,7 @@ public class V3QHuelga {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT entidad_clave, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(CAST(FECHA_LEVANT_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_LEVANT_HUELGA " +
             "FROM V3_TR_HUELGAJL " +
@@ -728,7 +728,7 @@ public class V3QHuelga {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
@@ -844,7 +844,7 @@ public class V3QHuelga {
             "       FORMATDATETIME(CAST(FECHA_ESTALLAM_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_ESTALLAM_HUELGA, " +
             "       FORMATDATETIME(CAST(FECHA_EMPLAZAMIENTO AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_EMPLAZAMIENTO, " +
             "       FORMATDATETIME(CAST(FECHA_RESOLU_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLU_HUELGA, " +
-            "       FORMATDATETIME(CAST(FECHA_LEVANT_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_LEVANT_HUELGA, " +
+            "       FORMATDATETIME(CAST(FECHA_LEVANT_HUELGA AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_LEVANT_HUELGA " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE (FASE_SOLI_EXPEDIENTE = 7 AND ESTATUS_EXPEDIENTE = 1) " +
             "  AND ( " +
@@ -896,7 +896,7 @@ public class V3QHuelga {
             "       CASE WHEN PREHUELGA = 1 THEN 'SI' WHEN PREHUELGA = 2 THEN 'NO' ELSE CAST(PREHUELGA AS VARCHAR) END AS PREHUELGA, " +
             "       CASE WHEN ESTALLAMIENTO_HUELGA = 1 THEN 'SI' WHEN ESTALLAMIENTO_HUELGA = 2 THEN 'NO' ELSE CAST(ESTALLAMIENTO_HUELGA AS VARCHAR) END AS ESTALLAMIENTO_HUELGA, " +
             "       FORMATDATETIME(CAST(FECHA_EMPLAZAMIENTO AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_EMPLAZAMIENTO, " +
-            "       FORMATDATETIME(CAST(FECHA_RESOLU_EMPLAZ AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLU_EMPLAZ, " +
+            "       FORMATDATETIME(CAST(FECHA_RESOLU_EMPLAZ AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLU_EMPLAZ " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE (FASE_SOLI_EXPEDIENTE = 5 AND ESTATUS_EXPEDIENTE = 1) " +
             "  AND (ESTALLAMIENTO_HUELGA <> 2 OR PREHUELGA <> 2)";
@@ -940,7 +940,7 @@ public class V3QHuelga {
             "       CASE WHEN PREHUELGA = 1 THEN 'SI' WHEN PREHUELGA = 2 THEN 'NO' ELSE CAST(PREHUELGA AS VARCHAR) END AS PREHUELGA, " +
             "       CASE WHEN ESTALLAMIENTO_HUELGA = 1 THEN 'SI' WHEN ESTALLAMIENTO_HUELGA = 2 THEN 'NO' ELSE CAST(ESTALLAMIENTO_HUELGA AS VARCHAR) END AS ESTALLAMIENTO_HUELGA, " +
             "       FORMATDATETIME(CAST(FECHA_EMPLAZAMIENTO AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_EMPLAZAMIENTO, " +
-            "       FORMATDATETIME(CAST(FECHA_RESOLU_EMPLAZ AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLU_EMPLAZ, " +
+            "       FORMATDATETIME(CAST(FECHA_RESOLU_EMPLAZ AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_RESOLU_EMPLAZ " +
             "FROM V3_TR_HUELGAJL " +
             "WHERE (FASE_SOLI_EXPEDIENTE = 6 AND ESTATUS_EXPEDIENTE = 1) " +
             "  AND (ESTALLAMIENTO_HUELGA <> 2 OR PREHUELGA <> 1 OR EMPLAZAMIENTO_HUELGA <> 1)";

@@ -30,8 +30,7 @@ public class V3Colectivo {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
-            + "CASE WHEN TIPO_ASUNTO = 9 THEN 'No_identificado' ELSE NULL END AS TIPO_ASUNTO, "
-            + "PERIODO "
+            + "CASE WHEN TIPO_ASUNTO = 9 THEN 'No_identificado' ELSE NULL END AS TIPO_ASUNTO "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE TIPO_ASUNTO = 9";
 
@@ -45,8 +44,7 @@ public class V3Colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TIPO_ASUNTO"),
-                    rs.getString("PERIODO")
+                    rs.getString("TIPO_ASUNTO")
                 });
             }
 
@@ -65,8 +63,7 @@ public class V3Colectivo {
             + "  WHEN CONSTANCIA_CONS_EXPEDIDA = 2 THEN 'No' "
             + "  WHEN CONSTANCIA_CONS_EXPEDIDA = 9 THEN 'No identificado' "
             + "  ELSE NULL "
-            + "END AS CONSTANCIA_CONS_EXPEDIDA, "
-            + "PERIODO "
+            + "END AS CONSTANCIA_CONS_EXPEDIDA "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE CONSTANCIA_CONS_EXPEDIDA IN (2,9) "
             + "  AND INCOMPETENCIA = 1 "
@@ -82,8 +79,7 @@ public class V3Colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("CONSTANCIA_CONS_EXPEDIDA"),
-                    rs.getString("PERIODO")
+                    rs.getString("CONSTANCIA_CONS_EXPEDIDA")
                 });
             }
 
@@ -102,8 +98,7 @@ public class V3Colectivo {
             + "  WHEN SUSPENSION_TMP = 2 THEN 'No' "
             + "  WHEN SUSPENSION_TMP = 9 THEN 'No identificado' "
             + "  ELSE NULL "
-            + "END AS SUSPENSION_TMP, "
-            + "PERIODO "
+            + "END AS SUSPENSION_TMP "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE SUSPENSION_TMP IN (2,9) "
             + "  AND TIPO_ASUNTO = 2 "
@@ -122,8 +117,7 @@ public class V3Colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("SUSPENSION_TMP"),
-                    rs.getString("PERIODO")
+                    rs.getString("SUSPENSION_TMP")
                 });
             }
 
@@ -142,8 +136,7 @@ public class V3Colectivo {
             + "  WHEN TERMINACION_TRAB = 2 THEN 'No' "
             + "  WHEN TERMINACION_TRAB = 9 THEN 'No identificado' "
             + "  ELSE NULL "
-            + "END AS TERMINACION_TRAB, "
-            + "PERIODO "
+            + "END AS TERMINACION_TRAB "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE TERMINACION_TRAB IN (2,9) "
             + "  AND TIPO_ASUNTO = 2 "
@@ -162,8 +155,7 @@ public class V3Colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("TERMINACION_TRAB"),
-                    rs.getString("PERIODO")
+                    rs.getString("TERMINACION_TRAB")
                 });
             }
 
@@ -182,8 +174,7 @@ public class V3Colectivo {
             + "  WHEN VIOLA_DERECHOS = 2 THEN 'No' "
             + "  WHEN VIOLA_DERECHOS = 9 THEN 'No identificado' "
             + "  ELSE NULL "
-            + "END AS VIOLA_DERECHOS, "
-            + "PERIODO "
+            + "END AS VIOLA_DERECHOS "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE VIOLA_DERECHOS = 2 "
             + "  AND TIPO_ASUNTO = 2 "
@@ -203,8 +194,7 @@ public class V3Colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("VIOLA_DERECHOS"),
-                    rs.getString("PERIODO")
+                    rs.getString("VIOLA_DERECHOS")
                 });
             }
 
@@ -220,8 +210,7 @@ public class V3Colectivo {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
             + "CASE WHEN ESTATUS_DEMANDA = 9 THEN 'No_identificado' ELSE NULL END AS ESTATUS_DEMANDA, "
-            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, "
-            + "PERIODO "
+            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE ESTATUS_DEMANDA = 9";
 
@@ -236,8 +225,7 @@ public class V3Colectivo {
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("ESTATUS_DEMANDA"),
-                    rs.getString("COMENTARIOS"),
-                    rs.getString("PERIODO")
+                    rs.getString("COMENTARIOS")
                 });
             }
 
@@ -253,8 +241,7 @@ public class V3Colectivo {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, "
             + "CASE WHEN ESTATUS_DEMANDA = 5 THEN 'En trámite o prevención' ELSE NULL END AS ESTATUS_DEMANDA, "
-            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, "
-            + "PERIODO "
+            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE ESTATUS_DEMANDA = 5 "
             + "  AND FECHA_APERTURA_EXPEDIENTE < DATEADD('MONTH', -2, CURRENT_DATE)";
@@ -285,8 +272,7 @@ public class V3Colectivo {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
             + "CASE WHEN ESTATUS_EXPEDIENTE = 9 THEN 'No_identificado' ELSE NULL END AS ESTATUS_EXPEDIENTE, "
-            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, "
-            + "PERIODO "
+            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE ESTATUS_EXPEDIENTE = 9";
 
@@ -301,8 +287,7 @@ public class V3Colectivo {
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("ESTATUS_EXPEDIENTE"),
-                    rs.getString("COMENTARIOS"),
-                    rs.getString("PERIODO")
+                    rs.getString("COMENTARIOS")
                 });
             }
 
@@ -317,8 +302,7 @@ public class V3Colectivo {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, "
-            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS, "
-            + "PERIODO "
+            + "REPLACE(COMENTARIOS, ',', '') AS COMENTARIOS "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE INCOMPETENCIA = 9";
 
@@ -333,8 +317,7 @@ public class V3Colectivo {
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("INCOMPETENCIA"),
-                    rs.getString("COMENTARIOS"),
-                    rs.getString("PERIODO")
+                    rs.getString("COMENTARIOS")
                 });
             }
 
@@ -350,8 +333,7 @@ public class V3Colectivo {
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
             + "CASE WHEN INCOMPETENCIA = 2 THEN 'No' ELSE NULL END AS INCOMPETENCIA, "
-            + "TIPO_INCOMPETENCIA, "
-            + "PERIODO "
+            + "TIPO_INCOMPETENCIA "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE INCOMPETENCIA = 2 "
             + "  AND TIPO_INCOMPETENCIA IS NOT NULL";
@@ -366,8 +348,7 @@ public class V3Colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("INCOMPETENCIA"),
-                    rs.getString("PERIODO")
+                    rs.getString("INCOMPETENCIA")
                 });
             }
 
@@ -381,7 +362,7 @@ public class V3Colectivo {
     public ArrayList PivIncompetencia(Connection con) {
         Array = new ArrayList();
 
-        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA, PERIODO "
+        sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, INCOMPETENCIA "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE INCOMPETENCIA = 1 "
             + "  AND (FECHA_PRES_DEMANDA IS NOT NULL OR "
@@ -422,8 +403,7 @@ public class V3Colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("INCOMPETENCIA"),
-                    rs.getString("PERIODO")
+                    rs.getString("INCOMPETENCIA")
                 });
             }
 
@@ -442,8 +422,7 @@ public class V3Colectivo {
             + "  WHEN PREVE_DEMANDA = 2 THEN 'No' "
             + "  WHEN PREVE_DEMANDA = 9 THEN 'No identificado' "
             + "  ELSE NULL "
-            + "END AS PREVE_DEMANDA, "
-            + "PERIODO "
+            + "END AS PREVE_DEMANDA "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE PREVE_DEMANDA IN (2,9) "
             + "  AND INCOMPETENCIA = 2 "
@@ -459,8 +438,7 @@ public class V3Colectivo {
                 Array.add(new String[]{
                     rs.getString("CLAVE_ORGANO"),
                     rs.getString("EXPEDIENTE_CLAVE"),
-                    rs.getString("PREVE_DEMANDA"),
-                    rs.getString("PERIODO")
+                    rs.getString("PREVE_DEMANDA")
                 });
             }
 
@@ -527,8 +505,7 @@ public class V3Colectivo {
             + "  WHEN AUTO_DEPURACION = 2 THEN 'No' "
             + "  WHEN AUTO_DEPURACION = 9 THEN 'No identificado' "
             + "  ELSE NULL "
-            + "END AS AUTO_DEPURACION, "
-            + "PERIODO "
+            + "END AS AUTO_DEPURACION "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE AUTO_DEPURACION IN (2,9) "
             + "  AND ESTATUS_DEMANDA = 1 "
@@ -563,8 +540,7 @@ public class V3Colectivo {
             + "  WHEN AUDIENCIA_JUICIO = 2 THEN 'No' "
             + "  WHEN AUDIENCIA_JUICIO = 9 THEN 'No identificado' "
             + "  ELSE NULL "
-            + "END AS AUDIENCIA_JUICIO, "
-            + "PERIODO "
+            + "END AS AUDIENCIA_JUICIO "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE AUDIENCIA_JUICIO IN (2,9) "
             + "  AND ESTATUS_DEMANDA = 1 "
@@ -693,8 +669,7 @@ public class V3Colectivo {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
-            + "CASE WHEN FASE_SOLI_EXPEDIENTE = 99 THEN 'No identificado' ELSE NULL END AS FASE_SOLI_EXPEDIENTE, "
-            + "PERIODO "
+            + "CASE WHEN FASE_SOLI_EXPEDIENTE = 99 THEN 'No identificado' ELSE NULL END AS FASE_SOLI_EXPEDIENTE "
             + "FROM V3_TR_COLECTIVOJL "
             + "WHERE FASE_SOLI_EXPEDIENTE = 99 "
             + "  AND (FORMA_SOLUCION_AD IS NOT NULL OR OTRO_ESP_SOLUCION_AD IS NOT NULL OR "

@@ -27,13 +27,13 @@ public class V3QIndividual {
         // - concatenación con || para armar fechas
         // - DATE 'YYYY-MM-DD' para comparaciones si aplica
         sql =
-            "SELECT clave_organo, expediente_clave, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES " +
             "FROM (" +
-            "   SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTE, " +
+            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, " +
             "          CAST(YEAR(FECHA_APERTURA_EXPEDIENTE) AS VARCHAR) AS FECHA_APERTURA_ANIO, " +
             "          CAST(YEAR(FECHA_APERTURA_EXPEDIENTE)+1 AS VARCHAR) AS FECHA_APERTURA_ANIO_SIG, " +
-            "          SUBSTRING(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
+            "          SUBSTRING(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
             "   FROM V3_TR_INDIVIDUALJL" +
             ") x " +
             "WHERE x.FECHA_APERTURA_ANIO <> x.EXPE_ANIO " +
@@ -47,8 +47,8 @@ public class V3QIndividual {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -69,12 +69,12 @@ public class V3QIndividual {
         // Aquí quité el filtro PValidacion.AñoJuridico.
         // Si quieres seguir excluyendo años, pon IN('2020','2021','2022'...)
         sql =
-            "SELECT clave_organo, expediente_clave, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES " +
             "FROM (" +
-            "   SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTE, " +
+            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, " +
             "          CAST(YEAR(FECHA_APERTURA_EXPEDIENTE) AS VARCHAR) AS FECHA_APERTURA_ANIO, " +
-            "          SUBSTRING(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
+            "          SUBSTRING(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''))-3, 4) AS EXPE_ANIO " +
             "   FROM V3_TR_INDIVIDUALJL" +
             ") x " +
             "WHERE x.FECHA_APERTURA_ANIO <> x.EXPE_ANIO";
@@ -85,8 +85,8 @@ public class V3QIndividual {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -105,13 +105,13 @@ public class V3QIndividual {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT clave_organo, expediente_clave, " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES, " +
             "       COMENTARIOS " +
             "FROM (" +
-            "   SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTE, " +
+            "   SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, " +
             "          CAST(YEAR(FECHA_APERTURA_EXPEDIENTE) AS VARCHAR) AS FECHA_APERTURA_ANIO, " +
-            "          SUBSTRING(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''))-3, 4) AS EXPE_ANIO, " +
+            "          SUBSTRING(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''), LENGTH(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''))-3, 4) AS EXPE_ANIO, " +
             "          COMENTARIOS " +
             "   FROM V3_TR_INDIVIDUALJL" +
             ") x " +
@@ -124,8 +124,8 @@ public class V3QIndividual {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES"),
                     rs.getString("COMENTARIOS")
                 });
@@ -192,7 +192,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         // - Comparar directo > CURRENT_DATE
         // - Excluir sentinela 1899-09-09
         sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(" + campoFecha + ",'dd/MM/yyyy') AS " + alias + " " +
             "FROM V3_TR_INDIVIDUALJL " +
             "WHERE " + campoFecha + " > CURRENT_DATE " +
@@ -204,8 +204,8 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 out.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA:MODIFICAR CLASE PRINCIPAL
                     rs.getString(alias)
                 });
@@ -265,7 +265,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         // Si FECHA_APERTURA_EXPEDIENTE y FECHA_PRES_DEMANDA son DATE:
         // comparamos directo sin to_date()
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_PRES_DEMANDA,'dd/MM/yyyy') AS FECHA_PRES_DEMANDA " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -278,9 +278,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_PRES_DEMANDA")
                 });
@@ -300,7 +300,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_ADMI_DEMANDA,'dd/MM/yyyy') AS FECHA_ADMI_DEMANDA, " +
             "       FORMATDATETIME(FECHA_PRES_DEMANDA,'dd/MM/yyyy') AS FECHA_PRES_DEMANDA " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -313,9 +313,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_ADMI_DEMANDA"),
                     rs.getString("FECHA_PRES_DEMANDA")
                 });
@@ -335,7 +335,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_ADMI_DEMANDA,'dd/MM/yyyy') AS FECHA_ADMI_DEMANDA, " +
             "       COMENTARIOS " +
@@ -349,9 +349,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_ADMI_DEMANDA"),
                     rs.getString("COMENTARIOS")
@@ -372,7 +372,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_DEPURACION,'dd/MM/yyyy') AS FECHA_DEPURACION " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -385,9 +385,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_DEPURACION")
                 });
@@ -407,7 +407,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_AUDIENCIA_PRELIM,'dd/MM/yyyy') AS FECHA_AUDIENCIA_PRELIM " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -420,9 +420,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_AUDIENCIA_PRELIM")
                 });
@@ -442,7 +442,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_AUDIENCIA_JUICIO,'dd/MM/yyyy') AS FECHA_AUDIENCIA_JUICIO " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -455,9 +455,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_AUDIENCIA_JUICIO")
                 });
@@ -477,7 +477,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_ACTO_PROCESAL,'dd/MM/yyyy') AS FECHA_ACTO_PROCESAL " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -490,9 +490,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_ACTO_PROCESAL")
                 });
@@ -512,7 +512,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_DICTO_RESOLUCION_AD,'dd/MM/yyyy') AS FECHA_DICTO_RESOLUCION_AD " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -525,9 +525,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_DICTO_RESOLUCION_AD")
                 });
@@ -547,7 +547,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_RESOLUCION_TA,'dd/MM/yyyy') AS FECHA_RESOLUCION_TA " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -560,9 +560,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_RESOLUCION_TA")
                 });
@@ -582,7 +582,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_DICTO_RESOLUCION_AP,'dd/MM/yyyy') AS FECHA_DICTO_RESOLUCION_AP " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -595,9 +595,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_DICTO_RESOLUCION_AP")
                 });
@@ -617,7 +617,7 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
         Array = new ArrayList<>();
 
         sql =
-            "SELECT entidad_clave, clave_organo, expediente_clave, " +
+            "SELECT ENTIDAD_CLAVE, CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE, " +
             "       FORMATDATETIME(FECHA_DICTO_RESOLUCION_AJ,'dd/MM/yyyy') AS FECHA_DICTO_RESOLUCION_AJ " +
             "FROM V3_TR_INDIVIDUALJL " +
@@ -630,9 +630,9 @@ public ArrayList<String[]> FECHA_APERTURA_EXPEDIENTE_FUT(Connection con) {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("entidad_clave"),
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("ENTIDAD_CLAVE"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTE"),
                     rs.getString("FECHA_DICTO_RESOLUCION_AJ")
                 });

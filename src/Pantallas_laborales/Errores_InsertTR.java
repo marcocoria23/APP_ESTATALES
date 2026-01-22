@@ -144,6 +144,7 @@ public class Errores_InsertTR extends javax.swing.JFrame {
             .addGap(0, 440, Short.MAX_VALUE)
         );
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jTextArea1.setRows(5);
@@ -330,7 +331,7 @@ public class Errores_InsertTR extends javax.swing.JFrame {
         T_regNI=V3queryNE.Total_Reg_NITR(con,ArrayTablas[i]);
         TTRegNI=TTRegNI+Integer.parseInt(T_regNI);
         texto=texto+ArrayTablas[i].replace("V3_", "").replace("JL","")+": \n \n"
-                +"Reg_TR:"+T_reg+"    "+"Reg_NoIn:"+T_regNI+ "\n"
+                +"Reg_Ok:"+T_reg+"    "+"Reg_Error:"+T_regNI+ "\n"
                 +"-----------------------------------------------------------------\n";
          progres=progres+5;
          jProgressBar1.setValue(progres);

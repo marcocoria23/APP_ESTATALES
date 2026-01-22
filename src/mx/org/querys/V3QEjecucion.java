@@ -20,15 +20,15 @@ public class V3QEjecucion {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTES " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTES " +
             "FROM ( " +
-            "  SELECT clave_organo, expediente_clave, " +
+            "  SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "         FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES, " +
             "         SUBSTRING(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy'), LENGTH(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy')) - 3, 4) AS FECHA_APERTURA_EXPEDIENTE, " +
             "         (CAST(SUBSTRING(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy'), LENGTH(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy')) - 3, 4) AS INT) + 1) AS FECHA_APERTURA_EXPEDIENTES1, " +
             "         SUBSTRING( TRIM( " +
-            "             REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(expediente_clave,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ','')) " +
-            "         ), LENGTH(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(expediente_clave,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ',''))) - 3, 4) AS EXPE_ANIO " +
+            "             REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EXPEDIENTE_CLAVE,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ','')) " +
+            "         ), LENGTH(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EXPEDIENTE_CLAVE,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ',''))) - 3, 4) AS EXPE_ANIO " +
             "  FROM V3_TR_ejecucionjl " +
             ") X " +
             "WHERE X.FECHA_APERTURA_EXPEDIENTE <> X.EXPE_ANIO " +
@@ -44,8 +44,8 @@ public class V3QEjecucion {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -69,14 +69,14 @@ public class V3QEjecucion {
         // - y al final: EXPE_AÑO NOT IN (AñoJuridico) -> como no hay PValidacion, lo dejé sin esa parte.
         // Si quieres que conserve la lista AñoJuridico, pásamela fija o dime cómo la quieres (ej: ('2020','2021','2022'))
         String sql =
-            "SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTES " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTES " +
             "FROM ( " +
-            "  SELECT clave_organo, expediente_clave, " +
+            "  SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "         FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES, " +
             "         SUBSTRING(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy'), LENGTH(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy')) - 3, 4) AS FECHA_APERTURA_EXPEDIENTE, " +
             "         SUBSTRING( TRIM( " +
-            "             REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(expediente_clave,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ','')) " +
-            "         ), LENGTH(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(expediente_clave,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ',''))) - 3, 4) AS EXPE_ANIO " +
+            "             REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EXPEDIENTE_CLAVE,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ','')) " +
+            "         ), LENGTH(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EXPEDIENTE_CLAVE,'-',''),'I',''),'J',''),'L',''),'/',''),'ll',''),'II',''),'I ',''))) - 3, 4) AS EXPE_ANIO " +
             "  FROM V3_TR_ejecucionjl " +
             ") X " +
             "WHERE X.FECHA_APERTURA_EXPEDIENTE <> X.EXPE_ANIO " +
@@ -90,8 +90,8 @@ public class V3QEjecucion {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -110,13 +110,13 @@ public class V3QEjecucion {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave, FECHA_APERTURA_EXPEDIENTES " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTES " +
             "FROM ( " +
-            "  SELECT clave_organo, expediente_clave, " +
+            "  SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "         FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTES, " +
             "         SUBSTRING(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy'), LENGTH(FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd-MM-yyyy')) - 3, 4) AS FECHA_APERTURA_EXPEDIENTE, " +
-            "         SUBSTRING(REGEXP_REPLACE(expediente_clave, '[^0-9]', ''), " +
-            "                   LENGTH(REGEXP_REPLACE(expediente_clave, '[^0-9]', '')) - 3, 4) AS EXPE_ANIO " +
+            "         SUBSTRING(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', ''), " +
+            "                   LENGTH(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '')) - 3, 4) AS EXPE_ANIO " +
             "  FROM V3_TR_ejecucionjl " +
             ") X " +
             "WHERE X.FECHA_APERTURA_EXPEDIENTE <> X.EXPE_ANIO";
@@ -129,8 +129,8 @@ public class V3QEjecucion {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     rs.getString("FECHA_APERTURA_EXPEDIENTES")
                 });
             }
@@ -149,7 +149,7 @@ public class V3QEjecucion {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_EJECUCIONJL " +
             "WHERE FECHA_APERTURA_EXPEDIENTE > CURRENT_DATE " +
@@ -163,8 +163,8 @@ public class V3QEjecucion {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA: MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_APERTURA_EXPEDIENTE")
                 });
@@ -181,7 +181,7 @@ public class V3QEjecucion {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_PRESENTACION AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_PRESENTACION " +
             "FROM V3_TR_EJECUCIONJL " +
             "WHERE FECHA_PRESENTACION > CURRENT_DATE " +
@@ -195,8 +195,8 @@ public class V3QEjecucion {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA: MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_PRESENTACION")
                 });
@@ -213,7 +213,7 @@ public class V3QEjecucion {
         ArrayList<String[]> Array = new ArrayList<>();
 
         String sql =
-            "SELECT clave_organo, expediente_clave,  " +
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE,  " +
             "       FORMATDATETIME(CAST(FECHA_CONCLUSION AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_CONCLUSION " +
             "FROM V3_TR_EJECUCIONJL " +
             "WHERE FECHA_CONCLUSION > CURRENT_DATE " +
@@ -227,8 +227,8 @@ public class V3QEjecucion {
 
             while (rs.next()) {
                 Array.add(new String[]{
-                    rs.getString("clave_organo"),
-                    rs.getString("expediente_clave"),
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
                     //NOTA: MODIFICAR CLASE PRINCIPAL
                     rs.getString("FECHA_CONCLUSION")
                 });
@@ -251,20 +251,20 @@ public class V3QEjecucion {
             "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, " +
             "       FORMATDATETIME(CAST(FECHA_APERTURA_EXPEDIENTE AS TIMESTAMP), 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE " +
             "FROM V3_TR_EJECUCIONJL " +
-            "WHERE CLAVE_ORGANO || CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT)  IN ( " +
+            "WHERE CLAVE_ORGANO || CAST(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS BIGINT)  IN ( " +
             "  SELECT CLAVE_ORGANO || EXPEDIENTE_CLAVE2  " +
             "  FROM ( " +
             "    SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE2,  COUNT(*) AS CUENTA " +
             "    FROM ( " +
             "      SELECT CLAVE_ORGANO, " +
-            "             CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT) AS EXPEDIENTE_CLAVE2 " +
+            "             CAST(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS BIGINT) AS EXPEDIENTE_CLAVE2 " +
             "      FROM V3_TR_EJECUCIONJL " +
             "    ) T " +
             "    GROUP BY CLAVE_ORGANO, EXPEDIENTE_CLAVE2 " +
             "  ) X " +
             "  WHERE CUENTA > 1 " +
             ") " +
-            "ORDER BY CLAVE_ORGANO, CAST(REGEXP_REPLACE(expediente_clave, '[^0-9]', '') AS BIGINT)";
+            "ORDER BY CLAVE_ORGANO, CAST(REGEXP_REPLACE(EXPEDIENTE_CLAVE, '[^0-9]', '') AS BIGINT)";
 
         System.out.println(sql);
 

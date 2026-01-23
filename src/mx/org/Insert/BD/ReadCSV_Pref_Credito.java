@@ -122,7 +122,7 @@ public class ReadCSV_Pref_Credito {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 14) {
+                    if (numeroColumnas == 13) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Pref_Credito> ad = new ArrayList<>();

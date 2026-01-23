@@ -121,7 +121,7 @@ public class ReadCSV_Part_Act_Huelga {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 19) {
+                    if (numeroColumnas == 18) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Part_Act_Huelga> ad = new ArrayList<>();

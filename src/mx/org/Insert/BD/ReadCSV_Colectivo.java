@@ -120,7 +120,7 @@ public class ReadCSV_Colectivo {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 69) {
+                    if (numeroColumnas == 68) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Colectivo> ad = new ArrayList<>();

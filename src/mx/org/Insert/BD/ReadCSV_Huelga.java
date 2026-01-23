@@ -120,7 +120,7 @@ public class ReadCSV_Huelga {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 54) {
+                    if (numeroColumnas == 53) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Huelga> ad = new ArrayList<>();

@@ -121,7 +121,7 @@ public class ReadCSV_Part_Dem_Ordinario {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 22) {
+                    if (numeroColumnas == 21) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Part_Dem_Ordinario> ad = new ArrayList<>();

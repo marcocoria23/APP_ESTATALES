@@ -120,7 +120,7 @@ public class ReadCSV_Ordinario {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 95) {
+                    if (numeroColumnas == 94) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Ordinario> ad = new ArrayList<>();

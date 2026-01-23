@@ -120,7 +120,7 @@ public class ReadCSV_Paraprocesal {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 20) {
+                    if (numeroColumnas == 19) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Paraprocesal> ad = new ArrayList<>();

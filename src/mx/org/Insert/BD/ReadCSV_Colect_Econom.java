@@ -120,7 +120,7 @@ public class ReadCSV_Colect_Econom {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 56) {
+                    if (numeroColumnas == 55) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Colect_Econom> ad = new ArrayList<>();

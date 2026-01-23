@@ -120,7 +120,7 @@ public class ReadCSV_Part_Dem_Colectivo {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 33) {
+                    if (numeroColumnas == 32) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Part_Dem_Colectivo> ad = new ArrayList<>();

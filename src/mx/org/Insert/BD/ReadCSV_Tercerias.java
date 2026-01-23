@@ -121,7 +121,7 @@ public class ReadCSV_Tercerias {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 14) {
+                    if (numeroColumnas == 13) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Tercerias> ad = new ArrayList<>();

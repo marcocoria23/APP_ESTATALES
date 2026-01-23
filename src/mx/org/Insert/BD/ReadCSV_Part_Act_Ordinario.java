@@ -121,7 +121,7 @@ public class ReadCSV_Part_Act_Ordinario {
                     CSVRecord firstRecord = csvParser.iterator().next();
                     numeroColumnas = firstRecord.size();
                     System.out.println("numcol" + numeroColumnas);
-                    if (numeroColumnas == 26) {
+                    if (numeroColumnas == 25) {
                         System.out.println("+hellooou+" + numeroColumnas);
                         cargando cargar = new cargando();
                         ArrayList<Part_Act_Ordinario> ad = new ArrayList<>();

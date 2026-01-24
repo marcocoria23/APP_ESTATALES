@@ -79,6 +79,8 @@ public class InsertaTR extends javax.swing.JFrame {
        ReadCSV_Part_Act_Ordinario ReadPartActOrdinario=new ReadCSV_Part_Act_Ordinario();
        ReadCSV_Part_Dem_Ordinario ReadPartDemOrdinario=new ReadCSV_Part_Dem_Ordinario();
        CreaTriggers Triggers=new CreaTriggers();
+       Execute ex=new Execute();
+       PMenu men=new PMenu();
     
     public InsertaTR() {
         initComponents();
@@ -110,6 +112,8 @@ public class InsertaTR extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        LEntidad = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -175,6 +179,11 @@ public class InsertaTR extends javax.swing.JFrame {
 
         jLabel6.setText("Errores Insert");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setText("Entidad:");
+
+        LEntidad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         javax.swing.GroupLayout PanelILayout = new javax.swing.GroupLayout(PanelI);
         PanelI.setLayout(PanelILayout);
         PanelILayout.setHorizontalGroup(
@@ -217,13 +226,21 @@ public class InsertaTR extends javax.swing.JFrame {
                     .addGroup(PanelILayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addGroup(PanelILayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelILayout.setVerticalGroup(
             PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelILayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(16, 16, 16)
+                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(LEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -315,6 +332,8 @@ public class InsertaTR extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        LEntidad.setText(ex.NombreEntidad(men.IdEntidadInicio));  
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -550,11 +569,13 @@ public class InsertaTR extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Insertar;
     private javax.swing.JButton Insertar1;
+    private javax.swing.JLabel LEntidad;
     private javax.swing.JLabel LNombreTabla;
     public static javax.swing.JPanel PanelI;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

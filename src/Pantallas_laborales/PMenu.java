@@ -5,8 +5,15 @@
  */
 package Pantallas_laborales;
 
+
+import Conexion.ConexionH2;
+import QuerysH2.Execute;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import plantillas.AbrirPdf;
@@ -17,6 +24,8 @@ import plantillas.AbrirXlsx;
  * @author ANTONIO.CORIA
  */
 public class PMenu extends javax.swing.JFrame {
+    
+    public static int IdEntidadInicio=0;
 
     /**
      * Creates new form Menu
@@ -29,6 +38,7 @@ public class PMenu extends javax.swing.JFrame {
         jTextField4.setEditable(false);
         jTextField1.setEditable(false);
         iniciarReloj(jLabel5);
+       
     }
 
     /**
@@ -107,6 +117,9 @@ public class PMenu extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -235,7 +248,6 @@ public class PMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_jMenu4MouseClicked
 
@@ -292,6 +304,31 @@ public class PMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
           AbrirPdf.abrirPdfDesdeResources("/plantillas/Validaciones para justicia laboal_07082025_VF.pdf");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+         try (Connection con = ConexionH2.getConnection();) {
+        Execute ex=new  Execute();    
+         IdEntidadInicio=ex.EntidadInicio(con); 
+        if (IdEntidadInicio<=0){
+        CapturaInfo info=new CapturaInfo();
+        info.setVisible(true);    
+        jMenuItem3.setEnabled(false);
+        jMenuItem4.setEnabled(false);
+        jMenuItem5.setEnabled(false);    
+        this.setVisible(false);
+        }else{
+        jMenuItem3.setEnabled(true);
+        jMenuItem4.setEnabled(true);
+        jMenuItem5.setEnabled(true);
+        }
+         } catch (SQLException ex) {
+            Logger.getLogger(PMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_formWindowOpened
 
     public static void iniciarReloj(JLabel label) {
 

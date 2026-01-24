@@ -15,7 +15,7 @@ public class ConexionH2 {
     
     private static final String URL ="jdbc:h2:file:./Database/Mybd;MODE=Oracle;DATABASE_TO_UPPER=false;DB_CLOSE_ON_EXIT=TRUE;AUTO_SERVER=TRUE"; // Ruta relativa
     private static final String USER = "sa";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "AppRalabEstatales2026";
 
     // Método para obtener la conexión
     public static Connection getConnection() throws SQLException {

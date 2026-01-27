@@ -3,9 +3,13 @@ package triggers;
 import org.h2.api.Trigger;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class V3TrPartActHuelgaJL implements Trigger {
+ private static final String Sql_Error = "INSERT INTO ERRORES_INSERT "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
+            + "VALUES (?,?,?,?,?,?,?,?)";
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -19,6 +23,13 @@ public class V3TrPartActHuelgaJL implements Trigger {
         String s = v.toString().trim();
         if (s.isEmpty()) return null;
         return Integer.valueOf(s);
+    }
+ private String asString(Object v) {
+        if (v == null) {
+            return null;
+        }
+        String s = v.toString().trim();
+        return (s.isEmpty() || "null".equalsIgnoreCase(s)) ? null : s;
     }
 
     private void setIfNull(Object[] newRow, int idx, Object value) {
@@ -57,6 +68,29 @@ try {
         Integer orgObrera = asInt(newRow[iORG_OBRERA]);
         Integer nombreOrgObrera = asInt(newRow[iNOMBRE_ORG_OBRERA]);
 
+        
+      
+           if (actor != null &&
+actor != 3 && actor != 5 && actor != 7 && actor != 99) {
+                String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+                String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+                String id_actor = asString(newRow[iID_ACTOR]);
+                try (PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+                    pe.setString(1, "V3_TR_PART_ACT_HUELGAJL");
+                    pe.setString(2, claveOrgano);
+                    pe.setString(3, expediente);
+                    pe.setString(4, id_actor);
+                    pe.setString(5, "");
+                    pe.setInt(6, 0);
+                    pe.setString(7, "El campo 'Actor' solo puede tener el valor= 3.-Sindicato, 5.-Mayoría de trabajadores o 7.-Otro");
+                    pe.setString(8, "");
+                    pe.executeUpdate();
+                } catch (SQLException ex) {
+                    // Si hasta la tabla de errores falla, al menos lo imprimimos
+                    System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+                }
+            }
+            
         // ===== Reglas para Actor = 3 (sindicato) =====
         if (actor != null && actor == 3) {
             setIfNull(newRow, iNOMBRE_SINDICATO, "No Especifico");

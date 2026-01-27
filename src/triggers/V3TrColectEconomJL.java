@@ -4,12 +4,19 @@ import org.h2.api.Trigger;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class V3TrColectEconomJL implements Trigger {
 
     private static final Date D_1899 = Date.valueOf("1899-09-09");
     private static final Date D_1999 = Date.valueOf("1999-09-09");
+     private static final Date DATE_1899_09_09 = Date.valueOf("1899-09-09");
+    private static final Date DATE_1999_09_09 = Date.valueOf("1999-09-09");
+    private static final String Sql_Error="INSERT INTO ERRORES_INSERT "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
+            + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
+            + "VALUES (?,?,?,?,?,?,?,?)";
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -79,6 +86,12 @@ public class V3TrColectEconomJL implements Trigger {
 
         return Date.valueOf(s); // yyyy-MM-dd
     }
+    
+            private String asString(Object v) {
+if (v == null) return null;
+String s = v.toString().trim();
+return (s.isEmpty() || "null".equalsIgnoreCase(s)) ? null : s;
+}
 
     private void replace1999With1899Dbg(Object[] newRow, int idxDate, String name) {
         Object raw = get(newRow, idxDate, name);
@@ -101,6 +114,8 @@ public class V3TrColectEconomJL implements Trigger {
          try {
             //dbg("fire() row.length=" + (newRow == null ? -1 : newRow.length));
         // ===== Índices (0-based) según tu CREATE TABLE =====
+         final int iCLAVE_ORGANO = 1;
+        final int iEXPEDIENTE_CLAVE = 2;
         final int iFECHA_APERTURA_EXPEDIENTE = 3;
         final int iTIPO_ASUNTO = 4;
         final int iNAT_CONFLICTO = 5;
@@ -261,6 +276,48 @@ public class V3TrColectEconomJL implements Trigger {
             replace1999With1899Dbg(newRow, iFECHA_ACTO_PROCESAL, "FECHA_ACTO_PROCESAL");
             replace1999With1899Dbg(newRow, iFECHA_RESOLUCION, "FECHA_RESOLUCION");
 
+             Integer tipoAsunto = asInt(newRow[iTIPO_ASUNTO]);            
+              if (tipoAsunto != null && tipoAsunto == 1){
+	String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+        String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+          try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+            pe.setString(1, "V3_TR_COLECT_ECONOMJL");
+            pe.setString(2, claveOrgano);
+            pe.setString(3, expediente);
+            pe.setString(4, "");
+            pe.setString(5, "");
+            pe.setInt(6, 999);
+            pe.setString(7, "El campo Tipo_asunto solo puede tener el valor= 2.-Colectivo ");
+            pe.setString(8, "");
+            pe.executeUpdate();	
+	} catch (SQLException ex) {
+            // Si hasta la tabla de errores falla, al menos lo imprimimos
+            System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+        }
+          
+            }
+          Integer fase = asInt(newRow[iFASE_SOLI_EXPEDIENTE]);
+             if (fase != null
+                     && (fase == 1 || fase == 2 || fase == 3 || fase == 4
+                     || fase == 5 || fase == 6 || fase == 7 || fase == 9)) {
+                 String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+                 String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+                 try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+                     pe.setString(1, "V3_TR_COLECT_ECONOMJL");
+                     pe.setString(2, claveOrgano);
+                     pe.setString(3, expediente);
+                     pe.setString(4, "");
+                     pe.setString(5, "");
+                     pe.setInt(6, 0);
+                     pe.setString(7, "El campo Fase_soli_expediente solo puede tener el valor=8.-Audiencia dentro del procedimiento colectivo de naturaleza económica");
+                     pe.setString(8, "");
+                     pe.executeUpdate();
+                 } catch (SQLException ex) {
+                     // Si hasta la tabla de errores falla, al menos lo imprimimos
+                     System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+                 }
+          
+            }
            
        } catch (Exception e) {
             dbg("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());

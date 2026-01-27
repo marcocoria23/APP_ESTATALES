@@ -7,7 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Insert TMP"/>
+    <Property name="title" type="java.lang.String" value="App Valida RALAB"/>
   </Properties>
   <AccessibilityProperties>
     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Inserta BD"/>
@@ -126,11 +126,6 @@
                           <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jProgressBar1" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="Insertar" min="-2" pref="105" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -149,6 +144,11 @@
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="Insertar" min="-2" pref="105" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -176,9 +176,9 @@
                   <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Insertar1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                  <EmptySpace pref="78" max="32767" attributes="0"/>
                   <Component id="Insertar" min="-2" pref="38" max="-2" attributes="0"/>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="LNombreTabla" min="-2" pref="18" max="-2" attributes="0"/>
@@ -201,6 +201,7 @@
         <Component class="javax.swing.JButton" name="Insertar1">
           <Properties>
             <Property name="text" type="java.lang.String" value="......."/>
+            <Property name="toolTipText" type="java.lang.String" value="Seleccionar Archivo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Insertar1ActionPerformed"/>
@@ -212,6 +213,7 @@
               <Image iconType="3" name="/Ico/Insertar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Insertar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Insertar Informacion CSV a BD"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InsertarActionPerformed"/>
@@ -227,7 +229,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Ico/errorins.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Errores de Insert"/>
+            <Property name="toolTipText" type="java.lang.String" value="Consultar Errores de insert"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>

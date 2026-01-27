@@ -248,7 +248,7 @@ public class ReadCSV_Audiencias {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Gormato de archivo incorrecto");
+                JOptionPane.showMessageDialog(null, "Formato de archivo incorrecto");
             }
 
         }

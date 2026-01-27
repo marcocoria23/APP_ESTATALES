@@ -4,12 +4,17 @@ import org.h2.api.Trigger;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class V3TrIndividualJL implements Trigger {
 
     private static final Date D_1899 = Date.valueOf("1899-09-09");
     private static final Date D_1999 = Date.valueOf("1999-09-09");
+    private static final String Sql_Error="INSERT INTO ERRORES_INSERT "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
+            + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
+            + "VALUES (?,?,?,?,?,?,?,?)";
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -26,6 +31,13 @@ public class V3TrIndividualJL implements Trigger {
         if (s.isEmpty() || "null".equalsIgnoreCase(s)) return null;
         return Integer.valueOf(s);
     }
+    
+    private String asString(Object v) {
+if (v == null) return null;
+String s = v.toString().trim();
+return (s.isEmpty() || "null".equalsIgnoreCase(s)) ? null : s;
+}
+    
 
     private Date asDate(Object v) {
         if (v == null) return null;
@@ -176,6 +188,49 @@ public class V3TrIndividualJL implements Trigger {
             replace1999With1899(newRow, iFECHA_ACTO_PROCESAL);
             replace1999With1899(newRow, iFECHA_RES_TA);
 
+           Integer tipoAsunto = asInt(newRow[iTIPO_ASUNTO]); 
+       if (tipoAsunto != null && tipoAsunto == 2){
+	String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+        String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+          try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+            pe.setString(1, "V3_TR_INDIVIDUALJL");
+            pe.setString(2, claveOrgano);
+            pe.setString(3, expediente);
+            pe.setString(4, "");
+            pe.setString(5, "");
+            pe.setInt(6, 999);
+            pe.setString(7, "El campo Tipo_asunto solo puede tener el valor= 1.-Individual ");
+            pe.setString(8, "");
+            pe.executeUpdate();	
+	} catch (SQLException ex) {
+            // Si hasta la tabla de errores falla, al menos lo imprimimos
+            System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+        }
+          
+            }
+            
+       
+      if (fase != null &&
+(fase == 5 || fase == 6 || fase == 7 || fase == 8 || fase == 9)) {
+	String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+        String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+          try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+            pe.setString(1, "V3_TR_INDIVIDUALJL");
+            pe.setString(2, claveOrgano);
+            pe.setString(3, expediente);
+            pe.setString(4, "");
+            pe.setString(5, "");
+            pe.setInt(6, 0);
+            pe.setString(7, "El campo Fase_soli_expediente solo puede tener el valor= 1.-Audiencia preliminar,2.-Audiencia de juicio,3.-Tramitación por auto de depuración,4.-Tramitación sin audiencias");
+            pe.setString(8, "");
+            pe.executeUpdate();	
+	} catch (SQLException ex) {
+            // Si hasta la tabla de errores falla, al menos lo imprimimos
+            System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+        }
+          
+            }
+            
         } catch (IllegalArgumentException e) {
             throw new SQLException(
                 "Trigger V3TrIndividualJL IllegalArgumentException | "

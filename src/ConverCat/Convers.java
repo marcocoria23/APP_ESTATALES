@@ -4,6 +4,8 @@
  */
 package ConverCat;
 
+import Pantallas_laborales.PMenu;
+import QuerysH2.Execute;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +16,18 @@ import java.time.format.DateTimeFormatter;
 /**
  *
  * @author ANTONIO.CORIA
+ * 
+ * 
+ * 
  */
+
+  
 public class Convers {
 
     DateTimeFormatter F_DMY = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     DateTimeFormatter F_ISO = DateTimeFormatter.ISO_LOCAL_DATE;
     String sql = "", id = "";
+    Execute ex=new Execute();
 
     public String toH2Date(String s, String Campo) {
         try {
@@ -239,7 +247,10 @@ public class Convers {
         if (campo == null || campo.trim().isEmpty()) {
             return null;
         } else {
-            if (!esNumero(campo)) {
+              int IdEntidad=ex.EntidadInicio(con);
+            if (IdEntidad==4 || IdEntidad==5||IdEntidad==6||IdEntidad==7||IdEntidad==8||IdEntidad==10||IdEntidad==11||IdEntidad==12
+                    ||IdEntidad==13||IdEntidad==14||IdEntidad==17||IdEntidad==18||IdEntidad==20||IdEntidad==21||IdEntidad==22||IdEntidad==23
+                    ||IdEntidad==27||IdEntidad==29||IdEntidad==30||IdEntidad==32) {
                 String sql = "SELECT ID FROM V3_TC_EDAD_TRABAJADORJL "
                         + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
 
@@ -873,10 +884,10 @@ public class Convers {
         } else {
             if (!esNumero(campo)) {
                 String sql = "SELECT ID FROM V3_TC_SECTOR_RAMAJL "
-                        + "WHERE REPLACE(UPPER(TRIM(DESCRIPCION)),',','') = ?";
+                        + "WHERE REPLACE(REPLACE(UPPER(TRIM(DESCRIPCION)),'_',' '),',','') = ?";
 
                 try ( PreparedStatement ps = con.prepareStatement(sql)) {
-                    ps.setString(1, campo.toUpperCase().trim());
+                    ps.setString(1, campo.toUpperCase().trim().replace("_", " ").replace(",", ""));
 
                     try ( ResultSet rs = ps.executeQuery()) {
                         if (rs.next()) {

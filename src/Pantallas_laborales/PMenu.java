@@ -112,7 +112,7 @@ public class PMenu extends javax.swing.JFrame {
         jMenuBar6.add(jMenu12);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("App Justicia Laboral");
+        setTitle("App Valida RALAB");
         setBackground(new java.awt.Color(0, 51, 153));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {

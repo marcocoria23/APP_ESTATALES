@@ -4,17 +4,29 @@ import org.h2.api.Trigger;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class V3TrHuelgaJL implements Trigger {
 
     private static final Date D_1899 = Date.valueOf("1899-09-09");
     private static final Date D_1999 = Date.valueOf("1999-09-09");
+    private static final String Sql_Error = "INSERT INTO ERRORES_INSERT "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
+            + "VALUES (?,?,?,?,?,?,?,?)";
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
-                     String tableName, boolean before, int type) {
+            String tableName, boolean before, int type) {
         // no-op
+    }
+
+    private String asString(Object v) {
+        if (v == null) {
+            return null;
+        }
+        String s = v.toString().trim();
+        return (s.isEmpty() || "null".equalsIgnoreCase(s)) ? null : s;
     }
 
     private void dbg(String msg) {
@@ -22,10 +34,12 @@ public class V3TrHuelgaJL implements Trigger {
     }
 
     private Object get(Object[] row, int idx, String name) {
-        if (row == null) throw new IllegalArgumentException("newRow es null");
+        if (row == null) {
+            throw new IllegalArgumentException("newRow es null");
+        }
         if (idx < 0 || idx >= row.length) {
             throw new IllegalArgumentException(
-                "Indice fuera de rango: " + name + " idx=" + idx + " row.length=" + row.length
+                    "Indice fuera de rango: " + name + " idx=" + idx + " row.length=" + row.length
             );
         }
         return row[idx];
@@ -34,33 +48,51 @@ public class V3TrHuelgaJL implements Trigger {
     private void setIfNullDbg(Object[] row, int idx, String name, Object value) {
         Object cur = get(row, idx, name); // valida rango
         if (cur == null) {
-            dbg("SET " + name + "[" + idx + "] = " + value + " (" +
-                (value == null ? "null" : value.getClass().getName()) + ")");
+            dbg("SET " + name + "[" + idx + "] = " + value + " ("
+                    + (value == null ? "null" : value.getClass().getName()) + ")");
             row[idx] = value;
         }
     }
 
     private Integer asInt(Object v) {
-        if (v == null) return null;
-        if (v instanceof Number) return ((Number) v).intValue();
+        if (v == null) {
+            return null;
+        }
+        if (v instanceof Number) {
+            return ((Number) v).intValue();
+        }
         String s = v.toString().trim();
-        if (s.isEmpty()) return null;
+        if (s.isEmpty()) {
+            return null;
+        }
         return Integer.valueOf(s);
     }
 
     // OJO: Date.valueOf SOLO acepta yyyy-MM-dd
     private Date asDate(Object v) {
-        if (v == null) return null;
-        if (v instanceof Date) return (Date) v;
-        if (v instanceof java.util.Date) return new Date(((java.util.Date) v).getTime());
+        if (v == null) {
+            return null;
+        }
+        if (v instanceof Date) {
+            return (Date) v;
+        }
+        if (v instanceof java.util.Date) {
+            return new Date(((java.util.Date) v).getTime());
+        }
 
         String s = v.toString().trim();
-        if (s.isEmpty() || s.equalsIgnoreCase("null")) return null;
+        if (s.isEmpty() || s.equalsIgnoreCase("null")) {
+            return null;
+        }
 
         // dd/MM/yyyy (por si llega desde CSV)
         if (s.matches("\\d{2}/\\d{2}/\\d{4}")) {
-            if (s.equals("09/09/1999")) return D_1999;
-            if (s.equals("09/09/1899")) return D_1899;
+            if (s.equals("09/09/1999")) {
+                return D_1999;
+            }
+            if (s.equals("09/09/1899")) {
+                return D_1899;
+            }
             String yyyy = s.substring(6, 10);
             String mm = s.substring(3, 5);
             String dd = s.substring(0, 2);
@@ -84,8 +116,8 @@ public class V3TrHuelgaJL implements Trigger {
                 row[idxDate] = D_1899;
             }
         } catch (Exception e) {
-            dbg("ERROR convirtiendo fecha en " + name + "[" + idxDate + "], valor=" + raw +
-                " (" + (raw == null ? "null" : raw.getClass().getName()) + ")");
+            dbg("ERROR convirtiendo fecha en " + name + "[" + idxDate + "], valor=" + raw
+                    + " (" + (raw == null ? "null" : raw.getClass().getName()) + ")");
             throw e;
         }
     }
@@ -96,43 +128,45 @@ public class V3TrHuelgaJL implements Trigger {
             dbg("fire() row.length=" + (newRow == null ? -1 : newRow.length));
 
             // ===== ÍNDICES =====
+            final int iCLAVE_ORGANO = 1;
+            final int iEXPEDIENTE_CLAVE = 2;
             final int iFECHA_APERTURA_EXPEDIENTE = 3;
-            final int iTIPO_ASUNTO              = 4;
-            final int iRAMA_INDUS_INVOLUCRAD    = 5;
-            final int iSECTOR_RAMA              = 6;
-            final int iSUBSECTOR_RAMA           = 7;
+            final int iTIPO_ASUNTO = 4;
+            final int iRAMA_INDUS_INVOLUCRAD = 5;
+            final int iSECTOR_RAMA = 6;
+            final int iSUBSECTOR_RAMA = 7;
 
-            final int iOTRO_MOTIVO              = 19;
-            final int iESPECIFIQUE_MOTIVO       = 20;
+            final int iOTRO_MOTIVO = 19;
+            final int iESPECIFIQUE_MOTIVO = 20;
 
-            final int iINCOMPETENCIA            = 21;
-            final int iTIPO_INCOMPETENCIA       = 22;
-            final int iESPECIFIQUE_INCOMP       = 23;
-            final int iFECHA_PRESENTA_PETIC     = 24;
+            final int iINCOMPETENCIA = 21;
+            final int iTIPO_INCOMPETENCIA = 22;
+            final int iESPECIFIQUE_INCOMP = 23;
+            final int iFECHA_PRESENTA_PETIC = 24;
 
-            final int iEMPLAZAMIENTO_HUELGA     = 27;
-            final int iFECHA_EMPLAZAMIENTO      = 28;
-            final int iPREHUELGA                = 29;
-            final int iAUDIENCIA_CONCILIACION   = 30;
-            final int iFECHA_AUDIENCIA          = 31;
+            final int iEMPLAZAMIENTO_HUELGA = 27;
+            final int iFECHA_EMPLAZAMIENTO = 28;
+            final int iPREHUELGA = 29;
+            final int iAUDIENCIA_CONCILIACION = 30;
+            final int iFECHA_AUDIENCIA = 31;
 
-            final int iESTALLAMIENTO_HUELGA     = 32;
+            final int iESTALLAMIENTO_HUELGA = 32;
 
-            final int iESTATUS_EXPEDIENTE       = 35;
-            final int iFECHA_ACTO_PROCESAL      = 36;
-            final int iFASE_SOLI_EXPEDIENTE     = 37;
+            final int iESTATUS_EXPEDIENTE = 35;
+            final int iFECHA_ACTO_PROCESAL = 36;
+            final int iFASE_SOLI_EXPEDIENTE = 37;
 
-            final int iFORMA_SOLUCION_EMPLAZ    = 38;
-            final int iESPECIFI_FORMA_EMPLAZ    = 39;
-            final int iFECHA_RESOLU_EMPLAZ      = 40;
+            final int iFORMA_SOLUCION_EMPLAZ = 38;
+            final int iESPECIFI_FORMA_EMPLAZ = 39;
+            final int iFECHA_RESOLU_EMPLAZ = 40;
 
-            final int iFORMA_SOLUCION_HUELGA    = 43;
-            final int iESPECIFI_FORMA_HUELGA    = 44;
-            final int iFECHA_RESOLU_HUELGA      = 45;
-            final int iTIPO_SENTENCIA           = 46;
+            final int iFORMA_SOLUCION_HUELGA = 43;
+            final int iESPECIFI_FORMA_HUELGA = 44;
+            final int iFECHA_RESOLU_HUELGA = 45;
+            final int iTIPO_SENTENCIA = 46;
 
-            final int iFECHA_ESTALLAM_HUELGA    = 47;
-            final int iFECHA_LEVANT_HUELGA      = 48;
+            final int iFECHA_ESTALLAM_HUELGA = 47;
+            final int iFECHA_LEVANT_HUELGA = 48;
 
             // ===== Defaults con debug + validación de índice =====
             setIfNullDbg(newRow, iTIPO_ASUNTO, "TIPO_ASUNTO", 9);
@@ -146,6 +180,25 @@ public class V3TrHuelgaJL implements Trigger {
                 setIfNullDbg(newRow, iESPECIFIQUE_MOTIVO, "ESPECIFIQUE_MOTIVO", "No Especifico");
             }
 
+            Integer TipoAsunto = asInt(get(newRow, iTIPO_ASUNTO, "TIPO_ASUNTO"));
+            if (TipoAsunto == 1) {
+                String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+                String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+                try (PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+                    pe.setString(1, "V3_TR_HUELGA");
+                    pe.setString(2, claveOrgano);
+                    pe.setString(3, expediente);
+                    pe.setString(4, "");
+                    pe.setString(5, "");
+                    pe.setInt(6, 0);
+                    pe.setString(7, "El campo 'Tipo de Asunto' solo puede tener el valor= 2.-Colectivo");
+                    pe.setString(8, "");
+                    pe.executeUpdate();
+                } catch (SQLException ex) {
+                    // Si hasta la tabla de errores falla, al menos lo imprimimos
+                    System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+                }
+            }
             // Incompetencia default
             setIfNullDbg(newRow, iINCOMPETENCIA, "INCOMPETENCIA", 9);
 
@@ -193,7 +246,7 @@ public class V3TrHuelgaJL implements Trigger {
                 if (estatusExp != null && estatusExp == 1) {
                     setIfNullDbg(newRow, iFASE_SOLI_EXPEDIENTE, "FASE_SOLI_EXPEDIENTE", 99);
                     Integer fase = asInt(get(newRow, iFASE_SOLI_EXPEDIENTE, "FASE_SOLI_EXPEDIENTE"));
-
+                                          
                     if (fase != null && fase == 5) {
                         setIfNullDbg(newRow, iFORMA_SOLUCION_EMPLAZ, "FORMA_SOLUCION_EMPLAZ", 9);
                         setIfNullDbg(newRow, iFECHA_RESOLU_EMPLAZ, "FECHA_RESOLU_EMPLAZ", D_1899);
@@ -243,6 +296,27 @@ public class V3TrHuelgaJL implements Trigger {
             replace1999With1899Dbg(newRow, iFECHA_RESOLU_HUELGA, "FECHA_RESOLU_HUELGA");
             replace1999With1899Dbg(newRow, iFECHA_ESTALLAM_HUELGA, "FECHA_ESTALLAM_HUELGA");
             replace1999With1899Dbg(newRow, iFECHA_LEVANT_HUELGA, "FECHA_LEVANT_HUELGA");
+            
+            Integer fase = asInt(newRow[iFASE_SOLI_EXPEDIENTE]);
+             if (fase != null
+                            && fase != 5 && fase != 6 && fase != 7 && fase != 99) {
+                        String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+                        String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+                        try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+                            pe.setString(1, "V3_TR_HUELGAJL");
+                        pe.setString(2, claveOrgano);
+                        pe.setString(3, expediente);
+                        pe.setString(4, "");
+                        pe.setString(5, "");
+                        pe.setInt(6, 0);
+                        pe.setString(7, "El campo 'Fase en la que se solucionó el expediente' solo puede tener el valor= 5.-Emplazamiento a huelga, 6.-Prehuelga o 7.-Huelga");
+                        pe.setString(8, "");
+                        pe.executeUpdate();
+                    } catch (SQLException ex) {
+                        // Si hasta la tabla de errores falla, al menos lo imprimimos
+                        System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+                    }
+                }
 
         } catch (Exception e) {
             dbg("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
@@ -251,6 +325,11 @@ public class V3TrHuelgaJL implements Trigger {
         }
     }
 
-    @Override public void close() { }
-    @Override public void remove() { }
+    @Override
+    public void close() {
+    }
+
+    @Override
+    public void remove() {
+    }
 }

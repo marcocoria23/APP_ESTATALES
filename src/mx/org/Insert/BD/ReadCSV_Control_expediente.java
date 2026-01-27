@@ -157,7 +157,7 @@ public class ReadCSV_Control_expediente {
                               if (record.get(16).toUpperCase().length() == 3) {
                                       c.SetMUNICIPIO_CLAVE(record.get(14).toUpperCase()+record.get(16).toUpperCase());
                                 }
-                             if (record.get(16).toUpperCase().length() == 5) {
+                             if (record.get(16).toUpperCase().length() == 5||record.get(13).toUpperCase().length()==4) {
                                       c.SetMUNICIPIO_CLAVE(record.get(14).toUpperCase());
                                 }
                             }else{

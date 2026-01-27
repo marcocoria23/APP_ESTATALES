@@ -51,6 +51,7 @@ public class ValidaTR extends javax.swing.JFrame {
         LEntidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("App Valida RALAB");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -67,6 +68,7 @@ public class ValidaTR extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/valida_tr_icon.jpg"))); // NOI18N
         jButton1.setText("Valida");
+        jButton1.setToolTipText("Validar Informacion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

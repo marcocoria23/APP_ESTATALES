@@ -155,7 +155,7 @@ public class ReadCSV_Part_Dem_Individual {
                                 if (record.get(17).toUpperCase().length() == 2) {
                                     c.SetMUNICIPIO_CLAVE_EMPR(record.get(15).toUpperCase() + "0" + record.get(17).toUpperCase());
                                 }
-                                if (record.get(17).toUpperCase().length() == 5) {
+                                if (record.get(17).toUpperCase().length() == 5||record.get(17).toUpperCase().length()==4) {
                                     c.SetMUNICIPIO_CLAVE_EMPR(record.get(17).toUpperCase());
                                 }
                                  if (record.get(17).toUpperCase().length() == 3) {

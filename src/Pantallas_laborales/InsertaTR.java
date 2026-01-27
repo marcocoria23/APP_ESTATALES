@@ -119,7 +119,7 @@ public class InsertaTR extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Insert TMP");
+        setTitle("App Valida RALAB");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -143,6 +143,7 @@ public class InsertaTR extends javax.swing.JFrame {
         });
 
         Insertar1.setText(".......");
+        Insertar1.setToolTipText("Seleccionar Archivo");
         Insertar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Insertar1ActionPerformed(evt);
@@ -151,6 +152,7 @@ public class InsertaTR extends javax.swing.JFrame {
 
         Insertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Insertar.png"))); // NOI18N
         Insertar.setText("Insertar");
+        Insertar.setToolTipText("Insertar Informacion CSV a BD");
         Insertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InsertarActionPerformed(evt);
@@ -160,7 +162,7 @@ public class InsertaTR extends javax.swing.JFrame {
         jLabel3.setText("Ruta Archivo:");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/errorins.png"))); // NOI18N
-        jButton1.setToolTipText("Errores de Insert");
+        jButton1.setToolTipText("Consultar Errores de insert");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -214,11 +216,7 @@ public class InsertaTR extends javax.swing.JFrame {
                                 .addComponent(jLabel6))
                             .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 18, Short.MAX_VALUE))
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(PanelILayout.createSequentialGroup()
                 .addContainerGap()
@@ -232,6 +230,10 @@ public class InsertaTR extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelILayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         PanelILayout.setVerticalGroup(
             PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,9 +256,9 @@ public class InsertaTR extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Insertar1)
-                .addGap(54, 54, 54)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,7 +357,7 @@ public class InsertaTR extends javax.swing.JFrame {
 
         new Thread(() -> {
             Valores();
-       if (!jTextField1.equals(""))
+       if (!jTextField1.getText().equals(""))
        {
            int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Insertar todos los archivos RALAB?", "Alerta!", JOptionPane.YES_NO_OPTION);   
            if (resp == JOptionPane.YES_OPTION) {

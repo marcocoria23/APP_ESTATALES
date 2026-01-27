@@ -149,7 +149,7 @@ public class ReadCSV_Individual {
                                 if (record.get(13).toUpperCase().length() == 2) {
                                     c.SetMUNICIPIO_CLAVE(record.get(11).toUpperCase() + "0" + record.get(13).toUpperCase());
                                 }
-                                if (record.get(13).toUpperCase().length() == 5) {
+                                if (record.get(13).toUpperCase().length() == 5||record.get(13).toUpperCase().length()==4) {
                                     c.SetMUNICIPIO_CLAVE(record.get(13).toUpperCase());
                                 } 
                                  if (record.get(13).toUpperCase().length() == 3) {

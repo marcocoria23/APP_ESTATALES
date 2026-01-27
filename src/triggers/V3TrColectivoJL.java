@@ -4,12 +4,17 @@ import org.h2.api.Trigger;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class V3TrColectivoJL implements Trigger {
 
     private static final Date DATE_1899_09_09 = Date.valueOf("1899-09-09");
     private static final Date DATE_1999_09_09 = Date.valueOf("1999-09-09");
+    private static final String Sql_Error="INSERT INTO ERRORES_INSERT "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
+            + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
+            + "VALUES (?,?,?,?,?,?,?,?)";
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -43,6 +48,12 @@ public class V3TrColectivoJL implements Trigger {
             newRow[idx] = DATE_1899_09_09;
         }
     }
+    
+        private String asString(Object v) {
+if (v == null) return null;
+String s = v.toString().trim();
+return (s.isEmpty() || "null".equalsIgnoreCase(s)) ? null : s;
+}
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
@@ -51,6 +62,8 @@ try {
         // 0  NOMBRE_ORGANO_JURIS
         // 1  CLAVE_ORGANO
         // 2  EXPEDIENTE_CLAVE
+        final int iCLAVE_ORGANO = 1;
+        final int iEXPEDIENTE_CLAVE = 2;
         final int iFECHA_APERTURA_EXPEDIENTE = 3;
 
         final int iTIPO_ASUNTO = 4;
@@ -298,6 +311,49 @@ try {
         replace1999With1899(newRow, iFECHA_ACTO_PROCESAL);
         replace1999With1899(newRow, iFECHA_DICTO_RESOLUCION_AD);
         replace1999With1899(newRow, iFECHA_RESOLUCION_AJ);
+        Integer tipoAsunto = asInt(newRow[iTIPO_ASUNTO]);
+        if (tipoAsunto != null && tipoAsunto == 1) {
+	String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+        String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+          try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+            pe.setString(1, "V3_TR_COLECTIVOJL");
+            pe.setString(2, claveOrgano);
+            pe.setString(3, expediente);
+            pe.setString(4, "");
+            pe.setString(5, "");
+            pe.setInt(6, 999);
+            pe.setString(7, "El campo Tipo_asunto solo puede tener el valor= 2.-Colectivo ");
+            pe.setString(8, "");
+            pe.executeUpdate();	
+	} catch (SQLException ex) {
+            // Si hasta la tabla de errores falla, al menos lo imprimimos
+            System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+        }
+          
+            }
+        Integer fase = asInt(newRow[iFASE_SOLI_EXPEDIENTE]);
+    if (fase != null
+            && (fase == 1 || fase == 4 || fase == 5 || fase == 6
+            || fase == 7 || fase == 8 || fase == 9)) {
+        String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+        String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+        try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+            pe.setString(1, "V3_TR_COLECTIVOJL");
+            pe.setString(2, claveOrgano);
+            pe.setString(3, expediente);
+            pe.setString(4, "");
+            pe.setString(5, "");
+            pe.setInt(6, 0);
+            pe.setString(7, "El campo Fase_soli_expediente solo puede tener el valor=2.-Audiencia de juicio,3.-Tramitación por auto de depuración");
+            pe.setString(8, "");
+            pe.executeUpdate();
+        } catch (SQLException ex) {
+            // Si hasta la tabla de errores falla, al menos lo imprimimos
+            System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+        }
+
+    }
+        
    } catch (Exception e) {
             System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
             e.printStackTrace(System.out); // <-- AQUI veras la linea exacta

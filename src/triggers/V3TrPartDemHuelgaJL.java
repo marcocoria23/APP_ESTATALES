@@ -3,9 +3,13 @@ package triggers;
 import org.h2.api.Trigger;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class V3TrPartDemHuelgaJL implements Trigger {
+ private static final String Sql_Error = "INSERT INTO ERRORES_INSERT "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
+            + "VALUES (?,?,?,?,?,?,?,?)";
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -20,6 +24,13 @@ public class V3TrPartDemHuelgaJL implements Trigger {
         if (s.isEmpty()) return null;
         return Integer.valueOf(s);
     }
+ private String asString(Object v) {
+        if (v == null) {
+            return null;
+        }
+        String s = v.toString().trim();
+        return (s.isEmpty() || "null".equalsIgnoreCase(s)) ? null : s;
+    }
 
     private void setIfNull(Object[] newRow, int idx, Object value) {
         if (newRow[idx] == null) newRow[idx] = value;
@@ -33,6 +44,9 @@ try {
         // 1  CLAVE_ORGANO
         // 2  EXPEDIENTE_CLAVE
         // 3  ID_DEMANDADO
+        final int iCLAVE_ORGANO          = 1;
+        final int iEXPEDIENTE_CLAVE      = 2;
+        final int iID_DEMANDADO      = 3;
         final int iDEMANDADO = 4;
         final int iDEFENSA_DEM = 5;
         final int iTIPO = 6;
@@ -60,6 +74,26 @@ try {
 
         Integer demandado = asInt(newRow[iDEMANDADO]);
 
+        if (demandado != null && demandado != 1 && demandado != 9) {
+                String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+                String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+                String id_demandado = asString(newRow[iID_DEMANDADO]);
+                try (PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+                    pe.setString(1, "V3_TR_PART_DEM_HUELGAJL");
+                    pe.setString(2, claveOrgano);
+                    pe.setString(3, expediente);
+                    pe.setString(4, id_demandado);
+                    pe.setString(5, "");
+                    pe.setInt(6, 0);
+                    pe.setString(7, "El campo 'Demandado' solo puede tener el valor= 1.-Patrón");
+                    pe.setString(8, "");
+                    pe.executeUpdate();
+                } catch (SQLException ex) {
+                    // Si hasta la tabla de errores falla, al menos lo imprimimos
+                    System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+                }
+            }
+        
         // ===== Reglas cuando DEMANDADO = 1 =====
         if (demandado != null && demandado == 1) {
 

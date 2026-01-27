@@ -2,9 +2,15 @@ package triggers;
 
 import org.h2.api.Trigger;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class V3TrPartActColectivoJL implements Trigger {
+    
+     private static final String Sql_Error="INSERT INTO ERRORES_INSERT "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
+            + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
+            + "VALUES (?,?,?,?,?,?,?,?)";
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -23,6 +29,12 @@ public class V3TrPartActColectivoJL implements Trigger {
     private void setIfNull(Object[] newRow, int idx, Object value) {
         if (newRow[idx] == null) newRow[idx] = value;
     }
+    
+            private String asString(Object v) {
+if (v == null) return null;
+String s = v.toString().trim();
+return (s.isEmpty() || "null".equalsIgnoreCase(s)) ? null : s;
+}
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
@@ -32,6 +44,9 @@ try {
         // 1  CLAVE_ORGANO
         // 2  EXPEDIENTE_CLAVE
         // 3  ID_ACTOR (VARCHAR)  <-- NO se usa en reglas
+         final int iCLAVE_ORGANO = 1;
+        final int iEXPEDIENTE_CLAVE = 2;
+        final int iID_ACTOR = 3;
         final int iACTOR = 4;
         final int iDEFENSA_ACT = 5;
 
@@ -124,6 +139,30 @@ try {
                 setIfNull(newRow, iLONGITUD_EMPR, "No Identificado");
             }
         }
+        
+        
+              if (actor != null && (actor==1||actor==5||actor==6 )){
+	String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+        String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+        String idactor = asString(newRow[iID_ACTOR]);
+          try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+            pe.setString(1, "V3_TR_PART_ACT_COLECTIVOJL");
+            pe.setString(2, claveOrgano);
+            pe.setString(3, expediente);
+            pe.setString(4, idactor);
+            pe.setString(5, "");
+            pe.setInt(6, 999);
+            pe.setString(7, "El campo Actor solo puede tener el valor= 2.-Patrón,3.-Sindicato,4.-Coalición de trabajadores,7.-Otro");
+            pe.setString(8, "");
+            pe.executeUpdate();	
+	} catch (SQLException ex) {
+            // Si hasta la tabla de errores falla, al menos lo imprimimos
+            System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+        }
+          
+            }
+        
+        
     } catch (Exception e) {
             System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
             e.printStackTrace(System.out); // <-- AQUI veras la linea exacta

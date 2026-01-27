@@ -4,6 +4,7 @@ import org.h2.api.Trigger;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -17,7 +18,9 @@ public class V3TrOrdinarioJL implements Trigger {
 
     private static final Date DATE_1899_09_09 = Date.valueOf("1899-09-09");
     private static final Date DATE_1999_09_09 = Date.valueOf("1999-09-09");
-
+    private static final String Sql_Error="INSERT INTO ERRORES_INSERT "
+            + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
+            + "VALUES (?,?,?,?,?,?,?,?)";
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
                      String tableName, boolean before, int type) {
@@ -31,6 +34,12 @@ public class V3TrOrdinarioJL implements Trigger {
         if (s.isEmpty()) return null;
         return Integer.valueOf(s);
     }
+    
+    private String asString(Object v) {
+        if (v == null) return null;
+        String s = v.toString().trim();
+        return (s.isEmpty() || "null".equalsIgnoreCase(s)) ? null : s;
+}
 
    private void setIfNull(Object[] newRow, int idx, Object value) {
     if (newRow[idx] == null) {
@@ -68,6 +77,8 @@ try {
         // 0 NOMBRE_ORGANO_JURIS
         // 1 CLAVE_ORGANO
         // 2 EXPEDIENTE_CLAVE
+        final int  iCLAVE_ORGANO = 1;
+        final int  iEXPEDIENTE_CLAVE = 2;
         final int iFECHA_APERTURA_EXPEDIENTE = 3;
 
         final int iTIPO_ASUNTO = 4;
@@ -169,7 +180,7 @@ try {
         // ===== Lógica (misma que tu PL/SQL) =====
 
         Integer tipoAsunto = asInt(newRow[iTIPO_ASUNTO]);
-
+     
         if (tipoAsunto != null && tipoAsunto == 1) {
 
             setIfNull(newRow, iCONTRATO_ESCRITO, 9);
@@ -324,8 +335,8 @@ try {
                     setIfNull(newRow, iFASE_SOLI_EXPEDIENTE, 99);
 
                     Integer fase = asInt(newRow[iFASE_SOLI_EXPEDIENTE]);
-
-                    // OJO: tu script trae lógica para fase=9 (FORMA_SOLUCIONFE...) pero
+                    
+                  /// OJO: tu script trae lógica para fase=9 (FORMA_SOLUCIONFE...) pero
                     // en tu CREATE TABLE sí existe FORMA_SOLUCIONFE/FECHA_DICTO_RESOLUCIONFE etc.
                     if (fase != null && fase == 9) {
                         setIfNull(newRow, iFORMA_SOLUCIONFE, 9);
@@ -380,7 +391,26 @@ try {
         replace1999With1899(newRow, iFECHA_DICTO_RESOLUCIONFE);
         replace1999With1899(newRow, iFECHA_DICTO_RESOLUCIONAP);
         replace1999With1899(newRow, iFECHA_RESOLUCIONAJ);
-        
+         Integer fase = asInt(newRow[iFASE_SOLI_EXPEDIENTE]);
+                    
+                   if (fase != null && fase != 1 && fase != 2 && fase != 9) {
+                        String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
+                        String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
+                        try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {
+                        pe.setString(1, "V3_TR_ORDINARIOJL");
+                        pe.setString(2, claveOrgano);
+                        pe.setString(3, expediente);
+                        pe.setString(4, "");
+                        pe.setString(5, "");
+                        pe.setInt(6, 0);
+                        pe.setString(7, "El campo 'Fase en la que se solucionó el expediente' solo puede tener el valor= 1.-Audiencia preliminar, 2.-Audiencia de juicio o 9.Fase escrita ");
+                        pe.setString(8, "");
+                        pe.executeUpdate(); 
+                     } catch (SQLException ex) {
+                        // Si hasta la tabla de errores falla, al menos lo imprimimos
+                        System.err.println("❌ No se pudo guardar en ERRORES_INSERT: " + ex.getMessage());
+                        }
+                        }
      } catch (Exception e) {
             System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());
             e.printStackTrace(System.out); // <-- AQUI veras la linea exacta

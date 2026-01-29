@@ -6,11 +6,12 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class V3TrColectivoJL implements Trigger {
 
-    private static final Date DATE_1899_09_09 = Date.valueOf("1899-09-09");
-    private static final Date DATE_1999_09_09 = Date.valueOf("1999-09-09");
+    private static final LocalDate DATE_1899_09_09 = LocalDate.of(1899, 9, 9);
+    private static final LocalDate DATE_1999_09_09 = LocalDate.of(1999, 9, 9);
     private static final String Sql_Error="INSERT INTO ERRORES_INSERT "
             + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
             + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "

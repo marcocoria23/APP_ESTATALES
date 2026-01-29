@@ -5,12 +5,13 @@ import org.h2.api.Trigger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class V3TrPreferenciaCreditoJL implements Trigger {
 
-    private static final Date D1899 = Date.valueOf("1899-09-09");
-    private static final Date D1999 = Date.valueOf("1999-09-09");
-
+   private static final LocalDate D1899 = LocalDate.of(1899, 9, 9);
+    private static final LocalDate D1999 = LocalDate.of(1999, 9, 9);
+    
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
                      String tableName, boolean before, int type) {

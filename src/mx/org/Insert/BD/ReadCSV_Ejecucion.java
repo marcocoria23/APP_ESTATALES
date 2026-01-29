@@ -236,12 +236,19 @@ public class ReadCSV_Ejecucion {
                             }
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "Archivo .CSV sin Registros-V3_TMP_EJECUCIONJL");
+                           // JOptionPane.showMessageDialog(null, "Archivo .CSV sin Registros-V3_TMP_EJECUCIONJL");
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Numero de columnas no coincide con la Base de datos");
                     }
-                }
+                 } catch (IOException e) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Error al leer el archivo CSV:\n" + e.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+}
             } else {
                 JOptionPane.showMessageDialog(null, "Gormato de archivo incorrecto");
             }

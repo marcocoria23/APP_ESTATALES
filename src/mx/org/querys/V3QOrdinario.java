@@ -322,7 +322,6 @@ public class V3QOrdinario {
             "FROM V3_TR_ORDINARIOJL " +
             "WHERE FECHA_ACTO_PROCESAL <> DATE '1899-09-09' " +
             "  AND FECHA_ACTO_PROCESAL < FECHA_APERTURA_EXPEDIENTE";
-
         try (
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {

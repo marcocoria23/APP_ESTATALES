@@ -7,7 +7,10 @@ package Pantallas_laborales;
 
 
 import Conexion.ConexionH2;
+import Prepara_Info.ExtraeExe;
 import QuerysH2.Execute;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -15,6 +18,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import plantillas.AbrirPdf;
 import plantillas.AbrirXlsx;
@@ -74,6 +78,7 @@ public class PMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -190,6 +195,15 @@ public class PMenu extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/PreparaArchivos.png"))); // NOI18N
+        jMenuItem6.setText("Preparar Archivos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Insertar.png"))); // NOI18N
         jMenuItem3.setText("Insertar");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -271,6 +285,7 @@ public class PMenu extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+      
         InsertaTR ins=new InsertaTR();
         ins.setVisible(true);
         this.setVisible(false);
@@ -309,7 +324,7 @@ public class PMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
          try (Connection con = ConexionH2.getConnection();) {
-        Execute ex=new  Execute();    
+        Execute ex=new Execute();    
          IdEntidadInicio=ex.EntidadInicio(con); 
         if (IdEntidadInicio<=0){
         CapturaInfo info=new CapturaInfo();
@@ -330,8 +345,40 @@ public class PMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
-    public static void iniciarReloj(JLabel label) {
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Entidadinicio "+IdEntidadInicio);
+   new Thread(() -> {
+    // 1️⃣ Crear y mostrar ventana "procesando" (en EDT)
+    final procesando pro = new procesando();
+    javax.swing.SwingUtilities.invokeLater(() -> pro.setVisible(true));
+    try {
+        // 2️⃣ Ejecutar el exe
+        ExtraeExe ex = new ExtraeExe();
+        if(IdEntidadInicio==1 || IdEntidadInicio==2 || IdEntidadInicio==3 || IdEntidadInicio==9 || IdEntidadInicio==15 || IdEntidadInicio==16 || IdEntidadInicio==19
+                || IdEntidadInicio==24 || IdEntidadInicio==25 || IdEntidadInicio==26 || IdEntidadInicio==28 || IdEntidadInicio==31){
+        ex.ejecutarExeDesdeResources("/Prepara_Info/convert_formato_bd_a_csv.exe", pro,"convert_formato_vertical_a_csv");
+        }
+        if (IdEntidadInicio==4||IdEntidadInicio==5||IdEntidadInicio==6||IdEntidadInicio==7||IdEntidadInicio==10||IdEntidadInicio==11||IdEntidadInicio==12||IdEntidadInicio==13||IdEntidadInicio==14
+                ||IdEntidadInicio==17||IdEntidadInicio==18||IdEntidadInicio==20||IdEntidadInicio==21||IdEntidadInicio==23||IdEntidadInicio==27||IdEntidadInicio==30||IdEntidadInicio==32)
+        ex.ejecutarExeDesdeResources("/Prepara_Info/convert_formato_vertical_a_csv.exe", pro,"convert_formato_vertical_a_csv");
+        // 3️⃣ Esperar 15 segundos
+        Thread.sleep(15000);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 
+    // 4️⃣ Cerrar ventana "procesando" (en EDT)
+    javax.swing.SwingUtilities.invokeLater(() -> {
+        if (pro.isDisplayable()) {
+            pro.setVisible(false);
+        }
+    });
+
+}).start();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    public static void iniciarReloj(JLabel label) {
     SimpleDateFormat formato =
             new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
@@ -408,6 +455,7 @@ public class PMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

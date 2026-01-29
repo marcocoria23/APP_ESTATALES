@@ -6,11 +6,12 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class V3TrIndividualJL implements Trigger {
 
-    private static final Date D_1899 = Date.valueOf("1899-09-09");
-    private static final Date D_1999 = Date.valueOf("1999-09-09");
+    private static final LocalDate D_1899 = LocalDate.of(1899, 9, 9);
+    private static final LocalDate D_1999 = LocalDate.of(1999, 9, 9);
     private static final String Sql_Error="INSERT INTO ERRORES_INSERT "
             + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, "
             + " SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
@@ -39,23 +40,56 @@ return (s.isEmpty() || "null".equalsIgnoreCase(s)) ? null : s;
 }
     
 
-    private Date asDate(Object v) {
-        if (v == null) return null;
-        if (v instanceof Date) return (Date) v;
-        if (v instanceof java.util.Date) return new Date(((java.util.Date) v).getTime());
+      // OJO: Date.valueOf SOLO acepta yyyy-MM-dd
+   private Date asDate(Object v) {
+    if (v == null) return null;
 
-        String s = v.toString().trim();
-        if (s.isEmpty() || "null".equalsIgnoreCase(s)) return null;
 
-        // dd/MM/yyyy desde CSV
-        if ("09/09/1999".equals(s)) return D_1999;
-        if ("09/09/1899".equals(s)) return D_1899;
+    // Si ya viene como java.sql.Date, úsalo tal cual (pero ojo: si el origen ya viene mal, aquí no lo arreglas)
+    if (v instanceof Date) return (Date) v;
 
-        // Si viene con hora → yyyy-mm-dd HH:mm:ss
-        if (s.length() >= 10) s = s.substring(0, 10);
 
-        return Date.valueOf(s); // yyyy-mm-dd
+    // Si viene java.util.Date (incluye Timestamp), conviértelo a LocalDate para evitar TZ en el formateo final
+    if (v instanceof java.util.Date) {
+        java.util.Date ud = (java.util.Date) v;
+        // Convertir a LocalDate en zona UTC para evitar que cambie el día entre PCs
+        LocalDate ld = ud.toInstant().atZone(java.time.ZoneOffset.UTC).toLocalDate();
+        return Date.valueOf(ld);
     }
+
+
+    String s = v.toString().trim();
+    if (s.isEmpty() || s.equalsIgnoreCase("null")) return null;
+
+
+    LocalDate ld;
+
+
+    // dd/MM/yyyy (CSV)
+    if (s.matches("\\d{2}/\\d{2}/\\d{4}")) {
+        if (s.equals("09/09/1999")) ld = D_1999;
+        else if (s.equals("09/09/1899")) ld = D_1899;
+        else {
+            int dd = Integer.parseInt(s.substring(0, 2));
+            int mm = Integer.parseInt(s.substring(3, 5));
+            int yyyy = Integer.parseInt(s.substring(6, 10));
+            ld = LocalDate.of(yyyy, mm, dd);
+        }
+        return Date.valueOf(ld);
+    }
+
+
+    // yyyy-MM-dd HH:mm:ss (o yyyy-MM-ddTHH:mm:ss) -> solo fecha
+    if (s.length() >= 10 && s.charAt(4) == '-' && s.charAt(7) == '-') {
+        ld = LocalDate.parse(s.substring(0, 10)); // yyyy-MM-dd
+        return Date.valueOf(ld);
+    }
+
+
+    // yyyy-MM-dd
+    ld = LocalDate.parse(s);
+    return Date.valueOf(ld);
+}
 
     private void setIfNull(Object[] row, int idx, Object value) {
         if (idx < row.length && row[idx] == null) {

@@ -114,6 +114,7 @@ public class InsertaTR extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         LEntidad = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -186,6 +187,14 @@ public class InsertaTR extends javax.swing.JFrame {
 
         LEntidad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Regresar.png"))); // NOI18N
+        jToggleButton1.setText("Regresar");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelILayout = new javax.swing.GroupLayout(PanelI);
         PanelI.setLayout(PanelILayout);
         PanelILayout.setHorizontalGroup(
@@ -204,9 +213,6 @@ public class InsertaTR extends javax.swing.JFrame {
                     .addGroup(PanelILayout.createSequentialGroup()
                         .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelILayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel4))
-                            .addGroup(PanelILayout.createSequentialGroup()
                                 .addGap(265, 265, 265)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
@@ -214,7 +220,12 @@ public class InsertaTR extends javax.swing.JFrame {
                             .addGroup(PanelILayout.createSequentialGroup()
                                 .addGap(367, 367, 367)
                                 .addComponent(jLabel6))
-                            .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelILayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jToggleButton1)
+                                    .addComponent(jLabel4))))
                         .addGap(0, 18, Short.MAX_VALUE))
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -257,8 +268,10 @@ public class InsertaTR extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Insertar1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addGroup(PanelILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LNombreTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -525,6 +538,13 @@ public class InsertaTR extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        PMenu menu = new PMenu();
+         menu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
     public void Valores(){
           rutaT=jTextField1.getText();
           CarpetaArchivos=true;
@@ -587,5 +607,6 @@ public class InsertaTR extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

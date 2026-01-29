@@ -8,8 +8,7 @@ import org.h2.api.Trigger;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.time.LocalDate;
 
 /**
  *
@@ -45,8 +44,8 @@ public class V3TrAudienciasJL implements Trigger {
     private static final int IDX_INICIO = 12;
     private static final int IDX_CONCLU = 13;
 
-    private static final Date DATE_1899_09_09 = Date.valueOf("1899-09-09");
-    private static final Date DATE_1999_09_09 = Date.valueOf("1999-09-09");
+    private static final LocalDate LD_1899_09_09 = LocalDate.of(1899, 9, 9);
+    private static final LocalDate LD_1999_09_09 = LocalDate.of(1999, 9, 9);
 
     @Override
     public void init(Connection conn, String schemaName, String triggerName,
@@ -83,7 +82,7 @@ try {
 
         // ===== 4) FECHA default
         if (newRow[IDX_FECHA] == null) {
-            newRow[IDX_FECHA] = DATE_1899_09_09;
+            newRow[IDX_FECHA] = LD_1899_09_09;
         }
 
         // ===== 5) INICIO default + normalización
@@ -100,8 +99,8 @@ try {
 
         // ===== 7) Si FECHA es 1999-09-09 => 1899-09-09
         Date fecha = toDate(newRow[IDX_FECHA]);
-        if (fecha != null && fecha.equals(DATE_1999_09_09)) {
-            newRow[IDX_FECHA] = DATE_1899_09_09;
+        if (fecha != null && fecha.equals(LD_1999_09_09)) {
+            newRow[IDX_FECHA] = LD_1899_09_09;
         }
      } catch (Exception e) {
             System.out.println("EXCEPCION en trigger: " + e.getClass().getName() + " - " + e.getMessage());

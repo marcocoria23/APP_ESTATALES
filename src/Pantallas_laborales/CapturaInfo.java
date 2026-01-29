@@ -237,6 +237,14 @@ jComboBox1.addItem("32-Zacatecas");
         // TODO add your handling code here:
         if (!jComboBox1.getSelectedItem().toString().equals(""))
         {
+            int opcion = JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Está seguro de registrar Entidad="+jComboBox1.getSelectedItem().toString()+"",
+                    "Confirmación",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+            if (opcion == JOptionPane.YES_OPTION) {
             String seleccionado = jComboBox1.getSelectedItem().toString();
             String[] partes = seleccionado.split("-");
              int id = Integer.parseInt(partes[0]);
@@ -253,7 +261,8 @@ jComboBox1.addItem("32-Zacatecas");
               this.setVisible(false);
           } catch (SQLException ex) {       
                 Logger.getLogger(CapturaInfo.class.getName()).log(Level.SEVERE, null, ex);
-            }       
+            }
+        }
         }else{
              JOptionPane.showMessageDialog(null, "Favor de Seleccionar Entidad");
         }

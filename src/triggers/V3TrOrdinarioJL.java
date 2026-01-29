@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  * Trigger H2 equivalente a:
@@ -16,8 +17,8 @@ import java.sql.SQLException;
  */
 public class V3TrOrdinarioJL implements Trigger {
 
-    private static final Date DATE_1899_09_09 = Date.valueOf("1899-09-09");
-    private static final Date DATE_1999_09_09 = Date.valueOf("1999-09-09");
+    private static final LocalDate LD_1899_09_09 = LocalDate.of(1899, 9, 9);
+    private static final LocalDate LD_1999_09_09 = LocalDate.of(1999, 9, 9);
     private static final String Sql_Error="INSERT INTO ERRORES_INSERT "
             + "(TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, SQLSTATE, ERRORCODE, MENSAJE, REGISTRO_RAW) "
             + "VALUES (?,?,?,?,?,?,?,?)";
@@ -59,14 +60,14 @@ public class V3TrOrdinarioJL implements Trigger {
 
         // Normalmente H2 usa java.sql.Date en columnas DATE
         if (v instanceof Date) {
-            if (DATE_1999_09_09.equals(v)) newRow[idx] = DATE_1899_09_09;
+            if (LD_1999_09_09.equals(v)) newRow[idx] = LD_1899_09_09;
             return;
         }
 
         // Si por alguna razón llega como String
         String s = v.toString().trim();
         if (s.equals("09/09/1999") || s.equals("1999-09-09")) {
-            newRow[idx] = DATE_1899_09_09;
+            newRow[idx] = LD_1899_09_09;
         }
     }
 
@@ -289,7 +290,7 @@ try {
 
         if (inc != null && inc == 2) {
 
-            setIfNull(newRow, iFECHA_PRES_DEMANDA, DATE_1899_09_09);
+            setIfNull(newRow, iFECHA_PRES_DEMANDA, LD_1899_09_09);
             setIfNull(newRow, iCONSTANCIA_CONS_EXPEDIDA, 9);
             setIfNull(newRow, iPREVE_DEMANDA, 9);
 
@@ -310,17 +311,17 @@ try {
             // estatus_demanda=1 => fecha_admi_demanda default + audiencia_prelim + fechas etc.
             if (estDem != null && estDem == 1) {
 
-                setIfNull(newRow, iFECHA_ADMI_DEMANDA, DATE_1899_09_09);
+                setIfNull(newRow, iFECHA_ADMI_DEMANDA, LD_1899_09_09);
                 setIfNull(newRow, iAUDIENCIA_PRELIM, 9);
 
                 Integer audPre = asInt(newRow[iAUDIENCIA_PRELIM]);
                 if (audPre != null && audPre == 1) {
-                    setIfNull(newRow, iFECHA_AUDIENCIA_PRELIM, DATE_1899_09_09);
+                    setIfNull(newRow, iFECHA_AUDIENCIA_PRELIM, LD_1899_09_09);
                 }
-
+                //System.out.println(LD_1899_09_09);
                 Integer audJui = asInt(newRow[iAUDIENCIA_JUICIO]);
                 if (audJui != null && audJui == 1) {
-                    setIfNull(newRow, iFECHA_AUDIENCIA_JUICIO, DATE_1899_09_09);
+                    setIfNull(newRow, iFECHA_AUDIENCIA_JUICIO, LD_1899_09_09);
                 }
 
                 setIfNull(newRow, iESTATUS_EXPEDIENTE, 9);
@@ -328,7 +329,7 @@ try {
                 Integer estExp = asInt(newRow[iESTATUS_EXPEDIENTE]);
 
                 if (estExp != null && estExp == 2) {
-                    setIfNull(newRow, iFECHA_ACTO_PROCESAL, DATE_1899_09_09);
+                    setIfNull(newRow, iFECHA_ACTO_PROCESAL, LD_1899_09_09);
                 }
 
                 if (estExp != null && estExp == 1) {
@@ -343,11 +344,11 @@ try {
                         Integer formaFE = asInt(newRow[iFORMA_SOLUCIONFE]);
 
                         if (formaFE != null && (formaFE == 2 || formaFE == 3 || formaFE == 4)) {
-                            setIfNull(newRow, iFECHA_DICTO_RESOLUCIONFE, DATE_1899_09_09);
+                            setIfNull(newRow, iFECHA_DICTO_RESOLUCIONFE, LD_1899_09_09);
                         }
                         if (formaFE != null && formaFE == 5) {
                             setIfNull(newRow, iOTRO_ESP_SOLUCIONFE, "No Especifico");
-                            setIfNull(newRow, iFECHA_DICTO_RESOLUCIONFE, DATE_1899_09_09);
+                            setIfNull(newRow, iFECHA_DICTO_RESOLUCIONFE, LD_1899_09_09);
                         }
                     }
 
@@ -357,11 +358,11 @@ try {
                         Integer formaAP = asInt(newRow[iFORMA_SOLUCIONAP]);
 
                         if (formaAP != null && (formaAP == 2 || formaAP == 3 || formaAP == 4)) {
-                            setIfNull(newRow, iFECHA_DICTO_RESOLUCIONAP, DATE_1899_09_09);
+                            setIfNull(newRow, iFECHA_DICTO_RESOLUCIONAP, LD_1899_09_09);
                         }
                         if (formaAP != null && formaAP == 5) {
                             setIfNull(newRow, iOTRO_ESP_SOLUCIONAP, "No Especifico");
-                            setIfNull(newRow, iFECHA_DICTO_RESOLUCIONAP, DATE_1899_09_09);
+                            setIfNull(newRow, iFECHA_DICTO_RESOLUCIONAP, LD_1899_09_09);
                         }
                     }
 
@@ -371,7 +372,7 @@ try {
                         Integer formaAJ = asInt(newRow[iFORMA_SOLUCIONAJ]);
 
                         if (formaAJ != null && (formaAJ == 1 || formaAJ == 2 || formaAJ == 3 || formaAJ == 4)) {
-                            setIfNull(newRow, iFECHA_RESOLUCIONAJ, DATE_1899_09_09);
+                            setIfNull(newRow, iFECHA_RESOLUCIONAJ, LD_1899_09_09);
                         }
                         if (formaAJ != null && formaAJ == 5) {
                             setIfNull(newRow, iOTRO_ESP_SOLUCIONAJ, "No Especifico");
@@ -393,7 +394,7 @@ try {
         replace1999With1899(newRow, iFECHA_RESOLUCIONAJ);
          Integer fase = asInt(newRow[iFASE_SOLI_EXPEDIENTE]);
                     
-                   if (fase != null && fase != 1 && fase != 2 && fase != 9) {
+                   if (fase != null && fase != 1 && fase != 2 && fase != 9 && fase != 99) {
                         String claveOrgano = asString(newRow[iCLAVE_ORGANO]);
                         String expediente = asString(newRow[iEXPEDIENTE_CLAVE]);
                         try ( PreparedStatement pe = conn.prepareStatement(Sql_Error)) {

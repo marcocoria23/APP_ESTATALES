@@ -31,7 +31,7 @@ public class V3TrHuelgaJL implements Trigger {
     }
 
     private void dbg(String msg) {
-        System.out.println("[V3TrHuelgaJL] " + msg);
+        //System.out.println("[V3TrHuelgaJL] " + msg);
     }
 
     private Object get(Object[] row, int idx, String name) {

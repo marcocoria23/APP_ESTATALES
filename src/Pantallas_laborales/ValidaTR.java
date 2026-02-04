@@ -159,7 +159,7 @@ public class ValidaTR extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null,
                         "Validación terminada");
-
+                
             } catch (SQLException ex) {
                 Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -228,7 +228,7 @@ public class ValidaTR extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LEntidad;
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

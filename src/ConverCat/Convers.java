@@ -66,7 +66,7 @@ public class Convers {
     public String CON_V3_TC_AUD_TIPO_PROCEJL(Connection con, String campo) {
         if (campo == null || campo.trim().isEmpty()) {
             return null;
-        } else {
+         }else {
             if (!esNumero(campo)) {
                 String sql = "SELECT ID FROM V3_TC_AUD_TIPO_PROCEJL "
                         + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
@@ -79,7 +79,7 @@ public class Convers {
                             return rs.getString("ID");
                         } else {
                             return "-404";
-                        }
+                       }
                     }
 
                 } catch (SQLException e) {
@@ -92,6 +92,7 @@ public class Convers {
             }
         }
     }
+    
 
     public String CON_V3_TC_AUD_TIPO_AUDIENJL(Connection con, String campo) {
         if (campo == null || campo.trim().isEmpty()) {
@@ -639,7 +640,10 @@ public class Convers {
     public String CON_V3_TC_MOTIVO_PROMOCIONJL(Connection con, String campo) {
         if (campo == null || campo.trim().isEmpty()) {
             return null;
-        } else {
+        }else{ 
+       if (campo.toUpperCase().trim().equals("INCUMPLIMIENTO DE CONVENIO CELEBRADO ANTE EL CENTRO FEDERAL DE CONCILIACIÓN Y REGISTRO LABORAL")) {
+           return "2";
+       }else {
             if (!esNumero(campo)) {
                 String sql = "SELECT ID FROM V3_TC_MOTIVO_PROMOCIONJL "
                         + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
@@ -664,6 +668,7 @@ public class Convers {
                 return campo;
             }
         }
+    }
     }
 
     public String CON_V3_TC_MOTIVO_SOLICITUDJL(Connection con, String campo) {
@@ -758,34 +763,51 @@ public class Convers {
     }
 
     public String CON_V3_TC_OCUPACION_TRABAJADORJL(Connection con, String campo) {
-        if (campo == null || campo.trim().isEmpty()) {
-            return null;
-        } else {
-            if (!esNumero(campo)) {
-                String sql = "SELECT ID FROM V3_TC_OCUPACION_TRABAJADORJL "
-                        + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
+    // 1) Nulos / vacíos
+    if (campo == null || campo.trim().isEmpty()) {
+        return null;
+    }
+    // Normalización (una sola vez)
+    String c = campo.trim().toUpperCase().replaceAll("\\n", "");
+    // 2) Casos especiales
+    if (c.equals("NO IDENTIFICADO")
+            || c.equals("NO IDENTIFICADA")
+            || c.equals("OCUPACIONES NO IDENTIFICADO")
+            || c.equals("OCUPACIONES NO DEFINIDAS")) {
+        return "999";
+    }
+    // Nota: aquí arreglé "PRODUCTOSDE" -> "PRODUCTOS DE" (si en tu BD viene pegado, déjalo igual)
+    if (c.equals("SUPERVISORES DE TRABAJADORES EN LA ELABORACIÓN Y PROCESAMIENTO DE ALIMENTOS, BEBIDAS Y PRODUCTOSDE TABACO")) {
+        return "365";
+    }
+    if (c.equals("SASTRES Y MODISTOS, COSTURERAS Y CONFECCIONADORES DE PRENDAS Y ACCESORIOS DE VESTIR, DE TELA, CUERO,PIEL Y SIMILARES")) {
+        return "354";
+    }
+    // 3) Si NO es número, buscar ID por descripción
+    if (!esNumero(campo)) {
+        String sql = "SELECT ID FROM V3_TC_OCUPACION_TRABAJADORJL "
+                   + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
 
-                try ( PreparedStatement ps = con.prepareStatement(sql)) {
-                    ps.setString(1, campo.toUpperCase().trim());
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, c);
 
-                    try ( ResultSet rs = ps.executeQuery()) {
-                        if (rs.next()) {
-                            return rs.getString("ID");
-                        } else {
-                            return "-404";
-                        }
-                    }
-
-                } catch (SQLException e) {
-                    System.err.println("Error en CON_V3_TC_OCUPACION_TRABAJADORJL");
-                    e.printStackTrace();
-                    return "Error SQL";
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("ID");
+                } else {
+                    return "-404"; // no encontrado
                 }
-            } else {
-                return campo;
             }
+        } catch (SQLException e) {
+            System.err.println("Error en CON_V3_TC_OCUPACION_TRABAJADORJL");
+            e.printStackTrace();
+            return "Error SQL";
         }
     }
+    // 4) Si ya es número, devolver tal cual (puedes devolver campo.trim() si quieres)
+    return campo;
+}
+
 
     public String CON_V3_TC_ORGAN_OBRERAJL(Connection con, String campo) {
         if (campo == null || campo.trim().isEmpty()) {
@@ -851,6 +873,10 @@ public class Convers {
         if (campo == null || campo.trim().isEmpty()) {
             return null;
         } else {
+            if (campo.trim().toUpperCase().equals("SI"))
+            {
+             return "1";   
+            }else{
             if (!esNumero(campo)) {
                 String sql = "SELECT ID FROM V3_TC_RESPUESTA_SIMPLEJL "
                         + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
@@ -876,6 +902,7 @@ public class Convers {
             }
         }
     }
+   }
 
     public String CON_V3_TC_SECTOR_RAMAJL(Connection con, String campo) {
        // System.out.println("camposector"+campo);
@@ -1269,33 +1296,50 @@ public class Convers {
     }
 
     public String CON_V3_TC_OCUPACI_TRABAJADORJL(Connection con, String campo) {
-        if (campo == null || campo.trim().isEmpty()) {
-            return null;
-        } else {
-            if (!esNumero(campo)) {
-                String sql = "SELECT ID FROM V3_TC_OCUPACION_TRABAJADORJL "
-                        + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
+     // 1) Nulos / vacíos
+    if (campo == null || campo.trim().isEmpty()) {
+        return null;
+    }
+    // Normalización (una sola vez)
+    String c = campo.trim().toUpperCase().replaceAll("\\n", "")   ;
+    // 2) Casos especiales
+    if (c.equals("NO IDENTIFICADO")
+            || c.equals("NO IDENTIFICADA")
+            || c.equals("OCUPACIONES NO IDENTIFICADO")
+            || c.equals("OCUPACIONES NO DEFINIDAS")) {
+        return "999";
+    }
+    // Nota: aquí arreglé "PRODUCTOSDE" -> "PRODUCTOS DE" (si en tu BD viene pegado, déjalo igual)
+    if (c.equals("SUPERVISORES DE TRABAJADORES EN LA ELABORACIÓN Y PROCESAMIENTO DE ALIMENTOS, BEBIDAS Y PRODUCTOSDE TABACO")) {
+        return "365";
+    }
+    
+    if (c.equals("SASTRES Y MODISTOS, COSTURERAS Y CONFECCIONADORES DE PRENDAS Y ACCESORIOS DE VESTIR, DE TELA, CUERO,PIEL Y SIMILARES")) {
+        return "354";
+    }
+    // 3) Si NO es número, buscar ID por descripción
+    if (!esNumero(campo)) {
+        String sql = "SELECT ID FROM V3_TC_OCUPACION_TRABAJADORJL "
+                   + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
 
-                try ( PreparedStatement ps = con.prepareStatement(sql)) {
-                    ps.setString(1, campo.toUpperCase().trim());
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, c);
 
-                    try ( ResultSet rs = ps.executeQuery()) {
-                        if (rs.next()) {
-                            return rs.getString("ID");
-                        } else {
-                            return "-404";
-                        }
-                    }
-
-                } catch (SQLException e) {
-                    System.err.println("Error en CON_V3_TC_TIPO_SINDICATOJL");
-                    e.printStackTrace();
-                    return "Error SQL";
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("ID");
+                } else {
+                    return "-404"; // no encontrado
                 }
-            } else {
-                return campo;
             }
+        } catch (SQLException e) {
+            System.err.println("Error en CON_V3_TC_OCUPACION_TRABAJADORJL");
+            e.printStackTrace();
+            return "Error SQL";
         }
     }
+    // 4) Si ya es número, devolver tal cual (puedes devolver campo.trim() si quieres)
+    return campo;
+}
 
 }

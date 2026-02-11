@@ -222659,3 +222659,7 @@ Caused by: java.lang.NumberFormatException: For input string: "CENTRO"
 	at triggers.V3TrPartDemOrdinarioJL.fire(V3TrPartDemOrdinarioJL.java:121)
 	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:283)
 	... 15 more
+2026-02-11 11:03:54.425736-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "V3_TR_CONTROL_EXPEDIENTE" no encontrada
+Table "V3_TR_CONTROL_EXPEDIENTE" not found; SQL statement:
+select * from V3_TR_CONTROL_EXPEDIENTE [42102-232]

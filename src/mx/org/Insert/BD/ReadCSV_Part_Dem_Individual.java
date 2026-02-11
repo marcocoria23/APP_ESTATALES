@@ -132,7 +132,7 @@ public class ReadCSV_Part_Dem_Individual {
                             Part_Dem_Individual c = new Part_Dem_Individual();
                             c.SetNOMBRE_ORGANO_JURIS(record.get(0).toUpperCase());
                             c.SetCLAVE_ORGANO(record.get(1).toUpperCase());
-                            c.SetEXPEDIENTE_CLAVE(record.get(2).toUpperCase().replace("\\n", "").trim());
+                            c.SetEXPEDIENTE_CLAVE(conver.CON_V3_EXPEDIENTE(record.get(2).toUpperCase().replace("\\n", "").trim()));
                             c.SetID_DEMANDADO(record.get(3).toUpperCase());
                             c.SetDEMANDADO(conver.CON_V3_TC_DEMANDADOJL(con, record.get(4).toUpperCase()));
                             c.SetDEFENSA_DEM(conver.CON_V3_TC_TIPO_DEFENSAJL(con, record.get(5).toUpperCase()));

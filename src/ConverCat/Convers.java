@@ -92,6 +92,57 @@ public class Convers {
             }
         }
     }
+   
+    
+    public String CON_V3_EXPEDIENTE(String campo) {
+        if (!campo.trim().equals("")) {
+            if (campo.startsWith("ENE") || campo.startsWith("FEB") || campo.startsWith("MAR") || campo.startsWith("ABR") || campo.startsWith("MAY") || campo.startsWith("JUN") || campo.startsWith("JUL") || campo.startsWith("AGO") || campo.startsWith("SEP") || campo.startsWith("OCT") || campo.startsWith("NOV") || campo.startsWith("DIC")) {
+                String[] parts;
+                parts = campo.split("-");
+                String partAño = "", partMes = "", AñoDef = "";
+                partMes = parts[0];
+                partAño = parts[1];
+                if (partMes.trim().equals("ENE")) {
+                    return "01/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("FEB")) {
+                    return "02/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("MAR")) {
+                    return "03/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("ABR")) {
+                    return "04/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("MAY")) {
+                    return "05/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("JUN")) {
+                    return "06/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("JUL")) {
+                    return "07/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("AGO")) {
+                    return "08/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("SEP")) {
+                    return "09/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("OCT")) {
+                    return "10/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("NOV")) {
+                    return "11/" + "20" + partAño;
+                }
+                if (partMes.trim().equals("DIC")) {
+                    return "12/" + "20" + partAño;
+                }
+            } 
+        }
+        return campo;
+    }
+    
     
 
     public String CON_V3_TC_AUD_TIPO_AUDIENJL(Connection con, String campo) {

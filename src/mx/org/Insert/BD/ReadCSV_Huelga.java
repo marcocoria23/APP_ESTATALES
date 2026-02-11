@@ -130,7 +130,7 @@ public class ReadCSV_Huelga {
                             Huelga c = new Huelga();
                             c.SetNOMBRE_ORGANO_JURIS(record.get(0).toUpperCase());
                             c.SetCLAVE_ORGANO(record.get(1).toUpperCase());
-                            c.SetEXPEDIENTE_CLAVE(record.get(2).toUpperCase().replace("\\n", "").trim());
+                            c.SetEXPEDIENTE_CLAVE(conver.CON_V3_EXPEDIENTE(record.get(2).toUpperCase().replace("\\n", "").trim()));
                             c.SetFECHA_APERTURA_EXPEDIENTE(conver.toH2Date(record.get(3).toUpperCase(), "FECHA_APERTURA_EXPEDIENTE"));
                             c.SetTIPO_ASUNTO(conver.CON_V3_TC_TIPO_ASUNTOJL(con, record.get(4).toUpperCase()));
                             c.SetRAMA_INDUS_INVOLUCRAD(record.get(5).toUpperCase());

@@ -162,10 +162,13 @@ public class ValidaTR extends javax.swing.JFrame {
                 
             } catch (SQLException ex) {
                 Logger.getLogger(InsertaTR.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,ex);
             } catch (IOException ex) {
                 Logger.getLogger(ValidaTR.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,ex);
             } catch (ParseException ex) {
                 Logger.getLogger(ValidaTR.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,ex);
             }
 
             jButton1.setEnabled(true);

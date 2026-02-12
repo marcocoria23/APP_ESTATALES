@@ -15,13 +15,13 @@ public class V3QAudiencias {
 
     private String tipoProcedTexto() {
         return "CASE TIPO_PROCED " +
-               " WHEN '1' THEN 'Ordinario' " +
-               " WHEN '2' THEN 'Especial Individual' " +
-               " WHEN '3' THEN 'Especial Colectivo' " +
-               " WHEN '4' THEN 'Huelga' " +
-               " WHEN '5' THEN 'Colectivo Ecónomica' " +
-               " WHEN '9' THEN 'No identificado' " +
-               " ELSE TIPO_PROCED END";
+               " WHEN 1 THEN 'Ordinario' " +
+               " WHEN 2 THEN 'Especial Individual' " +
+               " WHEN 3 THEN 'Especial Colectivo' " +
+               " WHEN 4 THEN 'Huelga' " +
+               " WHEN 5 THEN 'Colectivo Ecónomica' " +
+               " WHEN 9 THEN 'No identificado' " +
+               "   ELSE CAST(TIPO_PROCED AS VARCHAR) END";
     }
 
     // ----------------------------------------------------------

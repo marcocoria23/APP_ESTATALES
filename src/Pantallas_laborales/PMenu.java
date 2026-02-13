@@ -357,7 +357,7 @@ public class PMenu extends javax.swing.JFrame {
         ExtraeExe ex = new ExtraeExe();
         if(IdEntidadInicio==1 || IdEntidadInicio==2 || IdEntidadInicio==3 || IdEntidadInicio==9 || IdEntidadInicio==15 || IdEntidadInicio==16 || IdEntidadInicio==19
                 || IdEntidadInicio==24 || IdEntidadInicio==25 || IdEntidadInicio==26 || IdEntidadInicio==28 || IdEntidadInicio==31){
-        ex.ejecutarExeDesdeResources("/Prepara_Info/convert_formato_bd_a_csv.exe", pro,"convert_formato_vertical_a_csv");
+        ex.ejecutarExeDesdeResources("/Prepara_Info/convert_formato_bd_a_csv.exe", pro,"convert_formato_bd_a_csv");
         }
         if (IdEntidadInicio==4||IdEntidadInicio==5||IdEntidadInicio==6||IdEntidadInicio==7||IdEntidadInicio==10||IdEntidadInicio==11||IdEntidadInicio==12||IdEntidadInicio==13||IdEntidadInicio==14
                 ||IdEntidadInicio==17||IdEntidadInicio==18||IdEntidadInicio==20||IdEntidadInicio==21||IdEntidadInicio==23||IdEntidadInicio==27||IdEntidadInicio==30||IdEntidadInicio==32)
@@ -365,7 +365,7 @@ public class PMenu extends javax.swing.JFrame {
         ex.ejecutarExeDesdeResources("/Prepara_Info/convert_formato_vertical_a_csv.exe", pro,"convert_formato_vertical_a_csv");
         } 
         if(IdEntidadInicio==8 || IdEntidadInicio==22 || IdEntidadInicio==29){
-            ex.ejecutarExeDesdeResources("/Prepara_Info/convrt_bd_frmto_hotizontal_a_csv.exe", pro,"convert_formato_vertical_a_csv");
+            ex.ejecutarExeDesdeResources("/Prepara_Info/convrt_bd_frmto_hotizontal_a_csv.exe", pro,"convert_formato_horizontal_a_csv");
         } 
         
 // 3️⃣ Esperar 15 segundos

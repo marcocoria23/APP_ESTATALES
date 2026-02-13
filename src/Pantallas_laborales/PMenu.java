@@ -361,8 +361,14 @@ public class PMenu extends javax.swing.JFrame {
         }
         if (IdEntidadInicio==4||IdEntidadInicio==5||IdEntidadInicio==6||IdEntidadInicio==7||IdEntidadInicio==10||IdEntidadInicio==11||IdEntidadInicio==12||IdEntidadInicio==13||IdEntidadInicio==14
                 ||IdEntidadInicio==17||IdEntidadInicio==18||IdEntidadInicio==20||IdEntidadInicio==21||IdEntidadInicio==23||IdEntidadInicio==27||IdEntidadInicio==30||IdEntidadInicio==32)
+        {
         ex.ejecutarExeDesdeResources("/Prepara_Info/convert_formato_vertical_a_csv.exe", pro,"convert_formato_vertical_a_csv");
-        // 3️⃣ Esperar 15 segundos
+        } 
+        if(IdEntidadInicio==8 || IdEntidadInicio==22 || IdEntidadInicio==29){
+            ex.ejecutarExeDesdeResources("/Prepara_Info/convrt_bd_frmto_hotizontal_a_csv.exe", pro,"convert_formato_vertical_a_csv");
+        } 
+        
+// 3️⃣ Esperar 15 segundos
         Thread.sleep(15000);
     } catch (Exception e) {
         e.printStackTrace();

@@ -8303,7 +8303,8 @@ public class V3validaciones {
             coni = 1;
         }
 // PValidacion validacion = new PValidacion();       
-  if(EntidadInicio==15){//EJEMPLO QUE VA A MODIFICAR SUSHI ROLL
+  if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){//EJEMPLO QUE VA A MODIFICAR SUSHI ROLL
         ArrayResult = NNOrdinario.Estatus_demaNi(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
@@ -9665,7 +9666,8 @@ public class V3validaciones {
             coni = 1;
         }
         
-    if(EntidadInicio==15){ //sushi roll
+    if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){ //sushi roll
         ArrayResult = NNOrdinario.Estatus_Demanda_NoIdentificada(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
@@ -10845,7 +10847,8 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600); 
  
-if (EntidadInicio == 15) { //modificacion sushi
+if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31) { //modificacion sushi
     ArrayResult = NNPart_Act_ordinario.ActorNI(con);
     if (ArrayResult != null && ArrayResult.size() > 0) {
         
@@ -11705,7 +11708,8 @@ if (EntidadInicio == 15) { //modificacion sushi
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        if(EntidadInicio==15){ //modificacion sushi
+        if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){ //modificacion sushi
             ArrayResult = Part_ordinarioNE.Dif_ActoresNE(con);
 if (ArrayResult != null && ArrayResult.size() > 0) {
 
@@ -11937,7 +11941,8 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
         
-       if(EntidadInicio==15){ //modificacion sushi
+       if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){ //modificacion sushi
             ArrayResult = NNPart_Dem_ordinario.DemandadoNI(con);
             if (ArrayResult != null && ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
@@ -12685,7 +12690,8 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        if(EntidadInicio==15){//modificacion sushi 
+        if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){//modificacion sushi 
             ArrayResult = Part_ordinarioNE.Dif_demandadosNE(con);
             if (ArrayResult != null && ArrayResult.size() > 0) {
 
@@ -16188,7 +16194,8 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        if(EntidadInicio==15){
+        if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){
             ArrayResult = Individual.Fecha_PresentacionAdmiNE(con);
             if (ArrayResult != null && ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
@@ -18243,7 +18250,8 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             coni = 1;
         }
  
-        if(EntidadInicio==15){//modificacion sushi
+        if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){//modificacion sushi
             ArrayResult = NNindividual.Estatus_Demanda(con);
             if (ArrayResult != null && ArrayResult.size() > 0) {
             
@@ -19676,7 +19684,8 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             coni = 1;
         }
         
-        if(EntidadInicio==15){
+       if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){
             ArrayResult = NNindividual.Estatus_Demanda_Noidentificada(con);
             if (ArrayResult != null && ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
@@ -20212,7 +20221,8 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             coni = 1;
         }
         
-        if(EntidadInicio==15){
+        if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){
             ArrayResult = NNindividual.Fase_Sol_expNoExiste(con);
 if (ArrayResult != null && ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
@@ -20998,7 +21008,8 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        if(EntidadInicio==15){ //modificacion sushi
+        if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){ //modificacion sushi
             ArrayResult = NNV3Part_Act_individual.ActorNI(con);
             if (ArrayResult != null && ArrayResult.size() > 0) {
        
@@ -21812,7 +21823,8 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        if(EntidadInicio==15){
+        if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){
             ArrayResult = NNPart_Dem_individual.DemandadoNI(con);
 if (ArrayResult != null && ArrayResult.size() > 0) {
 
@@ -28302,7 +28314,8 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        if(EntidadInicio==15){
+        if(EntidadInicio==1 || EntidadInicio==2 || EntidadInicio==3 || EntidadInicio==9 || EntidadInicio==15 || EntidadInicio==16 || EntidadInicio==19
+                || EntidadInicio==24 || EntidadInicio==25 || EntidadInicio==26 || EntidadInicio==28 || EntidadInicio==31){
             ArrayResult = NNPart_Act_colectivo.ActorNI(con);
 if (ArrayResult != null && ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + " Contador Datos: " + conDat);

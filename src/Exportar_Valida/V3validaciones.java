@@ -9665,7 +9665,131 @@ public class V3validaciones {
             coni = 1;
         }
         
-        
+    if(EntidadInicio==15){ //sushi roll
+        ArrayResult = NNOrdinario.Estatus_Demanda_NoIdentificada(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+            HSSFRow filaC00 = hojaresumenval.createRow(2);//filaC
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);//COLUMNA    
+            celdaC00.setCellStyle(PAmarillo);
+            HSSFRow filaC1 = hoja1.createRow(conEnc);//filaC
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);//COLUMNA
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtC1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString textoA1 = new HSSFRichTextString(txtC1);
+            celdaC1.setCellValue(textoA1);
+            filaC1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < 1; i++) {
+                HSSFRow filaC6 = hoja1.createRow(conDat + i);//filaC
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);//COLUMNA
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                Set<String> acumulaparts0 = new HashSet<>();
+            for(int m=0; m<ArrayResult.size(); m++){
+                String txtC6 = Arrays.toString(ArrayResult.get(i));
+                txtC6 = txtC6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txtC6.split(",");
+                parts0 = parts[0].trim();
+                acumulaparts0.add(parts0);
+            }
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                String textoUnico = String.join(", ", acumulaparts0);
+                HSSFRichTextString textoA6 = new HSSFRichTextString(textoUnico);
+                celdaC6.setCellValue(textoA6);
+                filaC6.setHeight((short) 300);
+            }
+            
+            HSSFRow filaC2 = hoja1.createRow(conEnc);//filaC
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);//COLUMNA
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtC2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString textoA2 = new HSSFRichTextString(txtC2);
+            celdaC2.setCellValue(textoA2);
+            filaC2.setHeight((short) 600);
+
+        //clave del expediente
+        for (int i = 0; i < 1; i++) {
+            HSSFRow filaC7 = hoja1.createRow(conDat + i);//filaC
+            HSSFCell celdaC7 = filaC7.createCell((short) 1);//COLUMNA
+            celdaC7.setCellStyle(estiloCeldabordes0);
+            celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+            Set<String> acumulaparts1 = new HashSet<>();
+        for (int m=0;m<ArrayResult.size();m++){
+            String txtC7 = Arrays.toString(ArrayResult.get(m));
+            txtC7 = txtC7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+            parts = txtC7.split(",");
+            parts0 = parts[1].trim();
+            acumulaparts1.add(parts0);
+        }
+            //System.out.println(Arrays.toString(ArrayResult.get(i)));
+        if (acumulaparts1.size()<30000){
+            String textoUnico1 = String.join(", ", acumulaparts1);
+            HSSFRichTextString textoA7 = new HSSFRichTextString(textoUnico1);
+            celdaC7.setCellValue(textoA7);
+            filaC7.setHeight((short) 300);
+        }else{
+            HSSFRichTextString textoA7 = new HSSFRichTextString("GENERAL");   
+            celdaC7.setCellValue(textoA7);
+            filaC7.setHeight((short) 300);
+        }
+    }
+            HSSFRow filaC3 = hoja1.createRow(conEnc);//filaC
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);//COLUMNA
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtC3 = "COMENTARIOS";
+            HSSFRichTextString textoA3 = new HSSFRichTextString(txtC3);
+            celdaC3.setCellValue(textoA3);
+            filaC3.setHeight((short) 600);
+
+            //FECHA DE APERTURA DEL EXPEDIENTE
+            for (int i = 0; i < 1; i++) {
+                HSSFRow filaC8 = hoja1.createRow(conDat + i);//filaC
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);//COLUMNA
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txtC8 = Arrays.toString(ArrayResult.get(i));
+                txtC8 = txtC8.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txtC8.split(",");
+                parts0 = parts[2].trim();
+                // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString textoA8 = new HSSFRichTextString("GENERAL");
+                celdaC8.setCellValue(textoA8);
+                filaC8.setHeight((short) 300);
+            }
+            
+            HSSFRow filaC5 = hoja1.createRow(conEnc);//filaC
+            HSSFCell celdaC5 = filaC5.createCell((short) 3);//COLUMNA
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtC5 = "OBSERVACIONES";
+            HSSFRichTextString textoD5 = new HSSFRichTextString(txtC5);
+            celdaC5.setCellValue(textoD5);
+            filaC5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < 1; i++){
+                HSSFRow filaE9 = hoja1.createRow(conDat + i);//filaC
+                HSSFCell celdaE9 = filaE9.createCell((short) 3);//COLUMNA
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txtE9 = "Favor de Verificar Estatus_demanda ya que contiene informacion a apartir de Fecha de Admision de la demanda (FECHA_ADMI_DEMANDA)";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString textoD9 = new HSSFRichTextString(txtE9);
+                celdaE9.setCellValue(textoD9);
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+    }else{
         ArrayResult = NNOrdinario.Estatus_Demanda_NoIdentificada(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
@@ -9778,7 +9902,8 @@ public class V3validaciones {
             conEnc = conEnc + coni;
             conDat = conDat + coni;
             coni = 1;
-        }
+        } 
+    }//aqui termina 
         
                 /* EN PROCESO O PREVENCION */
         //Favor de verificar el campo Estatus_demanda, ya que la Fecha de Apertura del Expediente (FECHA_APERTURA_EXPEDIENTE) excede el plazo máximo permitido de 60 días (2 meses).
@@ -10720,10 +10845,83 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600); 
  
+if (EntidadInicio == 15) { //modificacion sushi
+    ArrayResult = NNPart_Act_ordinario.ActorNI(con);
+    if (ArrayResult != null && ArrayResult.size() > 0) {
+        
+        // 1. CREAR LAS FILAS UNA SOLA VEZ (Esto evita la corrupción)
+        HSSFRow filaEnc = hoja2.createRow(conEnc);
+        HSSFRow filaDat = hoja2.createRow(conDat);
+
+        // 2. PREPARAR LOS SETS PARA ACUMULAR
+        Set acumulaparts0 = new HashSet();
+        Set acumulaparts1 = new HashSet();
+
+        // 3. PROCESAR EL ARRAYRESULT
+        for (int m = 0; m < ArrayResult.size(); m++) {
+            // Obtenemos el objeto y lo convertimos a String de forma segura
+            String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+            txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+            
+            String[] vParts = txtRaw.split(",");
+            if (vParts.length >= 2) {
+                acumulaparts0.add(vParts[0].trim());
+                acumulaparts1.add(vParts[1].trim());
+            }
+        }
+
+        // 4. ESCRIBIR COLUMNA 0 (ORGANO)
+        HSSFCell c0E = filaEnc.createCell((short) 0);
+        c0E.setCellStyle(estiloCelda1);
+        c0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+        HSSFCell c0D = filaDat.createCell((short) 0);
+        c0D.setCellStyle(estiloCeldabordes0);
+        String textoOrgano = acumulaparts0.toString().replace("[", "").replace("]", "");
+        c0D.setCellValue(new HSSFRichTextString(textoOrgano));
+
+        // 5. ESCRIBIR COLUMNA 1 (EXPEDIENTE)
+        HSSFCell c1E = filaEnc.createCell((short) 1);
+        c1E.setCellStyle(estiloCelda1);
+        c1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+        HSSFCell c1D = filaDat.createCell((short) 1);
+        c1D.setCellStyle(estiloCeldabordes0);
+        String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+        // Protección contra el límite de 32,767 caracteres de Excel
+        if (textoExp.length() > 32000) {
+            textoExp = textoExp.substring(0, 32000) + "...";
+        }
+        c1D.setCellValue(new HSSFRichTextString(textoExp));
+
+        // 6. ESCRIBIR COLUMNA 2 (ACTOR)
+        HSSFCell c2E = filaEnc.createCell((short) 2);
+        c2E.setCellStyle(estiloCelda1);
+        c2E.setCellValue(new HSSFRichTextString("ACTOR"));
+
+        HSSFCell c2D = filaDat.createCell((short) 2);
+        c2D.setCellStyle(estiloCeldabordes0);
+        c2D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+        // 7. ESCRIBIR COLUMNA 3 (OBSERVACIONES)
+        HSSFCell c3E = filaEnc.createCell((short) 3);
+        c3E.setCellStyle(estiloCelda1);
+        c3E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+        HSSFCell c3D = filaDat.createCell((short) 3);
+        c3D.setCellStyle(estiloCeldabordes0);
+        c3D.setCellValue(new HSSFRichTextString("Actor(ACTOR) no debe ser 99 =No identificado Ni NULL"));
+
+        // 8. ACTUALIZAR CONTADORES
+        conEnc = conEnc + 2;
+        conDat = conDat + 2;
+        coni = 1; 
+    }
+}else{
         ArrayResult = NNPart_Act_ordinario.ActorNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
-        //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
+            //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
 
             HSSFRow filaC1 = hoja2.createRow(conEnc);//filaC
             HSSFCell celdaC1 = filaC1.createCell((short) 0);//COLUMNA
@@ -10827,6 +11025,7 @@ progressBar.setValue(20);
             conDat = conDat + coni;
             coni = 1;
         }
+    }
  
      
         ArrayResult = NNPart_Act_ordinario.Actor_Trabajador(con);
@@ -11506,7 +11705,86 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_ordinarioNE.Dif_ActoresNE(con);
+        if(EntidadInicio==15){ //modificacion sushi
+            ArrayResult = Part_ordinarioNE.Dif_ActoresNE(con);
+if (ArrayResult != null && ArrayResult.size() > 0) {
+
+    // 1. CREAR LAS FILAS ÚNICAS (Para evitar corrupción por sobreescritura)
+    HSSFRow filaEnc = hoja2.createRow(conEnc);
+    HSSFRow filaDat = hoja2.createRow(conDat);
+    
+    filaEnc.setHeight((short) 600);
+    filaDat.setHeight((short) 300);
+
+    // 2. PREPARAR SETS PARA ACUMULAR (Igual que en los anteriores)
+    Set acumulaparts0 = new HashSet(); // Clave Órgano
+    Set acumulaparts1 = new HashSet(); // Clave Expediente
+
+    for (int m = 0; m < ArrayResult.size(); m++) {
+        String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+        txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+        String[] vParts = txtRaw.split(",");
+        
+        if (vParts.length >= 2) {
+            acumulaparts0.add(vParts[0].trim());
+            acumulaparts1.add(vParts[1].trim());
+        }
+    }
+
+    // --- COLUMNA 0: CLAVE DEL ORGANO ---
+    HSSFCell celdaC0E = filaEnc.createCell((short) 0);
+    celdaC0E.setCellStyle(estiloCelda1);
+    celdaC0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+    HSSFCell celdaC0D = filaDat.createCell((short) 0);
+    celdaC0D.setCellStyle(estiloCeldabordes0);
+    celdaC0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+    // --- COLUMNA 1: CLAVE DEL EXPEDIENTE ---
+    HSSFCell celdaC1E = filaEnc.createCell((short) 1);
+    celdaC1E.setCellStyle(estiloCelda1);
+    celdaC1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+    HSSFCell celdaC1D = filaDat.createCell((short) 1);
+    celdaC1D.setCellStyle(estiloCeldabordes0);
+    String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+    if (textoExp.length() > 32000) textoExp = textoExp.substring(0, 32000) + "...";
+    celdaC1D.setCellValue(new HSSFRichTextString(textoExp));
+
+    // --- COLUMNA 2: CANTIDAD DE ACTORES (Pides que diga GENERAL) ---
+    HSSFCell celdaC2E = filaEnc.createCell((short) 2);
+    celdaC2E.setCellStyle(estiloCelda1);
+    celdaC2E.setCellValue(new HSSFRichTextString("CANTIDAD DE ACTORES"));
+
+    HSSFCell celdaC2D = filaDat.createCell((short) 2);
+    celdaC2D.setCellStyle(estiloCeldabordes0);
+    celdaC2D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+    // --- COLUMNA 3: DESGLOSE ACTOR (Pides que diga GENERAL) ---
+    HSSFCell celdaC3E = filaEnc.createCell((short) 3);
+    celdaC3E.setCellStyle(estiloCelda1);
+    celdaC3E.setCellValue(new HSSFRichTextString("DESGLOSE ACTOR"));
+
+    HSSFCell celdaC3D = filaDat.createCell((short) 3);
+    celdaC3D.setCellStyle(estiloCeldabordes0);
+    celdaC3D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+    // --- COLUMNA 4: OBSERVACIONES ---
+    HSSFCell celdaC4E = filaEnc.createCell((short) 4);
+    celdaC4E.setCellStyle(estiloCelda1);
+    celdaC4E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+    HSSFCell celdaC4D = filaDat.createCell((short) 4);
+    celdaC4D.setCellStyle(estiloCelda2); // Usando estiloCelda2 como en tu código original
+    celdaC4D.setCellValue(new HSSFRichTextString("La cantidad de Actores en procedimiento Ordinario es diferente a el desglose de Actores en Part_act_ordinario"));
+
+    // 3. ACTUALIZAR CONTADORES
+    conDat = conDat + 2;
+    conEnc = conEnc + 2;
+    coni = 1;
+}
+    }else{
+            ArrayResult = Part_ordinarioNE.Dif_ActoresNE(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja2.createRow(conEnc);//filaBC
@@ -11638,6 +11916,8 @@ progressBar.setValue(20);
             coni = 1;
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
+    }
+        
         progressBar.setValue(25);
     }
 
@@ -11657,10 +11937,81 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
         
-       ArrayResult = NNPart_Dem_ordinario.DemandadoNI(con);
-        if (ArrayResult.size() > 0) {
+       if(EntidadInicio==15){ //modificacion sushi
+            ArrayResult = NNPart_Dem_ordinario.DemandadoNI(con);
+            if (ArrayResult != null && ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
-        //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
+
+            HSSFRow filaEnc = hoja3.createRow(conEnc);
+            HSSFRow filaDat = hoja3.createRow(conDat);
+            
+            filaEnc.setHeight((short) 600);
+            filaDat.setHeight((short) 300);
+
+            Set acumulaparts0 = new HashSet(); // clave_organo
+            Set acumulaparts1 = new HashSet(); // clave_expediente
+
+            for (int m = 0; m < ArrayResult.size(); m++) {
+                String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+                txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                String[] vParts = txtRaw.split(",");
+                        
+                if (vParts.length >= 2) {
+                    acumulaparts0.add(vParts[0].trim());
+                    acumulaparts1.add(vParts[1].trim());
+                }
+            }
+
+            // CLAVE DEL ORGANO
+            HSSFCell celdaC0E = filaEnc.createCell((short) 0);
+            celdaC0E.setCellStyle(estiloCelda1);
+            celdaC0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+            HSSFCell celdaC0D = filaDat.createCell((short) 0);
+            celdaC0D.setCellStyle(estiloCeldabordes0);
+            // Convertimos el Set a String quitando los corchetes []
+            celdaC0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+            // CLAVE DEL EXPEDIENTE 
+            HSSFCell celdaC1E = filaEnc.createCell((short) 1);
+            celdaC1E.setCellStyle(estiloCelda1);
+            celdaC1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            HSSFCell celdaC1D = filaDat.createCell((short) 1);
+            celdaC1D.setCellStyle(estiloCeldabordes0);
+            String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+            if (textoExp.length() > 32000) {
+                        textoExp = textoExp.substring(0, 32000) + "...";
+            }
+            celdaC1D.setCellValue(new HSSFRichTextString(textoExp));
+
+            // Demandado
+            HSSFCell celdaC2E = filaEnc.createCell((short) 2);
+            celdaC2E.setCellStyle(estiloCelda1);
+            celdaC2E.setCellValue(new HSSFRichTextString("Demandado"));
+
+            HSSFCell celdaC2D = filaDat.createCell((short) 2);
+            celdaC2D.setCellStyle(estiloCeldabordes0);
+            celdaC2D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+            //OBSERVACIONES
+            HSSFCell celdaC3E = filaEnc.createCell((short) 3);
+            celdaC3E.setCellStyle(estiloCelda1);
+            celdaC3E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            HSSFCell celdaC3D = filaDat.createCell((short) 3);
+            celdaC3D.setCellStyle(estiloCeldabordes0);
+            celdaC3D.setCellValue(new HSSFRichTextString("Demandado(DEMANDADO) no debe de ser 9=No identificado Ni NULL"));
+
+            conEnc = conEnc + 2; 
+            conDat = conDat + 2;
+            coni = 1; 
+            }
+        }else{
+            ArrayResult = NNPart_Dem_ordinario.DemandadoNI(con);
+            if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
 
             HSSFRow filaC1 = hoja3.createRow(conEnc);//filaC
             HSSFCell celdaC1 = filaC1.createCell((short) 0);//COLUMNA
@@ -11764,6 +12115,7 @@ progressBar.setValue(20);
             conDat = conDat + coni;
             coni = 1;
         }
+       }
  
         ArrayResult = NNPart_Dem_ordinario.Demandado_Otro(con);
         if (ArrayResult.size() > 0) {
@@ -12333,8 +12685,88 @@ progressBar.setValue(20);
             //System.out.println("contador EncaBCezado: "+conEnc + "Contador Datos: "+ conDat );
         }
 
-        ArrayResult = Part_ordinarioNE.Dif_demandadosNE(con);
-        if (ArrayResult.size() > 0) {
+        if(EntidadInicio==15){//modificacion sushi 
+            ArrayResult = Part_ordinarioNE.Dif_demandadosNE(con);
+            if (ArrayResult != null && ArrayResult.size() > 0) {
+
+            // 1. CREAR LAS FILAS ÚNICAS (Evita que el archivo se dañe al no sobreescribir)
+            HSSFRow filaEnc = hoja3.createRow(conEnc);
+            HSSFRow filaDat = hoja3.createRow(conDat);
+            
+            filaEnc.setHeight((short) 600);
+            filaDat.setHeight((short) 300);
+
+            // 2. PROCESAR DATOS (Acumular órganos y expedientes)
+            Set acumulaparts0 = new HashSet(); // Clave Órgano
+            Set acumulaparts1 = new HashSet(); // Clave Expediente
+
+            for (int m = 0; m < ArrayResult.size(); m++) {
+                        String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+                        txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                        String[] vParts = txtRaw.split(",");
+                        
+                        if (vParts.length >= 2) {
+                                    acumulaparts0.add(vParts[0].trim());
+                                    acumulaparts1.add(vParts[1].trim());
+                        }
+            }
+
+            // --- COLUMNA 0: CLAVE DEL ORGANO ---
+            HSSFCell celdaC0E = filaEnc.createCell((short) 0);
+            celdaC0E.setCellStyle(estiloCelda1);
+            celdaC0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+            HSSFCell celdaC0D = filaDat.createCell((short) 0);
+            celdaC0D.setCellStyle(estiloCeldabordes0);
+            celdaC0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+            // --- COLUMNA 1: CLAVE DEL EXPEDIENTE ---
+            HSSFCell celdaC1E = filaEnc.createCell((short) 1);
+            celdaC1E.setCellStyle(estiloCelda1);
+            celdaC1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            HSSFCell celdaC1D = filaDat.createCell((short) 1);
+            celdaC1D.setCellStyle(estiloCeldabordes0);
+            String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+            // Protección contra el límite de caracteres de Excel (32,767)
+            if (textoExp.length() > 32000) textoExp = textoExp.substring(0, 32000) + "...";
+            celdaC1D.setCellValue(new HSSFRichTextString(textoExp));
+
+            // --- COLUMNA 2: CANTIDAD DE DEMANDADOS (Forzado a GENERAL) ---
+            HSSFCell celdaC2E = filaEnc.createCell((short) 2);
+            celdaC2E.setCellStyle(estiloCelda1);
+            celdaC2E.setCellValue(new HSSFRichTextString("CANTIDAD DE DEMANDADOS"));
+
+            HSSFCell celdaC2D = filaDat.createCell((short) 2);
+            celdaC2D.setCellStyle(estiloCeldabordes0);
+            celdaC2D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+            // --- COLUMNA 3: DESGLOSE DEMANDADOS (Forzado a GENERAL) ---
+            HSSFCell celdaC3E = filaEnc.createCell((short) 3);
+            celdaC3E.setCellStyle(estiloCelda1);
+            celdaC3E.setCellValue(new HSSFRichTextString("DESGLOSE DEMANDADOS"));
+
+            HSSFCell celdaC3D = filaDat.createCell((short) 3);
+            celdaC3D.setCellStyle(estiloCeldabordes0);
+            celdaC3D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+            // --- COLUMNA 4: OBSERVACIONES ---
+            HSSFCell celdaC4E = filaEnc.createCell((short) 4);
+            celdaC4E.setCellStyle(estiloCelda1);
+            celdaC4E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            HSSFCell celdaC4D = filaDat.createCell((short) 4);
+            celdaC4D.setCellStyle(estiloCelda2);
+            celdaC4D.setCellValue(new HSSFRichTextString("La cantidad de demandados en procedimiento Ordinario es diferente a el desglose de Demandados en Part_dem_ordinario"));
+
+            // 3. ACTUALIZAR CONTADORES
+            conDat = conDat + 2;
+            conEnc = conEnc + 2;
+            coni = 1;
+        }
+       }else{
+            ArrayResult = Part_ordinarioNE.Dif_demandadosNE(con);
+            if (ArrayResult.size() > 0) {
 
             HSSFRow filaBC1 = hoja3.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
@@ -12464,6 +12896,7 @@ progressBar.setValue(20);
             conEnc = conEnc + coni;
             coni = 1;
             
+            }
         }
     progressBar.setValue(30);
        
@@ -15755,7 +16188,95 @@ progressBar.setValue(20);
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
         }
 
-        ArrayResult = Individual.Fecha_PresentacionAdmiNE(con);
+        if(EntidadInicio==15){
+            ArrayResult = Individual.Fecha_PresentacionAdmiNE(con);
+            if (ArrayResult != null && ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            
+            // 1. ACTUALIZACIÓN EN HOJA RESUMEN (Celda única)
+            HSSFRow fila00 = hojaresumenval.getRow(3); 
+            if (fila00 == null) fila00 = hojaresumenval.createRow(3);
+            HSSFCell celda00 = fila00.createCell((short) 1);
+            celda00.setCellStyle(PAmarillo);
+            // Nota: No se le asigna valor según tu código original, solo el estilo.
+
+            // 2. CREAR FILAS ÚNICAS EN HOJA 4 (Para evitar archivos dañados)
+            HSSFRow filaEnc = hoja4.createRow(conEnc);
+            HSSFRow filaDat = hoja4.createRow(conDat);
+            
+            filaEnc.setHeight((short) 600);
+            filaDat.setHeight((short) 300);
+
+            // 3. PROCESAR DATOS (Acumular órganos y expedientes)
+            Set acumulaparts0 = new HashSet(); // Órganos
+            Set acumulaparts1 = new HashSet(); // Expedientes
+
+            for (int m = 0; m < ArrayResult.size(); m++) {
+                        String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+                        txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                        String[] vParts = txtRaw.split(",");
+                        
+                        // Ajustamos los índices según tu lógica: parts[1] es órgano, parts[2] es expediente
+                        if (vParts.length >= 3) {
+                                    acumulaparts0.add(vParts[1].trim());
+                                    acumulaparts1.add(vParts[2].trim());
+                        }
+            }
+
+            // --- COLUMNA 0: CLAVE DEL ORGANO ---
+            HSSFCell c0E = filaEnc.createCell((short) 0);
+            c0E.setCellStyle(estiloCelda1);
+            c0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+            HSSFCell c0D = filaDat.createCell((short) 0);
+            c0D.setCellStyle(estiloCeldabordes0);
+            c0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+            // --- COLUMNA 1: CLAVE DEL EXPEDIENTE ---
+            HSSFCell c1E = filaEnc.createCell((short) 1);
+            c1E.setCellStyle(estiloCelda1);
+            c1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            HSSFCell c1D = filaDat.createCell((short) 1);
+            c1D.setCellStyle(estiloCeldabordes0);
+            String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+            if (textoExp.length() > 32000) textoExp = textoExp.substring(0, 32000) + "...";
+            c1D.setCellValue(new HSSFRichTextString(textoExp));
+
+            // --- COLUMNA 2: FECHA ADMISION (Forzado a GENERAL) ---
+            HSSFCell c2E = filaEnc.createCell((short) 2);
+            c2E.setCellStyle(estiloCelda1);
+            c2E.setCellValue(new HSSFRichTextString("FECHA ADMISION"));
+
+            HSSFCell c2D = filaDat.createCell((short) 2);
+            c2D.setCellStyle(estiloCeldabordes0);
+            c2D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+            // --- COLUMNA 3: FECHA DE PRESENTACION (Forzado a GENERAL) ---
+            HSSFCell c3E = filaEnc.createCell((short) 3);
+            c3E.setCellStyle(estiloCelda1);
+            c3E.setCellValue(new HSSFRichTextString("FECHA DE PRESENTACION"));
+
+            HSSFCell c3D = filaDat.createCell((short) 3);
+            c3D.setCellStyle(estiloCeldabordes0);
+            c3D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+            // --- COLUMNA 4: OBSERVACIONES ---
+            HSSFCell c4E = filaEnc.createCell((short) 4);
+            c4E.setCellStyle(estiloCelda1);
+            c4E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            HSSFCell c4D = filaDat.createCell((short) 4);
+            c4D.setCellStyle(estiloCeldabordes0);
+            c4D.setCellValue(new HSSFRichTextString("La Fecha de Admision no debe ser menor a la fecha de presentacion de la demanda(FECHA_PRES_DEMANDA)."));
+
+            // 4. ACTUALIZAR CONTADORES
+            conEnc = conEnc + 2;
+            conDat = conDat + 2;
+            coni = 1;
+            }
+        }else{
+            ArrayResult = Individual.Fecha_PresentacionAdmiNE(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(3);//FILA
@@ -15891,6 +16412,7 @@ progressBar.setValue(20);
             conDat = conDat + coni;
             coni = 1;
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+            }
         }
 
         ArrayResult = Individual.Fecha_Admi_demandaNE(con);
@@ -17721,7 +18243,84 @@ progressBar.setValue(20);
             coni = 1;
         }
  
-        ArrayResult = NNindividual.Estatus_Demanda(con);
+        if(EntidadInicio==15){//modificacion sushi
+            ArrayResult = NNindividual.Estatus_Demanda(con);
+            if (ArrayResult != null && ArrayResult.size() > 0) {
+            
+            // 1. CREAR LAS FILAS ÚNICAS
+            HSSFRow filaEnc = hoja4.createRow(conEnc);
+            HSSFRow filaDat = hoja4.createRow(conDat);
+            
+            filaEnc.setHeight((short) 600);
+            filaDat.setHeight((short) 300);
+
+            // 2. PROCESAR DATOS (Acumular órganos y expedientes)
+            Set acumulaparts0 = new HashSet(); 
+            Set acumulaparts1 = new HashSet(); 
+            String comentarioUnico = "";
+
+            for (int m = 0; m < ArrayResult.size(); m++) {
+                        String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+                        txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                        String[] vParts = txtRaw.split(",");
+                        
+                        if (vParts.length >= 4) {
+                                    acumulaparts0.add(vParts[0].trim());
+                                    acumulaparts1.add(vParts[1].trim());
+                                    
+                                    // Guardamos el comentario del primer registro para ponerlo una sola vez
+                                    if (m == 0) {
+                                                comentarioUnico = vParts[3].trim();
+                                    }
+                        }
+            }
+
+            // --- COLUMNA 0: CLAVE DEL ORGANO ---
+            HSSFCell c0E = filaEnc.createCell((short) 0);
+            c0E.setCellStyle(estiloCelda1);
+            c0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+            HSSFCell c0D = filaDat.createCell((short) 0);
+            c0D.setCellStyle(estiloCeldabordes0);
+            c0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+            // --- COLUMNA 1: CLAVE DEL EXPEDIENTE ---
+            HSSFCell c1E = filaEnc.createCell((short) 1);
+            c1E.setCellStyle(estiloCelda1);
+            c1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            HSSFCell c1D = filaDat.createCell((short) 1);
+            c1D.setCellStyle(estiloCeldabordes0);
+            String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+            if (textoExp.length() > 32000) textoExp = textoExp.substring(0, 32000) + "...";
+            c1D.setCellValue(new HSSFRichTextString(textoExp));
+
+            // --- COLUMNA 2: COMENTARIOS (Toma el valor de la BD pero solo una vez) ---
+            HSSFCell c2E = filaEnc.createCell((short) 2);
+            c2E.setCellStyle(estiloCelda1);
+            c2E.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+
+            HSSFCell c2D = filaDat.createCell((short) 2);
+            c2D.setCellStyle(estiloCeldabordes0);
+            // Ponemos el comentario que venía en la base de datos (parts[3])
+            c2D.setCellValue(new HSSFRichTextString(comentarioUnico));
+
+            // --- COLUMNA 3: OBSERVACIONES (Texto estático una sola vez) ---
+            HSSFCell c3E = filaEnc.createCell((short) 3);
+            c3E.setCellStyle(estiloCelda1);
+            c3E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            HSSFCell c3D = filaDat.createCell((short) 3);
+            c3D.setCellStyle(estiloCeldabordes0);
+            c3D.setCellValue(new HSSFRichTextString("Estatus de la demanda no debe de ser 9=No_identificado Ni NULL."));
+
+            // 3. ACTUALIZAR CONTADORES
+            conEnc = conEnc + 2;
+            conDat = conDat + 2;
+            coni = 1; 
+            }
+        }else{
+            ArrayResult = NNindividual.Estatus_Demanda(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             System.out.println("1");
@@ -17830,6 +18429,7 @@ progressBar.setValue(20);
             conEnc = conEnc + coni;
             conDat = conDat + coni;
             coni = 1;
+            }
         }
 
         ArrayResult = NNindividual.Estatus_Demanda_admitida(con);
@@ -19076,7 +19676,84 @@ progressBar.setValue(20);
             coni = 1;
         }
         
-          ArrayResult = NNindividual.Estatus_Demanda_Noidentificada(con);
+        if(EntidadInicio==15){
+            ArrayResult = NNindividual.Estatus_Demanda_Noidentificada(con);
+            if (ArrayResult != null && ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+
+            // 1. ACTUALIZACIÓN EN HOJA RESUMEN (Celda única para marcar la validación)
+            HSSFRow filaC00 = hojaresumenval.getRow(3);
+            if (filaC00 == null) filaC00 = hojaresumenval.createRow(3);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // 2. CREAR FILAS ÚNICAS EN HOJA 4 (Encabezado y Datos Agrupados)
+            HSSFRow filaEnc = hoja4.createRow(conEnc);
+            HSSFRow filaDat = hoja4.createRow(conDat);
+            
+            filaEnc.setHeight((short) 600);
+            filaDat.setHeight((short) 300);
+
+            // 3. PROCESAR DATOS (Acumular órganos y expedientes)
+            Set acumulaparts0 = new HashSet(); // Órganos
+            Set acumulaparts1 = new HashSet(); // Expedientes
+
+            for (int m = 0; m < ArrayResult.size(); m++) {
+                        String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+                        txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                        String[] vParts = txtRaw.split(",");
+                        
+                        if (vParts.length >= 2) {
+                                    acumulaparts0.add(vParts[0].trim());
+                                    acumulaparts1.add(vParts[1].trim());
+                        }
+            }
+
+            // --- COLUMNA 0: CLAVE DEL ORGANO ---
+            HSSFCell c0E = filaEnc.createCell((short) 0);
+            c0E.setCellStyle(estiloCelda1);
+            c0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+            HSSFCell c0D = filaDat.createCell((short) 0);
+            c0D.setCellStyle(estiloCeldabordes0);
+            c0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+            // --- COLUMNA 1: CLAVE DEL EXPEDIENTE ---
+            HSSFCell c1E = filaEnc.createCell((short) 1);
+            c1E.setCellStyle(estiloCelda1);
+            c1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            HSSFCell c1D = filaDat.createCell((short) 1);
+            c1D.setCellStyle(estiloCeldabordes0);
+            String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+            if (textoExp.length() > 32000) textoExp = textoExp.substring(0, 32000) + "...";
+            c1D.setCellValue(new HSSFRichTextString(textoExp));
+
+            // --- COLUMNA 2: ESTATUS DE LA DEMANDA (Forzado a GENERAL) ---
+            HSSFCell c2E = filaEnc.createCell((short) 2);
+            c2E.setCellStyle(estiloCelda1);
+            c2E.setCellValue(new HSSFRichTextString("ESTATUS DE LA DEMANDA"));
+
+            HSSFCell c2D = filaDat.createCell((short) 2);
+            c2D.setCellStyle(estiloCeldabordes0);
+            c2D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+            // --- COLUMNA 3: OBSERVACIONES (Una sola vez) ---
+            HSSFCell c3E = filaEnc.createCell((short) 3);
+            c3E.setCellStyle(estiloCelda1);
+            c3E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            HSSFCell c3D = filaDat.createCell((short) 3);
+            c3D.setCellStyle(estiloCeldabordes0);
+            c3D.setCellValue(new HSSFRichTextString("Favor de Verificar Estatus_demanda ya que contiene informacion a apartir de Fecha de Admision de la demanda (FECHA_ADMI_DEMANDA)"));
+
+            // 4. ACTUALIZAR CONTADORES
+            conEnc = conEnc + 2;
+            conDat = conDat + 2;
+            coni = 1; 
+            }
+        }else{
+              ArrayResult = NNindividual.Estatus_Demanda_Noidentificada(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19188,6 +19865,7 @@ progressBar.setValue(20);
             conEnc = conEnc + coni;
             conDat = conDat + coni;
             coni = 1;
+        }
         }
         
        //Favor de verificar el campo Estatus_demanda, ya que la Fecha de Apertura del Expediente (FECHA_APERTURA_EXPEDIENTE) excede el plazo máximo permitido de 60 días (2 meses).
@@ -19534,8 +20212,90 @@ progressBar.setValue(20);
             coni = 1;
         }
         
-        
-         ArrayResult = NNindividual.Fase_Sol_expNoExiste(con);
+        if(EntidadInicio==15){
+            ArrayResult = NNindividual.Fase_Sol_expNoExiste(con);
+if (ArrayResult != null && ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+
+            // 1. MARCAR EN HOJA RESUMEN (Sin duplicar filas si ya existe la 3)
+            HSSFRow filaC00 = hojaresumenval.getRow(3);
+            if (filaC00 == null) filaC00 = hojaresumenval.createRow(3);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // 2. CREAR FILAS ÚNICAS (Encabezado y Datos Agrupados)
+            HSSFRow filaEnc = hoja4.createRow(conEnc);
+            HSSFRow filaDat = hoja4.createRow(conDat);
+            
+            filaEnc.setHeight((short) 600);
+            filaDat.setHeight((short) 300);
+
+            // 3. PROCESAR DATOS
+            Set acumulaparts0 = new HashSet(); // Órganos
+            Set acumulaparts1 = new HashSet(); // Expedientes
+            String fasePrimerRegistro = "";
+
+            for (int m = 0; m < ArrayResult.size(); m++) {
+                        String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+                        txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                        String[] vParts = txtRaw.split(",");
+                        
+                        if (vParts.length >= 3) {
+                                    acumulaparts0.add(vParts[0].trim());
+                                    acumulaparts1.add(vParts[1].trim());
+                                    
+                                    // Capturamos la FASE solo del primer registro encontrado
+                                    if (m == 0) {
+                                                fasePrimerRegistro = vParts[2].trim();
+                                    }
+                        }
+            }
+
+            // --- COLUMNA 0: CLAVE DEL ORGANO ---
+            HSSFCell c0E = filaEnc.createCell((short) 0);
+            c0E.setCellStyle(estiloCelda1);
+            c0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+            HSSFCell c0D = filaDat.createCell((short) 0);
+            c0D.setCellStyle(estiloCeldabordes0);
+            c0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+            // --- COLUMNA 1: CLAVE DEL EXPEDIENTE ---
+            HSSFCell c1E = filaEnc.createCell((short) 1);
+            c1E.setCellStyle(estiloCelda1);
+            c1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            HSSFCell c1D = filaDat.createCell((short) 1);
+            c1D.setCellStyle(estiloCeldabordes0);
+            String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+            if (textoExp.length() > 32000) textoExp = textoExp.substring(0, 32000) + "...";
+            c1D.setCellValue(new HSSFRichTextString(textoExp));
+
+            // --- COLUMNA 2: FASE EXPEDIENTE (Valor del primer registro una sola vez) ---
+            HSSFCell c2E = filaEnc.createCell((short) 2);
+            c2E.setCellStyle(estiloCelda1);
+            c2E.setCellValue(new HSSFRichTextString("FASE EXPEDIENTE"));
+
+            HSSFCell c2D = filaDat.createCell((short) 2);
+            c2D.setCellStyle(estiloCeldabordes0);
+            c2D.setCellValue(new HSSFRichTextString(fasePrimerRegistro));
+
+            // --- COLUMNA 3: OBSERVACIONES (Texto estático una sola vez) ---
+            HSSFCell c3E = filaEnc.createCell((short) 3);
+            c3E.setCellStyle(estiloCelda1);
+            c3E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            HSSFCell c3D = filaDat.createCell((short) 3);
+            c3D.setCellStyle(estiloCeldabordes0);
+            c3D.setCellValue(new HSSFRichTextString("Fase de solicitud del expediente (FASE_SOLI_EXPEDIENTE) no corresponde a Procedimiento (Individual)"));
+
+            // 4. ACTUALIZAR CONTADORES
+            conEnc = conEnc + 2;
+            conDat = conDat + 2;
+            coni = 1;
+            }
+        }else{
+            ArrayResult = NNindividual.Fase_Sol_expNoExiste(con);
         if (ArrayResult.size() > 0) {
             System.out.println(ArrayResult.toString());
             HSSFRow filaC00 = hojaresumenval.createRow(3);//filaC
@@ -19647,6 +20407,7 @@ progressBar.setValue(20);
             conEnc = conEnc + coni;
             conDat = conDat + coni;
             coni = 1;
+            }
         }
 
         ArrayResult = NNindividual.Fase_Sol_expNI(con);
@@ -20237,8 +20998,86 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = NNV3Part_Act_individual.ActorNI(con);
-        if (ArrayResult.size() > 0) {
+        if(EntidadInicio==15){ //modificacion sushi
+            ArrayResult = NNV3Part_Act_individual.ActorNI(con);
+            if (ArrayResult != null && ArrayResult.size() > 0) {
+       
+            HSSFRow filaEnc = hoja5.createRow(conEnc); //fila
+            HSSFRow filaDat = hoja5.createRow(conDat); //columna
+            
+            filaEnc.setHeight((short) 600);
+            filaDat.setHeight((short) 300);
+
+            // 2. PROCESAR DATOS (Acumular órganos y expedientes)
+            Set acumulaparts0 = new HashSet(); // Órganos
+            Set acumulaparts1 = new HashSet(); // Expedientes
+
+            for (int m = 0; m < ArrayResult.size(); m++) {
+                        String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+                        txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                        String[] vParts = txtRaw.split(",");
+                        
+                        if (vParts.length >= 2) {
+                                    acumulaparts0.add(vParts[0].trim());
+                                    acumulaparts1.add(vParts[1].trim());
+                        }
+            }
+
+            // --- COLUMNA 0: CLAVE DEL ORGANO ---
+            HSSFCell celdaC0E = filaEnc.createCell((short) 0);
+            celdaC0E.setCellStyle(estiloCelda1);
+            celdaC0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+            HSSFCell celdaC0D = filaDat.createCell((short) 0);
+            celdaC0D.setCellStyle(estiloCeldabordes0);
+            celdaC0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+            // --- COLUMNA 1: CLAVE DEL EXPEDIENTE ---
+            HSSFCell celdaC1E = filaEnc.createCell((short) 1);
+            celdaC1E.setCellStyle(estiloCelda1);
+            celdaC1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            HSSFCell celdaC1D = filaDat.createCell((short) 1);
+            celdaC1D.setCellStyle(estiloCeldabordes0);
+            String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+            // Protección contra límite de caracteres de Excel
+            if (textoExp.length() > 32000) textoExp = textoExp.substring(0, 32000) + "...";
+            celdaC1D.setCellValue(new HSSFRichTextString(textoExp));
+
+            // --- COLUMNA 2: ACTOR (Aquí forzamos que diga GENERAL) ---
+            HSSFCell celdaC2E = filaEnc.createCell((short) 2);
+            celdaC2E.setCellStyle(estiloCelda1);
+            celdaC2E.setCellValue(new HSSFRichTextString("Actor"));
+
+            HSSFCell celdaC2D = filaDat.createCell((short) 2);
+            celdaC2D.setCellStyle(estiloCeldabordes0);
+            celdaC2D.setCellValue(new HSSFRichTextString("GENERAL"));
+
+            // --- COLUMNA 3 y 4: OBSERVACIONES (Con Celda Combinada) ---
+            // Encabezado Observaciones
+            HSSFCell celdaC3E = filaEnc.createCell((short) 3);
+            celdaC3E.setCellStyle(estiloCelda1);
+            celdaC3E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            // Celda vacía para completar el rango de la combinación
+            filaEnc.createCell((short) 4).setCellStyle(estiloCelda1); 
+            hoja5.addMergedRegion(new Region(conEnc, (short) 3, conEnc, (short) 4));
+
+            // Datos Observaciones
+            HSSFCell celdaC3D = filaDat.createCell((short) 3);
+            celdaC3D.setCellStyle(estiloCelda2);
+            celdaC3D.setCellValue(new HSSFRichTextString("Actor No debe ser 99=No identificado. Ni NULL"));
+            // Celda vacía para completar el rango de la combinación
+            filaDat.createCell((short) 4).setCellStyle(estiloCelda2);
+            hoja5.addMergedRegion(new Region(conDat, (short) 3, conDat, (short) 4));
+
+            // 3. ACTUALIZAR CONTADORES
+            conDat = conDat + 2;
+            conEnc = conEnc + 2;
+            coni = 1;
+        }
+    }else{
+            ArrayResult = NNV3Part_Act_individual.ActorNI(con);
+            if (ArrayResult.size() > 0) {
             HSSFRow filaBC1 = hoja5.createRow(conEnc);//filaBC
             HSSFCell celdaBC1 = filaBC1.createCell((short) 0);//COLUMNA
             celdaBC1.setCellStyle(estiloCelda1);
@@ -20351,6 +21190,7 @@ progressBar.setValue(20);
             conDat = conDat + coni;
             conEnc = conEnc + coni;
             coni = 1;
+        }
         }
 
         ArrayResult = NNV3Part_Act_individual.Actor_otro(con);
@@ -20972,7 +21812,84 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = NNPart_Dem_individual.DemandadoNI(con);
+        if(EntidadInicio==15){
+            ArrayResult = NNPart_Dem_individual.DemandadoNI(con);
+if (ArrayResult != null && ArrayResult.size() > 0) {
+
+            // 1. CREAR FILAS ÚNICAS (Encabezado y Datos Agrupados)
+            HSSFRow filaEnc = hoja6.createRow(conEnc);
+            HSSFRow filaDat = hoja6.createRow(conDat);
+            
+            filaEnc.setHeight((short) 600);
+            filaDat.setHeight((short) 300);
+
+            // 2. PROCESAR DATOS
+            Set acumulaparts0 = new HashSet(); // Órganos
+            Set acumulaparts1 = new HashSet(); // Expedientes
+            String demandadoUnico = "";
+
+            for (int m = 0; m < ArrayResult.size(); m++) {
+                        String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+                        txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                        String[] vParts = txtRaw.split(",");
+                        
+                        if (vParts.length >= 3) {
+                                    acumulaparts0.add(vParts[0].trim());
+                                    acumulaparts1.add(vParts[1].trim());
+                                    
+                                    // Capturamos el dato DEMANDADO solo del primer registro
+                                    if (m == 0) {
+                                                demandadoUnico = vParts[2].trim();
+                                    }
+                        }
+            }
+
+            // --- COLUMNA 0: CLAVE DEL ORGANO ---
+            HSSFCell c0E = filaEnc.createCell((short) 0);
+            c0E.setCellStyle(estiloCelda1);
+            c0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+            HSSFCell c0D = filaDat.createCell((short) 0);
+            c0D.setCellStyle(estiloCeldabordes0);
+            c0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+            // --- COLUMNA 1: CLAVE DEL EXPEDIENTE ---
+            HSSFCell c1E = filaEnc.createCell((short) 1);
+            c1E.setCellStyle(estiloCelda1);
+            c1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            HSSFCell c1D = filaDat.createCell((short) 1);
+            c1D.setCellStyle(estiloCeldabordes0);
+            String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+            // Validación de límite de caracteres para Excel
+            if (textoExp.length() > 32000) textoExp = textoExp.substring(0, 32000) + "...";
+            c1D.setCellValue(new HSSFRichTextString(textoExp));
+
+            // --- COLUMNA 2: DEMANDADO (Valor de BD una sola vez) ---
+            HSSFCell c2E = filaEnc.createCell((short) 2);
+            c2E.setCellStyle(estiloCelda1);
+            c2E.setCellValue(new HSSFRichTextString("DEMANDADO"));
+
+            HSSFCell c2D = filaDat.createCell((short) 2);
+            c2D.setCellStyle(estiloCeldabordes0);
+            c2D.setCellValue(new HSSFRichTextString(demandadoUnico));
+
+            // --- COLUMNA 3: OBSERVACIONES (Texto fijo una sola vez) ---
+            HSSFCell c3E = filaEnc.createCell((short) 3);
+            c3E.setCellStyle(estiloCelda1);
+            c3E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            HSSFCell c3D = filaDat.createCell((short) 3);
+            c3D.setCellStyle(estiloCeldabordes0);
+            c3D.setCellValue(new HSSFRichTextString("Demandado no debe de ser 9=No identificado Ni NULL"));
+
+            // 3. ACTUALIZAR CONTADORES
+            conEnc = conEnc + 2;
+            conDat = conDat + 2;
+            coni = 1;
+            }
+        }else{
+            ArrayResult = NNPart_Dem_individual.DemandadoNI(con);
         if (ArrayResult.size() > 0) {
 
             HSSFRow filaC1 = hoja6.createRow(conEnc);//filaC
@@ -21076,6 +21993,7 @@ progressBar.setValue(20);
             conEnc = conEnc + coni;
             conDat = conDat + coni;
             coni = 1;
+            }
         }
 
         ArrayResult = NNPart_Dem_individual.Demandado_otro(con);
@@ -27384,7 +28302,84 @@ progressBar.setValue(20);
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
-        ArrayResult = NNPart_Act_colectivo.ActorNI(con);
+        if(EntidadInicio==15){
+            ArrayResult = NNPart_Act_colectivo.ActorNI(con);
+if (ArrayResult != null && ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + " Contador Datos: " + conDat);
+
+            // 1. CREAR FILAS ÚNICAS (Evitamos duplicar filas en el bucle)
+            HSSFRow filaEnc = hoja8.createRow(conEnc);
+            HSSFRow filaDat = hoja8.createRow(conDat);
+            
+            filaEnc.setHeight((short) 600);
+            filaDat.setHeight((short) 300);
+
+            // 2. PROCESAR DATOS (Acumular órganos, expedientes y capturar actor único)
+            Set acumulaparts0 = new HashSet(); // Órganos
+            Set acumulaparts1 = new HashSet(); // Expedientes
+            String actorUnico = "";
+
+            for (int m = 0; m < ArrayResult.size(); m++) {
+                        String txtRaw = Arrays.toString((Object[]) ArrayResult.get(m));
+                        txtRaw = txtRaw.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                        String[] vParts = txtRaw.split(",");
+                        
+                        if (vParts.length >= 3) {
+                                    acumulaparts0.add(vParts[0].trim());
+                                    acumulaparts1.add(vParts[1].trim());
+                                    
+                                    // Tomamos el ACTOR solo del primer registro para ponerlo una vez
+                                    if (m == 0) {
+                                                actorUnico = vParts[2].trim();
+                                    }
+                        }
+            }
+
+            // --- COLUMNA 0: CLAVE DEL ORGANO ---
+            HSSFCell c0E = filaEnc.createCell((short) 0);
+            c0E.setCellStyle(estiloCelda1);
+            c0E.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+
+            HSSFCell c0D = filaDat.createCell((short) 0);
+            c0D.setCellStyle(estiloCeldabordes0);
+            c0D.setCellValue(new HSSFRichTextString(acumulaparts0.toString().replace("[", "").replace("]", "")));
+
+            // --- COLUMNA 1: CLAVE DEL EXPEDIENTE ---
+            HSSFCell c1E = filaEnc.createCell((short) 1);
+            c1E.setCellStyle(estiloCelda1);
+            c1E.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            HSSFCell c1D = filaDat.createCell((short) 1);
+            c1D.setCellStyle(estiloCeldabordes0);
+            String textoExp = acumulaparts1.toString().replace("[", "").replace("]", "");
+            if (textoExp.length() > 32000) textoExp = textoExp.substring(0, 32000) + "...";
+            c1D.setCellValue(new HSSFRichTextString(textoExp));
+
+            // --- COLUMNA 2: ACTOR (Valor dinámico de BD una sola vez) ---
+            HSSFCell c2E = filaEnc.createCell((short) 2);
+            c2E.setCellStyle(estiloCelda1);
+            c2E.setCellValue(new HSSFRichTextString("ACTOR"));
+
+            HSSFCell c2D = filaDat.createCell((short) 2);
+            c2D.setCellStyle(estiloCeldabordes0);
+            c2D.setCellValue(new HSSFRichTextString(actorUnico));
+
+            // --- COLUMNA 3: OBSERVACIONES (Texto estático una sola vez) ---
+            HSSFCell c3E = filaEnc.createCell((short) 3);
+            c3E.setCellStyle(estiloCelda1);
+            c3E.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            HSSFCell c3D = filaDat.createCell((short) 3);
+            c3D.setCellStyle(estiloCeldabordes0);
+            c3D.setCellValue(new HSSFRichTextString("Actor no debe ser 99=No identificado Ni NULL"));
+
+            // 3. ACTUALIZAR CONTADORES
+            conEnc = conEnc + 2;
+            conDat = conDat + 2;
+            coni = 1;
+            }
+        }else{
+            ArrayResult = NNPart_Act_colectivo.ActorNI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
         //System.out.println("contador Encabezado: "+conEnc + "Contador Datos: "+ conDat );    
@@ -27490,6 +28485,7 @@ progressBar.setValue(20);
             conEnc = conEnc + coni;
             conDat = conDat + coni;
             coni = 1;
+        }
         }
 
         ArrayResult = NNPart_Act_colectivo.Actor_Sindicato(con);

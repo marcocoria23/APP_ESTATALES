@@ -11,11 +11,94 @@ import java.util.logging.Logger;
 
 public class V3QIndividual {
 
-    private static final Logger LOG = Logger.getLogger(V3QIndividual.class.getName());
+private static final Logger LOG = Logger.getLogger(V3QIndividual.class.getName());
 
     private String sql;
     private ArrayList<String[]> Array;
+    
+    
+    
+    
+    public ArrayList<String[]> IndividualFechaAperturaMenor2020(Connection con) {
+        Array = new ArrayList<>();
+        sql =
+            "SELECT \n" +
+"    CLAVE_ORGANO,\n" +
+"    EXPEDIENTE_CLAVE,\n" +
+"    TO_CHAR(FECHA_APERTURA_EXPEDIENTE,'DD/MM/YYYY')FECHA_APERTURA_EXPEDIENTE\n" +
+"FROM V3_TR_INDIVIDUALJL\n" +
+"WHERE FECHA_APERTURA_EXPEDIENTE <  '2020-01-01'\n" +
+"  AND MOD(YEAR(FECHA_APERTURA_EXPEDIENTE), 100) <> 99\n";
+        try (
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FECHA_APERTURA_EXPEDIENTE")
+                });
+            }
 
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en Año_JudicialCampeche", ex);
+        }
+
+        return Array;
+    }
+
+    
+     public ArrayList<String[]> FECHA_APERTURA_NI(Connection con) {
+        Array = new ArrayList<>();
+        sql =
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE,COMENTARIOS\n" +
+"FROM V3_TR_INDIVIDUALJL\n" +
+"WHERE FECHA_APERTURA_EXPEDIENTE='1899-09-09'";
+        try (
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FECHA_APERTURA_EXPEDIENTE"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en Año_JudicialCampeche", ex);
+        }
+
+        return Array;
+    }
+     
+     
+     public ArrayList<String[]> FECHA_ACTO_PROCESAL_NI(Connection con) {
+        Array = new ArrayList<>();
+        sql =
+            "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_ACTO_PROCESAL,COMENTARIOS\n" +
+"FROM V3_TR_INDIVIDUALJL\n" +
+"WHERE FECHA_ACTO_PROCESAL='1899-09-09'";
+        try (
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FECHA_ACTO_PROCESAL"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en Año_JudicialCampeche", ex);
+        }
+
+        return Array;
+    }
+    
     // =========================
     // 1) Año judicial Campeche
     // =========================

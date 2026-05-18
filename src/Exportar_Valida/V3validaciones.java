@@ -3474,6 +3474,396 @@ public class V3validaciones {
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
+     // se agrego nuevo
+      ArrayResult = Ordinario.OrdinarioFechaAperturaMenor2020(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 3);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) no debe ser menor al primero de enero del 2020 (01/01/2020).";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+
+   ArrayResult = Ordinario.FECHA_APERTURA_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja1.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+        
+        
+               ArrayResult = Ordinario.FECHA_ACTO_PROCESAL_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DEL ULTIMO ACTO PROCESAL";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja1.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja1.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja1.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha del Ultimo Acto Procesal (FECHA_ACTO_PROCESAL) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+
         
         ArrayResult = QN.OrdinarioFaseSolExpAJ();
         if (ArrayResult.size() > 0) {
@@ -12926,6 +13316,398 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
  
+        
+        
+        // se agrego nuevo
+      ArrayResult = Individual.IndividualFechaAperturaMenor2020(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 3);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) no debe ser menor al primero de enero del 2020 (01/01/2020).";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+
+        ArrayResult = Individual.FECHA_APERTURA_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja4.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+        
+        
+               ArrayResult = Individual.FECHA_ACTO_PROCESAL_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DEL ULTIMO ACTO PROCESAL";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja4.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja4.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja4.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha del Ultimo Acto Procesal (FECHA_ACTO_PROCESAL) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+        
         
         ArrayResult = Q.IndividualFaseSolExpTA();
         if (ArrayResult.size() > 0) {
@@ -22726,6 +23508,397 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         row0.setHeight((short) 600);
 
         
+        
+          ArrayResult = Colectivo.ColectivoFechaAperturaMenor2020(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 3);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) no debe ser menor al primero de enero del 2020 (01/01/2020).";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+
+                ArrayResult = Colectivo.FECHA_APERTURA_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja7.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+        
+        
+               ArrayResult = Colectivo.FECHA_ACTO_PROCESAL_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DEL ULTIMO ACTO PROCESAL";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja7.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja7.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja7.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha del Ultimo Acto Procesal (FECHA_ACTO_PROCESAL) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+
+        
         ArrayResult = Q.ColectivoFaseSolExpAD();
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
@@ -30466,6 +31639,396 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         row0.setHeight((short) 600);
 
         
+        
+          ArrayResult = Huelga.HuelgaFechaAperturaMenor2020(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 3);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) no debe ser menor al primero de enero del 2020 (01/01/2020).";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+
+               ArrayResult = Huelga.FECHA_APERTURA_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja10.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+        
+        
+               ArrayResult = Huelga.FECHA_ACTO_PROCESAL_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DEL ULTIMO ACTO PROCESAL";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja10.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja10.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja10.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha del Ultimo Acto Procesal (FECHA_ACTO_PROCESAL) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+        
         ArrayResult = Q.HuelgaFaseSolExpHu();
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
@@ -37693,6 +39256,398 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         row0.setHeight((short) 600);
 
         
+           ArrayResult = Economico.EconomicoFechaAperturaMenor2020(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 3);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) no debe ser menor al primero de enero del 2020 (01/01/2020).";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+
+                 ArrayResult = Economico.FECHA_APERTURA_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja13.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+        
+        
+               ArrayResult = Economico.FECHA_ACTO_PROCESAL_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DEL ULTIMO ACTO PROCESAL";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja13.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja13.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja13.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha del Ultimo Acto Procesal (FECHA_ACTO_PROCESAL) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+
+        
+        
+        
         ArrayResult = Q.Colectivo_EconomFaseSolExpAPC();
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
@@ -42655,7 +44610,258 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
+          ArrayResult = Paraprocesal.ParaprocesalFechaAperturaMenor2020(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja16.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja16.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja16.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja16.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja16.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja16.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja16.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 3);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja16.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) no debe ser menor al primero de enero del 2020 (01/01/2020).";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
         
+        
+        
+              ArrayResult = Paraprocesal.FECHA_APERTURA_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja16.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja16.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja16.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja16.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja16.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja16.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja16.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja16.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja16.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja16.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+
         ArrayResult = Q.ParaprocesalEstatus();
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
@@ -44605,6 +46811,255 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         celda0.setCellValue(texto0);
         row0.setHeight((short) 600);
 
+          ArrayResult = Ejecucion.EjecucionFechaAperturaMenor2020(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja17.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja17.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja17.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja17.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja17.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja17.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja17.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 3);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja17.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) no debe ser menor al primero de enero del 2020 (01/01/2020).";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
+        
+           ArrayResult = Ejecucion.FECHA_APERTURA_NI(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
+            HSSFCell celda00 = fila00.createCell((short) 1);//COLUMNA    
+            celda00.setCellStyle(PAmarillo);
+
+            HSSFRow fila1 = hoja17.createRow(conEnc);//FILA
+            HSSFCell celda1 = fila1.createCell((short) 0);//COLUMNA
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt1 = "CLAVE DEL ORGANO";
+            HSSFRichTextString texto1 = new HSSFRichTextString(txt1);
+            celda1.setCellValue(texto1);
+            fila1.setHeight((short) 600);
+
+            //clave_organo
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila6 = hoja17.createRow(conDat + i);//FILA
+                HSSFCell celda6 = fila6.createCell((short) 0);//COLUMNA
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt6 = Arrays.toString(ArrayResult.get(i));
+                txt6 = txt6.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt6.split(",");
+                parts0 = parts[0].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto6 = new HSSFRichTextString(parts0);
+                celda6.setCellValue(texto6);
+                fila6.setHeight((short) 300);
+            }
+
+            HSSFRow fila2 = hoja17.createRow(conEnc);//FILA
+            HSSFCell celda2 = fila2.createCell((short) 1);//COLUMNA
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt2 = "CLAVE DEL EXPEDIENTE";
+            HSSFRichTextString texto2 = new HSSFRichTextString(txt2);
+            celda2.setCellValue(texto2);
+            fila2.setHeight((short) 600);
+
+            //clave del expediente
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila7 = hoja17.createRow(conDat + i);//FILA
+                HSSFCell celda7 = fila7.createCell((short) 1);//COLUMNA
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt7 = Arrays.toString(ArrayResult.get(i));
+                txt7 = txt7.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt7.split(",");
+                parts0 = parts[1].trim();
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto7 = new HSSFRichTextString(parts0);
+                celda7.setCellValue(texto7);
+                fila7.setHeight((short) 300);
+            }
+
+            HSSFRow fila4 = hoja17.createRow(conEnc);//FILA
+            HSSFCell celda4 = fila4.createCell((short) 2);//COLUMNA
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt4 = "FECHA DE APERTURA";
+            HSSFRichTextString texto4 = new HSSFRichTextString(txt4);
+            celda4.setCellValue(texto4);
+            fila4.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja17.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 2);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[2].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+            
+           HSSFRow filaCO = hoja17.createRow(conEnc);//FILA
+            HSSFCell celdaCO = filaCO.createCell((short) 3);//COLUMNA
+            celdaCO.setCellStyle(estiloCelda1);
+            celdaCO.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txtCO = "COMENTARIOS";
+            HSSFRichTextString textoCO = new HSSFRichTextString(txtCO);
+            celdaCO.setCellValue(textoCO);
+            filaCO.setHeight((short) 600);
+
+            //FECHA DE admision de la demanda
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja17.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 3);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = Arrays.toString(ArrayResult.get(i));
+                txt9 = txt9.replace("[", "").replace("]", "").replace(" 00:00:00.0", "");
+                parts = txt9.split(",");
+                parts0 = parts[3].trim();
+       // partsfechas=dateformat.format(parts0);
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(parts0);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+            }
+
+            HSSFRow fila5 = hoja17.createRow(conEnc);//FILA
+            HSSFCell celda5 = fila5.createCell((short) 4);//COLUMNA
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            String txt5 = "OBSERVACIONES";
+            HSSFRichTextString texto5 = new HSSFRichTextString(txt5);
+            celda5.setCellValue(texto5);
+            fila5.setHeight((short) 600);
+
+            //Observaciones
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila9 = hoja17.createRow(conDat + i);//FILA
+                HSSFCell celda9 = fila9.createCell((short) 4);//COLUMNA
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                String txt9 = "La Fecha de apertura del expediente (FECHA_APERTURA_EXPEDIENTE) Debe de tener una fecha valida";
+                //System.out.println(Arrays.toString(ArrayResult.get(i)));
+                HSSFRichTextString texto9 = new HSSFRichTextString(txt9);
+                celda9.setCellValue(texto9);
+                fila9.setHeight((short) 300);
+                coni++;
+            }
+            System.out.println("contador i: " + coni);
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+            System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
+        }
         
         ArrayResult = Q.EjecucionEstatus();
         if (ArrayResult.size() > 0) {

@@ -3726,7 +3726,7 @@ public class V3validaciones {
         }
         
         
-               ArrayResult = Ordinario.FECHA_ACTO_PROCESAL_NI(con);
+           /*    ArrayResult = Ordinario.FECHA_ACTO_PROCESAL_NI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -3862,7 +3862,7 @@ public class V3validaciones {
             conDat = conDat + coni;
             coni = 1;
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
-        }
+        }*/
 
         
         ArrayResult = QN.OrdinarioFaseSolExpAJ();
@@ -13570,7 +13570,7 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         }
         
         
-               ArrayResult = Individual.FECHA_ACTO_PROCESAL_NI(con);
+              /* ArrayResult = Individual.FECHA_ACTO_PROCESAL_NI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -13706,7 +13706,7 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             conDat = conDat + coni;
             coni = 1;
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
-        }
+        }*/
         
         
         ArrayResult = Q.IndividualFaseSolExpTA();
@@ -23760,7 +23760,7 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         }
         
         
-               ArrayResult = Colectivo.FECHA_ACTO_PROCESAL_NI(con);
+              /* ArrayResult = Colectivo.FECHA_ACTO_PROCESAL_NI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -23896,7 +23896,7 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             conDat = conDat + coni;
             coni = 1;
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
-        }
+        }*/
 
         
         ArrayResult = Q.ColectivoFaseSolExpAD();
@@ -31891,7 +31891,7 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         }
         
         
-               ArrayResult = Huelga.FECHA_ACTO_PROCESAL_NI(con);
+             /*  ArrayResult = Huelga.FECHA_ACTO_PROCESAL_NI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -32027,7 +32027,7 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             conDat = conDat + coni;
             coni = 1;
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
-        }
+        }*/
         
         ArrayResult = Q.HuelgaFaseSolExpHu();
         if (ArrayResult.size() > 0) {
@@ -39507,7 +39507,7 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
         }
         
         
-               ArrayResult = Economico.FECHA_ACTO_PROCESAL_NI(con);
+             /*  ArrayResult = Economico.FECHA_ACTO_PROCESAL_NI(con);
         if (ArrayResult.size() > 0) {
             System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
             HSSFRow fila00 = hojaresumenval.createRow(2);//FILA
@@ -39643,7 +39643,7 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             conDat = conDat + coni;
             coni = 1;
             System.out.println("contador i: " + conEnc + " " + conDat + " " + ArrayResult.size());
-        }
+        }*/
 
         
         

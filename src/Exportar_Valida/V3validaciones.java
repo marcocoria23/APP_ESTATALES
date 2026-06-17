@@ -1105,8 +1105,8 @@ public class V3validaciones {
         String titulo0 = " PROCEDIMIENTO CONTROL EXPEDIENTE ";
         HSSFRichTextString texto0 = new HSSFRichTextString((titulo0));
         hojaControl_expe.addMergedRegion(new Region(0, (short) 0, 0, (short) 4));
-        celda0.setCellValue(texto0);
-        row0.setHeight((short) 600);
+        celda0.setCellValue(texto0); 
+       row0.setHeight((short) 600);
 
     
         ArrayResult = CE.Horario(con);
@@ -11214,6 +11214,758 @@ public class V3validaciones {
                 System.out.println("4");
                 coni++;
             }
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Ordinario.Fase_Sol_Escrita(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+            HSSFRow filaC00 = hojaresumenval.createRow(2);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // ── COLUMNA 0: CLAVE_ORGANO ──
+            HSSFRow filaC1 = hoja1.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 1: EXPEDIENTE_CLAVE ──
+            HSSFCell celdaC2 = filaC1.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 2: DESC_FASE_SOLI_EXPEDIENTE ──
+            HSSFCell celdaC3 = filaC1.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FASE SOLICITUD EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 3: COMENTARIOS ──
+            HSSFCell celdaC4 = filaC1.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 4: OBSERVACIONES ──
+            HSSFCell celdaC5 = filaC1.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = No (2) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) es solucionado (1), la fase de solución del expediente (FASE_SOLI_EXPEDIENTE) debe ser = Fase escrita (9)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Ordinario.Fase_Sol_Preliminar(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+            HSSFRow filaC00 = hojaresumenval.createRow(2);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // ── COLUMNA 0: CLAVE_ORGANO ──
+            HSSFRow filaC1 = hoja1.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 1: EXPEDIENTE_CLAVE ──
+            HSSFCell celdaC2 = filaC1.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 2: DESC_FASE_SOLI_EXPEDIENTE ──
+            HSSFCell celdaC3 = filaC1.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FASE SOLICITUD EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 3: COMENTARIOS ──
+            HSSFCell celdaC4 = filaC1.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 4: OBSERVACIONES ──
+            HSSFCell celdaC5 = filaC1.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fase de solución del expediente (FASE_SOLI_EXPEDIENTE) debe ser = Audiencia preliminar (1)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Ordinario.Fecha_Audi_Prelimi(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+            HSSFRow filaC00 = hojaresumenval.createRow(2);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // ── COLUMNA 0: CLAVE_ORGANO ──
+            HSSFRow filaC1 = hoja1.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 1: EXPEDIENTE_CLAVE ──
+            HSSFCell celdaC2 = filaC1.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 2: DESC_FASE_SOLI_EXPEDIENTE ──
+            HSSFCell celdaC3 = filaC1.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA DEL ULTIMO ACTO PROCESAL"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 3: COMENTARIOS ──
+            HSSFCell celdaC4 = filaC1.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 4: OBSERVACIONES ──
+            HSSFCell celdaC5 = filaC1.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = En proceso de solucion (2), la fecha del ultimo acto procesal(FECHA_ACTO_PROCESAL) debe ser igual o mayor a la fecha de audiencia preliminar (FECHA_AUDIENCIA_PRELIM)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Ordinario.Fecha_Dicto_ResolAP(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+            HSSFRow filaC00 = hojaresumenval.createRow(2);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // ── COLUMNA 0: CLAVE_ORGANO ──
+            HSSFRow filaC1 = hoja1.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 1: EXPEDIENTE_CLAVE ──
+            HSSFCell celdaC2 = filaC1.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 2: DESC_FASE_SOLI_EXPEDIENTE ──
+            HSSFCell celdaC3 = filaC1.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA DE SOLUCIÓN EN FASE PRELIMINAR"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 3: COMENTARIOS ──
+            HSSFCell celdaC4 = filaC1.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 4: OBSERVACIONES ──
+            HSSFCell celdaC5 = filaC1.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fecha de solución en fase preliminar (FECHA_DICTO_RESOLUCIONAP) debe ser igual o mayor a la fecha de audiencia preliminar (FECHA_AUDIENCIA_PRELIM)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Ordinario.Fase_Sol_Audi_Juicio(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+            HSSFRow filaC00 = hojaresumenval.createRow(2);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // ── COLUMNA 0: CLAVE_ORGANO ──
+            HSSFRow filaC1 = hoja1.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 1: EXPEDIENTE_CLAVE ──
+            HSSFCell celdaC2 = filaC1.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 2: DESC_FASE_SOLI_EXPEDIENTE ──
+            HSSFCell celdaC3 = filaC1.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FASE DE SOLUCIÓN DEL EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 3: COMENTARIOS ──
+            HSSFCell celdaC4 = filaC1.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 4: OBSERVACIONES ──
+            HSSFCell celdaC5 = filaC1.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = Si (1) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fase de solución del expediente debe ser (FASE_SOLI_EXPEDIENTE) = Audiencia de Juicio (2)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Ordinario.Fecha_Audiencia_Preliminar(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+            HSSFRow filaC00 = hojaresumenval.createRow(2);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // ── COLUMNA 0: CLAVE_ORGANO ──
+            HSSFRow filaC1 = hoja1.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 1: EXPEDIENTE_CLAVE ──
+            HSSFCell celdaC2 = filaC1.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 2: DESC_FASE_SOLI_EXPEDIENTE ──
+            HSSFCell celdaC3 = filaC1.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA DE AUDIENCIA PRELIMINAR"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 3: COMENTARIOS ──
+            HSSFCell celdaC4 = filaC1.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 4: OBSERVACIONES ──
+            HSSFCell celdaC5 = filaC1.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)?  = Si (1), la fecha de audiencia preliminar (FECHA_AUDIENCIA_PRELIM) debe ser igual o menor a la fecha de audiencia de Juicio (FECHA_AUDIENCIA_JUICIO)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Ordinario.Fecha_Acto_Procesal(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+            HSSFRow filaC00 = hojaresumenval.createRow(2);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // ── COLUMNA 0: CLAVE_ORGANO ──
+            HSSFRow filaC1 = hoja1.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 1: EXPEDIENTE_CLAVE ──
+            HSSFCell celdaC2 = filaC1.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 2: DESC_FASE_SOLI_EXPEDIENTE ──
+            HSSFCell celdaC3 = filaC1.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA DEL ÚLTIMO ACTO PROCESAL"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 3: COMENTARIOS ──
+            HSSFCell celdaC4 = filaC1.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 4: OBSERVACIONES ──
+            HSSFCell celdaC5 = filaC1.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = Si (1) y estatus del expediente (ESTATUS_EXPEDIENTE) = en proceso de solución (2) la fecha del último acto procesal (FECHA_ACTO_PROCESAL) debe ser mayor a la fecha de audiencia preliminar (FECHA_AUDIENCIA_PRELIM) y a la fecha de audiencia de Juicio (FECHA_AUDIENCIA_JUICIO)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Ordinario.Fecha_Resol_Audi_Juicio(con);
+        if (ArrayResult.size() > 0) {
+            System.out.println(ArrayResult.toString());
+            HSSFRow filaC00 = hojaresumenval.createRow(2);
+            HSSFCell celdaC00 = filaC00.createCell((short) 1);
+            celdaC00.setCellStyle(PAmarillo);
+
+            // ── COLUMNA 0: CLAVE_ORGANO ──
+            HSSFRow filaC1 = hoja1.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 1: EXPEDIENTE_CLAVE ──
+            HSSFCell celdaC2 = filaC1.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 2: DESC_FASE_SOLI_EXPEDIENTE ──
+            HSSFCell celdaC3 = filaC1.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA DE SOLUCIÓN"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 3: COMENTARIOS ──
+            HSSFCell celdaC4 = filaC1.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // ── COLUMNA 4: OBSERVACIONES ──
+            HSSFCell celdaC5 = filaC1.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja1.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = Si (1) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fecha de solución en audiencia de juicio (FECHA_RESOLUCIONAJ) debe ser mayor o igual a la fecha del audiencia de juicio (FECHA_AUDIENCIA_JUICIO)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
             conEnc = conEnc + coni;
             conDat = conDat + coni;
             coni = 1;
@@ -21771,7 +22523,1008 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             conDat = conDat + coni;
             coni = 1;
         }
-    progressBar.setValue(35);
+
+        int[] contadores = bloqueValidacionesNuevas( hoja4, estiloCelda1, estiloCeldabordes0, Q, conEnc, conDat, coni);
+        conEnc = contadores[0];
+        conDat = contadores[1];
+        coni = contadores[2];
+
+        progressBar.setValue(35);
+    }
+
+    private int[] bloqueValidacionesNuevas( HSSFSheet hoja4, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, QNuevos Q, int conEnc, int conDat, int coni){
+
+        ArrayResult = Q.Individual_FaseSolTSA();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FASE SOLICITUD EXPEDIENTE"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = No (2) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = No (2) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) es solucionado (1), la fase de solución del expediente (FASE_SOLI_EXPEDIENTE) debe ser = Tramitación sin audiencias (3)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Individual_FaseSolTPAD();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FASE SOLICITUD EXPEDIENTE"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = Sí (1) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = No (2) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fase de solución del expediente (FASE_SOLI_EXPEDIENTE) debe ser = Tramitación por auto de depuración (4)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Individual_FechaACP();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA ACTO PROCESAL"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = si (1) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = No (2) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = en proceso de solución (2) la fecha del último acto procesal (FECHA_ACTO_PROCESAL) debe ser igual o mayor a la fecha de auto de depuración (FECHA_DEPURACION)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Individual_FechaDRAD();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA AUTO DEPURACIÓN"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = si (1) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = No (2) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fecha de solución en fase auto depuración (FECHA_DICTO_RESOLUCION_AD) debe ser igual o mayor a la Fecha de auto de depuración (FECHA_DEPURACION)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Individual_FaseSolAP();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FASE DE SOLUCIÓN DEL EXPEDIENTE"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = No (2) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Si (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fase de solución del expediente (FASE_SOLI_EXPEDIENTE) debe ser = audiencia preliminar (1)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Individual_FechaUAP();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA DEL ÚLTIMO ACTO PROCESAL"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = No (2) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = si (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = en proceso de solucion (2), la fecha del último acto procesal (FECHA_ACTO_PROCESAL) debe ser igual o mayor a la fecha de audiencia preliminar (FECHA_AUDIENCIA_PRELIM)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Individual_FechaDRAP();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA DE SOLUCIÓN EN FASE PRELIMINAR"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = No (2) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = si (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE ) = Solucionado (1), la fecha de solución en fase preliminar (FECHA_DICTO_RESOLUCION_AP) debe ser igual o mayor a la fecha de audiencia preliminar (FECHA_AUDIENCIA_PRELIM)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Individual_FaseSolAJ();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FASE DE SOLUCIÓN DEL EXPEDIENTE"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = No (2) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Si (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = SI (1) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fase de solución del expediente (FASE_SOLI_EXPEDIENTE) debe ser = audiencia de juicio (2)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Individual_FechaUAPAPAJ();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA DEL ÚLTIMO ACTO PROCESAL"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = No (2) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = si (1) y estatus del expediente (ESTATUS_EXPEDIENTE) = en proceso de solución (2) la fecha del último acto procesal (FECHA_ACTO_PROCESAL) debe ser mayor a la fecha de audiencia preliminar (FECHA_AUDIENCIA_PRELIM ) y  mayor o igual a la fecha de audiencia de juicio (FECHA_AUDIENCIA_JUICIO)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Individual_FechaDRAJ();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow filaC1 = hoja4.createRow(conEnc);
+            HSSFCell celdaC1 = filaC1.createCell((short) 0);
+            celdaC1.setCellStyle(estiloCelda1);
+            celdaC1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            filaC1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC6 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC6 = filaC6.createCell((short) 0);
+                celdaC6.setCellStyle(estiloCeldabordes0);
+                celdaC6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                filaC6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow filaC2 = hoja4.createRow(conEnc);
+            HSSFCell celdaC2 = filaC2.createCell((short) 1);
+            celdaC2.setCellStyle(estiloCelda1);
+            celdaC2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            filaC2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC7 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC7 = filaC7.createCell((short) 1);
+                celdaC7.setCellStyle(estiloCeldabordes0);
+                celdaC7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                filaC7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow filaC3 = hoja4.createRow(conEnc);
+            HSSFCell celdaC3 = filaC3.createCell((short) 2);
+            celdaC3.setCellStyle(estiloCelda1);
+            celdaC3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC3.setCellValue(new HSSFRichTextString("FECHA AUDIENCIA DE JUICIO"));
+            filaC3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC8 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC8 = filaC8.createCell((short) 2);
+                celdaC8.setCellStyle(estiloCeldabordes0);
+                celdaC8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                filaC8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow filaC4 = hoja4.createRow(conEnc);
+            HSSFCell celdaC4 = filaC4.createCell((short) 3);
+            celdaC4.setCellStyle(estiloCelda1);
+            celdaC4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            filaC4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow filaC9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaC9 = filaC9.createCell((short) 3);
+                celdaC9.setCellStyle(estiloCeldabordes0);
+                celdaC9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaC9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                filaC9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow filaC5 = hoja4.createRow(conEnc);
+            HSSFCell celdaC5 = filaC5.createCell((short) 4);
+            celdaC5.setCellStyle(estiloCelda1);
+            celdaC5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celdaC5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            filaC5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow filaE9 = hoja4.createRow(conDat + i);
+                HSSFCell celdaE9 = filaE9.createCell((short) 4);
+                celdaE9.setCellStyle(estiloCeldabordes0);
+                celdaE9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celdaE9.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (TRAMITACION_DEPURACION)? = No (2) y ¿Hubo celebración de audiencia preliminar (AUDIENCIA_PRELIM)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = si (1) y estatus del expediente (ESTATUS_EXPEDIENTE ) = Solucionado (1), la fecha de solución en fase audiencia de juicio (FECHA_DICTO_RESOLUCION_AJ) debe ser mayor a la fecha de audiencia preliminar (FECHA_AUDIENCIA_PRELIM) y mayor o igual a la fecha de audiencia de juicio (FECHA_AUDIENCIA_JUICIO)."));
+                filaE9.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        return new int[]{conEnc, conDat, coni};
     }
 
     public void Despliega_Part_Act_Individual(HSSFWorkbook libro, HSSFSheet hoja5, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
@@ -29464,6 +31217,600 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
                 fila9.setHeight((short) 300);
                 coni++;
             }
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Colectivo_FaseSolTPAD();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja7.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja7.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja7.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja7.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow fila3 = hoja7.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FASE EXPEDIENTE"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja7.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila4 = hoja7.createRow(conEnc);
+            HSSFCell celda4 = fila4.createCell((short) 3);
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja7.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja7.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja7.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (AUTO_DEPURACION)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fase de solución del expediente debe ser (FASE_SOLI_EXPEDIENTE) = Tramitación por auto de depuración (3)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Colectivo_FechaAP();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja7.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja7.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja7.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja7.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow fila3 = hoja7.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA ACTO PROCESAL"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja7.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila4 = hoja7.createRow(conEnc);
+            HSSFCell celda4 = fila4.createCell((short) 3);
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja7.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja7.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja7.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (AUTO_DEPURACION)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = en proceso de solución (2), la fecha del último acto procesal (FECHA_ACTO_PROCESAL) debe ser igual o mayor a la Fecha de auto de depuración (FECHA_DEPURACION)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Colectivo_FechaDRAD();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja7.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja7.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja7.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja7.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow fila3 = hoja7.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA DICTO RESOLUCION"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja7.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila4 = hoja7.createRow(conEnc);
+            HSSFCell celda4 = fila4.createCell((short) 3);
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja7.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja7.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja7.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (AUTO_DEPURACION)? = Sí (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = No (2) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fecha de solución en fase Tramitación por auto de depuración (FECHA_DICTO_RESOLUCION_AD) debe ser mayor o igual a la Fecha de auto de depuración (FECHA_DEPURACION)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Colectivo_FaseSoliAJ();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja7.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja7.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja7.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja7.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow fila3 = hoja7.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FASE EXPEDIENTE"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja7.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila4 = hoja7.createRow(conEnc);
+            HSSFCell celda4 = fila4.createCell((short) 3);
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja7.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja7.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja7.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (AUTO_DEPURACION) = No (2) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = Sí (1) y estatus del expediente (ESTATUS_EXPEDIENTE) = Solucionado (1), la fase de solución del expediente (FASE_SOLI_EXPEDIENTE) debe ser = Audiencia de Juicio (2)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Colectivo_FechaResolAJ();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja7.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja7.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja7.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja7.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow fila3 = hoja7.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA RESOLUCION AJ"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja7.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila4 = hoja7.createRow(conEnc);
+            HSSFCell celda4 = fila4.createCell((short) 3);
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja7.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja7.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja7.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (AUTO_DEPURACION)? = No (1) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = Sí (1) y estatus del expediente (ESTATUS_EXPEDIENTE) es igual a solucionado (1) la fecha en la que se dictó la resolución de audiencia de juicio (FECHA_RESOLUCION_AJ) debe ser igual o mayor a la fecha de audiencia de juicio (FECHA_AUDIENCIA_JUICIO)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.Colectivo_FechaActoProc();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja7.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja7.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja7.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja7.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FASE_SOLI_EXPEDIENTE
+            HSSFRow fila3 = hoja7.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA ACTO PROCESAL"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja7.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila4 = hoja7.createRow(conEnc);
+            HSSFCell celda4 = fila4.createCell((short) 3);
+            celda4.setCellStyle(estiloCelda1);
+            celda4.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda4.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila4.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja7.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja7.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja7.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo tramitación por auto de depuración (AUTO_DEPURACION)? = No (2) y ¿Hubo celebración de audiencia de juicio (AUDIENCIA_JUICIO)? = Sí (1) y estatus del expediente (ESTATUS_EXPEDIENTE) = en proceso de solución (2) la fecha del último acto procesal (FECHA_ACTO_PROCESAL) debe ser igual o mayor a la fecha de audiencia de Juicio (AUDIENCIA_JUICIO)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
             conEnc = conEnc + coni;
             conDat = conDat + coni;
             coni = 1;
@@ -37927,7 +40274,619 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
             conDat = conDat + coni;
             coni = 1;
         }
-      progressBar.setValue(65);
+
+        ArrayResult = Q.Huelga_FechaAP();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(5);
+            HSSFCell celda00 = fila00.createCell((short) 1);
+            celda00.setCellStyle(PAmarillo);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja10.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja10.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja10.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja10.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FECHA_ACTO_PROCESAL
+            HSSFRow fila3 = hoja10.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA ACTO PROCESAL"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja10.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila30 = hoja10.createRow(conEnc);
+            HSSFCell celda30 = fila30.createCell((short) 3);
+            celda30.setCellStyle(estiloCelda1);
+            celda30.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda30.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila30.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja10.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja10.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja10.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo emplazamiento a huelga (EMPLAZAMIENTO_HUELGA)? = si (1) y estatus del expediente (ESTATUS_EXPEDIENTE) = en proceso de solución (2) la fecha del último acto procesal (FECHA_ACTO_PROCESAL) debe ser mayor o igual a la fecha de emplazamiento a huelga (FECHA_EMPLAZAMIENTO)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+
+        ArrayResult = Q.Huelga_FechaAudi();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(5);
+            HSSFCell celda00 = fila00.createCell((short) 1);
+            celda00.setCellStyle(PAmarillo);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja10.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja10.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja10.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja10.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FECHA_ACTO_PROCESAL
+            HSSFRow fila3 = hoja10.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA AUDIENCIA"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja10.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila30 = hoja10.createRow(conEnc);
+            HSSFCell celda30 = fila30.createCell((short) 3);
+            celda30.setCellStyle(estiloCelda1);
+            celda30.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda30.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila30.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja10.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja10.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja10.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo prehuelga? (PREHUELGA) = si (1), la fecha de audiencia de conciliación (FECHA_AUDIENCIA) debe ser mayor a la fecha de emplazamiento a huelga (FECHA_EMPLAZAMIENTO)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+
+        ArrayResult = Q.Huelga_FechaAudi2();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(5);
+            HSSFCell celda00 = fila00.createCell((short) 1);
+            celda00.setCellStyle(PAmarillo);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja10.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja10.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja10.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja10.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FECHA_ACTO_PROCESAL
+            HSSFRow fila3 = hoja10.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA AUDIENCIA"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja10.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila30 = hoja10.createRow(conEnc);
+            HSSFCell celda30 = fila30.createCell((short) 3);
+            celda30.setCellStyle(estiloCelda1);
+            celda30.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda30.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila30.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja10.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja10.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja10.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo prehuelga (PREHUELGA)? = Sí (1), y el estatus del expediente (ESTATUS_EXPEDIENTE) = en proceso de solución (2), la fecha de audiencia de conciliación (FECHA_AUDIENCIA) debe ser menor o igual a la fecha del ultimo acto procesal (FECHA_ACTO_PROCESAL)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+
+        ArrayResult = Q.Huelga_FechaEstallaH();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(5);
+            HSSFCell celda00 = fila00.createCell((short) 1);
+            celda00.setCellStyle(PAmarillo);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja10.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja10.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja10.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja10.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FECHA_ACTO_PROCESAL
+            HSSFRow fila3 = hoja10.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA ESTALLAMIENTO HUELGA"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja10.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila30 = hoja10.createRow(conEnc);
+            HSSFCell celda30 = fila30.createCell((short) 3);
+            celda30.setCellStyle(estiloCelda1);
+            celda30.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda30.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila30.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja10.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja10.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja10.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando hubo estallamiento a huelga (ESTALLAMIENTO_HUELGA) = si (1), y el estatus del expediente (ESTATUS_EXPEDIENTE) es igual a solucionado (1) la fecha de estallamiento a huelga (FECHA_ESTALLAM_HUELGA) debe ser mayor a la fecha de audiencia de conciliación (FECHA_AUDIENCIA) y a la fecha de emplazamiento (FECHA_EMPLAZAMIENTO)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+
+        ArrayResult = Q.Huelga_FechaAPAEH();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(5);
+            HSSFCell celda00 = fila00.createCell((short) 1);
+            celda00.setCellStyle(PAmarillo);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja10.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja10.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja10.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja10.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FECHA_ACTO_PROCESAL
+            HSSFRow fila3 = hoja10.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA ACTO PROCESAL"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja10.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila30 = hoja10.createRow(conEnc);
+            HSSFCell celda30 = fila30.createCell((short) 3);
+            celda30.setCellStyle(estiloCelda1);
+            celda30.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda30.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila30.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja10.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja10.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja10.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo emplazamiento a huelga (EMPLAZAMIENTO_HUELGA)? = Sí (1) ,¿Hubo prehuelga (PREHUELGA)? = Sí (1), ¿Hubo estallamiento de la huelga (ESTALLAMIENTO_HUELGA)? = si (1), y el estatus del expediente (ESTATUS_EXPEDIENTE) = en proceso de solución (2) la fecha del último acto procesal (FECHA_ACTO_PROCESAL) debe ser mayor a la fecha del emplazamiento a huelga (FECHA_EMPLAZAMIENTO) y a la Fecha de audiencia de conciliación (FECHA_AUDIENCIA)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+
+        ArrayResult = Q.Huelga_FechaEstallaH2();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(5);
+            HSSFCell celda00 = fila00.createCell((short) 1);
+            celda00.setCellStyle(PAmarillo);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja10.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja10.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja10.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja10.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FECHA_ACTO_PROCESAL
+            HSSFRow fila3 = hoja10.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA_ESTALLAMIENTO HUELGA"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja10.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila30 = hoja10.createRow(conEnc);
+            HSSFCell celda30 = fila30.createCell((short) 3);
+            celda30.setCellStyle(estiloCelda1);
+            celda30.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda30.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila30.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja10.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja10.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja10.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("La fecha de estallamiento a huelga (FECHA_ESTALLAM_HUELGA) no puede ser Null ni NO identificado."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        progressBar.setValue(65);
     }
 
     public void Despliega_Part_Act_Huelga(HSSFWorkbook libro, HSSFSheet hoja11, HSSFCellStyle estiloCelda0, HSSFCellStyle estiloCelda1, HSSFCellStyle estiloCeldabordes0, HSSFCellStyle estiloCelda2,JProgressBar progressBar, Connection con) {
@@ -43814,6 +46773,210 @@ if (ArrayResult != null && ArrayResult.size() > 0) {
                 fila9.setHeight((short) 300);
                 coni++;
             }
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.ColectEconom_FechaAP();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(8);
+            HSSFCell celda00 = fila00.createCell((short) 1);
+            celda00.setCellStyle(PAmarillo);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja13.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja13.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja13.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja13.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FECHA_ACTO_PROCESAL
+            HSSFRow fila3 = hoja13.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA ACTO PROCESAL"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja13.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila30 = hoja13.createRow(conEnc);
+            HSSFCell celda30 = fila30.createCell((short) 3);
+            celda30.setCellStyle(estiloCelda1);
+            celda30.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda30.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila30.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja13.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja13.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja13.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("Cuando ¿Hubo celebración de audiencia dentro del procedimiento colectivo de naturaleza económica (AUDIENCIA_ECONOM)? = Si (1) y el estatus del expediente (ESTATUS_EXPEDIENTE) = En proceso de resolución (2) la fecha del último acto procesal (FECHA_ACTO_PROCESAL) debe ser igual o mayor a la Fecha de audiencia dentro del procedimiento colectivo de naturaleza económica (FECHA_AUDIENCIA_ECONOM)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
+            conEnc = conEnc + coni;
+            conDat = conDat + coni;
+            coni = 1;
+        }
+        
+        ArrayResult = Q.ColectEconom_FechaResol();
+        if (ArrayResult.size() > 0) {
+            System.out.println("contador Encabezado: " + conEnc + "Contador Datos: " + conDat);
+            HSSFRow fila00 = hojaresumenval.createRow(8);
+            HSSFCell celda00 = fila00.createCell((short) 1);
+            celda00.setCellStyle(PAmarillo);
+
+            // COLUMNA 0: CLAVE_ORGANO
+            HSSFRow fila1 = hoja13.createRow(conEnc);
+            HSSFCell celda1 = fila1.createCell((short) 0);
+            celda1.setCellStyle(estiloCelda1);
+            celda1.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda1.setCellValue(new HSSFRichTextString("CLAVE DEL ORGANO"));
+            fila1.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila6 = hoja13.createRow(conDat + i);
+                HSSFCell celda6 = fila6.createCell((short) 0);
+                celda6.setCellStyle(estiloCeldabordes0);
+                celda6.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda6.setCellValue(new HSSFRichTextString(row[0] != null ? row[0] : ""));
+                fila6.setHeight((short) 300);
+            }
+
+            // COLUMNA 1: EXPEDIENTE_CLAVE
+            HSSFRow fila2 = hoja13.createRow(conEnc);
+            HSSFCell celda2 = fila2.createCell((short) 1);
+            celda2.setCellStyle(estiloCelda1);
+            celda2.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda2.setCellValue(new HSSFRichTextString("CLAVE DEL EXPEDIENTE"));
+            fila2.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila7 = hoja13.createRow(conDat + i);
+                HSSFCell celda7 = fila7.createCell((short) 1);
+                celda7.setCellStyle(estiloCeldabordes0);
+                celda7.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda7.setCellValue(new HSSFRichTextString(row[1] != null ? row[1] : ""));
+                fila7.setHeight((short) 300);
+            }
+
+            // COLUMNA 2: FECHA_ACTO_PROCESAL
+            HSSFRow fila3 = hoja13.createRow(conEnc);
+            HSSFCell celda3 = fila3.createCell((short) 2);
+            celda3.setCellStyle(estiloCelda1);
+            celda3.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda3.setCellValue(new HSSFRichTextString("FECHA RESOLUCION"));
+            fila3.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila8 = hoja13.createRow(conDat + i);
+                HSSFCell celda8 = fila8.createCell((short) 2);
+                celda8.setCellStyle(estiloCeldabordes0);
+                celda8.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda8.setCellValue(new HSSFRichTextString(row[2] != null ? row[2] : ""));
+                fila8.setHeight((short) 300);
+            }
+
+            // COLUMNA 3: COMENTARIOS
+            HSSFRow fila30 = hoja13.createRow(conEnc);
+            HSSFCell celda30 = fila30.createCell((short) 3);
+            celda30.setCellStyle(estiloCelda1);
+            celda30.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda30.setCellValue(new HSSFRichTextString("COMENTARIOS"));
+            fila30.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                String[] row = (String[]) ArrayResult.get(i);
+                HSSFRow fila9 = hoja13.createRow(conDat + i);
+                HSSFCell celda9 = fila9.createCell((short) 3);
+                celda9.setCellStyle(estiloCeldabordes0);
+                celda9.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda9.setCellValue(new HSSFRichTextString(row[3] != null ? row[3] : ""));
+                fila9.setHeight((short) 300);
+            }
+
+            // COLUMNA 4: OBSERVACIONES (texto fijo)
+            HSSFRow fila5 = hoja13.createRow(conEnc);
+            HSSFCell celda5 = fila5.createCell((short) 4);
+            celda5.setCellStyle(estiloCelda1);
+            celda5.setCellType(HSSFCell.CELL_TYPE_STRING);
+            celda5.setCellValue(new HSSFRichTextString("OBSERVACIONES"));
+            fila5.setHeight((short) 600);
+
+            for (int i = 0; i < ArrayResult.size(); i++) {
+                HSSFRow fila10 = hoja13.createRow(conDat + i);
+                HSSFCell celda10 = fila10.createCell((short) 4);
+                celda10.setCellStyle(estiloCeldabordes0);
+                celda10.setCellType(HSSFCell.CELL_TYPE_STRING);
+                celda10.setCellValue(new HSSFRichTextString("uando ¿Hubo celebración de audiencia dentro del procedimiento colectivo de naturaleza económica (AUDIENCIA_ECONOM)? = Si (1) y el estatus del expediente (ESTATUS_EXPEDIENTE) = concluido (1) la fecha de resolución (FECHA_RESOLUCION) debe ser mayor o igual a la fecha de audiencia dentro del procedimiento colectivo de naturaleza económica (FECHA_AUDIENCIA_ECONOM)."));
+                fila10.setHeight((short) 300);
+                coni++;
+            }
+
             conEnc = conEnc + coni;
             conDat = conDat + coni;
             coni = 1;

@@ -757,4 +757,248 @@ public class V3QOrdinario {
 
         return Array;
     }
+
+    public ArrayList<String[]> Fase_Sol_Escrita(Connection con) {
+        Array = new ArrayList<>();
+        sql = "SELECT  SUBSTR(CLAVE_ORGANO,0,2) AS ENTIDAD, EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO, AUDIENCIA_PRELIM, AUDIENCIA_JUICIO, \n"
+                + "DECODE(FASE_SOLI_EXPEDIENTE,\n"
+                + "       1, 'Audiencia preliminar',\n"
+                + "       2, 'Audiencia de juicio',\n"
+                + "       3, 'Tramitación por auto de depuración',\n"
+                + "       4, 'Tramitación sin audiencias',\n"
+                + "       5, 'Emplazamiento a huelga',\n"
+                + "       6, 'Prehuelga',\n"
+                + "       7, 'Huelga',\n"
+                + "       8, 'Audiencia dentro del procedimiento colectivo de naturaleza económica',\n"
+                + "       9, 'Fase escrita',\n"
+                + "       99, 'No identificado') AS FASE_SOLI_EXPEDIENTE,\n"
+                + "ESTATUS_EXPEDIENTE, COMENTARIOS\n"
+                + "FROM V3_TR_ORDINARIOJL\n"
+                + "WHERE AUDIENCIA_PRELIM = 2\n"
+                + "  AND AUDIENCIA_JUICIO = 2\n"
+                + "  AND ESTATUS_EXPEDIENTE = 1\n"
+                + "  AND FASE_SOLI_EXPEDIENTE NOT IN (9,99)";
+
+        try (
+                PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FASE_SOLI_EXPEDIENTE"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en FASE_SOLI_EXPEDIENTE", ex);
+        }
+        return Array;
+    }
+
+    public ArrayList<String[]> Fase_Sol_Preliminar(Connection con) {
+        Array = new ArrayList<>();
+        sql = "SELECT SUBSTR(CLAVE_ORGANO,0,2) AS ENTIDAD,EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO, AUDIENCIA_PRELIM, AUDIENCIA_JUICIO, ESTATUS_EXPEDIENTE, DECODE(FASE_SOLI_EXPEDIENTE,\n"
+                + "       1, 'Audiencia preliminar',\n"
+                + "       2, 'Audiencia de juicio',\n"
+                + "       3, 'Tramitación por auto de depuración',\n"
+                + "       4, 'Tramitación sin audiencias',\n"
+                + "       5, 'Emplazamiento a huelga',\n"
+                + "       6, 'Prehuelga',\n"
+                + "       7, 'Huelga',\n"
+                + "       8, 'Audiencia dentro del procedimiento colectivo de naturaleza económica',\n"
+                + "       9, 'Fase escrita',\n"
+                + "       99, 'No identificado') AS FASE_SOLI_EXPEDIENTE,\n"
+                + "    COMENTARIOS\n"
+                + "FROM V3_TR_ORDINARIOJL\n"
+                + "WHERE AUDIENCIA_PRELIM = 1 \n"
+                + "    AND AUDIENCIA_JUICIO = 2\n"
+                + "    AND ESTATUS_EXPEDIENTE = 1";
+
+        try (
+                PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FASE_SOLI_EXPEDIENTE"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en FASE_SOLI_EXPEDIENTE", ex);
+        }
+        return Array;
+    }
+
+    public ArrayList<String[]> Fecha_Audi_Prelimi(Connection con) {
+        Array = new ArrayList<>();
+        sql = "SELECT SUBSTR(CLAVE_ORGANO,0,2) AS ENTIDAD,EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO, AUDIENCIA_PRELIM, AUDIENCIA_JUICIO, ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL, FECHA_AUDIENCIA_PRELIM, COMENTARIOS\n"
+                + "FROM V3_TR_ORDINARIOJL\n"
+                + "WHERE AUDIENCIA_PRELIM = 1 \n"
+                + "    AND AUDIENCIA_JUICIO = 2\n"
+                + "    AND ESTATUS_EXPEDIENTE = 2 \n"
+                + "    AND FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_PRELIM\n"
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+
+        try (
+                PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FECHA_ACTO_PROCESAL"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en FECHA_ACTO_PROCESAL", ex);
+        }
+        return Array;
+    }
+
+    public ArrayList<String[]> Fecha_Dicto_ResolAP(Connection con) {
+        Array = new ArrayList<>();
+        sql = "SELECT SUBSTR(CLAVE_ORGANO,0,2) AS ENTIDAD,EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO, AUDIENCIA_PRELIM, AUDIENCIA_JUICIO, ESTATUS_EXPEDIENTE, FECHA_DICTO_RESOLUCIONAP, FECHA_AUDIENCIA_PRELIM, COMENTARIOS\n"
+                + "FROM V3_TR_ORDINARIOJL\n"
+                + "WHERE AUDIENCIA_PRELIM = 1 \n"
+                + "    AND AUDIENCIA_JUICIO = 2\n"
+                + "    AND ESTATUS_EXPEDIENTE = 1 \n"
+                + "    AND FECHA_DICTO_RESOLUCIONAP < FECHA_AUDIENCIA_PRELIM\n"
+                + "    AND FECHA_DICTO_RESOLUCIONAP <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+
+        try (
+                PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FECHA_DICTO_RESOLUCIONAP"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en FECHA_DICTO_RESOLUCIONAP", ex);
+        }
+        return Array;
+    }
+
+    public ArrayList<String[]> Fase_Sol_Audi_Juicio(Connection con) {
+        Array = new ArrayList<>();
+        sql = "SELECT SUBSTR(CLAVE_ORGANO,0,2) AS ENTIDAD,EXPEDIENTE_CLAVE, CLAVE_ORGANO, PERIODO, AUDIENCIA_PRELIM, AUDIENCIA_JUICIO, ESTATUS_EXPEDIENTE, DECODE(FASE_SOLI_EXPEDIENTE,\n"
+                + "       1, 'Audiencia preliminar',\n"
+                + "       2, 'Audiencia de juicio',\n"
+                + "       3, 'Tramitación por auto de depuración',\n"
+                + "       4, 'Tramitación sin audiencias',\n"
+                + "       5, 'Emplazamiento a huelga',\n"
+                + "       6, 'Prehuelga',\n"
+                + "       7, 'Huelga',\n"
+                + "       8, 'Audiencia dentro del procedimiento colectivo de naturaleza económica',\n"
+                + "       9, 'Fase escrita',\n"
+                + "       99, 'No identificado') AS FASE_SOLI_EXPEDIENTE,\n"
+                + "    COMENTARIOS\n"
+                + "FROM V3_TR_ORDINARIOJL\n"
+                + "WHERE AUDIENCIA_PRELIM = 1 \n"
+                + "    AND AUDIENCIA_JUICIO = 1\n"
+                + "    AND ESTATUS_EXPEDIENTE = 1 \n"
+                + "    AND FASE_SOLI_EXPEDIENTE NOT IN (2,99)";
+
+        try (
+                PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FASE_SOLI_EXPEDIENTE"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en FASE_SOLI_EXPEDIENTE", ex);
+        }
+        return Array;
+    }
+
+    public ArrayList<String[]> Fecha_Audiencia_Preliminar(Connection con) {
+        Array = new ArrayList<>();
+        sql = "SELECT SUBSTR(CLAVE_ORGANO,0,2) AS ENTIDAD, CLAVE_ORGANO,EXPEDIENTE_CLAVE,PERIODO, AUDIENCIA_PRELIM, AUDIENCIA_JUICIO, FECHA_AUDIENCIA_PRELIM, FECHA_AUDIENCIA_JUICIO, COMENTARIOS\n"
+                + "FROM V3_TR_ORDINARIOJL\n"
+                + "WHERE AUDIENCIA_PRELIM = 1 \n"
+                + "    AND AUDIENCIA_JUICIO = 1\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM > FECHA_AUDIENCIA_JUICIO\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+
+        try (
+                PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FECHA_AUDIENCIA_PRELIM"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en FECHA_AUDIENCIA_PRELIM", ex);
+        }
+        return Array;
+    }
+
+    public ArrayList<String[]> Fecha_Acto_Procesal(Connection con) {
+        Array = new ArrayList<>();
+        sql = "SELECT SUBSTR(CLAVE_ORGANO,0,2) AS ENTIDAD, CLAVE_ORGANO,EXPEDIENTE_CLAVE, PERIODO, AUDIENCIA_PRELIM, AUDIENCIA_JUICIO, ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL, FECHA_AUDIENCIA_PRELIM, FECHA_AUDIENCIA_JUICIO, COMENTARIOS\n"
+                + "FROM V3_TR_ORDINARIOJL\n"
+                + "WHERE AUDIENCIA_PRELIM = 1\n"
+                + "    AND AUDIENCIA_JUICIO = 1\n"
+                + "    AND ESTATUS_EXPEDIENTE = 2\n"
+                + "    AND (FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_PRELIM\n"
+                + "        OR FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_JUICIO)\n"
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+
+        try (
+                PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FECHA_ACTO_PROCESAL"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en FECHA_ACTO_PROCESAL", ex);
+        }
+        return Array;
+    }
+
+    public ArrayList<String[]> Fecha_Resol_Audi_Juicio(Connection con) {
+        Array = new ArrayList<>();
+        sql = "SELECT SUBSTR(CLAVE_ORGANO,1,2) AS ENTIDAD, CLAVE_ORGANO,EXPEDIENTE_CLAVE, PERIODO, AUDIENCIA_PRELIM, AUDIENCIA_JUICIO, ESTATUS_EXPEDIENTE, FECHA_AUDIENCIA_JUICIO,FECHA_RESOLUCIONAJ, COMENTARIOS\n"
+                + "FROM V3_TR_ORDINARIOJL\n"
+                + "WHERE AUDIENCIA_PRELIM = 1\n"
+                + "    AND AUDIENCIA_JUICIO = 1\n"
+                + "    AND ESTATUS_EXPEDIENTE = 1\n"
+                + "    AND (FECHA_RESOLUCIONAJ < FECHA_AUDIENCIA_JUICIO)\n"
+                + "    AND FECHA_RESOLUCIONAJ <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+
+        try (
+                PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Array.add(new String[]{
+                    rs.getString("CLAVE_ORGANO"),
+                    rs.getString("EXPEDIENTE_CLAVE"),
+                    rs.getString("FECHA_RESOLUCIONAJ"),
+                    rs.getString("COMENTARIOS")
+                });
+            }
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error en FECHA_RESOLUCIONAJ", ex);
+        }
+        return Array;
+    }
 }

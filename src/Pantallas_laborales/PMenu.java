@@ -75,6 +75,8 @@ public class PMenu extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
@@ -172,14 +174,21 @@ public class PMenu extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, 40));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel4.setText("V1.1");
+        jLabel4.setText("V1.2");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 170, 20));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Enitdad:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 60, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 220, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ico/Texto del párrafo.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 830, 470));
@@ -337,6 +346,7 @@ public class PMenu extends javax.swing.JFrame {
         jMenuItem3.setEnabled(true);
         jMenuItem4.setEnabled(true);
         jMenuItem5.setEnabled(true);
+        jLabel3.setText(ex.NombreEntidad(IdEntidadInicio));
         }
          } catch (SQLException ex) {
             Logger.getLogger(PMenu.class.getName()).log(Level.SEVERE, null, ex);
@@ -436,6 +446,8 @@ public class PMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;

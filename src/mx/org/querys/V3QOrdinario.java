@@ -809,7 +809,8 @@ public class V3QOrdinario {
                 + "FROM V3_TR_ORDINARIOJL\n"
                 + "WHERE AUDIENCIA_PRELIM = 1 \n"
                 + "    AND AUDIENCIA_JUICIO = 2\n"
-                + "    AND ESTATUS_EXPEDIENTE = 1";
+                + "    AND ESTATUS_EXPEDIENTE = 1\n"
+                + "AND FASE_SOLI_EXPEDIENTE NOT IN (1,99)";
 
         try (
                 PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {

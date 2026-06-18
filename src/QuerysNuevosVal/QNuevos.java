@@ -325,7 +325,7 @@ public class QNuevos {
                 + "    AND AUDIENCIA_PRELIM = 2\n"
                 + "    AND AUDIENCIA_JUICIO = 2\n"
                 + "    AND ESTATUS_EXPEDIENTE = 1\n"
-                + "    AND FASE_SOLI_EXPEDIENTE NOT IN (9,99)";
+                + "    AND FASE_SOLI_EXPEDIENTE NOT IN (4,99)";
         return ejecutar3Cols(sql);
     }
     
@@ -347,7 +347,7 @@ public class QNuevos {
                 + "  AND AUDIENCIA_PRELIM = 2\n"
                 + "  AND AUDIENCIA_JUICIO = 2\n"
                 + "  AND ESTATUS_EXPEDIENTE = 1\n"
-                + "  AND FASE_SOLI_EXPEDIENTE NOT IN (4,99)";
+                + "  AND FASE_SOLI_EXPEDIENTE NOT IN (3,99)";
         return ejecutar3Cols(sql);
     }
     

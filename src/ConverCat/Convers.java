@@ -149,6 +149,9 @@ public class Convers {
         if (campo == null || campo.trim().isEmpty()) {
             return null;
         } else {
+            if (campo.toUpperCase().trim().equals("AUDIENCIA DENTRO DEL PROCEDIMIENTO COLECTIVO DE NATURALEZA ECONOMICA")){
+                campo="5";
+            }
             if (!esNumero(campo)) {
                 String sql = "SELECT ID FROM V3_TC_AUD_TIPO_AUDIENJL "
                         + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";

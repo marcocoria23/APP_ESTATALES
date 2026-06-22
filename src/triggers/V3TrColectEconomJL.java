@@ -45,12 +45,28 @@ public class V3TrColectEconomJL implements Trigger {
     }
 
     private Integer asInt(Object v) {
-        if (v == null) return null;
-        if (v instanceof Number) return ((Number) v).intValue();
-        String s = v.toString().trim();
-        if (s.isEmpty() || s.equalsIgnoreCase("null")) return null;
-        return Integer.valueOf(s); // <-- si v trae "Valor Cat No encontrado" truena aquí
+    if (v == null) return null;
+    if (v instanceof Number) return ((Number) v).intValue();
+
+    String s = v.toString().trim();
+
+    if (s.isEmpty() || s.equalsIgnoreCase("null")) return null;
+
+    // Valores de texto que no deben convertirse a número
+    if (s.equalsIgnoreCase("NO IDENTIFICADO") ||
+        s.equalsIgnoreCase("No Identificado") ||
+        s.equalsIgnoreCase("No especifico") ||
+        s.equalsIgnoreCase("No Especifico")) {
+        return null;
     }
+
+    try {
+        return Integer.valueOf(s);
+    } catch (NumberFormatException e) {
+        System.out.println("Valor no numérico recibido en asInt(): " + s);
+        return null;
+    }
+}
 
     private void setIfNullDbg(Object[] newRow, int idx, String name, Object value) {
         Object cur = get(newRow, idx, name); // valida rango

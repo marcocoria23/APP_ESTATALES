@@ -326,7 +326,7 @@ public class PMenu extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-          AbrirPdf.abrirPdfDesdeResources("/plantillas/Validaciones para justicia laboal_07082025_VF.pdf");
+          AbrirPdf.abrirPdfDesdeResources("/plantillas/Validaciones para justicia laboal_11062026_VF_CON_SUB_NUEVO.pdf");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

@@ -22,7 +22,7 @@ public class V3QOrdinario {
             "SELECT \n" +
 "    CLAVE_ORGANO,\n" +
 "    EXPEDIENTE_CLAVE,\n" +
-"    TO_CHAR(FECHA_APERTURA_EXPEDIENTE,'DD/MM/YYYY')FECHA_APERTURA_EXPEDIENTE\n" +
+"    TO_CHAR(FECHA_APERTURA_EXPEDIENTE,'dd/MM/yyyy')FECHA_APERTURA_EXPEDIENTE\n" +
 "FROM V3_TR_ORDINARIOJL\n" +
 "WHERE FECHA_APERTURA_EXPEDIENTE <  '2020-01-01'\n" +
 "  AND MOD(YEAR(FECHA_APERTURA_EXPEDIENTE), 100) <> 99\n";
@@ -835,8 +835,8 @@ public class V3QOrdinario {
                 + "    AND AUDIENCIA_JUICIO = 2\n"
                 + "    AND ESTATUS_EXPEDIENTE = 2 \n"
                 + "    AND FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_PRELIM\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','dd/MM/yyyy')";
 
         try (
                 PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
@@ -861,8 +861,8 @@ public class V3QOrdinario {
                 + "    AND AUDIENCIA_JUICIO = 2\n"
                 + "    AND ESTATUS_EXPEDIENTE = 1 \n"
                 + "    AND FECHA_DICTO_RESOLUCIONAP < FECHA_AUDIENCIA_PRELIM\n"
-                + "    AND FECHA_DICTO_RESOLUCIONAP <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_DICTO_RESOLUCIONAP <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','dd/MM/yyyy')";
 
         try (
                 PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
@@ -920,8 +920,8 @@ public class V3QOrdinario {
                 + "WHERE AUDIENCIA_PRELIM = 1 \n"
                 + "    AND AUDIENCIA_JUICIO = 1\n"
                 + "    AND FECHA_AUDIENCIA_PRELIM > FECHA_AUDIENCIA_JUICIO\n"
-                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','dd/MM/yyyy')";
 
         try (
                 PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
@@ -947,9 +947,9 @@ public class V3QOrdinario {
                 + "    AND ESTATUS_EXPEDIENTE = 2\n"
                 + "    AND (FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_PRELIM\n"
                 + "        OR FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_JUICIO)\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','dd/MM/yyyy')";
 
         try (
                 PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
@@ -974,8 +974,8 @@ public class V3QOrdinario {
                 + "    AND AUDIENCIA_JUICIO = 1\n"
                 + "    AND ESTATUS_EXPEDIENTE = 1\n"
                 + "    AND (FECHA_RESOLUCIONAJ < FECHA_AUDIENCIA_JUICIO)\n"
-                + "    AND FECHA_RESOLUCIONAJ <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_RESOLUCIONAJ <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','dd/MM/yyyy')";
 
         try (
                 PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {

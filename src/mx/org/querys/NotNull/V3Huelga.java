@@ -570,7 +570,7 @@ public class V3Huelga {
         Array = new ArrayList();
 
         sql = "SELECT CLAVE_ORGANO, EXPEDIENTE_CLAVE, "
-            + "FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE, 'DD/MM/YYYY') AS FECHA_APERTURA_EXPEDIENTE "
+            + "FORMATDATETIME(FECHA_APERTURA_EXPEDIENTE, 'dd/MM/yyyy') AS FECHA_APERTURA_EXPEDIENTE "
             + "FROM V3_TR_HUELGAJL "
             + "WHERE FIRMA_CONTRATO = '2' "
             + "  AND REVISION_CONTRATO = '2' "

@@ -1,21 +1,27 @@
-2026-06-22 12:29:35.782468-06:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: Error ejecutando trigger "V3_TR_PART_DEM_COLECT_ECONOMJL_BI", clase "triggers.V3TrPartDemColectEconomJL", causa : "java.lang.NumberFormatException: For input string: ""NO IDENTIFICADO"""; vea la causa raiz para mas detalle
-Error executing trigger "V3_TR_PART_DEM_COLECT_ECONOMJL_BI", class "triggers.V3TrPartDemColectEconomJL", cause : "java.lang.NumberFormatException: For input string: ""NO IDENTIFICADO"""; see root cause for details; SQL statement:
-INSERT INTO V3_TR_PART_DEM_COLECT_ECONOMJL (NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_DEMANDADO, DEMANDADO,
-DEFENSA_DEM, NOMBRE_SINDICATO_DEM, REG_ASOC_SINDICAL_DEM, TIPO_SINDICATO_DEM, OTRO_ESP_SINDICATO_DEM,
-ORG_OBRERA_DEM, NOMBRE_ORG_OBRERA_DEM, OTRO_ESP_OBRERA_DEM, CANT_TRABAJA_INV_DEM, HOMBRES_DEM,
-MUJERES_DEM, NO_IDENTIFICADO_DEM, TIPO_DEM_PAT, RFC_PATRON_DEM, RAZON_SOCIAL_EMPR_DEM,
-CALLE, N_EXT, N_INT, COLONIA, CP,
-ENTIDAD_NOMBRE_EMPR, ENTIDAD_CLAVE_EMPR, MUNICIPIO_NOMBRE_EMPR, MUNICIPIO_CLAVE_EMPR, LATITUD_EMPR,
-LONGITUD_EMPR, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) [90044-232]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+2026-07-17 12:54:56.212477-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Imposible interpretar la constante "TIMESTAMP" "ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC"
+Cannot parse "TIMESTAMP" constant "ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC"; SQL statement:
+INSERT INTO V3_TR_HUELGAJL (NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, TIPO_ASUNTO,
+RAMA_INDUS_INVOLUCRAD, SECTOR_RAMA, SUBSECTOR_RAMA, ENTIDAD_CLAVE, ENTIDAD_NOMBRE,
+MUNICIPIO_CLAVE, MUNICIPIO_NOMBRE, FIRMA_CONTRATO, REVISION_CONTRATO, INCUMPLIM_CONTRATO,
+REVISION_SALARIO, REPARTO_UTILIDADES, APOYO_OTRA_HUELGA, DESEQUILIBRIO_FAC_PROD, OTRO_MOTIVO,
+ESPECIFIQUE_MOTIVO, INCOMPETENCIA, TIPO_INCOMPETENCIA, ESPECIFIQUE_INCOMP, FECHA_PRESENTA_PETIC,
+CANTIDAD_ACTORES, CANTIDAD_DEMANDADOS, EMPLAZAMIENTO_HUELGA, FECHA_EMPLAZAMIENTO, PREHUELGA,
+AUDIENCIA_CONCILIACION, FECHA_AUDIENCIA, ESTALLAMIENTO_HUELGA, DECLARA_LICITUD_HUELGA, DECLARA_EXISTEN_HUELGA,
+ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL, FASE_SOLI_EXPEDIENTE, FORMA_SOLUCION_EMPLAZ, ESPECIFI_FORMA_EMPLAZ,
+FECHA_RESOLU_EMPLAZ, INCREMENTO_SOLICITADO, INCREMENTO_OTORGADO, FORMA_SOLUCION_HUELGA, ESPECIFI_FORMA_HUELGA,
+FECHA_RESOLU_HUELGA, TIPO_SENTENCIA, FECHA_ESTALLAM_HUELGA, FECHA_LEVANT_HUELGA, DIAS_HUELGA,
+MONTO_ESTIPULADO, SALARIOS_CAIDOS, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) [22007-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:518)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	at org.h2.message.DbException.get(DbException.java:212)
-	at org.h2.schema.TriggerObject.getErrorExecutingTrigger(TriggerObject.java:339)
-	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:285)
-	at org.h2.table.Table.fireRow(Table.java:1253)
-	at org.h2.table.Table.fireBeforeRow(Table.java:1217)
-	at org.h2.command.dml.Insert.insertRows(Insert.java:171)
+	at org.h2.value.ValueTimestamp.parse(ValueTimestamp.java:88)
+	at org.h2.value.Value.convertToTimestamp(Value.java:2006)
+	at org.h2.value.Value.convertTo(Value.java:1179)
+	at org.h2.value.Value.convertForAssignTo(Value.java:1118)
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:406)
+	at org.h2.table.Table.convertInsertRow(Table.java:963)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:167)
 	at org.h2.command.dml.Insert.update(Insert.java:135)
 	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
 	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
@@ -23,50 +29,57 @@ LONGITUD_EMPR, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
 	at org.h2.command.Command.executeBatchUpdate(Command.java:271)
 	at org.h2.jdbc.JdbcPreparedStatement.executeBatchInternal(JdbcPreparedStatement.java:1318)
 	at org.h2.jdbc.JdbcPreparedStatement.executeBatch(JdbcPreparedStatement.java:1267)
-	at mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom.IN_PART_DEM_COLECT_ECONOM(ReadCSV_Part_Dem_Colect_Econom.java:241)
-	at mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom.Read_Part_Dem_Colect_Econom(ReadCSV_Part_Dem_Colect_Econom.java:68)
-	at Pantallas_laborales.InsertaTR.lambda$InsertarActionPerformed$0(InsertaTR.java:475)
+	at mx.org.Insert.BD.ReadCSV_Huelga.IN_HUELGA(ReadCSV_Huelga.java:266)
+	at mx.org.Insert.BD.ReadCSV_Huelga.Read_Huelga(ReadCSV_Huelga.java:67)
+	at Pantallas_laborales.InsertaTR.lambda$InsertarActionPerformed$0(InsertaTR.java:454)
 	at java.base/java.lang.Thread.run(Thread.java:1474)
-Caused by: java.lang.NumberFormatException: For input string: "NO IDENTIFICADO"
-	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
-	at java.base/java.lang.Integer.parseInt(Integer.java:565)
-	at java.base/java.lang.Integer.valueOf(Integer.java:912)
-	at triggers.V3TrPartDemColectEconomJL.asInt(V3TrPartDemColectEconomJL.java:27)
-	at triggers.V3TrPartDemColectEconomJL.fire(V3TrPartDemColectEconomJL.java:119)
-	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:283)
-	... 14 more
-2026-06-22 12:29:35.786858-06:00 jdbc[3]: exception
-org.h2.jdbc.JdbcBatchUpdateException: Error ejecutando trigger "V3_TR_PART_DEM_COLECT_ECONOMJL_BI", clase "triggers.V3TrPartDemColectEconomJL", causa : "java.lang.NumberFormatException: For input string: ""NO IDENTIFICADO"""; vea la causa raiz para mas detalle
-Error executing trigger "V3_TR_PART_DEM_COLECT_ECONOMJL_BI", class "triggers.V3TrPartDemColectEconomJL", cause : "java.lang.NumberFormatException: For input string: ""NO IDENTIFICADO"""; see root cause for details; SQL statement:
-INSERT INTO V3_TR_PART_DEM_COLECT_ECONOMJL (NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_DEMANDADO, DEMANDADO,
-DEFENSA_DEM, NOMBRE_SINDICATO_DEM, REG_ASOC_SINDICAL_DEM, TIPO_SINDICATO_DEM, OTRO_ESP_SINDICATO_DEM,
-ORG_OBRERA_DEM, NOMBRE_ORG_OBRERA_DEM, OTRO_ESP_OBRERA_DEM, CANT_TRABAJA_INV_DEM, HOMBRES_DEM,
-MUJERES_DEM, NO_IDENTIFICADO_DEM, TIPO_DEM_PAT, RFC_PATRON_DEM, RAZON_SOCIAL_EMPR_DEM,
-CALLE, N_EXT, N_INT, COLONIA, CP,
-ENTIDAD_NOMBRE_EMPR, ENTIDAD_CLAVE_EMPR, MUNICIPIO_NOMBRE_EMPR, MUNICIPIO_CLAVE_EMPR, LATITUD_EMPR,
-LONGITUD_EMPR, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) [90044-232]
+Caused by: java.lang.IllegalArgumentException: ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:187)
+	at org.h2.util.DateTimeUtils.parseTimestamp(DateTimeUtils.java:338)
+	at org.h2.value.ValueTimestamp.parse(ValueTimestamp.java:86)
+	... 17 more
+2026-07-17 12:54:56.217477-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcBatchUpdateException: Imposible interpretar la constante "TIMESTAMP" "ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC"
+Cannot parse "TIMESTAMP" constant "ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC"; SQL statement:
+INSERT INTO V3_TR_HUELGAJL (NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, TIPO_ASUNTO,
+RAMA_INDUS_INVOLUCRAD, SECTOR_RAMA, SUBSECTOR_RAMA, ENTIDAD_CLAVE, ENTIDAD_NOMBRE,
+MUNICIPIO_CLAVE, MUNICIPIO_NOMBRE, FIRMA_CONTRATO, REVISION_CONTRATO, INCUMPLIM_CONTRATO,
+REVISION_SALARIO, REPARTO_UTILIDADES, APOYO_OTRA_HUELGA, DESEQUILIBRIO_FAC_PROD, OTRO_MOTIVO,
+ESPECIFIQUE_MOTIVO, INCOMPETENCIA, TIPO_INCOMPETENCIA, ESPECIFIQUE_INCOMP, FECHA_PRESENTA_PETIC,
+CANTIDAD_ACTORES, CANTIDAD_DEMANDADOS, EMPLAZAMIENTO_HUELGA, FECHA_EMPLAZAMIENTO, PREHUELGA,
+AUDIENCIA_CONCILIACION, FECHA_AUDIENCIA, ESTALLAMIENTO_HUELGA, DECLARA_LICITUD_HUELGA, DECLARA_EXISTEN_HUELGA,
+ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL, FASE_SOLI_EXPEDIENTE, FORMA_SOLUCION_EMPLAZ, ESPECIFI_FORMA_EMPLAZ,
+FECHA_RESOLU_EMPLAZ, INCREMENTO_SOLICITADO, INCREMENTO_OTORGADO, FORMA_SOLUCION_HUELGA, ESPECIFI_FORMA_HUELGA,
+FECHA_RESOLU_HUELGA, TIPO_SENTENCIA, FECHA_ESTALLAM_HUELGA, FECHA_LEVANT_HUELGA, DIAS_HUELGA,
+MONTO_ESTIPULADO, SALARIOS_CAIDOS, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) [22007-232]
 	at org.h2.jdbc.JdbcPreparedStatement.executeBatch(JdbcPreparedStatement.java:1277)
-	at mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom.IN_PART_DEM_COLECT_ECONOM(ReadCSV_Part_Dem_Colect_Econom.java:241)
-	at mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom.Read_Part_Dem_Colect_Econom(ReadCSV_Part_Dem_Colect_Econom.java:68)
-	at Pantallas_laborales.InsertaTR.lambda$InsertarActionPerformed$0(InsertaTR.java:475)
+	at mx.org.Insert.BD.ReadCSV_Huelga.IN_HUELGA(ReadCSV_Huelga.java:266)
+	at mx.org.Insert.BD.ReadCSV_Huelga.Read_Huelga(ReadCSV_Huelga.java:67)
+	at Pantallas_laborales.InsertaTR.lambda$InsertarActionPerformed$0(InsertaTR.java:454)
 	at java.base/java.lang.Thread.run(Thread.java:1474)
-org.h2.jdbc.JdbcSQLNonTransientException: Error ejecutando trigger "V3_TR_PART_DEM_COLECT_ECONOMJL_BI", clase "triggers.V3TrPartDemColectEconomJL", causa : "java.lang.NumberFormatException: For input string: ""NO IDENTIFICADO"""; vea la causa raiz para mas detalle
-Error executing trigger "V3_TR_PART_DEM_COLECT_ECONOMJL_BI", class "triggers.V3TrPartDemColectEconomJL", cause : "java.lang.NumberFormatException: For input string: ""NO IDENTIFICADO"""; see root cause for details; SQL statement:
-INSERT INTO V3_TR_PART_DEM_COLECT_ECONOMJL (NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_DEMANDADO, DEMANDADO,
-DEFENSA_DEM, NOMBRE_SINDICATO_DEM, REG_ASOC_SINDICAL_DEM, TIPO_SINDICATO_DEM, OTRO_ESP_SINDICATO_DEM,
-ORG_OBRERA_DEM, NOMBRE_ORG_OBRERA_DEM, OTRO_ESP_OBRERA_DEM, CANT_TRABAJA_INV_DEM, HOMBRES_DEM,
-MUJERES_DEM, NO_IDENTIFICADO_DEM, TIPO_DEM_PAT, RFC_PATRON_DEM, RAZON_SOCIAL_EMPR_DEM,
-CALLE, N_EXT, N_INT, COLONIA, CP,
-ENTIDAD_NOMBRE_EMPR, ENTIDAD_CLAVE_EMPR, MUNICIPIO_NOMBRE_EMPR, MUNICIPIO_CLAVE_EMPR, LATITUD_EMPR,
-LONGITUD_EMPR, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) [90044-232]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+org.h2.jdbc.JdbcSQLDataException: Imposible interpretar la constante "TIMESTAMP" "ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC"
+Cannot parse "TIMESTAMP" constant "ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC"; SQL statement:
+INSERT INTO V3_TR_HUELGAJL (NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, TIPO_ASUNTO,
+RAMA_INDUS_INVOLUCRAD, SECTOR_RAMA, SUBSECTOR_RAMA, ENTIDAD_CLAVE, ENTIDAD_NOMBRE,
+MUNICIPIO_CLAVE, MUNICIPIO_NOMBRE, FIRMA_CONTRATO, REVISION_CONTRATO, INCUMPLIM_CONTRATO,
+REVISION_SALARIO, REPARTO_UTILIDADES, APOYO_OTRA_HUELGA, DESEQUILIBRIO_FAC_PROD, OTRO_MOTIVO,
+ESPECIFIQUE_MOTIVO, INCOMPETENCIA, TIPO_INCOMPETENCIA, ESPECIFIQUE_INCOMP, FECHA_PRESENTA_PETIC,
+CANTIDAD_ACTORES, CANTIDAD_DEMANDADOS, EMPLAZAMIENTO_HUELGA, FECHA_EMPLAZAMIENTO, PREHUELGA,
+AUDIENCIA_CONCILIACION, FECHA_AUDIENCIA, ESTALLAMIENTO_HUELGA, DECLARA_LICITUD_HUELGA, DECLARA_EXISTEN_HUELGA,
+ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL, FASE_SOLI_EXPEDIENTE, FORMA_SOLUCION_EMPLAZ, ESPECIFI_FORMA_EMPLAZ,
+FECHA_RESOLU_EMPLAZ, INCREMENTO_SOLICITADO, INCREMENTO_OTORGADO, FORMA_SOLUCION_HUELGA, ESPECIFI_FORMA_HUELGA,
+FECHA_RESOLU_HUELGA, TIPO_SENTENCIA, FECHA_ESTALLAM_HUELGA, FECHA_LEVANT_HUELGA, DIAS_HUELGA,
+MONTO_ESTIPULADO, SALARIOS_CAIDOS, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) [22007-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:518)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	at org.h2.message.DbException.get(DbException.java:212)
-	at org.h2.schema.TriggerObject.getErrorExecutingTrigger(TriggerObject.java:339)
-	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:285)
-	at org.h2.table.Table.fireRow(Table.java:1253)
-	at org.h2.table.Table.fireBeforeRow(Table.java:1217)
-	at org.h2.command.dml.Insert.insertRows(Insert.java:171)
+	at org.h2.value.ValueTimestamp.parse(ValueTimestamp.java:88)
+	at org.h2.value.Value.convertToTimestamp(Value.java:2006)
+	at org.h2.value.Value.convertTo(Value.java:1179)
+	at org.h2.value.Value.convertForAssignTo(Value.java:1118)
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:406)
+	at org.h2.table.Table.convertInsertRow(Table.java:963)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:167)
 	at org.h2.command.dml.Insert.update(Insert.java:135)
 	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
 	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
@@ -74,36 +87,39 @@ LONGITUD_EMPR, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
 	at org.h2.command.Command.executeBatchUpdate(Command.java:271)
 	at org.h2.jdbc.JdbcPreparedStatement.executeBatchInternal(JdbcPreparedStatement.java:1318)
 	at org.h2.jdbc.JdbcPreparedStatement.executeBatch(JdbcPreparedStatement.java:1267)
-	at mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom.IN_PART_DEM_COLECT_ECONOM(ReadCSV_Part_Dem_Colect_Econom.java:241)
-	at mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom.Read_Part_Dem_Colect_Econom(ReadCSV_Part_Dem_Colect_Econom.java:68)
-	at Pantallas_laborales.InsertaTR.lambda$InsertarActionPerformed$0(InsertaTR.java:475)
+	at mx.org.Insert.BD.ReadCSV_Huelga.IN_HUELGA(ReadCSV_Huelga.java:266)
+	at mx.org.Insert.BD.ReadCSV_Huelga.Read_Huelga(ReadCSV_Huelga.java:67)
+	at Pantallas_laborales.InsertaTR.lambda$InsertarActionPerformed$0(InsertaTR.java:454)
 	at java.base/java.lang.Thread.run(Thread.java:1474)
-Caused by: java.lang.NumberFormatException: For input string: "NO IDENTIFICADO"
-	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
-	at java.base/java.lang.Integer.parseInt(Integer.java:565)
-	at java.base/java.lang.Integer.valueOf(Integer.java:912)
-	at triggers.V3TrPartDemColectEconomJL.asInt(V3TrPartDemColectEconomJL.java:27)
-	at triggers.V3TrPartDemColectEconomJL.fire(V3TrPartDemColectEconomJL.java:119)
-	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:283)
-	... 14 more
-2026-06-22 12:29:35.789855-06:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: Error ejecutando trigger "V3_TR_PART_DEM_COLECT_ECONOMJL_BI", clase "triggers.V3TrPartDemColectEconomJL", causa : "java.lang.NumberFormatException: For input string: ""NO IDENTIFICADO"""; vea la causa raiz para mas detalle
-Error executing trigger "V3_TR_PART_DEM_COLECT_ECONOMJL_BI", class "triggers.V3TrPartDemColectEconomJL", cause : "java.lang.NumberFormatException: For input string: ""NO IDENTIFICADO"""; see root cause for details; SQL statement:
-INSERT INTO V3_TR_PART_DEM_COLECT_ECONOMJL (NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID_DEMANDADO, DEMANDADO,
-DEFENSA_DEM, NOMBRE_SINDICATO_DEM, REG_ASOC_SINDICAL_DEM, TIPO_SINDICATO_DEM, OTRO_ESP_SINDICATO_DEM,
-ORG_OBRERA_DEM, NOMBRE_ORG_OBRERA_DEM, OTRO_ESP_OBRERA_DEM, CANT_TRABAJA_INV_DEM, HOMBRES_DEM,
-MUJERES_DEM, NO_IDENTIFICADO_DEM, TIPO_DEM_PAT, RFC_PATRON_DEM, RAZON_SOCIAL_EMPR_DEM,
-CALLE, N_EXT, N_INT, COLONIA, CP,
-ENTIDAD_NOMBRE_EMPR, ENTIDAD_CLAVE_EMPR, MUNICIPIO_NOMBRE_EMPR, MUNICIPIO_CLAVE_EMPR, LATITUD_EMPR,
-LONGITUD_EMPR, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) [90044-232]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+Caused by: java.lang.IllegalArgumentException: ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:187)
+	at org.h2.util.DateTimeUtils.parseTimestamp(DateTimeUtils.java:338)
+	at org.h2.value.ValueTimestamp.parse(ValueTimestamp.java:86)
+	... 17 more
+2026-07-17 12:54:56.259990-06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Imposible interpretar la constante "TIMESTAMP" "ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC"
+Cannot parse "TIMESTAMP" constant "ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC"; SQL statement:
+INSERT INTO V3_TR_HUELGAJL (NOMBRE_ORGANO_JURIS, CLAVE_ORGANO, EXPEDIENTE_CLAVE, FECHA_APERTURA_EXPEDIENTE, TIPO_ASUNTO,
+RAMA_INDUS_INVOLUCRAD, SECTOR_RAMA, SUBSECTOR_RAMA, ENTIDAD_CLAVE, ENTIDAD_NOMBRE,
+MUNICIPIO_CLAVE, MUNICIPIO_NOMBRE, FIRMA_CONTRATO, REVISION_CONTRATO, INCUMPLIM_CONTRATO,
+REVISION_SALARIO, REPARTO_UTILIDADES, APOYO_OTRA_HUELGA, DESEQUILIBRIO_FAC_PROD, OTRO_MOTIVO,
+ESPECIFIQUE_MOTIVO, INCOMPETENCIA, TIPO_INCOMPETENCIA, ESPECIFIQUE_INCOMP, FECHA_PRESENTA_PETIC,
+CANTIDAD_ACTORES, CANTIDAD_DEMANDADOS, EMPLAZAMIENTO_HUELGA, FECHA_EMPLAZAMIENTO, PREHUELGA,
+AUDIENCIA_CONCILIACION, FECHA_AUDIENCIA, ESTALLAMIENTO_HUELGA, DECLARA_LICITUD_HUELGA, DECLARA_EXISTEN_HUELGA,
+ESTATUS_EXPEDIENTE, FECHA_ACTO_PROCESAL, FASE_SOLI_EXPEDIENTE, FORMA_SOLUCION_EMPLAZ, ESPECIFI_FORMA_EMPLAZ,
+FECHA_RESOLU_EMPLAZ, INCREMENTO_SOLICITADO, INCREMENTO_OTORGADO, FORMA_SOLUCION_HUELGA, ESPECIFI_FORMA_HUELGA,
+FECHA_RESOLU_HUELGA, TIPO_SENTENCIA, FECHA_ESTALLAM_HUELGA, FECHA_LEVANT_HUELGA, DIAS_HUELGA,
+MONTO_ESTIPULADO, SALARIOS_CAIDOS, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) [22007-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:518)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	at org.h2.message.DbException.get(DbException.java:212)
-	at org.h2.schema.TriggerObject.getErrorExecutingTrigger(TriggerObject.java:339)
-	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:285)
-	at org.h2.table.Table.fireRow(Table.java:1253)
-	at org.h2.table.Table.fireBeforeRow(Table.java:1217)
-	at org.h2.command.dml.Insert.insertRows(Insert.java:171)
+	at org.h2.value.ValueTimestamp.parse(ValueTimestamp.java:88)
+	at org.h2.value.Value.convertToTimestamp(Value.java:2006)
+	at org.h2.value.Value.convertTo(Value.java:1179)
+	at org.h2.value.Value.convertForAssignTo(Value.java:1118)
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:406)
+	at org.h2.table.Table.convertInsertRow(Table.java:963)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:167)
 	at org.h2.command.dml.Insert.update(Insert.java:135)
 	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
 	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
@@ -111,16 +127,13 @@ LONGITUD_EMPR, COMENTARIOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
 	at org.h2.command.Command.executeUpdate(Command.java:248)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:213)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:172)
-	at mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom.insertarBloqueUnoAUno(ReadCSV_Part_Dem_Colect_Econom.java:377)
-	at mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom.IN_PART_DEM_COLECT_ECONOM(ReadCSV_Part_Dem_Colect_Econom.java:248)
-	at mx.org.Insert.BD.ReadCSV_Part_Dem_Colect_Econom.Read_Part_Dem_Colect_Econom(ReadCSV_Part_Dem_Colect_Econom.java:68)
-	at Pantallas_laborales.InsertaTR.lambda$InsertarActionPerformed$0(InsertaTR.java:475)
+	at mx.org.Insert.BD.ReadCSV_Huelga.insertarBloqueUnoAUno(ReadCSV_Huelga.java:427)
+	at mx.org.Insert.BD.ReadCSV_Huelga.IN_HUELGA(ReadCSV_Huelga.java:273)
+	at mx.org.Insert.BD.ReadCSV_Huelga.Read_Huelga(ReadCSV_Huelga.java:67)
+	at Pantallas_laborales.InsertaTR.lambda$InsertarActionPerformed$0(InsertaTR.java:454)
 	at java.base/java.lang.Thread.run(Thread.java:1474)
-Caused by: java.lang.NumberFormatException: For input string: "NO IDENTIFICADO"
-	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
-	at java.base/java.lang.Integer.parseInt(Integer.java:565)
-	at java.base/java.lang.Integer.valueOf(Integer.java:912)
-	at triggers.V3TrPartDemColectEconomJL.asInt(V3TrPartDemColectEconomJL.java:27)
-	at triggers.V3TrPartDemColectEconomJL.fire(V3TrPartDemColectEconomJL.java:119)
-	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:283)
-	... 15 more
+Caused by: java.lang.IllegalArgumentException: ERROR EN FORMATO FECHA CAMPO:||FECHA_PRESENTA_PETIC
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:187)
+	at org.h2.util.DateTimeUtils.parseTimestamp(DateTimeUtils.java:338)
+	at org.h2.value.ValueTimestamp.parse(ValueTimestamp.java:86)
+	... 18 more

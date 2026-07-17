@@ -359,8 +359,8 @@ public class QNuevos {
                 + "  AND AUDIENCIA_JUICIO = 2\n"
                 + "  AND ESTATUS_EXPEDIENTE = 2\n"
                 + "  AND FECHA_ACTO_PROCESAL < FECHA_DEPURACION\n"
-                + "  AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "  AND FECHA_DEPURACION <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "  AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "  AND FECHA_DEPURACION <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -372,8 +372,8 @@ public class QNuevos {
                 + "    AND AUDIENCIA_JUICIO = 2 \n"
                 + "    AND ESTATUS_EXPEDIENTE = 1\n"
                 + "    AND FECHA_DICTO_RESOLUCION_AD < FECHA_DEPURACION\n"
-                + "    AND FECHA_DICTO_RESOLUCION_AD <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_DICTO_RESOLUCION_AD <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -409,9 +409,9 @@ public class QNuevos {
                 + "        AND ESTATUS_EXPEDIENTE = 2\n"
                 + "    AND (FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_PRELIM \n"
                 + "            OR FECHA_ACTO_PROCESAL < FECHA_DEPURACION)\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -424,9 +424,9 @@ public class QNuevos {
                 + "    AND AUDIENCIA_JUICIO = 2 \n"
                 + "    AND ESTATUS_EXPEDIENTE = 1\n"
                 + "    AND (FECHA_DICTO_RESOLUCION_AP < FECHA_AUDIENCIA_PRELIM )\n"
-                + "    AND FECHA_DICTO_RESOLUCION_AP <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_DICTO_RESOLUCION_AP <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -461,9 +461,9 @@ public class QNuevos {
                 + "    AND ESTATUS_EXPEDIENTE = 2\n"
                 + "    AND (FECHA_ACTO_PROCESAL <= FECHA_AUDIENCIA_PRELIM \n"
                 + "            OR FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_JUICIO)\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -476,10 +476,10 @@ public class QNuevos {
                 + "    AND ESTATUS_EXPEDIENTE = 1\n"
                 + "    AND ( FECHA_DICTO_RESOLUCION_AJ <= FECHA_AUDIENCIA_PRELIM \n"
                 + "            OR FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_JUICIO)\n"
-                + "    AND FECHA_DICTO_RESOLUCION_AJ <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_DICTO_RESOLUCION_AJ <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_PRELIM <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -511,8 +511,8 @@ public class QNuevos {
                 + "    AND AUDIENCIA_JUICIO = 2\n"
                 + "    AND ESTATUS_EXPEDIENTE = 2\n"
                 + "    AND FECHA_ACTO_PROCESAL < FECHA_DEPURACION\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -523,8 +523,8 @@ public class QNuevos {
                 + "    AND AUDIENCIA_JUICIO = 2\n"
                 + "    AND ESTATUS_EXPEDIENTE = 1\n"
                 + "    AND FECHA_DICTO_RESOLUCION_AD < FECHA_DEPURACION\n"
-                + "    AND FECHA_DICTO_RESOLUCION_AD <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_DICTO_RESOLUCION_AD <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_DEPURACION <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -556,8 +556,8 @@ public class QNuevos {
                 + "    AND AUDIENCIA_JUICIO = 1\n"
                 + "    AND ESTATUS_EXPEDIENTE=1\n"
                 + "    AND FECHA_RESOLUCION_AJ < FECHA_AUDIENCIA_JUICIO\n"
-                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_RESOLUCION_AJ <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_RESOLUCION_AJ <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -568,8 +568,8 @@ public class QNuevos {
                 + "    AND AUDIENCIA_JUICIO = 1\n"
                 + "    AND ESTATUS_EXPEDIENTE = 2\n"
                 + "    AND (FECHA_ACTO_PROCESAL < FECHA_DEPURACION)\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_JUICIO <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -579,8 +579,8 @@ public class QNuevos {
                 + "WHERE EMPLAZAMIENTO_HUELGA = 1\n"
                 + "    AND ESTATUS_EXPEDIENTE = 2\n"
                 + "    AND FECHA_ACTO_PROCESAL < FECHA_EMPLAZAMIENTO\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_EMPLAZAMIENTO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_EMPLAZAMIENTO <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -589,8 +589,8 @@ public class QNuevos {
                 + "FROM V3_TR_HUELGAJL \n"
                 + "WHERE PREHUELGA = 1\n"
                 + "    AND FECHA_AUDIENCIA <= FECHA_EMPLAZAMIENTO\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_EMPLAZAMIENTO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_EMPLAZAMIENTO <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -600,8 +600,8 @@ public class QNuevos {
                 + "WHERE PREHUELGA = 1\n"
                 + "AND ESTATUS_EXPEDIENTE=2\n"
                 + "    AND FECHA_AUDIENCIA > FECHA_ACTO_PROCESAL\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -613,9 +613,9 @@ public class QNuevos {
                 + "    AND (FECHA_ESTALLAM_HUELGA <= FECHA_AUDIENCIA\n"
                 + "    OR FECHA_ESTALLAM_HUELGA <= FECHA_EMPLAZAMIENTO\n"
                 + "    )\n"
-                + "    AND FECHA_ESTALLAM_HUELGA <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_EMPLAZAMIENTO <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_ESTALLAM_HUELGA <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_EMPLAZAMIENTO <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -629,9 +629,9 @@ public class QNuevos {
                 + "    AND (FECHA_ACTO_PROCESAL <= FECHA_AUDIENCIA\n"
                 + "    OR FECHA_ACTO_PROCESAL <= FECHA_EMPLAZAMIENTO\n"
                 + "    )\n"
-                + "    AND FECHA_AUDIENCIA <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_EMPLAZAMIENTO <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "    AND FECHA_AUDIENCIA <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_EMPLAZAMIENTO <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -641,7 +641,7 @@ public class QNuevos {
                 + "WHERE  ESTALLAMIENTO_HUELGA = 1\n"
                 + "AND ESTATUS_EXPEDIENTE = 1   \n"
                 + "    AND (FECHA_ESTALLAM_HUELGA IS NULL\n"
-                + "    OR FECHA_ESTALLAM_HUELGA = TO_DATE('09/09/1899','DD/MM/YYYY') )";
+                + "    OR FECHA_ESTALLAM_HUELGA = TO_DATE('09/09/1899','dd/MM/yyyy') )";
         return ejecutar3Cols(sql);
     }
     
@@ -651,8 +651,8 @@ public class QNuevos {
                 + "WHERE AUDIENCIA_ECONOM = 1\n"
                 + "    AND ESTATUS_EXPEDIENTE = 2\n"
                 + "    AND FECHA_ACTO_PROCESAL < FECHA_AUDIENCIA_ECONOM\n"
-                + "        AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_ECONOM <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "        AND FECHA_ACTO_PROCESAL <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_ECONOM <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
     
@@ -662,8 +662,8 @@ public class QNuevos {
                 + "WHERE AUDIENCIA_ECONOM = 1\n"
                 + "    AND ESTATUS_EXPEDIENTE = 1\n"
                 + "    AND FECHA_RESOLUCION < FECHA_AUDIENCIA_ECONOM\n"
-                + "        AND FECHA_RESOLUCION <> TO_DATE('09/09/1899','DD/MM/YYYY')\n"
-                + "    AND FECHA_AUDIENCIA_ECONOM <> TO_DATE('09/09/1899','DD/MM/YYYY')";
+                + "        AND FECHA_RESOLUCION <> TO_DATE('09/09/1899','dd/MM/yyyy')\n"
+                + "    AND FECHA_AUDIENCIA_ECONOM <> TO_DATE('09/09/1899','dd/MM/yyyy')";
         return ejecutar3Cols(sql);
     }
 

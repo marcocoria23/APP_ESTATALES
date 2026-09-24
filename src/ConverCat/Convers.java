@@ -823,6 +823,7 @@ public class Convers {
     }
     // Normalización (una sola vez)
     String c = campo.trim().toUpperCase().replaceAll("\\n", "");
+        System.out.println(c);
     // 2) Casos especiales
     if (c.equals("NO IDENTIFICADO")
             || c.equals("NO IDENTIFICADA")
@@ -837,7 +838,10 @@ public class Convers {
     if (c.equals("SASTRES Y MODISTOS, COSTURERAS Y CONFECCIONADORES DE PRENDAS Y ACCESORIOS DE VESTIR, DE TELA, CUERO,PIEL Y SIMILARES")) {
         return "354";
     }
-    // 3) Si NO es número, buscar ID por descripción
+        if (c.equals("OTROS  DIRECTORES  Y  GERENTES  EN  INFORMÁTICA, TELECOMUNICACIONES,  TRANSPORTE  Y  EN INVESTIGACIÓN  Y  DESARROLLO TECNOLÓGICO, NO CLASIFICADOS ANTERIORMENTE")) {
+        return "30";
+    }
+          // 3) Si NO es número, buscar ID por descripción
     if (!esNumero(campo)) {
         String sql = "SELECT ID FROM V3_TC_OCUPACION_TRABAJADORJL "
                    + "WHERE UPPER(TRIM(DESCRIPCION)) = ?";
@@ -1370,6 +1374,9 @@ public class Convers {
     
     if (c.equals("SASTRES Y MODISTOS, COSTURERAS Y CONFECCIONADORES DE PRENDAS Y ACCESORIOS DE VESTIR, DE TELA, CUERO,PIEL Y SIMILARES")) {
         return "354";
+    }
+        if (c.equals("OTROS  DIRECTORES  Y  GERENTES  EN  INFORMÁTICA, TELECOMUNICACIONES,  TRANSPORTE  Y  EN INVESTIGACIÓN  Y  DESARROLLO TECNOLÓGICO, NO CLASIFICADOS ANTERIORMENTE")) {
+        return "30";
     }
     // 3) Si NO es número, buscar ID por descripción
     if (!esNumero(campo)) {

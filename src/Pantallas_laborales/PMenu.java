@@ -332,8 +332,8 @@ public class PMenu extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         
-         try (Connection con = ConexionH2.getConnection();) {
-        Execute ex=new Execute();    
+       try (Connection con = ConexionH2.getConnection();) {
+       Execute ex=new Execute();    
          IdEntidadInicio=ex.EntidadInicio(con); 
         if (IdEntidadInicio<=0){
         CapturaInfo info=new CapturaInfo();

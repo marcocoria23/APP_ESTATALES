@@ -21,7 +21,7 @@ public class V3Querys {
     public ArrayList TErroresInserTRInicio(Connection con) {
         Array = new ArrayList<>();
 
-        sql = "SELECT TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID, REPLACE(MENSAJE,',','') AS MENSAJE " +
+        sql = "SELECT TABLA_DESTINO, CLAVE_ORGANO, EXPEDIENTE_CLAVE, ID,  MENSAJE " +
               "FROM ERRORES_INSERT";
 
         System.out.println(sql);

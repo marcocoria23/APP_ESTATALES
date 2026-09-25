@@ -36,7 +36,7 @@ public class Errores_InsertTR extends javax.swing.JFrame {
      int TTRegNI=0;
     public static String Ttabla="",Tclave_organo="",Tclave_expediente="",Tid="";
     // JFrame f = new JFrame("Progreso Conteo Registristros TR");
-     
+
     
     public Errores_InsertTR() {
         initComponents();
@@ -133,7 +133,7 @@ public class Errores_InsertTR extends javax.swing.JFrame {
             }
         ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
-        jTable1.setCellSelectionEnabled(true);
+        jTable1.setColumnSelectionAllowed(false);
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -296,43 +296,57 @@ public class Errores_InsertTR extends javax.swing.JFrame {
     
   public void despliegaErroresInicio(Connection con){
         // TODO add your handling code here:
-        jTextArea1.setText("");
-        jTextArea1.setVisible(true);
-        LProgress.setVisible(true);
-        jProgressBar1.setVisible(true);
-        jLabel3.setText(InsertaTR.tabla);
-        limpiarTabla();    
-        TextAreaInicio(con);   
-       ArrayErroresInsInicio=V3queryNE.TErroresInserTRInicio(con);
+   jTextArea1.setText("");
+jTextArea1.setVisible(true);
+LProgress.setVisible(true);
+jProgressBar1.setVisible(true);
+jLabel3.setText(InsertaTR.tabla);
 
-         if (TTRegNI>0){ 
-             System.out.println("entro a inicio");
-            ExportaEi.setVisible(true);
-            DefaultTableModel TablaError = (DefaultTableModel) jTable1.getModel();
-            Object[] fila = new Object[8];
-            for (int j = 0; j < ArrayErroresInsInicio.size(); j++) {
-                String Periodo = Arrays.toString(ArrayErroresInsInicio.get(j)).replace("[", "").replace("]", "");
-                errorarray = Periodo.split(",");
-                part0 = errorarray[0].trim();
-                part1 = errorarray[1].trim();
-                part2 = errorarray[2].trim();
-                part3 = errorarray[3].trim();
-                part4 = errorarray[4].trim();
-                fila[0] = part0;
-                fila[1] = part1;
-                fila[2] = part2;
-                fila[3] = part3;
-                fila[4] = part4;
-                TablaError.addRow(fila);
-                Class<?> col_class = jTable1.getColumnClass(0);
-                jTable1.setDefaultEditor(col_class, null);
+limpiarTabla();
 
-            }
-        } else {
-            limpiarTabla();
-            ExportaEi.setVisible(false);
-            JOptionPane.showMessageDialog(null, "No se encontraron registros con Error de insert", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-        }
+TextAreaInicio(con);
+
+ArrayErroresInsInicio = V3queryNE.TErroresInserTRInicio(con);
+
+if (TTRegNI > 0) {
+
+    System.out.println("entro a inicio");
+
+    ExportaEi.setVisible(true);
+
+    DefaultTableModel TablaError =
+            (DefaultTableModel) jTable1.getModel();
+
+    for (int j = 0; j < ArrayErroresInsInicio.size(); j++) {
+
+        String[] error = ArrayErroresInsInicio.get(j);
+
+        Object[] fila = new Object[5];
+
+        fila[0] = error[0]; // TABLA_DESTINO
+        fila[1] = error[1]; // CLAVE_ORGANO
+        fila[2] = error[2]; // EXPEDIENTE_CLAVE
+        fila[3] = error[3]; // ID
+        fila[4] = error[4]; // MENSAJE
+
+        TablaError.addRow(fila);
+    }
+
+    Class<?> col_class = jTable1.getColumnClass(0);
+    jTable1.setDefaultEditor(col_class, null);
+
+} else {
+
+    limpiarTabla();
+    ExportaEi.setVisible(false);
+
+    JOptionPane.showMessageDialog(
+            null,
+            "No se encontraron registros con Error de insert",
+            "Mensaje",
+            JOptionPane.INFORMATION_MESSAGE
+    );
+}
     }
     
   

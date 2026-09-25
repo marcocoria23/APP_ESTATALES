@@ -29,23 +29,31 @@ public class Convers {
     String sql = "", id = "";
     Execute ex=new Execute();
 
-    public String toH2Date(String s, String Campo) {
-        try {
-            if (s == null) {
-                return null;
-            }
-            s = s.trim();
-            if (s.isEmpty() || s.equalsIgnoreCase("NULL")) {
-                return null;
-            }
-            s = s.replace('-', '/');
-            LocalDate d = LocalDate.parse(s, F_DMY);
-            return d.format(F_ISO);
-        } catch (Exception e) {
-            return "ERROR EN FORMATO FECHA CAMPO:||" + Campo;
-        }
+   public String toH2Date(String s, String campo) {
+    if (s == null) {
+        return null;
     }
+    
+    if (s.isEmpty() || s.equalsIgnoreCase("NULL")) {
+        return null;
+    }
+    try {
+        s = s.trim();
+        s = s.replace('-', '/');
+        LocalDate fecha = LocalDate.parse(s, F_DMY);
+        // Devuelve siempre yyyy-MM-dd
+        return fecha.toString();
+    } catch (Exception e) {
+        System.err.println(
+            "Error en fecha. Campo: " + campo +
+            " | Valor recibido: " + s
+        );
 
+        return null;
+    }
+}
+   
+ 
     public static boolean esNumero(String s) {
         if (s == null) {
             return false;
@@ -961,7 +969,7 @@ public class Convers {
         }
     }
    }
-
+    
     public String CON_V3_TC_SECTOR_RAMAJL(Connection con, String campo) {
        // System.out.println("camposector"+campo);
         if (campo == null || campo.trim().isEmpty()) {
